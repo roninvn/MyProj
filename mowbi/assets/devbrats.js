@@ -69,9 +69,13 @@ function openWheelPicker(e, src) {
 	    SpinningWheel.open();
     }
     else{
-    	$('select.devbrats').addClass('hide');
+    	$('select.devbrats').addClass('hide');    	
     	$(src).removeClass('hide');
-    	$(src).css('float', 'right');
+    	$(src).css({
+    		'float': 'right',
+    		'font-size': '17pt',
+    		'width': '510px'
+    	});
     	e.preventDefault();
     }
 }
