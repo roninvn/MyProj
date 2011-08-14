@@ -31,6 +31,7 @@ Page.extend("LoginPage",
    * click button login
    */
   loginClick: function(e){
+	  
 	  var usr = $('#name', this.el).val(),
 	  		pwd = $('#password', this.el).val();
 	  
@@ -42,6 +43,8 @@ Page.extend("LoginPage",
 			  //set API key and userid
 			  AjaxService.APIKey = o.APIKey;
 			  AjaxService.UserID = o.UserID;
+			  $.mobile.changePage($("#MainPage"));
+			 
 		  }
 	  });
   }

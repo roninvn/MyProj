@@ -3,25 +3,27 @@
 	<head> 
 	<title>JOB AVAILABLE</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
+	
 	<link rel="stylesheet" href="css/jquery.mobile-1.0b2.min.css" />
+	
+	
 	<script type="text/javascript" src="js/lib/jquery.min.js"></script>
 	<script type="text/javascript" src="js/lib/jquery.mobile-1.0b2.min.js"></script>
 	<script type="text/javascript" src="js/lib/jquery.lang.min.js"></script>
 	<script type="text/javascript" src="js/lib/jquery.class.min.js"></script>
-	
 	
 	<script type="text/javascript" src="js/ajax.js"></script>
 	
 </head> 
 
 <body>
-
+<!-- Login page -->
 <div data-role="page" id = "LoginPage">
 	<div data-role="content">	
 		<p>JOB AVAILABLE</p>
 		<p><label id="jobAvail">{Number of Jobs}</label> JOBS AVAILABLE</p>
 		<p>WELCOME TO ....</p>		
-		<a id = "createAccount" data-role="button" data-inline="true" data-theme="b">CREATE NEW ACCOUNT</a>
+		<a href = "#EditAccountPage" id = "createAccount" data-role="button" data-inline="true">CREATE NEW ACCOUNT</a>
 		
 		<div data-role="fieldcontain">
 		    <label for="name">USERNAME</label>
@@ -30,17 +32,155 @@
     		<input type="password" name="password" id="password" value="PSW" />
 		</div>
    		
-		<a id = "login" data-role="button" data-inline="true" data-theme="b">LOGIN</a>
+		<a id = "login" data-role="button" data-inline="true">LOGIN</a>
 						
 	</div><!-- /content -->
-</div><!-- /page -->
+</div>
+<!-- /Login page -->
 
+<!-- Edit Account page -->
+<div data-role="page" id = "EditAccountPage" data-add-back-btn=”true”>
+	<div data-role="header" data-position="inline">
+		<h1>Edit Contact</h1>
+	</div>
+	
+		<div data-role="content">	
+		<div data-role="fieldcontain">
+		    <label for="name">USERNAME</label>
+		    <input type="text" name="name" id="name" />
+		    <label for="password">PASSWORD</label>
+    		<input type="password" name="password" id="password" />
+    		<label for="firstname">FIRST NAME</label>
+		    <input type="text" name="firstname" id="firstname" />
+		    <label for="lastname">LAST NAME</label>
+		    <input type="text" name="lastname" id="lastname" />
+		</div>	
+		</div><!-- /content -->
+		
+</div>
+<!-- /Edit Account page -->
+
+
+<!-- main page -->
+<div data-role="page" id = "MainPage">
+	<div data-role="header" data-position="inline">			
+	</div>
+	
+		<div data-role="content">
+			<p>JOB AVAILABLE</p>
+			<p><label id="jobAvail">{Number of Jobs}</label> JOBS AVAILABLE IN YOUR AREA</p>
+			<p>FIND JOB ON THE DATE...</p>
+		    <a href = "#PostedJobPage" id = "PostJob" data-role="button">POST JOB / VIEW POSTED</a>
+		    <a href = "#AvailJobPage" id = "ViewAvail" data-role="button">VIEW AVAILABLE JOBS</a>
+		</div><!-- /content -->
+		
+</div>
+<!-- /main page -->
+
+
+<!-- Avail Job page -->
+<div data-role="page" id = "AvailJobPage" data-add-back-btn=”true”>
+	<div data-role="header" data-position="inline">	
+		<h1>Avail Jobs</h1>	
+	</div>	
+	<div data-role="content">
+	<p>THESE ARE THE DATES AVAILABLE IN YOUR REGIONS</p>
+	<ul datarole = "listview">
+		<li>111</li>
+		<li>222</li>
+		<li>333</li>
+	</ul>
+	</div><!-- /content -->
+		
+</div>
+<!-- /Avail Job page -->
+
+<!-- Posted Job page -->
+<div data-role="page" id = "PostedJobPage" data-add-back-btn=”true”>
+	<div data-role="header" data-position="inline">		
+		<h1>Posted Jobs</h1>	
+	</div>	
+	<div data-role="content">
+	<p>THESE ARE THE DATES AVAILABLE IN YOUR REGIONS</p>
+	<ul datarole = "listview">
+		<li>111</li>
+		<li>222</li>
+		<li>333</li>
+	</ul>
+	<a href = "#AddDatePage" id = "AddDateNotAvail" data-role="button">+ ADD DATE I'M NOT AVAILABLE</a>
+	</div><!-- /content -->
+		
+</div>
+<!-- /Posted Job page -->
+
+
+<!-- Add date page -->
+<div data-role="page" id = "AddDatePage" data-add-back-btn=”true”>
+	<div data-role="header" data-position="inline">		
+		<h1>Add a date</h1>	
+	</div>	
+	<div data-role="content">
+		<div data-role="fieldcontain">
+		    <label for="date">Date Input:</label>
+			<input type="date" name="date" id="date" value=""  />
+		</div>	
+	</div><!-- /content -->
+		
+</div>
+<!-- /Add date page -->
+
+<!-- People avail page -->
+<div data-role="page" id = "PeopleAvailPage" data-add-back-btn=”true”>
+	<div data-role="header" data-position="inline">		
+		<h1>People avail</h1>	
+	</div>	
+	<div data-role="content">
+		<div data-role="fieldcontain">
+		    <label for="date">Date Input:</label>
+			<input type="date" name="date" id="date" value=""  />
+		</div>	
+	</div><!-- /content -->
+		
+</div>
+<!-- /People avail page -->
+
+<!-- People info page -->
+<div data-role="page" id = "PeopleInfoPage" data-add-back-btn=”true”>
+	<div data-role="header" data-position="inline">		
+		<h1>People avail</h1>	
+	</div>	
+	<div data-role="content">
+		<div data-role="fieldcontain">
+		    <label for="date">Date Input:</label>
+			<input type="date" name="date" id="date" value=""  />
+		</div>	
+	</div><!-- /content -->
+		
+</div>
+<!-- /People info page -->
+
+<!-- Setting page -->
+<div data-role="page" id = "SettingPage" data-add-back-btn=”true”>
+	<div data-role="header" data-position="inline">		
+		<h1>People avail</h1>	
+	</div>	
+	<div data-role="content">
+		<div data-role="fieldcontain">
+		    <label for="date">Date Input:</label>
+			<input type="date" name="date" id="date" value=""  />
+		</div>	
+	</div><!-- /content -->
+		
+</div>
+<!-- /Setting page -->
+
+
+<!-- Dialog -->
 <a href="#Dialog" id = "aDialog" data-role="button" data-inline="true" data-theme="b"  data-rel="dialog" data-transition="pop" style="visibility : hidden;"></a>
-
 <div id = "Dialog" data-role="dialog">
 	<div data-role="header">
 			<h1>Page Title</h1>
-		</div><!-- /header -->
+	</div><!-- /header -->
 	
 		<div data-role="content">	
 			<p>Page content goes here.</p>		
@@ -49,11 +189,20 @@
 		<div data-role="footer">
 			<h4>Page Footer</h4>
 		</div><!-- /footer -->
-</div><!-- /page -->
+</div>
+<!-- /Dialog -->
 
 
 <script type="text/javascript" src="js/page.js"></script>
 <script type="text/javascript" src="js/loginpage.js"></script>
+<script type="text/javascript" src="js/editaccountpage.js"></script>
+<script type="text/javascript" src="js/mainpage.js"></script>
+<script type="text/javascript" src="js/availjobpage.js"></script>
+<script type="text/javascript" src="js/postedjobpage.js"></script>
+<script type="text/javascript" src="js/adddatepage.js"></script>
+<script type="text/javascript" src="js/peopleavailpage.js"></script>
+<script type="text/javascript" src="js/peopleinfopage.js"></script>
+<script type="text/javascript" src="js/settingpage.js"></script>
 <script type="text/javascript" src="js/app.js"></script>
 
 </body>

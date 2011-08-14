@@ -1,5 +1,5 @@
 /*
- * Page Application
+ * Class Page
  */
 $.Class.extend("Page",
 // static methods 
