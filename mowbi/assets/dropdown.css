@@ -1,0 +1,79 @@
+/************** Skin 2 *********************/
+.dd2 {
+	/*display:inline-block !important;*/
+	text-align:left;
+	background-color:#fff;
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:11px !important;
+	font-weight:bold;
+	float:left;
+}
+.dd2 .ddTitle {
+	background:transparent url(/tpl/dir/10/assets/images/blank.png) no-repeat;
+	padding:0 3px;
+	text-indent:0;
+	cursor:default;
+	overflow:hidden;
+	height:36px;
+}
+.dd2 .ddTitle span.arrow {
+	 no-repeat 0 0; float:right; display:inline-block;width:27px; height:27px; cursor:pointer; top:5px; position:relative; right:2px;
+}
+
+.dd2 .ddTitle span.ddTitleText {text-indent:1px; overflow:hidden; line-height:33px; font-family:Georgia, "Times New Roman", Times, serif; font-size:14px; font-weight:bold; color:#fff; _position:relative; _top:4px; padding:5px;}
+.dd2 .ddTitle span.ddTitleText img{text-align:left; padding:0 2px 0 0;}
+.dd2 .ddTitle img.selected {
+	padding:0 2px 0 0;
+	vertical-align:top;
+}
+.dd2 .ddChild {
+	position:absolute;
+	border:3px solid black !important;
+	display:none;
+	margin:0;
+	width:auto;
+	overflow:auto;
+	overflow-x:hidden !important;
+	background-color:#ffffff;
+	font-size:12px;
+	width:200px !important;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px; 
+	margin-left:5px;
+}
+.dd2 .ddChild a
+{
+	border-top:1px solid #f2f2f2;
+	border-bottom:1px solid #f2f2f2;
+}
+.dd2 .ddChild .opta a, .dd2 .ddChild .opta a:visited {padding-left:10px}
+.dd2 .ddChild a {
+	display:block;
+	padding:5px 0 5px 5px;
+	text-decoration:none;
+	color:#000;
+	overflow:hidden;
+	white-space:nowrap;
+	cursor:pointer;
+}
+.dd2 .ddChild a:hover {
+	background-color:#e1e1e1;
+		border-top:1px solid #e1e1e1;
+	border-bottom:1px solid #e1e1e1;
+}
+.dd2 .ddChild a img {
+	border:0;
+	padding:0 2px 0 0;
+	vertical-align:middle;
+}
+.dd2 .ddChild a.selected {
+	background:url(/tpl/dir/10/assets/images/tick.gif) no-repeat right 5px;
+}
+
+.dd2 .borderTop{border-top:1px solid #c3c3c3  !important;}
+
+#websites2_msa_0
+{
+	display:none !important;
+}

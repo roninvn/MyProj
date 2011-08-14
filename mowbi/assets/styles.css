@@ -1,0 +1,777 @@
+*{
+padding:0px; 
+margin:0px;
+}
+img{
+border:0px;
+}
+h2{
+	font-family: time new roman;
+}
+body{
+font-family: Calibri, arial, helvetica;
+background:#FFFFFF;
+color:#000;
+width:768px
+}
+
+#bodytext {
+width:310px;
+margin-left:5px;
+}
+.centeringbox {
+margin:0 auto;
+padding-top: 15px;
+text-align:center;
+width:90%;
+height:100%;
+color: #fff;
+font-family: Calibri, arial, helvetica;
+}
+.ptitle {
+color: #fff;
+}
+#nav {
+height:38px;
+padding:0px;
+margin:0px;
+float:left;
+background:#000000;
+border:none;
+width:633px;
+margin-bottom:0px;
+
+
+}
+#nav a{
+	font-family:Georgia, "Times New Roman", Times, serif;
+	font-size:24px;
+	color:#FFFFFF;
+	text-decoration:none;
+	margin-left:10px;
+	line-height:32px;
+}
+#rmain{
+width:768px;
+}
+#rhead{
+height:27px;
+background-image:url(/tpl/dir/6/assets/images/head-bar-bg.jpg);
+background-repeat:repeat-x;
+}
+#home-heleft{
+float:left;
+}
+#heleft{
+float:left;
+}
+#home-heform{
+float:left;
+padding:3px 0px 0px 0px;
+}
+#heform{
+float:left;
+padding:4px 0px 0px 5px;
+}
+#home-helogo{
+float:right;
+}
+#helogo{
+float:left;
+}
+#hetext{
+float:left;
+padding:4px 0px 0px 2px;
+}
+#hetext a{
+font-size:14px;
+color:#42611e;
+}
+#rbanner{
+clear:both;
+background-image:url(/tpl/dir/10/assets/images/logo_header.jpg);
+background-repeat:no-repeat;
+height:262px;
+}
+#headrope {
+clear:both;
+background-image:url(/tpl/dir/6/assets/images/headrope.png);
+background-repeat:no-repeat;
+height:17px;
+z-index:3;
+}
+#banmenus{
+float:left;
+width:768px;
+height:27px;
+margin-top:106px;
+}
+#banlogo1{
+float:left;
+padding:0px 0px 0px 31px;
+}
+#banlogo2{
+float:left;
+padding:0px 0px 0px 3px;
+}
+#banlogo3{
+float:left;
+padding:0px 0px 0px 4px;
+}
+#rbody{
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:18px;
+	color:#000000;
+	text-align:center;
+	width:768;
+	clear:both;
+
+}
+
+#rbody a{ text-decoration:none;
+color:#000;
+}
+#sml-rbody{
+clear:both;
+background-image:url(/tpl/dir/2/assets/images/MOWBI-PtldChambdsftory_02.jpg);
+background-repeat:no-repeat;
+height:45px;
+padding-top:20px;
+}
+#boleft{
+float:left;
+}
+#activecat {
+	color:#000000
+width:250px;
+height:46px;
+padding-top:13px;
+padding-right:20px;
+text-align:right;
+}
+#backbutton {
+width:250px;
+height:46px;
+padding-top:13px;
+padding-right:20px;
+text-align:right;
+background-image:url(/tpl/dir/10/assets/images/category.png);
+background-repeat:no-repeat;
+}
+#activecat a {
+text-decoration:none;
+color:black;
+font-size:14px;
+}
+#categories{
+padding-top:0px;
+z-index:4;
+}
+#categories a.home{
+width:768;
+height:auto;
+margin-right:0px;
+margin-bottom:0px;
+float:right;
+}
+#cetagories li.members{
+list-style-type:none;
+background-image:url(/tpl/dir/2/assets/images/ladber-Directory_02.jpg);
+background-repeat:no-repeat;
+width:165px;
+height:36px;
+padding-top:10px;
+text-align:right;
+}
+#cetagories li{
+list-style-type:none;
+background-image:url(/tpl/dir/2/assets/images/sdffsdftory_02.jpg);
+background-repeat:no-repeat;
+width:165px;
+height:33px;
+padding-top:10px;
+text-align:right;
+}
+#cetagories li a{
+padding:0px 35px 0px 0px;
+text-decoration:none;
+color:white;
+font-size:14px;
+}
+#home-boright{
+float:left;
+width:155px;
+}
+#boright{
+float:left;
+background-image:url(/tpl/dir/2/assets/images/gfder-Directory_03.jpg);
+background-repeat:no-repeat;
+width:150px;
+height:50px;
+margin:4px 0px 0px 5px;
+}
+#ritop{
+float:left;
+background-image:url(/tpl/dir/2/assets/images/MOWBI-PtldDirectory_03.jpg);
+background-repeat:no-repeat;
+width:150px;
+height:162px;
+margin:15px 0px 0px 5px;
+}
+#ritop img{
+padding:65px 0px 0px 25px;
+}
+#ridown{
+float:left;
+padding:5px 0px 0px 5px;
+width:150px;
+text-align:center;
+font-size:13px;
+}
+#ridown a {
+color:#4e6f23;
+font-size:13px;
+}
+.as{
+color:#4e6f23;
+}
+.bs{
+color:#285271;
+}
+.ds{
+color:#4e6f23;
+}
+#rvideo{
+position:relative;
+top:10px;
+text-align:center;
+}
+#home-interval2{
+padding-top:5px;
+}
+#interval2{
+clear: both;
+}
+#interval2 hr{
+color: #c3c2c2;
+background-color:#c3c2c2;
+height:4px;
+}
+#rfottertop{
+clear:both;
+padding-top:5px;
+width:768px;
+}
+#tofleft{
+float:left;
+padding-left:5px;
+}
+#tofright{
+float:right;
+margin-right:40px;
+}
+#rfotterdown{
+float:left;
+width:768px;
+padding:7px 0px 0px 5px;;
+}
+.aws{
+float:left;
+}
+.bws{
+float:left;
+padding-left:8px;
+}
+.cws{
+float:left;
+padding-left:8px;
+}
+#tofright ul li{
+
+display:inline;
+margin-right:2px;
+}
+#tofright a{
+text-decoration:none;
+color:#698a28;
+font-size:15px;
+}
+.not{
+padding-left:10px;
+border-right:2px solid #227fb8;
+padding-right:8px;
+}
+.got{
+padding-left:4px;
+}
+#bolog{
+float:left;
+padding:15px 0px 0px 10px;
+}
+#botxt{
+float:left;
+color:#42611e;
+font-size:14px;
+padding:10px 0px 0px 10px;
+}
+#botxt span{
+padding-left:7px;
+font-size:17px;
+}
+#botxt span a{
+text-decoration:none;
+color:#0594ce;
+}
+#cetalist,#memberlist{
+clear:both;
+}
+#cetalist li,#memberlist li{
+list-style-type:none;
+width:400px;
+height:auto;
+margin-top: 28px;
+margin-left: 8px;
+padding-left:8px;
+line-height: 17px;
+text-align:left;
+}
+#cetalist li a, #memberlist li a{
+text-decoration:none;
+color:#000;
+font-size:16px;
+font-weight:bold;
+}
+#interval1{
+float:left;
+padding-top:5px;
+clear:both;
+}
+.copyright{
+	font-size:11px;
+	margin-top:0px;
+	clear:both;
+	border-top:5px solid black;
+	width:768px;
+	position:absolute;
+}
+#radver{
+float:left;
+background-image:url(/tpl/dir/2/assets/images/MOWBI-PtldChafdfctory_02.jpg);
+width:290px;
+min-height:48px;
+padding:20px 0px 0px 30px;
+}
+#ftplin{
+clear:both;
+background-image:url(/tpl/dir/2/assets/images/gggChamber-Directory_02.png);
+height:46px;
+width:200px;
+padding:10px 0px 0px 120px;
+border-bottom:2px dotted #b9d387;
+}
+#ftplin ul li{
+display:inline;
+}
+#ftplin ul li a{
+text-decoration:none;
+}
+#tomw{
+float:left;
+background-image:url(/tpl/dir/2/assets/images/gfftory_02.jpg);
+background-repeat:no-repeat;
+width:320px;
+height:30px;
+text-align:center;
+padding-top:3px;
+}
+#tomw a{
+text-decoration:none;
+color:#027abb;
+}
+#fulist{
+clear:both;
+}
+#lis1{
+width:319px;
+height:66px;
+}
+#lish1le{
+float:left;
+padding-left:10px;
+}
+#lish1re{
+float:left;
+padding-left:5px;
+padding-top:2px;
+width:200px;
+}
+.q1{
+color:#027abb;
+font-size:17px;
+}
+.q2{
+color:#5a7831;
+font-size:12px;
+}
+.q3{
+color:#027abb;
+font-size:12px;
+}
+#lish1re .q2 a{
+text-decoration:none;
+color:#027abb;
+}
+#lish1re .q2 .im{
+padding-left:5px;
+}
+#lis2{
+width:319px;
+height:66px;
+padding-top:10px;
+}
+#lish2le{
+float:left;
+padding-left:10px;
+}
+#lish2re{
+float:left;
+padding-left:5px;
+padding-top:2px;
+width:200px;
+}
+#lish2re .q2 a{
+text-decoration:none;
+color:#027abb;
+}
+#lish2re .q2 .im{
+padding-left:5px;
+}
+#lis3{
+width:319px;
+height:66px;
+padding-top:10px;
+}
+#lish3le{
+float:left;
+padding-left:10px;
+}
+#lish3re{
+float:left;
+padding-left:5px;
+padding-top:2px;
+width:200px;
+}
+#lish3re .q2 a{
+text-decoration:none;
+color:#027abb;
+}
+#lish3re .q2 .im{
+padding-left:5px;
+}
+#lis4{
+width:319px;
+height:66px;
+padding-top:10px;
+padding-bottom:10px;
+}
+#lish4le{
+float:left;
+padding-left:10px;
+}
+#lish4re{
+float:left;
+padding-left:5px;
+padding-top:2px;
+width:200px;
+}
+#lish4re .q2 a{
+text-decoration:none;
+color:#027abb;
+}
+#lish4re .q2 .im{
+padding-left:5px;
+}
+#qwmenu{
+float:left;
+background-image:url(/tpl/dir/2/assets/images/bvb_02.jpg);
+background-repeat:no-repeat;
+width:320px;
+height:40px;
+text-align:center;
+padding-top:4px;
+}
+#qwmenu ul{
+padding-top:8px;
+padding-right:15px;
+}
+#qwmenu ul li{
+list-style-type:none;
+}
+#qwmenu a{
+text-decoration:none;
+color:white;
+}
+#conte{
+clear:both;
+background-image:url(/tpl/dir/2/assets/images/gfPtldChamber-Directory_02.jpg);
+background-repeat:no-repeat;
+width:320px;
+height:102px;
+padding-top:15px;
+}
+#awlogo{
+float:left;
+}
+#awpic{
+float:left;
+}
+#qwtxt{
+width:320px;
+min-height:72px;
+text-align:center;
+padding-top:10px;
+color:#4e6f23;
+line-height:90%;
+}
+.poi{
+color:#005fa2;
+}
+#qwlogs{
+width:120px;
+height:33px;
+padding-left:200px;
+}
+#gmaps{
+float:left;
+}
+#ftp{
+background-image:url(/tpl/dir/2/assets/images/gggChamber-Directory_02.png);
+height:46px;
+width:200px;
+padding:10px 0px 0px 120px;
+text-align: center;
+}
+#rbtxtq{
+float:left;
+text-align:center;
+padding-top:20px;
+}
+#rbtxtq span{
+}
+#rbtxtq .tre{
+padding-left:20px;
+color:#7a9158;
+}
+#twitimg{
+float:left;
+}
+#actxt{
+float:left;
+text-align:center;
+padding-top:20px;
+padding-left:30px;
+color:#6f894b;
+}
+.abt1{
+color:#007dc1;
+font-weight:bold;
+}
+.abt2{
+line-height:90%;
+color:#889e6a;
+}
+.abt2 a{
+color:#889e6a;
+}
+#txintar{
+float:left;
+padding:20px 0px 0px 65px;
+color:#1186c5;
+line-height:90%;
+}
+#lalist{
+clear:both;
+}
+#lalist{
+padding:10px 0px 20px 65px;
+}
+#lalist ul li{
+background-image:url(/tpl/dir/2/assets/images/abatI-PtldChamber-Directory_03.jpg);
+background-repeat:no-repeat;
+list-style-type:none;
+}
+#lalist ul li a{
+text-decoration:none;
+padding-left:10px;
+color:#228ec9;
+}
+.ab71{
+font-weight:bold;
+}
+.ab61{
+font-weight:bold;
+line-height:80%;
+}
+.ab61 a{
+text-decoration:none;
+color:#26a1d3;
+}
+#largem{
+float:left;
+padding:20px 0px 0px 40px;
+}
+#largem ul li{
+display:inline;
+}
+#largem ul li{
+text-decoration:none;
+}
+#casm{
+clear:both;
+background-image:url(/tpl/dir/2/assets/images/fssder-Directory_02.jpg);
+background-repeat:no-repeat;
+height:43px;
+width:220px;
+padding:10px 0px 0px 100px;
+}
+#casm .ses{
+padding-left:20px;
+}
+#gmass{
+clear:both;
+}
+#heform input{
+width:115px;
+height:20px;
+background-image:url(/tpl/dir/2/assets/images/lst.png);
+background-repeat:no-repeat;
+padding:1px 17px 0px 8px;
+border:0px;
+background-color: transparent;
+}
+.member-image
+{
+float:left;
+height:50px;
+padding-right:9px;
+padding-top:3px;
+}
+.address-box
+{float:left;}
+
+#results
+{
+    width: 200px;
+    border-left: solid 2px black;
+}
+#results #searchWrapper
+{
+    display: block;
+    postition: relative;
+    z-index: 1;
+    height: 515px;
+    overflow: auto;
+    background:#EAEAEA;
+    padding-left:20px;
+    padding-top:20px;
+    padding-bottom:10px;                 
+}
+.resultsControl{
+}
+
+.resultsTitle{
+font-weight:bold;
+font-size:20
+px;
+}
+.categ{
+background-image: -webkit-gradient(
+    linear,
+    left bottom,
+    left top,
+    color-stop(0.02, rgb(242,242,242)),
+    color-stop(0.89, rgb(234,234,234)),
+    color-stop(0.98, rgb(208,208,208))
+);
+background-image: -moz-linear-gradient(
+    center bottom,
+    rgb(242,242,242) 7%,
+    rgb(234,234,234) 89%,
+    rgb(208,208,208) 98%
+);
+padding-left:100px;
+margin-left:63px;
+padding-top:10px;
+margin-right:15px;
+-moz-border-radius: 5px;
+border-radius: 5px;
+margin-top:0px;
+}
+
+.dsearch{
+background:url(/tpl/dir/10/assets/images/blank.png) no-repeat;
+border:none;
+height:36px;
+color:white;
+font-weight:600;
+padding-left:20px;
+padding-top:4px;
+font-size: 15px;
+}
+.searchButton{
+background:url(/tpl/dir/10/assets/images/search.png) no-repeat left;
+margin-left:138px;
+border:none;
+width:151px;
+height:23px;
+color:white;
+font-size:13px;
+padding-right:30px;
+font-weight:350;
+}
+.back {
+background:no-repeat;
+font-weight:200;
+color:white;
+margin-left:40px;
+margin-top:-28px;
+z-index:999;
+}
+.sorter{
+	margin-left:15px;
+}
+
+.devbrats.search-box 
+{
+    display: none;
+    background: #E6E6E6;
+    padding: 20px;
+    margin: 0 0 0 52px;
+    width: 450px;
+    border: 0;
+    border-left: 5px solid #FFFFFF;
+}
+
+.devbrats.search-box label 
+{
+    display: block;
+    margin: 5px;
+}
+
+.devbrats.search-box input[type='text']
+{
+    width: 250px;
+    padding: 5px;
+    border-radius: 10px;
+    outline: none;
+}
+
+.devbrats.search-box input[type='submit']
+{
+       padding: 5px;
+}
+
+.devbrats.hide
+{
+    display: none;
+}
