@@ -1,0 +1,60 @@
+<!DOCTYPE html> 
+<html> 
+	<head> 
+	<title>JOB AVAILABLE</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="css/jquery.mobile-1.0b2.min.css" />
+	<script type="text/javascript" src="js/lib/jquery.min.js"></script>
+	<script type="text/javascript" src="js/lib/jquery.mobile-1.0b2.min.js"></script>
+	<script type="text/javascript" src="js/lib/jquery.lang.min.js"></script>
+	<script type="text/javascript" src="js/lib/jquery.class.min.js"></script>
+	
+	
+	<script type="text/javascript" src="js/ajax.js"></script>
+	
+</head> 
+
+<body>
+
+<div data-role="page" id = "LoginPage">
+	<div data-role="content">	
+		<p>JOB AVAILABLE</p>
+		<p><label id="jobAvail">{Number of Jobs}</label> JOBS AVAILABLE</p>
+		<p>WELCOME TO ....</p>		
+		<a id = "createAccount" data-role="button" data-inline="true" data-theme="b">CREATE NEW ACCOUNT</a>
+		
+		<div data-role="fieldcontain">
+		    <label for="name">USERNAME</label>
+		    <input type="text" name="name" id="name" value="ADAM"  />		    
+		    <label for="password">PASSWORD</label>
+    		<input type="password" name="password" id="password" value="PSW" />
+		</div>
+   		
+		<a id = "login" data-role="button" data-inline="true" data-theme="b">LOGIN</a>
+						
+	</div><!-- /content -->
+</div><!-- /page -->
+
+<a href="#Dialog" id = "aDialog" data-role="button" data-inline="true" data-theme="b"  data-rel="dialog" data-transition="pop" style="visibility : hidden;"></a>
+
+<div id = "Dialog" data-role="dialog">
+	<div data-role="header">
+			<h1>Page Title</h1>
+		</div><!-- /header -->
+	
+		<div data-role="content">	
+			<p>Page content goes here.</p>		
+		</div><!-- /content -->
+	
+		<div data-role="footer">
+			<h4>Page Footer</h4>
+		</div><!-- /footer -->
+</div><!-- /page -->
+
+
+<script type="text/javascript" src="js/page.js"></script>
+<script type="text/javascript" src="js/loginpage.js"></script>
+<script type="text/javascript" src="js/app.js"></script>
+
+</body>
+</html>
