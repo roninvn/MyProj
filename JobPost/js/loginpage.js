@@ -12,6 +12,12 @@ Page.extend("LoginPage",
 	  var me = this;
 	  $('#login', me.el).live("click", function(e){me.loginClick(e)});
 	  
+	  //get Job Available
+	  AjaxService.getNumberofJobs(function(jobs){		  
+		  me.el.find('#jobAvail').text(jobs);
+	  });	
+	  
+	  
   },//end init
   
   /*
@@ -19,13 +25,6 @@ Page.extend("LoginPage",
    */
   onPageShow: function(e, ui){
 	  this._super(e, ui);
-	  var me = this;
-	  //get Job Available
-	  AjaxService.getNumberofJobs(function(jobs){
-		  //var d = jobs.Value;
-		  console.log(me);
-		  me.el.find('#jobAvail').text(jobs);
-	  });	  
   },
   
   /*
@@ -38,7 +37,7 @@ Page.extend("LoginPage",
 	  
 	  AjaxService.login(usr, pwd, function(d){
 		  if(d == null)
-			  Page.showDialog();
+			  Page.showDialog("Error", "Invalid Username/password");
 		  else{			 	  
 			  //set API key and userid
 			  AjaxService.APIKey = d.APIKey;

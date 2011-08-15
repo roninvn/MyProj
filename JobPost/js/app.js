@@ -16,8 +16,7 @@ $.Class.extend("Application",
 		  //console.log(e.target.id);
 		  if(!Application.Pages[e.target.id]){ //create page instance
 			  //console.log('Application.Pages["'+e.target.id+'"] = new ' + e.target.id +'("' + e.target.id + '");');
-			  eval('Application.Pages["'+e.target.id+'"] = new ' + e.target.id +'("' + e.target.id + '");');
-			  
+			  eval('Application.Pages["'+e.target.id+'"] = new ' + e.target.id +'("' + e.target.id + '");');			  
 		  }
 		});
   }

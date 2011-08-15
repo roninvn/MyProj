@@ -8,16 +8,8 @@ Page.extend("MainPage",
 {
   // called when a new monster is created
   init : function(id){
-	  this._super(id);	  
+	  this._super(id);
 	  
-  },//end init
-  
-  
-  /*
-   * main page show
-   */
-  onPageShow: function(e, ui){	  
-	  this._super(e, ui);
 	  var me = this;
 	  //get Job Available
 	  AjaxService.getNumberJobOfUser(function(d){		  
@@ -29,6 +21,16 @@ Page.extend("MainPage",
 		  
 		  me.el.find('#jobAvail').text(l);		  
 	  });
+	  
+	  
+  },//end init
+  
+  
+  /*
+   * main page show
+   */
+  onPageShow: function(e, ui){	  
+	  this._super(e, ui);
   }
   
 });

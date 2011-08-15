@@ -11,6 +11,7 @@
 	<script type="text/javascript" src="js/lib/jquery.mobile-1.0b2.min.js"></script>
 	<script type="text/javascript" src="js/lib/jquery.lang.min.js"></script>
 	<script type="text/javascript" src="js/lib/jquery.class.min.js"></script>
+	<script type="text/javascript" src="js/lib/jquery.tmpl.min.js"></script>
 	
 	<script type="text/javascript" src="js/ajax.js"></script>
 	
@@ -84,13 +85,20 @@
 	</div>	
 	<div data-role="content">
 	<p>THESE ARE THE DATES AVAILABLE IN YOUR REGIONS</p>
-	<ul datarole = "listview">
-		<li>111</li>
-		<li>222</li>
-		<li>333</li>
+	<ul datarole = "listview" id = "jobList">
 	</ul>
 	</div><!-- /content -->
-		
+	
+	
+	<div data-role="footer">
+		<h4>ADS</h4>
+	</div><!-- /footer -->
+	
+	<script id="jobListItem" type="text/x-jquery-tmpl">
+   	 <li data-messageId="${JobId}" job-date = "${JobDate}" job-region="${JobRegion}" job-desc="${JobDescription}">
+		<img src = "img/add.gif" data-messageId="${JobId}" avail="True"></img>${JobDate} ${JobRegion}<img src = "img/remove.gif" data-messageId="${JobId}" avail="False"></img>      
+    </li>
+	</script>
 </div>
 <!-- /Avail Job page -->
 
@@ -100,14 +108,23 @@
 		<h1>Posted Jobs</h1>	
 	</div>	
 	<div data-role="content">
-	<p>THESE ARE THE DATES AVAILABLE IN YOUR REGIONS</p>
-	<ul datarole = "listview">
-		<li>111</li>
-		<li>222</li>
-		<li>333</li>
+	<p>THESE ARE THE DATES YOU ARE NOT AVAILABLE</p>	
+	<ul datarole = "listview" id = "jobList">		
 	</ul>
+	<p></p>
 	<a href = "#AddDatePage" id = "AddDateNotAvail" data-role="button">+ ADD DATE I'M NOT AVAILABLE</a>
+	
 	</div><!-- /content -->
+	
+	<div data-role="footer">
+		<h4>ADS</h4>
+	</div><!-- /footer -->
+	
+	<script id="jobListItem" type="text/x-jquery-tmpl">
+   	 <li >
+		<a href="#PeopleAvailPage" data-messageId="${JobId}" job-date = "${JobDate}" job-region="${JobRegion}">${JobDate} ${JobRegion} <span class="ui-li-count">${NumPeopleApplied}</span> </a>    
+    </li>
+	</script>
 		
 </div>
 <!-- /Posted Job page -->
@@ -134,11 +151,16 @@
 		<h1>People avail</h1>	
 	</div>	
 	<div data-role="content">
-		<div data-role="fieldcontain">
-		    <label for="date">Date Input:</label>
-			<input type="date" name="date" id="date" value=""  />
-		</div>	
+	<p>WE ARE AVAILABLE ON <label id="availDate"></label> IN <label id="availRegion"></label></p>
+	
+	<ul datarole = "listview" id = "peopleList">		
+	</ul>
+		
 	</div><!-- /content -->
+	
+	<div data-role="footer">
+		<h4>ADS</h4>
+	</div><!-- /footer -->
 		
 </div>
 <!-- /People avail page -->
@@ -149,10 +171,6 @@
 		<h1>People avail</h1>	
 	</div>	
 	<div data-role="content">
-		<div data-role="fieldcontain">
-		    <label for="date">Date Input:</label>
-			<input type="date" name="date" id="date" value=""  />
-		</div>	
 	</div><!-- /content -->
 		
 </div>
@@ -178,16 +196,11 @@
 <a href="#Dialog" id = "aDialog" data-role="button" data-inline="true" data-theme="b"  data-rel="dialog" data-transition="pop" style="visibility : hidden;"></a>
 <div id = "Dialog" data-role="dialog">
 	<div data-role="header">
-			<h1>Page Title</h1>
+			<h1 id  = "header">Page Title</h1>
 	</div><!-- /header -->
-	
 		<div data-role="content">	
-			<p>Page content goes here.</p>		
+			<p id  = "content">Page content goes here.</p>		
 		</div><!-- /content -->
-	
-		<div data-role="footer">
-			<h4>Page Footer</h4>
-		</div><!-- /footer -->
 </div>
 <!-- /Dialog -->
 

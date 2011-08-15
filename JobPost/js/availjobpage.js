@@ -6,9 +6,17 @@ Page.extend("AvailJobPage",
 {},
 // prototype methods
 {
-  // called when a new monster is created
+  jobList: null,
+  jobItemTemplate : null,
+  
   init : function(id){
-	  this._super(id);	  
+	  this._super(id);
+	  
+	  this.jobList = this.el.find("#jobList");
+	  this.jobList.listview();
+	  this.jobItemTemplate = this.el.find("#jobListItem");
+	  
+	  this.getJobList();
 	  
   },//end init
   
@@ -18,13 +26,68 @@ Page.extend("AvailJobPage",
    */
   onPageShow: function(e, ui){	  
 	  this._super(e, ui);
+  },
+  /*
+   * get the job list
+   */
+  getJobList: function(){
 	  var me = this;
 	  //get Job Available
 	  AjaxService.getNumberJobOfUser(function(d){
-		  //TODO : fix JSON format from server
-		  /*var o = $.parseJSON(d);		  
-		  $('#jobAvail', me.el).text(o.length);*/		  
-	  });
+		  if(!$.isArray(d))
+			  d = [d];
+		  
+		  me.poplulateJobList(d);
+		  
+	  });	  
+  },
+  
+  /*
+   * populate the job list after getting data
+   */
+  poplulateJobList: function (jobs){
+	  
+	  this.jobList.empty();
+	  
+	  this.jobItemTemplate.tmpl(jobs).appendTo(this.jobList);
+	  var me = this;
+	  this.jobList.find("img").live("tap", function(e,ui){me.listItemButtonClicked(e)});
+	  this.jobList.find("li").live("tap", function(e,ui){me.listItemClicked(e)});
+	  
+	  this.jobList.listview("refresh");
+  },
+  
+  /*
+   * button plus or minus clicked
+   */
+  listItemButtonClicked : function(e){	  
+	  e.stopPropagation();
+	  var btn = $(e.target);
+	  var id = btn.attr("data-messageId");
+	  var action = btn.attr("avail");
+	  var me = this;
+	  $(e.target).parent().remove();
+	  AjaxService.markJobForUser(id, action, function(d){me.afterMarkJob(d)});
+  },
+  
+  /*
+   * call after a job is marked
+   */
+  afterMarkJob: function(d){
+	  //console.log(d);
+	  //this.getJobList();// refresh the list
+	  
+  },
+  /*
+   * show job info
+   */
+  listItemClicked: function(e){
+	  var btn = $(e.target);
+	  var jDate = btn.attr("job-date"),
+	  		jRegion = btn.attr("job-region"),
+  			jDesc = btn.attr("job-desc");
+	  
+	  Page.showDialog("Job Info", "Job Date : " + jDate + "<br /> Job Region : " + jRegion + "<br /> Job Description : " + jDesc);
   }
   
 });

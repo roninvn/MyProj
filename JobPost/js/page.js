@@ -7,7 +7,9 @@ $.Class.extend("Page",
 	/*
 	 * show dialog
 	 */
-	showDialog: function(){
+	showDialog: function(header, content){
+		$('#Dialog #header').text(header);
+		$('#Dialog #content').html(content);
 		$('#aDialog').trigger('click');
 	}
 },
@@ -16,10 +18,9 @@ $.Class.extend("Page",
   el : null,
   // called when a new monster is created
   init : function(id){
-	  //console.log('page');
 	  this.el = $('#' + id);
 	  var me = this;
-	  this.el.live('pageshow', this.onPageShow);
+	  this.el.live('pageshow', function(e,u){me.onPageShow(e,u);});
   },//end init
   
   onPageShow: function(e, ui){	  
