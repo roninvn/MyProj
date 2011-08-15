@@ -27,16 +27,19 @@ $.Class.extend("AjaxService",
 		}
 		
 		// Take the provided url, and add it to a YQL query. Make sure you encode it!
-		var yql = 'http://query.yahooapis.com/v1/public/yql?q=' + encodeURIComponent('select * from html where url="' + AjaxService.baseURL + serviceURL + '"') + '&format=json&callback=?';
-		console.log(AjaxService.baseURL + serviceURL);
+		var yql = 'http://query.yahooapis.com/v1/public/yql?q=' + encodeURIComponent('select * from json where url="' + AjaxService.baseURL + serviceURL + '"') + '&format=json&callback=?';		
 		// Request that YSQL string, and run a callback function.
 		// Pass a defined function to prevent cache-busting.
 		$.getJSON( yql, cbFunc );		
-		function cbFunc(data) {
-			console.log(data);
+		function cbFunc(data) {			
 			var d;
-			if(data && data.query && data.query.results && data.query.results.body && data.query.results.body.p)//extract data
-				d = data.query.results.body.p;
+			if(data && data.query && data.query.results && data.query.results.json){//extract data				
+				d = data.query.results.json;
+				if(d.json)
+					d = d.json;
+			}
+			else if(data && data.query && data.query.results && data.query.results.Value)
+				d = data.query.results.Value;
 			else
 				d = null;			
 			

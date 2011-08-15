@@ -18,6 +18,7 @@ $.Class.extend("Page",
   init : function(id){
 	  //console.log('page');
 	  this.el = $('#' + id);
+	  var me = this;
 	  this.el.live('pageshow', this.onPageShow);
   },//end init
   

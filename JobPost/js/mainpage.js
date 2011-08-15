@@ -20,11 +20,14 @@ Page.extend("MainPage",
 	  this._super(e, ui);
 	  var me = this;
 	  //get Job Available
-	  AjaxService.getNumberJobOfUser(function(d){
-		  //TODO : fix JSON format from server
-		  //console.log(d);
-		  //var o = $.parseJSON(d);		  
-		  //$('#jobAvail', me.el).text(o.length);		  
+	  AjaxService.getNumberJobOfUser(function(d){		  
+		  var l;		  
+		  if(!$.isArray(d))
+			  l = 1;
+		  else
+			  l = d.length;
+		  
+		  me.el.find('#jobAvail').text(l);		  
 	  });
   }
   

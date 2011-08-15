@@ -18,13 +18,14 @@ Page.extend("LoginPage",
    * login page show
    */
   onPageShow: function(e, ui){
-	  /*this._super(e, ui);
+	  this._super(e, ui);
 	  var me = this;
 	  //get Job Available
 	  AjaxService.getNumberofJobs(function(jobs){
-		  var d = jobs.replace(/\"/g,'');
-		  $('#jobAvail', me.el).text(d);		  
-	  });*/	  
+		  //var d = jobs.Value;
+		  console.log(me);
+		  me.el.find('#jobAvail').text(jobs);
+	  });	  
   },
   
   /*
@@ -38,11 +39,10 @@ Page.extend("LoginPage",
 	  AjaxService.login(usr, pwd, function(d){
 		  if(d == null)
 			  Page.showDialog();
-		  else{
-			  var o = $.parseJSON(d);			  
+		  else{			 	  
 			  //set API key and userid
-			  AjaxService.APIKey = o.APIKey;
-			  AjaxService.UserID = o.UserID;
+			  AjaxService.APIKey = d.APIKey;
+			  AjaxService.UserID = d.UserID;
 			  $.mobile.changePage($("#MainPage"));
 			 
 		  }
