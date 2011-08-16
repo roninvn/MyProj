@@ -16,7 +16,7 @@ function isTouchDevice(){
         return false;
     }
 }
-function touchScroll(id) {
+function touchScroll(id) {	
     if(isTouchDevice()){ //if touch events exist...
         var el=document.getElementById(id);
         var scrollStartPos=0;
@@ -42,7 +42,7 @@ function toggleSearchBox(e) {
     }
 }
          
-function openWheelPicker(e, src) {
+function openWheelPicker(e, src) {	
 	//'ontouchstart' in document.documentElement
     if( (navigator.platform.indexOf("iPad") != -1) || (navigator.platform.indexOf("iPhone") != -1) || (navigator.platform.indexOf("iPod") != -1)){    	
         if (e) e.preventDefault();        
@@ -74,7 +74,7 @@ function openWheelPicker(e, src) {
     	$(src).css({
     		'float': 'right',
     		'font-size': '17pt',
-    		'width': '510px'
+    		'width': $(src).parent().find("a").width() + "px"
     	});
     	e.preventDefault();
     }

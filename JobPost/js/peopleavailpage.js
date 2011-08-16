@@ -11,7 +11,7 @@ Page.extend("PeopleAvailPage",
   
   init : function(id){
 	  this._super(id);	  
-	  console.log(111);
+	  
 	  this.pplList = this.el.find("#peopleList");
 	  this.pplList.listview();	  
   },//end init
@@ -25,17 +25,17 @@ Page.extend("PeopleAvailPage",
 	  var me = this;
 	  
 	  var jid = this.el.attr("data-messageId");
-	  console.log(jid);
-	  AjaxService.getPeopleAvail(jid, function(d){
+	  
+	  /*AjaxService.getPeopleAvail(jid, function(d){
 		  if(!$.isArray(d))
 			  d = [d];
 		  
 		  me.afterGetPeopleAvail(d);
-	  });
+	  });*/
   },
   
   afterGetPeopleAvail: function(d){
-	  console.log(d);
+	  
   }
   
 });

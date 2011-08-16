@@ -5,6 +5,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	
 	<link rel="stylesheet" href="css/jquery.mobile-1.0b2.min.css" />
+	<link rel="stylesheet" href="css/jquery.mobile.datebox.min.css" />
 	
 	
 	<script type="text/javascript" src="js/lib/jquery.min.js"></script>
@@ -12,6 +13,7 @@
 	<script type="text/javascript" src="js/lib/jquery.lang.min.js"></script>
 	<script type="text/javascript" src="js/lib/jquery.class.min.js"></script>
 	<script type="text/javascript" src="js/lib/jquery.tmpl.min.js"></script>
+	<script type="text/javascript" src="js/lib/jquery.mobile.datebox.min.js"></script>
 	
 	<script type="text/javascript" src="js/ajax.js"></script>
 	
@@ -137,9 +139,34 @@
 	</div>	
 	<div data-role="content">
 		<div data-role="fieldcontain">
-		    <label for="date">Date Input:</label>
-			<input type="date" name="date" id="date" value=""  />
-		</div>	
+		    <label for="date">DATE OF JOB</label>
+			<input type="date" name="date" id="date" value="" data-role="datebox" data-options='{"mode": "calbox", "disableManualInput": true}' readonly="true" />
+			<br />
+		    <label for="region">REGION</label>			
+			<select  name="region" id="region"></select>
+			<br />
+			<!-- <label for="vendortype">VENDOR TYPE(S) NEEDED</label>
+			<input type="date" name="vendortype" id="vendortype" value=""  /> -->
+			
+			<div data-role="controlgroup" id="vendortype">
+		       <legend>VENDOR TYPE(S) NEEDED</legend>
+		               
+	     </div>
+	     <br />
+		<label for="desc">DESCRIPTION</label>
+		<input type="text" name="desc" id="desc" value=""  />
+		<br />
+		<a id = "postDate" data-role="button">POST DATE I'M NOT AVAIL.</a>
+		</div>
+		
+	<script id="regionListItem" type="text/x-jquery-tmpl">
+   		<option value="${RegionId}">
+			${Region} - ${State}    
+    	</option>
+	</script>
+	<script id="vendortypeItem" type="text/x-jquery-tmpl">
+   		<label for="vd${VendorTypeID}">${VendorType}</label><input type="checkbox" name="vd${VendorTypeID}" id="vd${VendorTypeID}" class="custom" checked = "true" DISABLED = "true"/>
+	</script>	
 	</div><!-- /content -->
 		
 </div>

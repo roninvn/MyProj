@@ -12,7 +12,10 @@ $.Class.extend("AjaxService",
 	  			NumJobsOfUser : "{vstrApiKey}/user/{vstrUserId}/availjobs",
 	  			MarkJobForUser : "{vstrApiKey}/user/{vstrUserId}/job/{vstrJobID}/setAvail/{vstrAvail}",
 	  			MyPostedJobs :"{vstrApiKey}/user/{vstrUserId}/mypostedjobs",
-	  			GetPeopleAvail : "{vstrApiKey}/job/{vstrJobID}/emaillist"
+	  			MailPeopleAvail : "{vstrApiKey}/job/{vstrJobID}/emaillist",
+	  			GetResion: "/{vstrApiKey}/regions",
+	  			GetVendorTypes: "/{vstrApiKey}/VendorTypes",
+	  			PostDate: "/{vstrApiKey}/PostJob/{vstrUserId}/{vstrDesc}/{vstrDateMonth}/{vstrDateDay}/{vstrDateYear}/{vstrRegionID}"
   			 },
   
   APIKey: null,
@@ -28,14 +31,14 @@ $.Class.extend("AjaxService",
 			alert('No site was passed.');
 			return false;
 		}
-		//console.log(AjaxService.baseURL + serviceURL);
+		console.log(AjaxService.baseURL + serviceURL);
 		// Take the provided url, and add it to a YQL query. Make sure you encode it!
 		var yql = 'http://query.yahooapis.com/v1/public/yql?q=' + encodeURIComponent('select * from json where url="' + AjaxService.baseURL + serviceURL + '"') + '&format=json&callback=?';		
 		// Request that YSQL string, and run a callback function.
 		// Pass a defined function to prevent cache-busting.
 		$.getJSON( yql, cbFunc );		
 		function cbFunc(data) {
-			//console.log(data);
+			console.log(data);
 			var d;
 			if(data && data.query && data.query.results && data.query.results.json){//extract data				
 				d = data.query.results.json;
@@ -98,10 +101,40 @@ $.Class.extend("AjaxService",
   },
   
   /*
-   * getPeopleAvail - PeopleAvailPage
+   * mailPeopleAvail - PeopleAvailPage
    */
-  getPeopleAvail: function(jobid, callback){
+  mailPeopleAvail: function(jobid, callback){
 	  var q = AjaxService.services.GetPeopleAvail.replace('{vstrApiKey}', AjaxService.APIKey).replace('{vstrJobID}',jobid);
+	  AjaxService.__query(q, callback);
+  },
+  
+  /*
+   * getRegion - AddDatePage
+   */
+  getRegion: function(callback){
+	  var q = AjaxService.services.GetResion.replace('{vstrApiKey}', AjaxService.APIKey);
+	  AjaxService.__query(q, callback);
+  },
+  
+  /*
+   * getVendorTypes - AddDatePage
+   */
+  getVendorTypes: function(callback){
+	  var q = AjaxService.services.GetVendorTypes.replace('{vstrApiKey}', AjaxService.APIKey);
+	  AjaxService.__query(q, callback);
+  },
+  
+  /*
+   * postDate - AddDatePage
+   */
+  postDate: function(desc,year, month, day, regionID, callback){
+	  var q = AjaxService.services.PostDate.replace('{vstrApiKey}', AjaxService.APIKey)
+	  										.replace('{vstrUserId}',AjaxService.UserID)
+	  										.replace('{vstrDesc}',desc)
+	  										.replace('{vstrDateMonth}',month)
+	  										.replace('{vstrDateDay}',day)
+	  										.replace('{vstrDateYear}',year)
+	  										.replace('{vstrRegionID}',regionID);
 	  AjaxService.__query(q, callback);
   }
 },
