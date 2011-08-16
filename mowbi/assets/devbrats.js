@@ -43,8 +43,8 @@ function toggleSearchBox(e) {
 }
          
 function openWheelPicker(e, src) {
-	
-    if('ontouchstart' in document.documentElement){    	
+	//'ontouchstart' in document.documentElement
+    if( (navigator.platform.indexOf("iPad") != -1) || (navigator.platform.indexOf("iPhone") != -1) || (navigator.platform.indexOf("iPod") != -1)){    	
         if (e) e.preventDefault();        
         var values = {};
     	
