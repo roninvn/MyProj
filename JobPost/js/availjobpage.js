@@ -8,6 +8,7 @@ Page.extend("AvailJobPage",
 {
   jobList: null,
   jobItemTemplate : null,
+  ad : null,
   
   init : function(id){
 	  this._super(id);
@@ -15,6 +16,7 @@ Page.extend("AvailJobPage",
 	  this.jobList = this.el.find("#jobList");
 	  this.jobList.listview();
 	  this.jobItemTemplate = this.el.find("#jobListItem");
+	  this.ad = this.el.find("#ad");
 	  
 	  this.getJobList();
 	  
@@ -26,6 +28,13 @@ Page.extend("AvailJobPage",
    */
   onPageShow: function(e, ui){	  
 	  this._super(e, ui);
+	  var me = this;
+	  AjaxService.getAd(function(d){
+		  if(d){
+			  me.ad.attr("src", d);
+		  	  me.ad.css({display:"block", visibility:"visible"});
+		  }
+	  });
   },
   /*
    * get the job list

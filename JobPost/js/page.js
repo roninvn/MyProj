@@ -11,7 +11,10 @@ $.Class.extend("Page",
 		$('#Dialog #header').text(header);
 		$('#Dialog #content').html(content);
 		$('#aDialog').trigger('click');
-	}
+	},
+	
+	exchangeData : null
+	
 },
 // prototype methods
 {

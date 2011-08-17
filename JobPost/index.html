@@ -6,6 +6,7 @@
 	
 	<link rel="stylesheet" href="css/jquery.mobile-1.0b2.min.css" />
 	<link rel="stylesheet" href="css/jquery.mobile.datebox.min.css" />
+	<link rel="stylesheet" href="css/app.css" />
 	
 	
 	<script type="text/javascript" src="js/lib/jquery.min.js"></script>
@@ -23,19 +24,21 @@
 <!-- Login page -->
 <div data-role="page" id = "LoginPage">
 	<div data-role="content">	
-		<p>JOB AVAILABLE</p>
-		<p><label id="jobAvail">{Number of Jobs}</label> JOBS AVAILABLE</p>
-		<p>WELCOME TO ....</p>		
-		<a href = "#EditAccountPage" id = "createAccount" data-role="button" data-inline="true">CREATE NEW ACCOUNT</a>
+		<p class = "yellowText headerText">JOB AVAILABLE</p>
+		<p class = "redText subHeaderText"><label id="jobAvail">0</label> JOBS AVAILABLE</p>
+		<p>WELCOME TO WAA, THE PLACE TO FIND AND POST JOB AVAILABILITY. IF YOU DO NOT HAVE AM ACCOUNT PLEASE SIGN UP AND GET STARTED POSTING JOBS</p>		
+		<a href = "#EditAccountPage" id = "createAccount" data-role="none" class = "noneTextDecore"><div class = "divButton blueBackGround whiteText">CREATE NEW ACCOUNT</div></a>
 		
 		<div data-role="fieldcontain">
-		    <label for="name">USERNAME</label>
-		    <input type="text" name="name" id="name" value="ADAM"  />		    
-		    <label for="password">PASSWORD</label>
-    		<input type="password" name="password" id="password" value="PSW" />
+		    <label for="name" class = "yellowText">USERNAME</label><br />
+		    <input type="text" name="name" id="name" class = "maxWidth" value="ADAM"  />
+		    <br />		    
+		    <label for="password" class = "yellowText">PASSWORD</label>
+		    <br />
+    		<input type="password" name="password" id="password" class = "maxWidth" value="PSW" />
 		</div>
    		
-		<a id = "login" data-role="button" data-inline="true">LOGIN</a>
+		<a href = "" id = "login" data-role="none" class = "noneTextDecore"><div class = "divButton blueBackGround whiteText">LOGIN</div></a>
 						
 	</div><!-- /content -->
 </div>
@@ -43,9 +46,7 @@
 
 <!-- Edit Account page -->
 <div data-role="page" id = "EditAccountPage" data-add-back-btn=”true”>
-	<div data-role="header" data-position="inline">
-		<h1>Edit Contact</h1>
-	</div>
+	<div class = "divHeader yellowBackGround"></div>
 	
 		<div data-role="content">	
 		<div data-role="fieldcontain">
@@ -66,14 +67,16 @@
 
 <!-- main page -->
 <div data-role="page" id = "MainPage">
-	<div data-role="header" data-position="inline">			
-	</div>	
+	<div class = "divHeader yellowBackGround">
+		<a href = "#LoginPage" data-role="none" class = "noneTextDecore whiteText">HOME</a>
+	</div>
 		<div data-role="content">
-			<p>JOB AVAILABLE</p>
-			<p><label id="jobAvail">{Number of Jobs}</label> JOBS AVAILABLE IN YOUR AREA</p>
-			<p>FIND JOB ON THE DATE...</p>
-		    <a href = "#PostedJobPage" id = "PostJob" data-role="button">POST JOB / VIEW POSTED</a>
-		    <a href = "#AvailJobPage" id = "ViewAvail" data-role="button">VIEW AVAILABLE JOBS</a>
+			<p class = "yellowText headerText">JOB AVAILABLE</p>
+			<p class = "redText subHeaderText"><label id="jobAvail">0</label> JOBS AVAILABLE IN YOUR AREA</p>
+			<p>FIND JOB ON THE DATES YOU ARE NOT BOOKED AND GATHER REFERRALS FOR THE DATES YOU ARE. BE A HERO TO YOU CLIENTS</p>		    
+		    <a href = "#PostedJobPage" id = "PostJob" class = "noneTextDecore"><div class = "divButton redBackGround whiteText">POST JOB / VIEW POSTED</div></a>
+		    <br />
+		    <a href = "#AvailJobPage" id = "ViewAvail" class = "noneTextDecore"><div class = "divButton blueBackGround whiteText">VIEW AVAILABLE JOBS</div></a>
 		</div><!-- /content -->
 		
 </div>
@@ -82,8 +85,8 @@
 
 <!-- Avail Job page -->
 <div data-role="page" id = "AvailJobPage" data-add-back-btn=”true”>
-	<div data-role="header" data-position="inline">	
-		<h1>Avail Jobs</h1>	
+	<div class = "divHeader blueBackGround">
+		<a href = "#LoginPage" data-role="none" class = "noneTextDecore whiteText">HOME</a>
 	</div>	
 	<div data-role="content">
 	<p>THESE ARE THE DATES AVAILABLE IN YOUR REGIONS</p>
@@ -92,13 +95,13 @@
 	</div><!-- /content -->
 	
 	
-	<div data-role="footer">
-		<h4>ADS</h4>
+	<div>
+		<img id = "ad"></img>
 	</div><!-- /footer -->
 	
 	<script id="jobListItem" type="text/x-jquery-tmpl">
-   	 <li data-messageId="${JobId}" job-date = "${JobDate}" job-region="${JobRegion}" job-desc="${JobDescription}">
-		<img src = "img/add.gif" data-messageId="${JobId}" avail="True"></img>${JobDate} ${JobRegion}<img src = "img/remove.gif" data-messageId="${JobId}" avail="False"></img>      
+   	 <li class = "listItem" data-messageId="${JobId}" job-date = "${JobDate}" job-region="${JobRegion}" job-desc="${JobDescription}">
+		<div><img src = "img/add.gif" data-messageId="${JobId}" avail="True"></img>${JobDate} ${JobRegion}<img src = "img/remove.gif" data-messageId="${JobId}" avail="False"></img></div>      
     </li>
 	</script>
 </div>
@@ -106,20 +109,20 @@
 
 <!-- Posted Job page -->
 <div data-role="page" id = "PostedJobPage" data-add-back-btn=”true”>
-	<div data-role="header" data-position="inline">		
-		<h1>Posted Jobs</h1>	
-	</div>	
+	<div class = "divHeader redBackGround">
+		<a href = "#LoginPage" data-role="none" class = "noneTextDecore whiteText">HOME</a>
+	</div>		
 	<div data-role="content">
-	<p>THESE ARE THE DATES YOU ARE NOT AVAILABLE</p>	
+	<p>THESE ARE THE DATES YOU ARE <b>NOT</b> AVAILABLE</p>	
 	<ul datarole = "listview" id = "jobList">		
 	</ul>
-	<p></p>
-	<a href = "#AddDatePage" id = "AddDateNotAvail" data-role="button">+ ADD DATE I'M NOT AVAILABLE</a>
+	<p></p>	
+	<a  href = "#AddDatePage" id = "AddDateNotAvail" class = "noneTextDecore"><div class = "divButton redBackGround whiteText">+ ADD DATE I'M NOT AVAILABLE</div></a>
 	
 	</div><!-- /content -->
 	
-	<div data-role="footer">
-		<h4>ADS</h4>
+	<div>
+		<img id = "ad"></img>
 	</div><!-- /footer -->
 	
 	<script id="jobListItem" type="text/x-jquery-tmpl">
@@ -134,30 +137,29 @@
 
 <!-- Add date page -->
 <div data-role="page" id = "AddDatePage" data-add-back-btn=”true”>
-	<div data-role="header" data-position="inline">		
-		<h1>Add a date</h1>	
+	<div class = "divHeader redBackGround">
+		<a href = "#LoginPage" data-role="none" class = "noneTextDecore whiteText">HOME</a>
 	</div>	
 	<div data-role="content">
 		<div data-role="fieldcontain">
-		    <label for="date">DATE OF JOB</label>
+		    <label for="date"  class = "yellowText">DATE OF JOB</label><br />
 			<input type="date" name="date" id="date" value="" data-role="datebox" data-options='{"mode": "calbox", "disableManualInput": true}' readonly="true" />
 			<br />
-		    <label for="region">REGION</label>			
-			<select  name="region" id="region"></select>
-			<br />
-			<!-- <label for="vendortype">VENDOR TYPE(S) NEEDED</label>
-			<input type="date" name="vendortype" id="vendortype" value=""  /> -->
-			
+		    <label for="region" class = "yellowText">REGION</label><br />
+			<select  name="region" id="region"></select><br />			
 			<div data-role="controlgroup" id="vendortype">
-		       <legend>VENDOR TYPE(S) NEEDED</legend>
+		       <legend class = "yellowText">VENDOR TYPE(S) NEEDED</legend>
 		               
 	     </div>
 	     <br />
-		<label for="desc">DESCRIPTION</label>
+		<label for="desc" class = "yellowText">DESCRIPTION</label><br />
 		<input type="text" name="desc" id="desc" value=""  />
 		<br />
-		<a id = "postDate" data-role="button">POST DATE I'M NOT AVAIL.</a>
+		
+		<a  href = "" id = "postDate" class = "noneTextDecore"><div class = "divButton redBackGround whiteText">POST DATE I'M NOT AVAIL.</div></a>
 		</div>
+
+		
 		
 	<script id="regionListItem" type="text/x-jquery-tmpl">
    		<option value="${RegionId}">
@@ -174,8 +176,8 @@
 
 <!-- People avail page -->
 <div data-role="page" id = "PeopleAvailPage" data-add-back-btn=”true”>
-	<div data-role="header" data-position="inline">		
-		<h1>People avail</h1>	
+	<div class = "divHeader redBackGround">
+		<a href = "#LoginPage" data-role="none" class = "noneTextDecore whiteText">HOME</a>
 	</div>	
 	<div data-role="content">
 	<p>WE ARE AVAILABLE ON <label id="availDate"></label> IN <label id="availRegion"></label></p>
@@ -185,8 +187,8 @@
 		
 	</div><!-- /content -->
 	
-	<div data-role="footer">
-		<h4>ADS</h4>
+	<div>
+		<img id = "ad"></img>
 	</div><!-- /footer -->
 		
 </div>

@@ -8,6 +8,7 @@ Page.extend("PostedJobPage",
 {
   jobList: null,
   jobItemTemplate : null,
+  ad : null,
   
   init : function(id){
 	  this._super(id);	  
@@ -16,12 +17,26 @@ Page.extend("PostedJobPage",
 	  this.jobList = this.el.find("#jobList");
 	  this.jobList.listview();
 	  this.jobItemTemplate = this.el.find("#jobListItem");
+	  this.ad = this.el.find("#ad");
 	  
 	  this.loadData();
 	  
 	  
   },//end init
   
+  /*
+   * page show
+   */
+  onPageShow: function(e, ui){	  
+	  this._super(e, ui);
+	  var me = this;
+	  AjaxService.getAd(function(d){
+		  if(d){
+			  me.ad.attr("src", d);
+		  	  me.ad.css({display:"block", visibility:"visible"});
+		  }
+	  });
+  },
   
   /*
    * load data for page
@@ -57,16 +72,12 @@ Page.extend("PostedJobPage",
 	
 	var pap = $('#PeopleAvailPage');
 	pap.find("#availDate").text(jDate);
-	pap.find("#availRegion").text(jRegion);
-	pap.attr("data-messageId",jid);
+	pap.find("#availRegion").text(jRegion);	
 	
-  },
-  
-  /*
-   * main page show
-   */
-  onPageShow: function(e, ui){	  
-	  this._super(e, ui);
+	Page.exchangeData = {
+			jobID : jid
+	};
+	
   }
   
 });

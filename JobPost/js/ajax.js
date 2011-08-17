@@ -12,10 +12,12 @@ $.Class.extend("AjaxService",
 	  			NumJobsOfUser : "{vstrApiKey}/user/{vstrUserId}/availjobs",
 	  			MarkJobForUser : "{vstrApiKey}/user/{vstrUserId}/job/{vstrJobID}/setAvail/{vstrAvail}",
 	  			MyPostedJobs :"{vstrApiKey}/user/{vstrUserId}/mypostedjobs",
+	  			GetPeopleAvail : "{vstrApiKey}/user/{vstrUserId}/mypostedjobs/job/{vstrJobID}/users",
 	  			MailPeopleAvail : "{vstrApiKey}/job/{vstrJobID}/emaillist",
 	  			GetResion: "/{vstrApiKey}/regions",
 	  			GetVendorTypes: "/{vstrApiKey}/VendorTypes",
-	  			PostDate: "/{vstrApiKey}/PostJob/{vstrUserId}/{vstrDesc}/{vstrDateMonth}/{vstrDateDay}/{vstrDateYear}/{vstrRegionID}"
+	  			PostDate: "/{vstrApiKey}/PostJob/{vstrUserId}/{vstrDesc}/{vstrDateMonth}/{vstrDateDay}/{vstrDateYear}/{vstrRegionID}",	  			
+	  			GetAd: "{vstrApiKey}/user/{vstrUserID}/ad"
   			 },
   
   APIKey: null,
@@ -26,19 +28,20 @@ $.Class.extend("AjaxService",
    * query data from server, this is a private data
    */
   __query: function(serviceURL, callback){
+	  	$.mobile.pageLoading();
 		// If no url was passed, exit.
 		if ( !serviceURL ) {
 			alert('No site was passed.');
 			return false;
 		}
-		console.log(AjaxService.baseURL + serviceURL);
+		//console.log(AjaxService.baseURL + serviceURL);
 		// Take the provided url, and add it to a YQL query. Make sure you encode it!
 		var yql = 'http://query.yahooapis.com/v1/public/yql?q=' + encodeURIComponent('select * from json where url="' + AjaxService.baseURL + serviceURL + '"') + '&format=json&callback=?';		
 		// Request that YSQL string, and run a callback function.
 		// Pass a defined function to prevent cache-busting.
 		$.getJSON( yql, cbFunc );		
 		function cbFunc(data) {
-			console.log(data);
+			//console.log(data);
 			var d;
 			if(data && data.query && data.query.results && data.query.results.json){//extract data				
 				d = data.query.results.json;
@@ -47,8 +50,12 @@ $.Class.extend("AjaxService",
 			}
 			else if(data && data.query && data.query.results && data.query.results.Value)
 				d = data.query.results.Value;
+			else if(data && data.query && data.query.results && data.query.results.Image)
+				d = data.query.results.Image;
 			else
 				d = null;			
+			
+			$.mobile.pageLoading(true);
 			
 			if ( typeof callback === 'function') {
 				callback(d);
@@ -101,10 +108,20 @@ $.Class.extend("AjaxService",
   },
   
   /*
+   * getPeopleAvail - PeopleAvailPage
+   */
+  getPeopleAvail: function(jobid, callback){
+	  var q = AjaxService.services.GetPeopleAvail.replace('{vstrApiKey}', AjaxService.APIKey)
+	  												.replace('{vstrUserId}',AjaxService.UserID)
+	  												.replace('{vstrJobID}',jobid);
+	  AjaxService.__query(q, callback);
+  },
+  
+  /*
    * mailPeopleAvail - PeopleAvailPage
    */
   mailPeopleAvail: function(jobid, callback){
-	  var q = AjaxService.services.GetPeopleAvail.replace('{vstrApiKey}', AjaxService.APIKey).replace('{vstrJobID}',jobid);
+	  var q = AjaxService.services.MailPeopleAvail.replace('{vstrApiKey}', AjaxService.APIKey).replace('{vstrJobID}',jobid);
 	  AjaxService.__query(q, callback);
   },
   
@@ -136,7 +153,16 @@ $.Class.extend("AjaxService",
 	  										.replace('{vstrDateYear}',year)
 	  										.replace('{vstrRegionID}',regionID);
 	  AjaxService.__query(q, callback);
-  }
+  },
+  
+  /*
+   * getAd
+   */
+  getAd: function(callback){
+	  var q = AjaxService.services.GetAd.replace('{vstrApiKey}', AjaxService.APIKey).replace('{vstrUserID}',AjaxService.UserID);
+	  AjaxService.__query(q, callback);
+  },
+  
 },
 
 // prototype methods
