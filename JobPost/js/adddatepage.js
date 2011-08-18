@@ -41,20 +41,15 @@ Page.extend("AddDatePage",
 	  this._super(e, ui);
 	  var me = this;
 	  
+	  $.mobile.pageLoading();
+	  
 	  AjaxService.getRegion(function(d){
 		  if(!$.isArray(d))
 			  d = [d];
 		  
 		  me.poplulateRegionList(d); 
 	  });
-	  
-	  
-	  AjaxService.getVendorTypes(function(d){		  
-		  if(!$.isArray(d))
-			  d = [d];
-		  
-		  me.poplulateVendorTypeList(d); 
-	  });
+
   },
   
   postDateClicked: function(e){
@@ -68,6 +63,13 @@ Page.extend("AddDatePage",
   poplulateRegionList: function(regions){	  
 	  this.region.empty();
 	  this.regionItemTemplate.tmpl(regions).appendTo(this.region);
+	  var me = this;
+	  AjaxService.getVendorTypes(function(d){		  
+		  if(!$.isArray(d))
+			  d = [d];
+		  
+		  me.poplulateVendorTypeList(d); 
+	  });
   },
   
   poplulateVendorTypeList: function(vds){	  
@@ -76,7 +78,7 @@ Page.extend("AddDatePage",
 	  this.vendortypeItemTemplate.tmpl(vds).appendTo(this.vendortype);
 	  this.vendortype.find("input[type='checkbox']").checkboxradio();
 	  this.vendortype.find("input[type='checkbox']").checkboxradio("refresh");
-	  //this.vendortype.controlgroup("refresh");	  
+	  $.mobile.pageLoading(true);
   }
   
 });

@@ -9,7 +9,15 @@ Page.extend("MainPage",
   // called when a new monster is created
   init : function(id){
 	  this._super(id);
-	  
+  },//end init
+  
+  
+  /*
+   * main page show
+   */
+  onPageShow: function(e, ui){	  
+	  this._super(e, ui);
+	  $.mobile.pageLoading();
 	  var me = this;
 	  //get Job Available
 	  AjaxService.getNumberJobOfUser(function(d){		  
@@ -19,18 +27,9 @@ Page.extend("MainPage",
 		  else
 			  l = d.length;
 		  
-		  me.el.find('#jobAvail').text(l);		  
+		  me.el.find('#jobAvail').text(l);
+		  $.mobile.pageLoading(true);
 	  });
-	  
-	  
-  },//end init
-  
-  
-  /*
-   * main page show
-   */
-  onPageShow: function(e, ui){	  
-	  this._super(e, ui);
   }
   
 });

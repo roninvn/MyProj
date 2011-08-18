@@ -14,9 +14,10 @@ $.Class.extend("AjaxService",
 	  			MyPostedJobs :"{vstrApiKey}/user/{vstrUserId}/mypostedjobs",
 	  			GetPeopleAvail : "{vstrApiKey}/user/{vstrUserId}/mypostedjobs/job/{vstrJobID}/users",
 	  			MailPeopleAvail : "{vstrApiKey}/job/{vstrJobID}/emaillist",
-	  			GetResion: "/{vstrApiKey}/regions",
-	  			GetVendorTypes: "/{vstrApiKey}/VendorTypes",
-	  			PostDate: "/{vstrApiKey}/PostJob/{vstrUserId}/{vstrDesc}/{vstrDateMonth}/{vstrDateDay}/{vstrDateYear}/{vstrRegionID}",	  			
+	  			GetResion: "{vstrApiKey}/regions",
+	  			GetVendorTypes: "{vstrApiKey}/VendorTypes",
+	  			PostDate: "{vstrApiKey}/PostJob/{vstrUserId}/{vstrDesc}/{vstrDateMonth}/{vstrDateDay}/{vstrDateYear}/{vstrRegionID}",
+	  			GetUserInfo: "{vstrApiKey}/user/{vstrUserID}",
 	  			GetAd: "{vstrApiKey}/user/{vstrUserID}/ad"
   			 },
   
@@ -27,8 +28,7 @@ $.Class.extend("AjaxService",
   /*
    * query data from server, this is a private data
    */
-  __query: function(serviceURL, callback){
-	  	$.mobile.pageLoading();
+  __query: function(serviceURL, callback){	  	
 		// If no url was passed, exit.
 		if ( !serviceURL ) {
 			alert('No site was passed.');
@@ -54,8 +54,6 @@ $.Class.extend("AjaxService",
 				d = data.query.results.Image;
 			else
 				d = null;			
-			
-			$.mobile.pageLoading(true);
 			
 			if ( typeof callback === 'function') {
 				callback(d);
@@ -152,6 +150,15 @@ $.Class.extend("AjaxService",
 	  										.replace('{vstrDateDay}',day)
 	  										.replace('{vstrDateYear}',year)
 	  										.replace('{vstrRegionID}',regionID);
+	  AjaxService.__query(q, callback);
+  },
+  
+  /*
+   * getUserInfo - PeopleInfoPage
+   */
+  getUserInfo: function(userID, callback){
+	  var q = AjaxService.services.GetUserInfo.replace('{vstrApiKey}', AjaxService.APIKey)
+												.replace('{vstrUserID}',userID);
 	  AjaxService.__query(q, callback);
   },
   

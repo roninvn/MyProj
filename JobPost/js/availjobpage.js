@@ -18,7 +18,7 @@ Page.extend("AvailJobPage",
 	  this.jobItemTemplate = this.el.find("#jobListItem");
 	  this.ad = this.el.find("#ad");
 	  
-	  this.getJobList();
+	  
 	  
   },//end init
   
@@ -28,13 +28,9 @@ Page.extend("AvailJobPage",
    */
   onPageShow: function(e, ui){	  
 	  this._super(e, ui);
+	  $.mobile.pageLoading();
 	  var me = this;
-	  AjaxService.getAd(function(d){
-		  if(d){
-			  me.ad.attr("src", d);
-		  	  me.ad.css({display:"block", visibility:"visible"});
-		  }
-	  });
+	  this.getJobList();	  
   },
   /*
    * get the job list
@@ -64,6 +60,15 @@ Page.extend("AvailJobPage",
 	  this.jobList.find("li").live("tap", function(e,ui){me.listItemClicked(e)});
 	  
 	  this.jobList.listview("refresh");
+	  
+	  AjaxService.getAd(function(d){
+		  if(d){
+			  me.ad.attr("src", d);
+		  	  me.ad.css({display:"block", visibility:"visible"});
+		  }
+		  
+		  $.mobile.pageLoading(true);
+	  });
   },
   
   /*

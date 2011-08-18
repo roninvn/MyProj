@@ -156,7 +156,7 @@
 		<input type="text" name="desc" id="desc" value=""  />
 		<br />
 		
-		<a  href = "" id = "postDate" class = "noneTextDecore"><div class = "divButton redBackGround whiteText">POST DATE I'M NOT AVAIL.</div></a>
+		<a href = "" id = "postDate" class = "noneTextDecore"><div class = "divButton redBackGround whiteText">POST DATE I'M NOT AVAIL.</div></a>
 		</div>
 
 		
@@ -184,6 +184,13 @@
 	
 	<ul datarole = "listview" id = "peopleList">		
 	</ul>
+	<br />
+	<a href = "" id = "email" class = "noneTextDecore"><div class = "divButton redBackGround whiteText">EMAIL LIST TO YOURSELF</div></a>
+	<script id="peopleListItem" type="text/x-jquery-tmpl">
+   	 <li >
+		<a href="#PeopleInfoPage" data-messageId="${UserId}">${Name}</a>    
+    </li>
+	</script>
 		
 	</div><!-- /content -->
 	
@@ -195,12 +202,29 @@
 <!-- /People avail page -->
 
 <!-- People info page -->
-<div data-role="page" id = "PeopleInfoPage" data-add-back-btn=”true”>
-	<div data-role="header" data-position="inline">		
-		<h1>People avail</h1>	
-	</div>	
+<div data-role="page" id = "PeopleInfoPage">
+	<div class = "divHeader redBackGround">
+		<a href = "#LoginPage" data-role="none" class = "noneTextDecore whiteText">HOME</a>
+	</div>		
 	<div data-role="content">
+	<p>I AM AVAILABLE ON <label id="availDate"></label> IN <label id="availRegion"></label></p>
+	<div id = "userInfo"></div>	
+	<script id="infoTpl" type="text/x-jquery-tmpl">
+		<p>${Name}</p>
+		<p>${CompanyName}</p>
+		<p>${Address1}</p>
+		{{if $Address2}}<p>${Address2}</p>{{/if}}
+		<p>${City}, ${State} ${Zip}</p>
+		{{if $Phone}}<p>${Phone}</p>{{/if}}
+		{{if $Email}}<p><a href="mailto:${Email}">${Email}</a></p>{{/if}}
+		{{if $Url1}}<p><a href="${Url1}">${Url1}</a></p>{{/if}}
+		{{if $Url1}}<p><a href="${Url2}">${Url2}</a></p>{{/if}}
+	</script>
+	
 	</div><!-- /content -->
+	<div>
+		<img id = "ad"></img>
+	</div><!-- /footer -->
 		
 </div>
 <!-- /People info page -->
@@ -216,7 +240,6 @@
 			<input type="date" name="date" id="date" value=""  />
 		</div>	
 	</div><!-- /content -->
-		
 </div>
 <!-- /Setting page -->
 
