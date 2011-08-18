@@ -1,0 +1,59 @@
+<!DOCTYPE html> 
+<html> 
+	<head> 
+	<title>Services Browser</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	
+	<link rel="stylesheet" href="css/jquery.mobile-1.0b2.min.css" />
+	<link rel="stylesheet" href="css/jquery.mobile.datebox.min.css" />
+	<link rel="stylesheet" href="css/app.css" />
+	
+	
+	<script type="text/javascript" src="js/lib/jquery.min.js"></script>
+	<script type="text/javascript" src="js/lib/jquery.mobile-1.0b2.min.js"></script>
+	<script type="text/javascript" src="js/lib/jquery.lang.min.js"></script>
+	<script type="text/javascript" src="js/lib/jquery.class.min.js"></script>
+	<script type="text/javascript" src="js/lib/jquery.tmpl.min.js"></script>
+	<script type="text/javascript" src="js/lib/jquery.mobile.datebox.min.js"></script>
+	
+	
+</head> 
+
+<body>
+<div data-role="page" id= "MainPage">
+
+	<div data-role="header" data-theme="b">
+		<h1>Services Browser</h1>
+	</div><!-- /header -->
+
+	<div data-role="content">	
+    <ul data-role="listview" data-inset="true" id="serviceList">
+      <li><a href="#SearchMovTrailersPage">SearchMovieTrailers</a></li>
+    </ul>		
+	</div><!-- /content -->
+
+</div><!-- /page -->
+
+<div data-role="page" id= "SearchMovTrailersPage" >
+
+	<div data-role="header" data-theme="b" data-back-btn-text="previous">
+		<h1>Search Movie</h1>
+	</div><!-- /header -->
+
+	<div data-role="content">	
+		<div data-role="fieldcontain">
+		    <label for="title">Movie Title</label>
+		    <input type="text" name="title" id="title" />
+		</div>
+	</div><!-- /content -->
+	<center><a href = "" id = "search" data-role="button" data-inline="true">SEARCH</a></center>
+		
+</div><!-- /page -->
+
+<script type="text/javascript" src="js/page.js"></script>
+<script type="text/javascript" src="js/mainpage.js"></script>
+<script type="text/javascript" src="js/searchmovietrailerspage.js"></script>
+<script type="text/javascript" src="js/app.js"></script>
+
+</body>
+</html>
