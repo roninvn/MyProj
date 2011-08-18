@@ -22,4 +22,7 @@ $.Class.extend("Application",
   }
 });
 
-var myapp = new Application();
+var myapp;
+document.addEventListener("deviceready", function(){	
+	myapp = new Application();
+}, false);
