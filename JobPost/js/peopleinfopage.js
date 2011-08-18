@@ -25,7 +25,7 @@ Page.extend("PeopleInfoPage",
   onPageShow: function(e, ui){	  
 	  this._super(e, ui);
 	  var me = this;
-	  $.mobile.pageLoading();
+	//  $.mobile.pageLoading();
 	  AjaxService.getUserInfo(Page.exchangeData.userID, function(d){
 		  me.userInfo.empty();	  
 		  me.infoTpl.tmpl(d).appendTo(me.userInfo);
@@ -35,7 +35,7 @@ Page.extend("PeopleInfoPage",
 				  me.ad.attr("src", d);
 			  	  me.ad.css({display:"block", visibility:"visible"});
 			  }
-			  $.mobile.pageLoading(true);
+		//	  $.mobile.pageLoading(true);
 		  });
 		  
 	  }); 

@@ -41,7 +41,7 @@ Page.extend("AddDatePage",
 	  this._super(e, ui);
 	  var me = this;
 	  
-	  $.mobile.pageLoading();
+	  //$.mobile.pageLoading();
 	  
 	  AjaxService.getRegion(function(d){
 		  if(!$.isArray(d))
@@ -78,7 +78,7 @@ Page.extend("AddDatePage",
 	  this.vendortypeItemTemplate.tmpl(vds).appendTo(this.vendortype);
 	  this.vendortype.find("input[type='checkbox']").checkboxradio();
 	  this.vendortype.find("input[type='checkbox']").checkboxradio("refresh");
-	  $.mobile.pageLoading(true);
+	 // $.mobile.pageLoading(true);
   }
   
 });

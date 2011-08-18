@@ -8,9 +8,15 @@ $.Class.extend("Page",
 	 * show dialog
 	 */
 	showDialog: function(header, content){
-		$('#Dialog #header').text(header);
-		$('#Dialog #content').html(content);
-		$('#aDialog').trigger('click');
+		
+		if(navigator && navigator.notification && navigator.notification.alert){
+			navigator.notification.alert(content, function(){}, header);
+		}
+		else{//PC
+			$('#Dialog #header').text(header);
+			$('#Dialog #content').html(content);
+			$('#aDialog').trigger('click');
+		}
 	},
 	
 	exchangeData : null

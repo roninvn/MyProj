@@ -25,10 +25,9 @@ Page.extend("PeopleAvailPage",
   },//end init
   
   emailClicked: function(e){
-	  $.mobile.pageLoading();
-	  AjaxService.mailPeopleAvail(Page.exchangeData.jobID, function(d){
-		  $.mobile.pageLoading(true);
-		  console.log('done');
+	//  $.mobile.pageLoading();
+	  AjaxService.mailPeopleAvail(Page.exchangeData.jobID, function(d){		  
+		  Page.showDialog("Success", "Email sent.");		  
 	  });
 	  
   },
@@ -39,7 +38,7 @@ Page.extend("PeopleAvailPage",
   onPageShow: function(e, ui){	  
 	  this._super(e, ui);
 	  var me = this;
-	  $.mobile.pageLoading();
+	 // $.mobile.pageLoading();
 	  AjaxService.getPeopleAvail(Page.exchangeData.jobID, function(d){
 		  if(!$.isArray(d))
 			  d = [d];
@@ -60,7 +59,7 @@ Page.extend("PeopleAvailPage",
 			  me.ad.attr("src", d);
 		  	  me.ad.css({display:"block", visibility:"visible"});
 		  }
-		  $.mobile.pageLoading(true);
+		 // $.mobile.pageLoading(true);
 	  });
 	  
   },

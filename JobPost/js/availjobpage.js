@@ -28,7 +28,7 @@ Page.extend("AvailJobPage",
    */
   onPageShow: function(e, ui){	  
 	  this._super(e, ui);
-	  $.mobile.pageLoading();
+	 // $.mobile.pageLoading();
 	  var me = this;
 	  this.getJobList();	  
   },
@@ -67,7 +67,7 @@ Page.extend("AvailJobPage",
 		  	  me.ad.css({display:"block", visibility:"visible"});
 		  }
 		  
-		  $.mobile.pageLoading(true);
+		//  $.mobile.pageLoading(true);
 	  });
   },
   

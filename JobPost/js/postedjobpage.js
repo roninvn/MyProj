@@ -29,7 +29,7 @@ Page.extend("PostedJobPage",
    */
   onPageShow: function(e, ui){	  
 	  this._super(e, ui);	  
-	  $.mobile.pageLoading();
+	//  $.mobile.pageLoading();
 	  this.loadData();
 	 
   },
@@ -62,7 +62,7 @@ Page.extend("PostedJobPage",
 			  me.ad.attr("src", d);
 		  	  me.ad.css({display:"block", visibility:"visible"});
 		  }
-		  $.mobile.pageLoading(true);
+		//  $.mobile.pageLoading(true);
 	  });
 	  
 	  

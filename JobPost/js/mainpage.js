@@ -17,7 +17,7 @@ Page.extend("MainPage",
    */
   onPageShow: function(e, ui){	  
 	  this._super(e, ui);
-	  $.mobile.pageLoading();
+	//  $.mobile.pageLoading();
 	  var me = this;
 	  //get Job Available
 	  AjaxService.getNumberJobOfUser(function(d){		  
@@ -28,7 +28,7 @@ Page.extend("MainPage",
 			  l = d.length;
 		  
 		  me.el.find('#jobAvail').text(l);
-		  $.mobile.pageLoading(true);
+		//  $.mobile.pageLoading(true);
 	  });
   }
   
