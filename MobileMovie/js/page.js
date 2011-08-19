@@ -11,7 +11,7 @@ $.Class.extend("Page",
 		
 	},
 	
-	exchangeData : null
+	exchangeData : {}
 	
 },
 // prototype methods

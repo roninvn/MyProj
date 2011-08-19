@@ -12,6 +12,7 @@ $.Class.extend("Application",
   init : function(cfg){	  
 	  
 	  $('div[data-role="page"]').each(function(i, val){
+		    //console.log(val)
 	  		//console.log('Application.Pages["'+val.id+'"] = new ' + val.id +'("' + val.id + '");');
 	  		eval('Application.Pages["'+val.id+'"] = new ' + val.id +'("' + val.id + '");');
 	  });
