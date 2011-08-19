@@ -8,6 +8,7 @@ $.Class.extend("AjaxService",
   
   services : {
 	  			SearchMovie: "search.json?name={movieName}",
+	  			GetResList: "trailers.json?id={mvID}"
   			 },
   
   /*
@@ -33,6 +34,14 @@ $.Class.extend("AjaxService",
    */
   searchMovie : function(mvName, callback){
 	  var q = AjaxService.services.SearchMovie.replace('{movieName}', encodeURIComponent(mvName));
+	  AjaxService.__query(q, callback);
+  },
+  
+  /*
+   * getResList
+   */
+  getResList : function(mvID, callback){
+	  var q = AjaxService.services.GetResList.replace('{mvID}', encodeURIComponent(mvID));
 	  AjaxService.__query(q, callback);
   },
   

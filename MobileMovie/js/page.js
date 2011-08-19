@@ -22,9 +22,13 @@ $.Class.extend("Page",
 	  this.el = $('#' + id);
 	  var me = this;
 	  this.el.live('pageshow', function(e,u){me.onPageShow(e,u);});
+	  this.el.live("pagebeforehide", function(e,u){me.onPageBeforeHide(e,u);});
   },//end init
   
   onPageShow: function(e, ui){	  
+  },
+  
+  onPageBeforeHide: function(e,u){	  
   }
   
 });

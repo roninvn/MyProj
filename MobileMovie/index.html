@@ -4,7 +4,7 @@
 	<title>Services Browser</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	
-	<link rel="stylesheet" href="css/jquery.mobile-1.0b2.min.css" />
+	<link rel="stylesheet" href="css/jquery.mobile-1.0b2.min.css" />	
 	<!-- <link rel="stylesheet" href="css/jquery.mobile.datebox.min.css" /> -->
 	<link rel="stylesheet" href="css/app.css" />
 	
@@ -15,8 +15,7 @@
 	<script type="text/javascript" src="js/lib/jquery.class.min.js"></script>
 	<script type="text/javascript" src="js/lib/jquery.tmpl.min.js"></script>
 	<!-- <script type="text/javascript" src="js/lib/jquery.mobile.datebox.min.js"></script> -->
-	<script type="text/javascript" src="js/lib/iscroll.js"></script>
-	
+	<script type="text/javascript" src="js/lib/iscroll-lite.js"></script>
 	
 </head> 
 
@@ -29,13 +28,13 @@
 
 	<div data-role="content">	
     <ul data-role="listview" data-inset="true" id="serviceList">
-      <li><a href="#SearchMovTrailersPage">SearchMovieTrailers</a></li>
+      <li><a href="#SearchMovTrailersPage">Search Movie Trailers</a></li>
     </ul>		
 	</div><!-- /content -->
 
 </div><!-- /page -->
 
-<div data-role="page" id= "SearchMovTrailersPage" >
+<div data-role="page" id= "SearchMovTrailersPage" data-add-back-btn="true">
 	<div data-role="header" data-theme="b" data-back-btn-text="previous">
 		<h1>Search Movie</h1>
 	</div><!-- /header -->
@@ -49,28 +48,60 @@
 	<center><a id = "btnSearch" data-role="button" data-inline="true">SEARCH</a></center>		
 </div><!-- /page -->
 
-<div data-role="page" id= "SearchResultPage" >
+<div data-role="page" id= "SearchResultPage" data-add-back-btn="true">
 	<div data-role="header" data-theme="b" data-back-btn-text="previous">
 		<h1>Search Result</h1>
 	</div><!-- /header -->
 
 	<div data-role="content">
 		<div id="wrapper"> 
-			<div id="scroller">    
-		    	<ul data-role="listview" id = "resultList" data-inset="true">
-		    	</ul>
+			<div id="scroller">
+	    		<ul data-role="listview" id = "resultList" data-inset="true">
+	    		</ul>	    
 	    	</div>
-	    </div>	    
+	    </div>
 	   	<script id="movieListItem" type="text/x-jquery-tmpl">
    	 	<li>
-			<a href="#">
-				<img alt="" src="${posterImage}" />
+			<a data-messageId="${programID}">
+				<img alt="poster" src="${posterImage}" />
 				<h3>${title}</h3>
 				<p>${description}</p>
 			</a>
 		</li>
-	</script>
-    
+	</script>    
+	</div><!-- /content -->
+</div><!-- /page -->
+
+
+<div data-role="page" id= "ResSelectPage" data-add-back-btn="true">
+	<div data-role="header" data-theme="b" data-back-btn-text="previous">
+		<h1>Trailers</h1>
+	</div><!-- /header -->
+
+	<div data-role="content">
+	
+  		<ul data-role="listview" id = "resList" data-inset="true">
+  		</ul>
+  		
+	   	<script id="resListItem" type="text/x-jquery-tmpl">
+   	 	<li>
+			<a data-mvUrl="${publishUrl}">			
+				${displayResolution}@${aspectRatio}
+			</a>
+		</li>
+	</script>    
+	</div><!-- /content -->
+</div><!-- /page -->
+
+<div data-role="page" id= "VidPlayPage">
+	<div data-role="header" data-theme="b">
+		<h1>Trailer Video</h1>
+	</div><!-- /header -->
+
+	<div data-role="content">
+		<video id="player" controls="true" >
+			<source type="video/mp4" />
+		</video>  
 	</div><!-- /content -->
 </div><!-- /page -->
 
@@ -79,6 +110,8 @@
 <script type="text/javascript" src="js/mainpage.js"></script>
 <script type="text/javascript" src="js/searchmovietrailerspage.js"></script>
 <script type="text/javascript" src="js/searchresultpage.js"></script>
+<script type="text/javascript" src="js/resselpage.js"></script>
+<script type="text/javascript" src="js/vidplaypage.js"></script>
 <script type="text/javascript" src="js/app.js"></script>
 
 </body>

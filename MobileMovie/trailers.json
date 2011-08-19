@@ -1,0 +1,58 @@
+{
+    "movieTrailers": [
+        {
+            "publishUrl": "data/movies/B000210648E0.mp4",
+            "aspectRatio": "",
+            "bitrate": "0.0",
+            "audioEncodingFormat": "Mono",
+            "displayResolution": "480p",
+            "videoEncodingFormat": "MP4",
+            "productType": "BBV"
+        },
+        {
+            "publishUrl": "data/movies/B000210648J0.mp4",
+            "aspectRatio": "1.74:1",
+            "bitrate": "0.7",
+            "audioEncodingFormat": "Mono",
+            "displayResolution": "360p",
+            "videoEncodingFormat": "MP4",
+            "productType": "BBV"
+        },
+        {
+            "publishUrl": "data/movies/B000210648D0.mp4",
+            "aspectRatio": "",
+            "bitrate": "0.0",
+            "audioEncodingFormat": "Mono",
+            "displayResolution": "720p",
+            "videoEncodingFormat": "MP4",
+            "productType": "BBV"
+        },
+        {
+            "publishUrl": "data/movies/B000210648K0.mp4",
+            "aspectRatio": "1.70:1",
+            "bitrate": "0.5",
+            "audioEncodingFormat": "Mono",
+            "displayResolution": "240p",
+            "videoEncodingFormat": "MP4",
+            "productType": "BBV"
+        },
+        {
+            "publishUrl": "data/movies/B000210648N0.mp4",
+            "aspectRatio": "16:9",
+            "bitrate": "1.5",
+            "audioEncodingFormat": "Mono",
+            "displayResolution": "720p",
+            "videoEncodingFormat": "MP4",
+            "productType": "BBV"
+        },
+        {
+            "publishUrl": "data/movies/B000210648Q0.mp4",
+            "aspectRatio": "",
+            "bitrate": "0.0",
+            "audioEncodingFormat": "Mono",
+            "displayResolution": "480",
+            "videoEncodingFormat": "MP4",
+            "productType": "BBV"
+        }
+    ]
+}

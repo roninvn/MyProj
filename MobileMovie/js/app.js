@@ -21,4 +21,12 @@ $.Class.extend("Application",
   }
 });
 
-var myapp = new Application();
+var myScroll;
+function loaded() {	
+    myScroll = new iScroll('wrapper');
+    myapp = new Application();
+}
+
+document.addEventListener('touchmove', function (e) { e.preventDefault(); }, false);
+document.addEventListener('DOMContentLoaded', setTimeout(function () { loaded(); }, 200), false);
+

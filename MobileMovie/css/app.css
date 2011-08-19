@@ -1,70 +1,23 @@
-.yellowText{
-	color: #edb724;
+#wrapper {
+    position:absolute; z-index:1;
+    top:45px; bottom:48px; left:0;
+    width:100%;
+    background:#aaa;
+    overflow:auto;
 }
 
-.redText{
-	color: #ed2437;
+#scroller {
+    position:absolute; z-index:1;
+/*  -webkit-touch-callout:none;*/
+    -webkit-tap-highlight-color:rgba(0,0,0,0);
+    width:100%;
+    padding:0;
 }
 
-.blueText{
-	color: #2479ed;
-}
-
-.whiteText{
-	color: white;
-}
-
-.redBackGround{	
-	background-color: #ed2437;
-}
-
-.blueBackGround{	
-	background-color: #2479ed;
-}
-
-.yellowBackGround{
-	background-color: #edb724;
-}
-
-.headerText{
-	font-size: xx-large;
-}
-
-.subHeaderText{
-	font-size: large;
-}
-
-.maxWidth{
-	width : 100%;
-}
-
-.center{
-	text-align: center;
-}
-
-.divButton{
-	width : 100%;	
-	vertical-align: middle;
-	text-align: center;
-	font-size: x-large;
-	padding-top: 10px;
-	padding-bottom: 10px;
-}
-
-.noneTextDecore{
-	text-decoration: none;
-}
-
-
-.divHeader{
-	width : 100%;	
-	vertical-align: middle;
-	font-size: large;
-	height : 30px;
-}
-
-.listItem{
-	font-size: x-large;
-	text-align: center;
-	vertical-align: center;
+#scroller ul {
+    list-style:none;
+    padding:0;
+    margin:0;
+    width:100%;
+    text-align:left;
 }

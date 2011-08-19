@@ -15,18 +15,44 @@ Page.extend("SearchResultPage",
 		this._super(id);
 		this.movieListItemTemplate = this.el.find("#movieListItem");		
 		this.resultList = this.el.find("#resultList");
-		this.scroller = new iScroll('wrapper');
+		//this.scroller = this.el.find("#wrapper");
+		//this.scroller.touchScroll();
 		
 	},
 	
 	onPageShow: function(e, ui){
 		this._super(e, ui);
-		this.resultList.listview();
-		
+		var me = this;
+		this.resultList.listview();	
 		//fill list
 		this.resultList.empty();		  
-		this.movieListItemTemplate.tmpl(Page.exchangeData.movieSearchResult.contentData).appendTo(this.resultList);		
+		this.movieListItemTemplate.tmpl(Page.exchangeData.movieSearchResult.contentData).appendTo(this.resultList);
+		
+		this.resultList.find("a").live("vclick", function(e){me.listItemButtonClicked(e);});
+		
 		this.resultList.listview("refresh");
+		setTimeout(function () {
+			myScroll.refresh();
+		}, 0);		
+	},
+	
+	listItemButtonClicked: function(e){
+		  e.stopPropagation();
+		  var btn = $(e.target);
+		  var id = btn.attr("data-messageId");
+		  
+		  //Page.exchangeData.resSelect = {movID : id};
+		  
+		  $.mobile.pageLoading();
+		  AjaxService.getResList(id, function(d){	  
+			  
+			  Page.exchangeData.resListResult = d;
+			  
+			  $.mobile.pageLoading(true);
+			  $.mobile.changePage("#ResSelectPage");
+		  });
+		  
+		 
 	}
   
 });
