@@ -76,11 +76,12 @@ Page.extend("AvailJobPage",
    */
   listItemButtonClicked : function(e){	  
 	  e.stopPropagation();
+	  e.preventDefault();
 	  var btn = $(e.target);
 	  var id = btn.attr("data-messageId");
 	  var action = btn.attr("avail");
 	  var me = this;
-	  $(e.target).parent().remove();
+	  $(e.target).parent().parent().remove();
 	  AjaxService.markJobForUser(id, action, function(d){me.afterMarkJob(d)});
   },
   
@@ -96,12 +97,13 @@ Page.extend("AvailJobPage",
    * show job info
    */
   listItemClicked: function(e){
-	  var btn = $(e.target);
+	  var btn = $(e.target).parent();
+	  
 	  var jDate = btn.attr("job-date"),
 	  		jRegion = btn.attr("job-region"),
   			jDesc = btn.attr("job-desc");
 	  
-	  Page.showDialog("Job Info", "Job Date : " + jDate + "<br /> Job Region : " + jRegion + "<br /> Job Description : " + jDesc);
+	  Page.showDialog("Job Info", "Job Date : " + jDate + "\n Job Region : " + jRegion + "\n Job Description : " + jDesc);
   }
   
 });

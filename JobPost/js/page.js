@@ -13,9 +13,10 @@ $.Class.extend("Page",
 			navigator.notification.alert(content, function(){}, header);
 		}
 		else{//PC
-			$('#Dialog #header').text(header);
+			/*$('#Dialog #header').text(header);
 			$('#Dialog #content').html(content);
-			$('#aDialog').trigger('click');
+			$('#aDialog').trigger('click');*/
+			alert(content);
 		}
 	},
 	
