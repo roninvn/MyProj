@@ -18,7 +18,9 @@ Page.extend("SearchMovTrailersPage",
 	  var me = this;
 	  this.btnSearch.live('vclick', function(e){me.searchClick(e);});
   },
-  
+  /*
+   * button search is clicked
+   */
   searchClick: function(e){
 	  $.mobile.pageLoading();
 	  AjaxService.searchMovie(this.txtTitle.val(), function(d){		  

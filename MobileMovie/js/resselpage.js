@@ -15,7 +15,9 @@ Page.extend("ResSelectPage",
 		this.resListItemTemplate = this.el.find("#resListItem");		
 		this.resList = this.el.find("#resList");		
 	},
-	
+	/*
+	 * page is showed
+	 */
 	onPageShow: function(e, ui){
 		this._super(e, ui);
 		

@@ -19,7 +19,9 @@ Page.extend("SearchResultPage",
 		//this.scroller.touchScroll();
 		
 	},
-	
+	/*
+	 * call when page opens
+	 */
 	onPageShow: function(e, ui){
 		this._super(e, ui);
 		var me = this;
@@ -29,7 +31,7 @@ Page.extend("SearchResultPage",
 		this.movieListItemTemplate.tmpl(Page.exchangeData.movieSearchResult.contentData).appendTo(this.resultList);
 		
 		this.resultList.find("a").live("vclick", function(e){me.listItemButtonClicked(e);});
-		
+		//refresh list
 		this.resultList.listview("refresh");
 		setTimeout(function () {
 			myScroll.refresh();
