@@ -21,8 +21,8 @@ Page.extend("VidPlayPage",
 		
 		
 		this.player.find("source").attr("src", Page.exchangeData.mvUrl);
-		this.player.attr("src", Page.exchangeData.mvUrl).load();		
-		this.player.get(0).play();
+		//this.player.attr("src", Page.exchangeData.mvUrl).load();		
+		//this.player.get(0).play();
 	},
 	/*
 	 * run before page hide

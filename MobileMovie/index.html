@@ -5,6 +5,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	
 	<link rel="stylesheet" href="css/jquery.mobile-1.0b2.min.css" />	
+	<link rel="stylesheet" href="css/video-js.css" />
 	<!-- <link rel="stylesheet" href="css/jquery.mobile.datebox.min.css" /> -->
 	<link rel="stylesheet" href="css/app.css" />
 	
@@ -16,6 +17,7 @@
 	<script type="text/javascript" src="js/lib/jquery.tmpl.min.js"></script>
 	<!-- <script type="text/javascript" src="js/lib/jquery.mobile.datebox.min.js"></script> -->
 	<script type="text/javascript" src="js/lib/iscroll-lite.js"></script>
+	<script type="text/javascript" src="js/lib/video.js"></script>
 	
 </head> 
 
@@ -99,7 +101,7 @@
 	</div><!-- /header -->
 
 	<div data-role="content">
-		<video id="player" controls="true" >
+		<video id="player" class = "video-js" controls="true" preload="true">
 			<source type="video/mp4" />
 		</video>  
 	</div><!-- /content -->

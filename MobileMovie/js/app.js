@@ -16,8 +16,6 @@ $.Class.extend("Application",
 	  		//console.log('Application.Pages["'+val.id+'"] = new ' + val.id +'("' + val.id + '");');
 	  		eval('Application.Pages["'+val.id+'"] = new ' + val.id +'("' + val.id + '");');
 	  });
-	  	
-	  
   }
 });
 
@@ -25,6 +23,7 @@ var myScroll;
 function loaded() {	
     myScroll = new iScroll('wrapper');
     myapp = new Application();
+    VideoJS.setupAllWhenReady();
 }
 
 document.addEventListener('touchmove', function (e) { e.preventDefault(); }, false);
