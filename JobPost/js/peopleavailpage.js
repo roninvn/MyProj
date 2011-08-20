@@ -47,6 +47,9 @@ Page.extend("PeopleAvailPage",
 	  });
   },
   
+  /*
+   * call after loading data of the list
+   */
   afterGetPeopleAvail: function(d){
 	  this.pplList.empty();	  
 	  this.pplItemTemplate.tmpl(d).appendTo(this.pplList);
@@ -54,6 +57,7 @@ Page.extend("PeopleAvailPage",
 	  var me = this;
 	  this.pplList.find("a").live("tap", function(e){me.listItemClicked(e);});
 	  
+	  //get Ad
 	  AjaxService.getAd(function(d){
 		  if(d){
 			  me.ad.attr("src", d);
