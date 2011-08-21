@@ -1,5 +1,5 @@
 .yellowText{
-	color: #edb724;
+	color: #edb724;	
 }
 
 .redText{
@@ -27,15 +27,23 @@
 }
 
 .headerText{
-	font-size: xx-large;
+	font-size: 20px;
+	margin-top:0px;
 }
 
 .subHeaderText{
-	font-size: large;
+	font-size: 16px;
+padding-bottom:10px;
+}
+
+.inputText 
+{
+    height:15px;
 }
 
 .maxWidth{
-	width : 100%;
+	width : 320px;
+	font-size: 14px;	
 }
 
 .center{
@@ -46,7 +54,7 @@
 	width : 100%;	
 	vertical-align: middle;
 	text-align: center;
-	font-size: x-large;
+	font-size: 14px;
 	padding-top: 10px;
 	padding-bottom: 10px;
 }
@@ -58,21 +66,61 @@
 
 .divHeader{
 	width : 100%;	
-	vertical-align: middle;
-	font-size: large;
-	height : 30px;
+	vertical-align: middle;	
+	font-size: 14px;
+	padding-top: 5px;
+	padding-left: 10px;
+	height : 25px;
 }
 
 .listItem{
 	text-align: center;
-	vertical-align: center;
+	vertical-align: middle;
+	font-size: 14px;
+	width:95%;
 }
 
-.imgbutton{
-	width:30px;
-	height:30px;
+.listItem img{
+width:20px;
+height:20px;
 }
 
-#ad{
-	width:100%;
+.left 
+{
+    float:left;
+}
+
+.right 
+{
+    float:right;
+}
+
+body {
+     width: 320px;
+    font-family:"Lucida Grande", "Lucida Sans Unicode", Verdana, Arial, Helvetica, sans-serif;
+    font-size:12px;
+
+} 
+
+.smallText
+{
+    margin-bottom:35px;
+}
+
+#ad { width: 100%; }
+
+.checkboxLeft{
+	float: left;
+	width: 50%;
+	text-align: right;
+}
+.checkboxRight{	
+	float: right;
+	width: 50%;
+	text-align: right;
+}
+
+.settingButton{
+	float:right;
+	margin-right: 15px;
 }

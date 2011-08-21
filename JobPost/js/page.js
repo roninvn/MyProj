@@ -31,9 +31,10 @@ $.Class.extend("Page",
 	  this.el = $('#' + id);
 	  var me = this;
 	  this.el.live('pageshow', function(e,u){me.onPageShow(e,u);});
+	  
   },//end init
   
-  onPageShow: function(e, ui){	  
+  onPageShow: function(e, ui){	 
   }
   
 });

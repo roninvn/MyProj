@@ -76,8 +76,16 @@ Page.extend("AddDatePage",
 	  this.vendortype.find("label").remove();
 	  this.vendortype.find("input").remove();
 	  this.vendortypeItemTemplate.tmpl(vds).appendTo(this.vendortype);
+	  
+	  this.vendortype.find("div").each(function(i,val){
+		  if(i%2 == 0)
+			  $(val).addClass("checkboxLeft");
+		  else
+			  $(val).addClass("checkboxRight");
+	  });
+	  
 	  this.vendortype.find("input[type='checkbox']").checkboxradio();
-	  this.vendortype.find("input[type='checkbox']").checkboxradio("refresh");
+	  this.vendortype.find("input[type='checkbox']").checkboxradio("refresh");	  
 	 // $.mobile.pageLoading(true);
   }
   

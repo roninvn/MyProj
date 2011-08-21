@@ -62,6 +62,7 @@ Page.extend("PeopleAvailPage",
 		  if(d){
 			  me.ad.attr("src", d);
 		  	  me.ad.css({display:"block", visibility:"visible"});
+		  	  $.fixedToolbars.show();
 		  }
 		 // $.mobile.pageLoading(true);
 	  });
