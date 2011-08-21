@@ -21,3 +21,10 @@
 	padding: 10px;
 	margin: 10px;
 }
+
+.addPhoto{
+	float: left;
+	height: 60px;
+	width: 60px;
+	border: 1px black solid;
+}
