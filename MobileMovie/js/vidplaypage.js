@@ -11,26 +11,26 @@ Page.extend("VidPlayPage",
 
 	init : function(id) {
 		this._super(id);
-		this.player = this.el.find("#player");
+		
 	},
-	onPageShow : function(e, ui) {
+	onPageShow : function(e, ui) {		
 		this._super(e, ui);
-
-		this.player.attr("src", "");
-		this.player.find("source").attr("src", "");
-
-		this.player.find("source").attr("src", Page.exchangeData.mvUrl);
-		//this.player.attr("src", Page.exchangeData.mvUrl).load();
-		//this.player.get(0).play();
+		this.player = this.el.find("#player");
+		this.player.jPlayer({
+			  ready: function () {
+			   $(this).jPlayer("setMedia", {
+			    m4v: Page.exchangeData.mvUrl			    
+			   });
+			  },
+			  swfPath: "js/lib",
+			  supplied: "m4v"			  
+			 });
 	},
 	/*
 	 * run before page hide
 	 */
-	onPageBeforeHide : function(e, u) {
-		//remove video
-		this.player.get(0).pause();
-		this.player.attr("src", "");
-		this.player.find("source").attr("src", "");
-
+	onPageBeforeHide : function(e, u) {		
+		this.player.jPlayer( "clearMedia" );
+		this.player = null;
 	}
 });

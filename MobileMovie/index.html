@@ -4,8 +4,9 @@
 	<title>Services Browser</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	
-	<link rel="stylesheet" href="css/jquery.mobile-1.0b2.min.css" />	
-	<link rel="stylesheet" href="css/video-js.css" />
+	<link rel="stylesheet" href="css/jquery.mobile-1.0b2.min.css" />
+	<link rel="stylesheet" href="css/jPlayer.Blue.Monday.2.0.0/jplayer.blue.monday.css" />
+
 	<!-- <link rel="stylesheet" href="css/jquery.mobile.datebox.min.css" /> -->
 	<link rel="stylesheet" href="css/app.css" />
 	
@@ -17,7 +18,8 @@
 	<script type="text/javascript" src="js/lib/jquery.tmpl.min.js"></script>
 	<!-- <script type="text/javascript" src="js/lib/jquery.mobile.datebox.min.js"></script> -->
 	<script type="text/javascript" src="js/lib/iscroll-lite.js"></script>
-	<script type="text/javascript" src="js/lib/video.js"></script>
+	<script type="text/javascript" src="js/lib/jquery.jplayer.min.js"></script>
+
 	
 </head> 
 
@@ -47,7 +49,7 @@
 		    <input type="text" name="title" id="title" />
 		</div>
 	</div><!-- /content -->
-	<center><a id = "btnSearch" data-role="button" data-inline="true">SEARCH</a></center>		
+	<div style = "text-align: center;"><a id = "btnSearch" data-role="button" data-inline="true">SEARCH</a></div>
 </div><!-- /page -->
 
 <div data-role="page" id= "SearchResultPage" data-add-back-btn="true">
@@ -76,7 +78,7 @@
 
 
 <div data-role="page" id= "ResSelectPage" data-add-back-btn="true">
-	<div data-role="header" data-theme="b" data-back-btn-text="previous">
+	<div data-role="header" data-theme="b" >
 		<h1>Trailers</h1>
 	</div><!-- /header -->
 
@@ -101,9 +103,35 @@
 	</div><!-- /header -->
 
 	<div data-role="content">
-		<video id="player" class = "video-js" controls="true" preload="true">
+		<!-- <video id="player">
 			<source type="video/mp4" />
-		</video>  
+		</video> -->  
+		
+		<div class="jp-video jp-video-270p">
+    <div class="jp-type-single">
+      <div id="player" class="jp-jplayer"></div>
+      <div id="jp_interface_1" class="jp-interface">
+        <div class="jp-video-play"></div>
+        <ul class="jp-controls">
+          <li><a href="#" class="jp-play" tabindex="1">play</a></li>
+          <li><a href="#" class="jp-pause" tabindex="1">pause</a></li>
+          <li><a href="#" class="jp-stop" tabindex="1">stop</a></li>
+          <li><a href="#" class="jp-mute" tabindex="1">mute</a></li>
+          <li><a href="#" class="jp-unmute" tabindex="1">unmute</a></li>
+        </ul>
+        <div class="jp-progress">
+          <div class="jp-seek-bar">
+            <div class="jp-play-bar"></div>
+          </div>
+        </div>
+        <div class="jp-volume-bar">
+          <div class="jp-volume-bar-value"></div>
+        </div>
+        <div class="jp-current-time"></div>
+        <div class="jp-duration"></div>
+      </div>
+    </div>
+  	</div>
 	</div><!-- /content -->
 </div><!-- /page -->
 

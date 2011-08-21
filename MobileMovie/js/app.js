@@ -23,7 +23,7 @@ var myScroll;
 function loaded() {
 	myScroll = new iScroll('wrapper');
 	myapp = new Application();
-	VideoJS.setupAllWhenReady();
+	//VideoJS.setupAllWhenReady();
 }
 
 document.addEventListener('touchmove', function(e) {
