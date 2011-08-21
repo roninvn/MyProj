@@ -7,3 +7,17 @@
 	float: left;
 	width: 80%; 
 }
+.left{
+	float: left;
+}
+.right{
+	float: right;
+}
+
+.profileInfo{
+	border-radius: 15px;
+	border: 1px black solid;
+	width: 90%;
+	padding: 10px;
+	margin: 10px;
+}

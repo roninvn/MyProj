@@ -40,7 +40,7 @@
 		</div>
 		<br /><hr /><br />
 		<p>Don't have account yet?</p>
-		<a id = "btnSignup" data-role="button" data-theme="b">Signup</a>
+		<a href = "#SignupPage" id = "btnSignup" data-role="button" data-theme="b">Signup</a>
 	</div><!-- /content -->
 </div><!-- /page -->
 
@@ -75,6 +75,7 @@
 <div data-role="page" id= "PartnersPage">
 	<div data-role="header" data-theme="b">
 		<h1>Nearby</h1>
+		<a data-icon="gear" class="ui-btn-right">Options</a>
 	</div><!-- /header -->
 	<div data-role="content">
 	    <ul data-role="listview" data-inset="true">
@@ -142,11 +143,47 @@
 	</div><!-- /content -->
 </div><!-- /page -->
 
+<div data-role="page" id= "ProfilePage" data-add-back-btn="true">
+	<div data-role="header" data-theme="b">
+		<h1>Profile</h1>
+	</div><!-- /header -->
+	<div data-role="content">
+		<div><img src="img/avatar1185_3.gif" class="left" />
+	      		<h4>David Bowie</h4>
+	      		<p>45, Musician</p>
+	      		<img src="img/stars.JPG" />
+	      		<img class = "right" src="img/check.jpg" />
+	     </div>
+	     
+	     <div class="profileInfo">
+	     	Hi, I currently move to the Bay Area from Texas...
+	     </div>
+	     <div class="profileInfo">
+	     	<h5>Common interests</h5>
+	     	<p>Water polo, space ships</p>
+	     	<h5>Mutual friends</h5>
+	     	<p>Marry Meeker, Tom Jones</p>
+	     	<h5>Recomendation</h5>
+	     	<p>Jimmy is really nice and smart guy...</p>
+	     </div>
+	</div><!-- /content -->
+</div><!-- /page -->
+
+<div data-role="page" id= "SignupPage">
+	<div data-role="header" data-theme="b" data-position="inline">
+		<a data-icon="delete">Cancel</a>
+		<h1>Signup</h1>
+		<a href="index.html" data-icon="check">Save</a>
+	</div><!-- /header -->
+	<div data-role="content">
+	</div><!-- /content -->
+</div><!-- /page -->
 
 <script type="text/javascript" src="js/page.js"></script>
 <script type="text/javascript" src="js/loginpage.js"></script>
 <script type="text/javascript" src="js/welcomepage.js"></script>
 <script type="text/javascript" src="js/partners.js"></script>
+<script type="text/javascript" src="js/signup.js"></script>
 <script type="text/javascript" src="js/app.js"></script>
 
 </body>
