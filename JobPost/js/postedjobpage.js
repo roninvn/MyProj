@@ -37,7 +37,7 @@ Page.extend("PostedJobPage",
   /*
    * load data for page
    */
-  loadData: function(){
+  loadData: function(){	  
 	  var me = this;
 	  AjaxService.getMyPostedJobs(function(d){
 			  if(!$.isArray(d))
@@ -61,7 +61,7 @@ Page.extend("PostedJobPage",
 		  if(d){
 			  me.ad.attr("src", d);
 		  	  me.ad.css({display:"block", visibility:"visible"});
-		  	  $.fixedToolbars.show();
+		  	  me.refreshScroller();
 		  }
 		//  $.mobile.pageLoading(true);
 	  });

@@ -18,7 +18,8 @@ $.Class.extend("AjaxService",
 	  			GetVendorTypes: "{vstrApiKey}/VendorTypes",
 	  			PostDate: "{vstrApiKey}/PostJob/{vstrUserId}/{vstrDesc}/{vstrDateMonth}/{vstrDateDay}/{vstrDateYear}/{vstrRegionID}",
 	  			GetUserInfo: "{vstrApiKey}/user/{vstrUserID}",
-	  			GetAd: "{vstrApiKey}/user/{vstrUserID}/ad"
+	  			GetAd: "{vstrApiKey}/user/{vstrUserID}/ad",
+	  			GetVendorTypes: "VendorTypes"
   			 },
   
   APIKey: null,
@@ -34,14 +35,14 @@ $.Class.extend("AjaxService",
 			alert('No site was passed.');
 			return false;
 		}
-		//console.log(AjaxService.baseURL + serviceURL);
+		console.log(AjaxService.baseURL + serviceURL);
 		// Take the provided url, and add it to a YQL query. Make sure you encode it!
 		var yql = 'http://query.yahooapis.com/v1/public/yql?q=' + encodeURIComponent('select * from json where url="' + AjaxService.baseURL + serviceURL + '"') + '&format=json&callback=?';		
 		// Request that YSQL string, and run a callback function.
 		// Pass a defined function to prevent cache-busting.
 		$.getJSON( yql, cbFunc );		
 		function cbFunc(data) {
-			//console.log(data);
+			console.log(data);
 			var d;
 			if(data && data.query && data.query.results && data.query.results.json){//extract data				
 				d = data.query.results.json;
@@ -159,6 +160,14 @@ $.Class.extend("AjaxService",
   getUserInfo: function(userID, callback){
 	  var q = AjaxService.services.GetUserInfo.replace('{vstrApiKey}', AjaxService.APIKey)
 												.replace('{vstrUserID}',userID);
+	  AjaxService.__query(q, callback);
+  },
+  
+  /*
+   * getVendorTypes -EditAccountPage
+   */
+  getVendorTypes: function(callback){
+	  var q = AjaxService.services.GetVendorTypes;
 	  AjaxService.__query(q, callback);
   },
   

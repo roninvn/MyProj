@@ -15,6 +15,7 @@
 	<script type="text/javascript" src="js/lib/jquery.class.min.js"></script>
 	<script type="text/javascript" src="js/lib/jquery.tmpl.min.js"></script>
 	<script type="text/javascript" src="js/lib/jquery.mobile.datebox.min.js"></script>
+	<script type="text/javascript" src="js/lib/iscroll-lite.js"></script>
 	
 	<script type="text/javascript" src="js/ajax.js"></script>
 	
@@ -45,22 +46,68 @@
 <!-- Edit Account page -->
 <div data-role="page" id = "EditAccountPage" data-add-back-btn=”true” data-theme="d">
 	<div class = "divHeader yellowBackGround">
-		<a href = "#SettingPage" data-role="none" class = "noneTextDecore whiteText settingButton">SETTINGS</a>
+		<a href = "#LoginPage" data-role="none" class = "noneTextDecore whiteText" data-rel="back">BACK</a>
 	</div>
-	
-		<div data-role="content">	
+		<div data-role="content">
+		<div id="wrapperEditAccountPage" class = "wrapper"> 
+			<div id="scroller">	
 		<div data-role="fieldcontain">
-		    <label for="name"  class = "yellowText subHeaderText">USERNAME</label>
-		    <input class="inputText" type="text" name="name" id="name" />
-		    <label for="password"  class = "yellowText subHeaderText">PASSWORD</label>
-    		<input class="inputText" type="password" name="password" id="password" />
-    		<label for="firstname"  class = "yellowText subHeaderText">FIRST NAME</label>
-		    <input class="inputText" type="text" name="firstname" id="firstname" />
-		    <label for="lastname"  class = "yellowText subHeaderText">LAST NAME</label>
-		    <input class="inputText" type="text" name="lastname" id="lastname" />
+		    <label for="name" class = "yellowText subHeaderText">USERNAME</label><br />
+		    <input class="inputText" type="text" name="name" id="name" /><br />
+		    <label for="password" class = "yellowText subHeaderText">PASSWORD</label><br />
+    		<input class="inputText" type="password" name="password" id="password" /><br />
+    		<label for="firstname" class = "yellowText subHeaderText">FIRST NAME</label><br />
+		    <input class="inputText" type="text" name="firstname" id="firstname" /><br />
+		    <label for="lastname" class = "yellowText subHeaderText">LAST NAME</label><br />
+		    <input class="inputText" type="text" name="lastname" id="lastname" /><br />
+		    <label for="company"  class = "yellowText subHeaderText">COMPANY</label><br />
+		    <input class="inputText" type="text" name="company" id="company" /><br />
+   		    <label for="adr1" class = "yellowText subHeaderText">ADDRESS1</label><br />
+		    <input class="inputText" type="text" name="adr1" id="adr1" /><br />
+		    <label for="adr2" class = "yellowText subHeaderText">ADDRESS2</label><br />
+		    <input class="inputText" type="text" name="adr2" id="adr2" /><br />
+		    <label for="city"  class = "yellowText subHeaderText">CITY</label><br />
+		    <input class="inputText" type="text" name="city" id="city" /><br />
+   		    <label for="state" class = "yellowText subHeaderText">STATE</label><br />
+		    <input class="inputText" type="text" name="state" id="state" /><br />
+    		<label for="zip" class = "yellowText subHeaderText">ZIP</label><br />
+		    <input class="inputText" type="text" name="zip" id="zip" /><br />
+       		<label for="phone" class = "yellowText subHeaderText">PHONE NUMBER</label><br />
+		    <input class="inputText" type="text" name="phone" id="phone" /><br />
+         	<label for="email" class = "yellowText subHeaderText">EMAIL</label><br />
+		    <input class="inputText" type="text" name="email" id="email" /><br />
+		    <label for="url1" class = "yellowText subHeaderText">WEBSITE ADDRESS 1</label><br />
+		    <input class="inputText" type="text" name="url1" id="url1" /><br />
+    		<label for="url2" class = "yellowText subHeaderText">WEBSITE ADDRESS 2</label><br />
+		    <input class="inputText" type="text" name="url2" id="url2" /><br />
+		    <label for="vendor" class = "yellowText">VENDOR TYPE</label><br />
+			
+			<select  name="vendor" id="vendor">
+				<option value="Vendor1">Vendor1</option>
+				<option value="Vendor2">Vendor2</option>
+				<option value="Vendor3">Vendor3</option>
+			</select><br />
+			<label for="region" class = "yellowText subHeaderText">REGION</label><br />
+			<div  class = "left" style= "width: 60%;">
+			<select name="region" id="region">
+				<option value="R1">Region1</option>
+				<option value="R2">Region2</option>
+				<option value="R3">Region3</option>
+			</select></div><img  class = "right" src = "img/add.gif" id = "btnAddRegion" />
+			<br /><br /><br /><br /><br /><br />
 		    <ul datarole = "listview" id = "regonList">
 			</ul>
-		</div>	
+			<br /><br />
+			 <a id = "Save" class = "noneTextDecore"><div class = "divButton blueBackGround whiteText">SAVE</div></a>
+		</div>
+		
+		<script id="vendorListItem" type="text/x-jquery-tmpl">
+   			<option value="${RegionId}">${Region} - ${State}</option>
+		</script>
+		<script id="regionListItem" type="text/x-jquery-tmpl">
+   	 		<li class = "listItem"><div>${Region}<img class = "right"  src = "img/remove.gif" data-messageId="${RegionVal}"></img></div></li>
+		</script>
+		</div></div> <!-- scroll -->
 		</div><!-- /content -->
 		
 </div>
@@ -70,7 +117,7 @@
 <!-- main page -->
 <div data-role="page" id = "MainPage" data-theme="d">
 	<div class = "divHeader yellowBackGround">
-		<a href = "#SettingPage" data-role="none" class = "noneTextDecore whiteText settingButton">SETTINGS</a>		
+		<a href = "#EditAccountPage" data-role="none" class = "noneTextDecore whiteText settingButton">SETTINGS</a>		
 	</div>
 		<div data-role="content">
 			<p class = "yellowText headerText">JOB AVAILABLE</p>
@@ -89,18 +136,18 @@
 <div data-role="page" id = "AvailJobPage" data-add-back-btn=”true” data-theme="d">
 	<div class = "divHeader blueBackGround">
 		<a href = "#LoginPage" data-role="none" class = "noneTextDecore whiteText" data-rel="back">BACK</a>
-		<a href = "#SettingPage" data-role="none" class = "noneTextDecore whiteText settingButton">SETTINGS</a>
+		<a href = "#EditAccountPage" data-role="none" class = "noneTextDecore whiteText settingButton">SETTINGS</a>
 	</div>	
 	<div data-role="content">
+	<div id="wrapperAvailJobPage" class = "wrapper"><div id="scroller">
 	<p class="smallText">THESE ARE THE DATES AVAILABLE IN YOUR REGIONS</p>
 	<ul datarole = "listview" id = "jobList">
 	</ul>
+	</div></div>
 	</div><!-- /content -->
 	
+	<img id = "ad"></img>
 	
-	<div data-role="footer" data-position="fixed">
-		<img id = "ad"></img>
-	</div><!-- /footer -->
 	
 	<script id="jobListItem" type="text/x-jquery-tmpl">
    	 <li class = "listItem" data-messageId="${JobId}" job-date = "${JobDate}" job-region="${JobRegion}" job-desc="${JobDescription}">
@@ -114,19 +161,22 @@
 <div data-role="page" id = "PostedJobPage" data-add-back-btn=”true” data-theme="d">
 	<div class = "divHeader redBackGround">
 		<a href = "#LoginPage" data-role="none" class = "noneTextDecore whiteText" data-rel="back">BACK</a>
-		<a href = "#SettingPage" data-role="none" class = "noneTextDecore whiteText settingButton">SETTINGS</a>
+		<a href = "#EditAccountPage" data-role="none" class = "noneTextDecore whiteText settingButton">SETTINGS</a>
 	</div>		
 	<div data-role="content">
+	<div id="wrapperPostedJobPage" class = "wrapper"> 
+	<div id="scroller">	
 	<p class="smallText">THESE ARE THE DATES YOU ARE <b>NOT</b> AVAILABLE</p>	
 	<ul datarole = "listview" id = "jobList" data-theme="d">		
 	</ul>
-	<p></p>		
+	<br /><br /><br />	
     <a  href = "#AddDatePage" id = "AddDateNotAvail" class = "noneTextDecore"><div class = "divButton redBackGround whiteText">+ ADD DATE I'M NOT AVAILABLE</div></a>
+	</div></div>
 	</div><!-- /content -->
 	
-	<div data-role="footer" data-position="fixed">    	
-		<img id = "ad"></img>
-	</div><!-- /footer -->
+	  	
+	<img id = "ad"></img>	
+	
 	
 	<script id="jobListItem" type="text/x-jquery-tmpl">
    	 <li >
@@ -142,7 +192,7 @@
 <div data-role="page" id = "AddDatePage" data-add-back-btn=”true” data-theme="d">
 	<div class = "divHeader redBackGround">
 		<a href = "#LoginPage" data-role="none" class = "noneTextDecore whiteText" data-rel="back">BACK</a>
-		<a href = "#SettingPage" data-role="none" class = "noneTextDecore whiteText settingButton">SETTINGS</a>
+		<a href = "#EditAccountPage" data-role="none" class = "noneTextDecore whiteText settingButton">SETTINGS</a>
 	</div>	
 	<div data-role="content">
 		<div data-role="fieldcontain">
@@ -177,11 +227,11 @@
 <div data-role="page" id = "PeopleAvailPage" data-add-back-btn=”true” data-theme="d">
 	<div class = "divHeader redBackGround">
 		<a href = "#LoginPage" data-role="none" class = "noneTextDecore whiteText" data-rel="back">BACK</a>
-		<a href = "#SettingPage" data-role="none" class = "noneTextDecore whiteText settingButton">SETTINGS</a>
+		<a href = "#EditAccountPage" data-role="none" class = "noneTextDecore whiteText settingButton">SETTINGS</a>
 	</div>	
 	<div data-role="content">
-	<p>WE ARE AVAILABLE ON <label id="availDate"></label> IN <label id="availRegion"></label></p>
-	
+	<div id="wrapperPeopleAvailPage" class = "wrapper"><div id="scroller">
+	<p>WE ARE AVAILABLE ON <label id="availDate"></label> IN <label id="availRegion"></label></p>	
 	<ul datarole = "listview" id = "peopleList">		
 	</ul>
 	<br />
@@ -191,12 +241,12 @@
 		<a href="#PeopleInfoPage" data-messageId="${UserId}">${Name}</a>    
     </li>
 	</script>
-		
+	</div></div>	
 	</div><!-- /content -->
 	
-	<div data-role="footer" data-position="fixed">
-		<img id = "ad"></img>
-	</div><!-- /footer -->
+	
+	<img id = "ad"></img>
+	
 		
 </div>
 <!-- /People avail page -->
@@ -205,7 +255,7 @@
 <div data-role="page" id = "PeopleInfoPage" data-theme="d">
 	<div class = "divHeader redBackGround">
 		<a href = "#LoginPage" data-role="none" class = "noneTextDecore whiteText" data-rel="back">BACK</a>
-		<a href = "#SettingPage" data-role="none" class = "noneTextDecore whiteText settingButton">SETTINGS</a>
+		<a href = "#EditAccountPage" data-role="none" class = "noneTextDecore whiteText settingButton">SETTINGS</a>
 	</div>		
 	<div data-role="content">
 	<p>I AM AVAILABLE ON <label id="availDate"></label> IN <label id="availRegion"></label></p>
@@ -223,40 +273,12 @@
 	</script>
 	
 	</div><!-- /content -->
-	<div>
-		<img id = "ad"></img>
-	</div><!-- /footer -->
+	
+	<img id = "ad"></img>
+	
 		
 </div>
 <!-- /People info page -->
-
-<!-- Setting page -->
-<div data-role="page" id = "SettingPage" data-add-back-btn=”true” data-theme="d">
-	<div data-role="header" data-position="inline">		
-		<h1>People avail</h1>	
-	</div>	
-	<div data-role="content">
-		<div data-role="fieldcontain">
-		    <label for="date">Date Input:</label>
-			<input class="inputText" type="date" name="date" id="date" value=""  />
-		</div>	
-	</div><!-- /content -->
-</div>
-<!-- /Setting page -->
-
-
-<!-- 
-<a href="#Dialog" id = "aDialog" data-role="button" data-inline="true" data-theme="b"  data-rel="dialog" data-transition="pop" style="visibility : hidden;"></a>
-<div id = "Dialog" data-role="dialog">
-	<div data-role="header">
-			<h1 id  = "header">Page Title</h1>
-	</div>
-		<div data-role="content">	
-			<p id  = "content">Page content goes here.</p>		
-		</div>
-</div>
- -->
-
 
 <script type="text/javascript" src="js/page.js"></script>
 <script type="text/javascript" src="js/loginpage.js"></script>
@@ -267,7 +289,6 @@
 <script type="text/javascript" src="js/adddatepage.js"></script>
 <script type="text/javascript" src="js/peopleavailpage.js"></script>
 <script type="text/javascript" src="js/peopleinfopage.js"></script>
-<script type="text/javascript" src="js/settingpage.js"></script>
 <script type="text/javascript" src="js/app.js"></script>
 
 </body>
