@@ -45,8 +45,7 @@ Page.extend("AddDatePage",
 	  
 	  AjaxService.getRegion(function(d){
 		  if(!$.isArray(d))
-			  d = [d];
-		  
+			  d = [d];		  
 		  me.poplulateRegionList(d); 
 	  });
 

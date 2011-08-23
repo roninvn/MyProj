@@ -13,9 +13,6 @@ $.Class.extend("Page",
 			navigator.notification.alert(content, function(){}, header);
 		}
 		else{//PC
-			/*$('#Dialog #header').text(header);
-			$('#Dialog #content').html(content);
-			$('#aDialog').trigger('click');*/
 			alert(content);
 		}
 	},
@@ -32,6 +29,7 @@ $.Class.extend("Page",
 	  this.id = id;
 	  this.el = $('#' + id);	  
 	  var me = this;
+	  this.el.live('pagebeforeshow', function(e,u){me.onPageBeforeShow(e,u);});
 	  this.el.live('pageshow', function(e,u){me.onPageShow(e,u);});
 	  this.el.live("pagebeforehide", function(e,u){me.onPageBeforeHide(e,u);});
 	  
@@ -44,11 +42,8 @@ $.Class.extend("Page",
 		  this.scroller = new iScroll(sn);
   },
   
-  refreshScroller: function(){
-	  var me =  this;
-	  setTimeout(function() {
-		  me.scroller.refresh();
-		}, 0);
+  refreshScroller: function(){	  
+	  this.scroller.refresh();		
   },
   
   onPageBeforeHide: function(e,u){
@@ -56,6 +51,9 @@ $.Class.extend("Page",
 		  this.scroller.destroy();
 		  this.scroller = null;
 	  }
+  },
+  
+  onPageBeforeShow: function(e,ui){
   }
   
 });

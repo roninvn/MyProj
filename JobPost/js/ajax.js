@@ -14,12 +14,16 @@ $.Class.extend("AjaxService",
 	  			MyPostedJobs :"{vstrApiKey}/user/{vstrUserId}/mypostedjobs",
 	  			GetPeopleAvail : "{vstrApiKey}/user/{vstrUserId}/mypostedjobs/job/{vstrJobID}/users",
 	  			MailPeopleAvail : "{vstrApiKey}/job/{vstrJobID}/emaillist",
-	  			GetResion: "{vstrApiKey}/regions",
-	  			GetVendorTypes: "{vstrApiKey}/VendorTypes",
+	  			GetRegion: "regions",	  			
 	  			PostDate: "{vstrApiKey}/PostJob/{vstrUserId}/{vstrDesc}/{vstrDateMonth}/{vstrDateDay}/{vstrDateYear}/{vstrRegionID}",
 	  			GetUserInfo: "{vstrApiKey}/user/{vstrUserID}",
 	  			GetAd: "{vstrApiKey}/user/{vstrUserID}/ad",
-	  			GetVendorTypes: "VendorTypes"
+	  			GetVendorTypes: "VendorTypes",
+	  			CreateUser: "user/create/{vstrUserName}/{vstrPsw}/{vstrFirstName}/{vstrLastName}/{vstrCompanyName}/{vstrAddress1}/{vstrAddress2}/{vstrCity}/{vstrState}/{vstrZip}/{vstrEmail}/{vstrUrl1}/{vstrUrl2}/{vstrVendorTypeID}",
+	  			AddRegion: "{vstrApiKey}/user/{vstrUserId}/AddRegion/{vstrRegion}",
+	  			RemoveRegion: "{vstrApiKey}/user/{vstrUserId}/RemoveRegion/{vstrRegion}",
+	  			GetUserInfo: "{vstrApiKey}/user/{vstrUserID}",
+	  			UpdateUser: "{vstrApiKey}/user/{vstrUserID}/update/{vstrFirstName}/{vstrLastName}/{vstrCompanyName}/{vstrAddress1}/{vstrAddress2}/{vstrCity}/{vstrState}/{vstrZip}/{vstrEmail}/{vstrUrl1}/{vstrUrl2}"
   			 },
   
   APIKey: null,
@@ -35,14 +39,14 @@ $.Class.extend("AjaxService",
 			alert('No site was passed.');
 			return false;
 		}
-		console.log(AjaxService.baseURL + serviceURL);
+		//console.log(AjaxService.baseURL + serviceURL);
 		// Take the provided url, and add it to a YQL query. Make sure you encode it!
 		var yql = 'http://query.yahooapis.com/v1/public/yql?q=' + encodeURIComponent('select * from json where url="' + AjaxService.baseURL + serviceURL + '"') + '&format=json&callback=?';		
 		// Request that YSQL string, and run a callback function.
 		// Pass a defined function to prevent cache-busting.
 		$.getJSON( yql, cbFunc );		
 		function cbFunc(data) {
-			console.log(data);
+			//console.log(data);
 			var d;
 			if(data && data.query && data.query.results && data.query.results.json){//extract data				
 				d = data.query.results.json;
@@ -128,7 +132,7 @@ $.Class.extend("AjaxService",
    * getRegion - AddDatePage
    */
   getRegion: function(callback){
-	  var q = AjaxService.services.GetResion.replace('{vstrApiKey}', AjaxService.APIKey);
+	  var q = AjaxService.services.GetRegion;
 	  AjaxService.__query(q, callback);
   },
   
@@ -136,7 +140,7 @@ $.Class.extend("AjaxService",
    * getVendorTypes - AddDatePage
    */
   getVendorTypes: function(callback){
-	  var q = AjaxService.services.GetVendorTypes.replace('{vstrApiKey}', AjaxService.APIKey);
+	  var q = AjaxService.services.GetVendorTypes;
 	  AjaxService.__query(q, callback);
   },
   
@@ -164,14 +168,6 @@ $.Class.extend("AjaxService",
   },
   
   /*
-   * getVendorTypes -EditAccountPage
-   */
-  getVendorTypes: function(callback){
-	  var q = AjaxService.services.GetVendorTypes;
-	  AjaxService.__query(q, callback);
-  },
-  
-  /*
    * getAd
    */
   getAd: function(callback){
@@ -179,6 +175,74 @@ $.Class.extend("AjaxService",
 	  AjaxService.__query(q, callback);
   },
   
+  /*
+   * Create user
+   */
+  createUser: function(vstrUserName,vstrPsw,vstrFirstName,vstrLastName,vstrCompanyName,vstrAddress1,vstrAddress2,vstrCity,vstrState,vstrZip,vstrEmail,vstrUrl1,vstrUrl2,vstrVendorTypeID, callback){
+	  var q = AjaxService.services.CreateUser.replace('{vstrUserName}',vstrUserName)
+	  													.replace('{vstrPsw}',vstrPsw)
+	  													.replace('{vstrFirstName}',vstrFirstName)
+	  													.replace('{vstrLastName}',vstrLastName)
+	  													.replace('{vstrCompanyName}',vstrCompanyName)
+	  													.replace('{vstrAddress1}',vstrAddress1)
+	  													.replace('{vstrAddress2}',vstrAddress2)
+	  													.replace('{vstrCity}',vstrCity)
+	  													.replace('{vstrState}',vstrState)
+	  													.replace('{vstrZip}',vstrZip)
+	  													.replace('{vstrEmail}',vstrEmail)
+	  													.replace('{vstrUrl1}',vstrUrl1)
+	  													.replace('{vstrUrl2}',vstrUrl2)
+	  													.replace('{vstrVendorTypeID}',vstrVendorTypeID);
+	  AjaxService.__query(q, callback);
+  },
+  
+  /*
+   * getUserInfo
+   */
+  getUserInfo: function(callback){
+	  var q = AjaxService.services.GetUserInfo.replace('{vstrApiKey}', AjaxService.APIKey).replace('{vstrUserID}',AjaxService.UserID);
+	  AjaxService.__query(q, callback);	  
+  },
+  
+  /*
+   * updateUser
+   */
+  updateUser:function(vstrFirstName,vstrLastName,vstrCompanyName,vstrAddress1,vstrAddress2,vstrCity,vstrState,vstrZip,vstrEmail,vstrUrl1,vstrUrl2, callback){
+	  var q = AjaxService.services.UpdateUser.replace('{vstrApiKey}', AjaxService.APIKey)
+												.replace('{vstrUserID}',AjaxService.UserID)
+												.replace('{vstrFirstName}',vstrFirstName)
+												.replace('{vstrLastName}',vstrLastName)
+												.replace('{vstrCompanyName}',vstrCompanyName)
+												.replace('{vstrAddress1}',vstrAddress1)
+												.replace('{vstrAddress2}',vstrAddress2)
+												.replace('{vstrCity}',vstrCity)
+												.replace('{vstrState}',vstrState)
+												.replace('{vstrZip}',vstrZip)
+												.replace('{vstrEmail}',vstrEmail)
+												.replace('{vstrUrl1}',vstrUrl1)
+												.replace('{vstrUrl2}',vstrUrl2);
+	  AjaxService.__query(q, callback);
+  },
+  
+  /*
+  * removeRegion
+  */
+  removeRegion: function(regionID,callback){
+	  var q = AjaxService.services.RemoveRegion.replace('{vstrApiKey}', AjaxService.APIKey)
+	  																.replace('{vstrUserId}',AjaxService.UserID)
+	  																.replace('{vstrRegion}',regionID);
+	  AjaxService.__query(q, callback);
+  },
+  
+  /*
+   * addUserRegion
+   */
+  addUserRegion: function(regionID,callback){
+	  var q = AjaxService.services.AddRegion.replace('{vstrApiKey}', AjaxService.APIKey)
+	  																.replace('{vstrUserId}',AjaxService.UserID)
+	  																.replace('{vstrRegion}',regionID);
+	  AjaxService.__query(q, callback);
+  }
 },
 
 // prototype methods

@@ -44,13 +44,12 @@
 <!-- /Login page -->
 
 <!-- Edit Account page -->
-<div data-role="page" id = "EditAccountPage" data-add-back-btn=”true” data-theme="d">
+<div data-role="page" id = "EditAccountPage" data-theme="d">
 	<div class = "divHeader yellowBackGround">
 		<a href = "#LoginPage" data-role="none" class = "noneTextDecore whiteText" data-rel="back">BACK</a>
 	</div>
 		<div data-role="content">
-		<div id="wrapperEditAccountPage" class = "wrapper"> 
-			<div id="scroller">	
+	
 		<div data-role="fieldcontain">
 		    <label for="name" class = "yellowText subHeaderText">USERNAME</label><br />
 		    <input class="inputText" type="text" name="name" id="name" /><br />
@@ -80,19 +79,12 @@
 		    <input class="inputText" type="text" name="url1" id="url1" /><br />
     		<label for="url2" class = "yellowText subHeaderText">WEBSITE ADDRESS 2</label><br />
 		    <input class="inputText" type="text" name="url2" id="url2" /><br />
-		    <label for="vendor" class = "yellowText">VENDOR TYPE</label><br />
-			
+		    <label for="vendor" class = "yellowText">VENDOR TYPE</label><br />			
 			<select  name="vendor" id="vendor">
-				<option value="Vendor1">Vendor1</option>
-				<option value="Vendor2">Vendor2</option>
-				<option value="Vendor3">Vendor3</option>
-			</select><br />
+			</select><br />			
 			<label for="region" class = "yellowText subHeaderText">REGION</label><br />
 			<div  class = "left" style= "width: 60%;">
 			<select name="region" id="region">
-				<option value="R1">Region1</option>
-				<option value="R2">Region2</option>
-				<option value="R3">Region3</option>
 			</select></div><img  class = "right" src = "img/add.gif" id = "btnAddRegion" />
 			<br /><br /><br /><br /><br /><br />
 		    <ul datarole = "listview" id = "regonList">
@@ -102,12 +94,15 @@
 		</div>
 		
 		<script id="vendorListItem" type="text/x-jquery-tmpl">
-   			<option value="${RegionId}">${Region} - ${State}</option>
+   			<option value="${VendorTypeID}">${VendorType}</option>
+		</script>
+		<script id="regionSelectItem" type="text/x-jquery-tmpl">
+   			<option value="${RegionId}">${Region},${State}</option>
 		</script>
 		<script id="regionListItem" type="text/x-jquery-tmpl">
    	 		<li class = "listItem"><div>${Region}<img class = "right"  src = "img/remove.gif" data-messageId="${RegionVal}"></img></div></li>
 		</script>
-		</div></div> <!-- scroll -->
+		
 		</div><!-- /content -->
 		
 </div>

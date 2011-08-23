@@ -42,8 +42,7 @@ Page.extend("AvailJobPage",
 		  if(!$.isArray(d))
 			  d = [d];
 		  
-		  me.poplulateJobList(d);
-		  
+		  me.poplulateJobList(d);		  
 	  });	  
   },
   
@@ -67,8 +66,7 @@ Page.extend("AvailJobPage",
 		  	  me.ad.css({display:"block", visibility:"visible"});
 		  	  $.fixedToolbars.show();
 		  }
-		  
-		//  $.mobile.pageLoading(true);
+		
 	  });
   },
   
