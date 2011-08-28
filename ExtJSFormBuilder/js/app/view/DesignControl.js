@@ -44,15 +44,46 @@ Ext.define('FB.view.DesignControl', {
             		//c.dragZone.setXConstraint( 0, 2000, 30 );
             		//c.dragZone.setYConstraint( 0, 2000, 30 );
             		
-            	}//end render
-            }//end listeners
+            	},//end render
+            	
+            focus: function(e){
+            	//set current value to propgrid
+            	//console.log(e.getEl().down("label").update('Test 123'));
+            	var pg = Ext.getCmp("propGrid");
+            	pg.clearListeners();
+            	Ext.each(Ext.getCmp('centerpanel').getEl().query('div.x-field'), function(c){            		
+            		Ext.core.DomHelper.applyStyles(c, {"background-color": "white"});
+            	});
+            	//Ext.getCmp('centerpanel').getEl().query('div.x-field').setStyle("background-color": "gray"})
+            	
+            	pg.setSource({
+            		"Label":e.getEl().down('label').dom.innerHTML           		
+            	});
+            	
+            	e.getEl().setStyle({"background-color": "gray"});
+            	
+            	pg.on("propertychange", function(obj,c,val){
+            		if(c=="Label")
+            			e.getEl().down('label').update(val);
+            	});
+            	
+            }
             
+          },//end listeners
+          
+
             
     	});
+    	
     	
     	FB.view.DesignControl.uid++;
     	
     	this.ctr.setPosition(config.x,config.y);
+    	
+    	/*Ext.util.Observable.capture(this.ctr, function(a,b,c){
+																console.log(a,b,c);	
+															}
+		);*/
     	
     	this.ctr.designControl = this;
     }
