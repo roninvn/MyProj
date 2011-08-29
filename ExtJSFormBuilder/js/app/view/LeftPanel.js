@@ -9,8 +9,8 @@ Ext.define('FB.view.LeftPanel', {
 	id: 'west-panel', 
 	title: 'West',
 	split: true,
-	width: 300,
-	minWidth: 175,
+	width: 150,
+	minWidth: 150,
 	maxWidth: 400,
 	autoHeight: true,
 	collapsible: true,
@@ -25,23 +25,30 @@ Ext.define('FB.view.LeftPanel', {
     	
         var controls = [{
 			            name: 'Textbox',
-			            extClass: 'Ext.form.field.Text',
-			            label:'Textbox'
+			            extClass: 'Ext.form.field.Text',			            
+			            cfg:{Label:'Textbox'			            	 
+			            	}
         				},
         				{
     			            name: 'Checkbox',
     			            extClass: 'Ext.form.field.Checkbox',
-    			            label:'Checkbox'
+    			            cfg:{Label:'Checkbox'}
             			},
             			{
     			            name: 'DateField',
     			            extClass: 'Ext.form.field.Date',
-    			            label:'DateField'
+    			            cfg:{Label:'DateField'}
             			},
             			{
     			            name: 'Radio',
     			            extClass: 'Ext.form.field.Radio',
-    			            label:'Radio'
+    			            cfg:{Label:'Radio'}
+            			},
+            			{
+    			            name: 'Combobox',
+    			            extClass: 'Ext.form.field.ComboBox',
+    			            cfg:{Label:'Combobox'
+    			            	}
             			}
         				];         
 
@@ -65,10 +72,6 @@ Ext.define('FB.view.LeftPanel', {
                 render: function(v){
                     v.dragZone = Ext.create('Ext.dd.DragZone', v.getEl(), {
 
-//                      On receipt of a mousedown event, see if it is within a draggable element.
-//                      Return a drag data object if so. The data object can contain arbitrary application
-//                      data, but it should also contain a DOM element in the ddel property to provide
-//                      a proxy to drag.
                         getDragData: function(e) {
                             var sourceEl = e.getTarget(v.itemSelector, 10), d;
                             if (sourceEl) {
@@ -83,8 +86,7 @@ Ext.define('FB.view.LeftPanel', {
                             }
                         },
 
-//                      Provide coordinates for the proxy to slide back to on failed drag.
-//                      This is the original XY coordinates of the draggable element.
+
                         getRepairXY: function() {
                             return this.dragData.repairXY;
                         }

@@ -60,8 +60,7 @@ Ext.define('FB.view.CenterPanel', {
 	                	var c = Ext.create('FB.view.DesignControl',{
 	                		x: x,
 	                		y: y,
-	                		label: cdt.label,
-	                		extClass: cdt.extClass
+	                		cdt : cdt
 	                	});
 	                	                	
 	                	grid.add(c.ctr);
