@@ -55,7 +55,7 @@ Ext.define('FB.view.CenterPanel', {
                 	}
                 	else{
                 	
-	                	var cdt = data.controlData;
+	                	var cdt = Ext.clone(data.controlData);
 	                	
 	                	var c = Ext.create('FB.view.DesignControl',{
 	                		x: x,

@@ -12,18 +12,23 @@ Ext.define('FB.view.DesignControl', {
 		var me = this;
 		var ctrCfg  ={
 	    		name: 'cn' + FB.view.DesignControl.uid,
-	    		id: 'id' + FB.view.DesignControl.uid,
-	            fieldLabel: this.oCfg.cfg.Label,
+	    		id: 'id' + FB.view.DesignControl.uid,	            
 	            
 	            listeners:{
 	            	render: function(c){            		
-	            		c.dragZone = Ext.create('Ext.dd.DragZone', c.getEl(), {            			
+	            		c.dragZone = Ext.create('Ext.dd.DragZone', c.getEl(), {
 	            		    getDragData: function(e) {
 	            		        
-	            		    	var t = e.getTarget('div.x-field');
+	            		    	var t;
+	            		    	
+	            		    	if(me.oCfg.name == "Button")
+	            		    		t = e.getTarget('div.x-btn');
+	            		    	else
+	            		    		t = e.getTarget('div.x-field');
+	            		    	
 	            		        var t2 = Ext.clone(t);
 	            		        
-	            		        Ext.core.DomHelper.applyStyles(t2, {left:"0px", top:"0px", border: "1px dashed red"});            		            
+            		        	Ext.core.DomHelper.applyStyles(t2, {left:"0px", top:"0px", border: "1px dashed red"});            		            
 	        		        	
 	            		        e.stopEvent();        		            
 	        		            
@@ -47,7 +52,7 @@ Ext.define('FB.view.DesignControl', {
 	            	
 	            focus: function(e){
 	            	//set current value to propgrid
-	            	//console.log(e.getEl().down("label").update('Test 123'));
+	            	//console.log('');
 	            	var pg = Ext.getCmp("propGrid");
 	            	pg.clearListeners();
 	            	/*Ext.each(Ext.getCmp('centerpanel').getEl().query('div.x-field'), function(c){            		
@@ -63,6 +68,10 @@ Ext.define('FB.view.DesignControl', {
 	            		if(c=="Label"){
 	            			e.getEl().down('label').update(val);
 	            			me.oCfg.cfg.Label = val;
+	            		}
+	            		else if(c=="Text"){
+	            			e.setText(val);
+	            			me.oCfg.cfg.Text = val;
 	            		}
 	            	});
 	            	
@@ -85,6 +94,19 @@ Ext.define('FB.view.DesignControl', {
 			ctrCfg.valueField = 'val';
             
 			
+		}
+		else if(this.oCfg.name == "Button"){
+			ctrCfg.listeners.click = ctrCfg.listeners.focus;
+			ctrCfg.listeners.focus = function(e){};
+		}
+			
+		
+		if(this.oCfg.cfg.Label){
+			ctrCfg.fieldLabel = this.oCfg.cfg.Label;
+		}
+		
+		if(this.oCfg.cfg.Text){
+			ctrCfg.text = this.oCfg.cfg.Text;
 		}
 		
 		
