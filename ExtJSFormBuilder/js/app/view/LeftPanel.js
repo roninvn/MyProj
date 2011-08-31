@@ -27,7 +27,7 @@ Ext.define('FB.view.LeftPanel', {
 			            name: 'Textbox',
 			            extClass: 'Ext.form.field.Text',
 			            src: "img/textbox.JPG",
-			            cfg:{Label:'Textbox'			            	 
+			            cfg:{Label:'Textbox', "Allow blank" : true, Validation : ""
 			            	}
         				},
         				{
@@ -40,7 +40,7 @@ Ext.define('FB.view.LeftPanel', {
     			            name: 'DateField',
     			            extClass: 'Ext.form.field.Date',
     			            src: "img/datefield.JPG",
-    			            cfg:{Label:'DateField'}
+    			            cfg:{Label:'DateField', "Allow blank" : true}
             			},
             			{
     			            name: 'Radio',

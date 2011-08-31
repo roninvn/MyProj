@@ -17,6 +17,6 @@ Ext.application({
 
     launch: function() {
     	Ext.create('FB.view.Viewport').show();
-    	//var t =  new FB.view.DragTextbox();
+    	
     }
 });

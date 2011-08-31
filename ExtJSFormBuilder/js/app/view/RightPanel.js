@@ -21,10 +21,33 @@ Ext.define('FB.view.RightPanel', {
     
     initComponent: function() {
     	
+    	var validation = Ext.create('Ext.data.Store', {
+            fields: ['type'],
+            data : [                
+                {"type":"[No validation]"},                
+                {"type":"Email"},
+                {"type":"Date format"},
+                {"type":"Integer"},
+                {"type":"Decimal"}
+            ]
+        });
+
+    	
     	var pGrid = Ext.create('Ext.grid.property.Grid', {
 												    	    title: 'Properties',
 												    	    id: "propGrid",
-												    	    source: {
+												    	    
+												    	    customEditors : {
+												    	    	Validation: Ext.create('Ext.form.field.ComboBox', {                                         
+											                        store: validation,
+											                        queryMode: 'local',
+											                        displayField: 'type',
+											                        valueField: 'type'
+											                    })
+												    	    },
+												    	    
+											                source: {
+											                	
 												    	    }
 												    	});
     	

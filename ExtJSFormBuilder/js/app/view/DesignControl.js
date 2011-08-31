@@ -51,27 +51,38 @@ Ext.define('FB.view.DesignControl', {
 	            	},//end render
 	            	
 	            focus: function(e){
-	            	//set current value to propgrid
-	            	//console.log('');
+	            	
 	            	var pg = Ext.getCmp("propGrid");
 	            	pg.clearListeners();
-	            	/*Ext.each(Ext.getCmp('centerpanel').getEl().query('div.x-field'), function(c){            		
-	            		Ext.core.DomHelper.applyStyles(c, {"background-color": "white"});
-	            	});*/
-	            	//Ext.getCmp('centerpanel').getEl().query('div.x-field').setStyle("background-color": "gray"})
 	            	
 	            	pg.setSource(me.oCfg.cfg);
 	            	
-	            	//e.getEl().setStyle({"background-color": "gray"});
-	            	
 	            	pg.on("propertychange", function(obj,c,val){
+	            		
+	            		//console.log(obj,c,val);
+	            		
+	            		me.oCfg.cfg[c] = val;
+	            		
 	            		if(c=="Label"){
 	            			e.getEl().down('label').update(val);
-	            			me.oCfg.cfg.Label = val;
 	            		}
 	            		else if(c=="Text"){
-	            			e.setText(val);
-	            			me.oCfg.cfg.Text = val;
+	            			e.setText(val);	            			
+	            		}
+	            		else if(c=="Validation"){
+	            			if(val == "Email")
+	            				e.regex = /[\w-]+@([\w-]+\.)+[\w-]+/;
+	            			else if(val == "Date format")
+	            				e.regex = /^((((0[13578])|([13578])|(1[02]))[\/](([1-9])|([0-2][0-9])|(3[01])))|(((0[469])|([469])|(11))[\/](([1-9])|([0-2][0-9])|(30)))|((2|02)[\/](([1-9])|([0-2][0-9]))))[\/]\d{4}$|^\d{4}$/;
+	            			else if(val == "Integer")
+	            				e.regex = /^\d+$/;
+	            			else if(val == "Decimal")
+	            				e.regex = /\d+(\.\d{1,2})?/;
+	            			else
+	            				e.regex = "";
+	            		}
+	            		else if(c=="Allow blank"){
+	            			e.allowBlank = val;
 	            		}
 	            	}); //end pg on
 	            } //end focus
