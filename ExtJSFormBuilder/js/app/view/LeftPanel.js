@@ -69,7 +69,7 @@ Ext.define('FB.view.LeftPanel', {
         
         var controlsView = Ext.create('Ext.view.View', {        	
             tpl: '<tpl for=".">' +
-            		'<div class="control-source" style="cursor:move"><img src = "{src}" style: "width:50px;" /></div>' +
+            		'<div class="control-source" style="cursor:move"><img src = "{src}" style = "width:75px;" /></div>' +
                  '</tpl>',
             
             itemSelector: 'div.control-source',

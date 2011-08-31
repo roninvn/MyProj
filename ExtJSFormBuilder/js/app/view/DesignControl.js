@@ -10,7 +10,7 @@ Ext.define('FB.view.DesignControl', {
 	constructor: function (config) {
 		this.oCfg = config.cdt;
 		var me = this;
-		var ctrCfg  ={
+		var ctrCfg  = {
 	    		name: 'cn' + FB.view.DesignControl.uid,
 	    		id: 'id' + FB.view.DesignControl.uid,	            
 	            
@@ -73,12 +73,11 @@ Ext.define('FB.view.DesignControl', {
 	            			e.setText(val);
 	            			me.oCfg.cfg.Text = val;
 	            		}
-	            	});
-	            	
-	            }
+	            	}); //end pg on
+	            } //end focus
 	            
-	          },//end listeners            
-	    	};
+	          }//end listeners            
+	    	}; //end ctrCfg
 		
 		
 		if(this.oCfg.extClass == "Ext.form.field.ComboBox"){//create store for combobox
