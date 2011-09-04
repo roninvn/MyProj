@@ -52,16 +52,17 @@ Ext.define('FB.view.CenterPanel', {
                 	
                 	if(data.isDesign){
                 		data.control.setPosition(x,y);
+                		
+                		data.control.designControl.oCfg.x = x;
+                		data.control.designControl.oCfg.y = y;
                 	}
                 	else{
                 	
 	                	var cdt = Ext.clone(data.controlData);
+	                	cdt.x = x;
+	                	cdt.y = y;
 	                	
-	                	var c = Ext.create('FB.view.DesignControl',{
-	                		x: x,
-	                		y: y,
-	                		cdt : cdt
-	                	});
+	                	var c = Ext.create('FB.view.DesignControl',{cdt : cdt});
 	                	                	
 	                	grid.add(c.ctr);
                 	}

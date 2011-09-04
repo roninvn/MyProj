@@ -1,7 +1,33 @@
 Ext.define('FB.view.DesignControl', {
 	
 	statics:{
-		uid: 0
+		uid: 0,
+		updateControlProperties: function(control,cfg){
+			
+			if(cfg.Label)
+				control.getEl().down('label').update(cfg.Label);
+			
+			if(cfg.Text)
+				control.setText(c.Text);
+			
+			if(cfg.Validation){
+				var val = cfg.Validation;
+				if(val == "Email")
+    				control.regex = /[\w-]+@([\w-]+\.)+[\w-]+/;
+    			else if(val == "Date format")
+    				control.regex = /^((((0[13578])|([13578])|(1[02]))[\/](([1-9])|([0-2][0-9])|(3[01])))|(((0[469])|([469])|(11))[\/](([1-9])|([0-2][0-9])|(30)))|((2|02)[\/](([1-9])|([0-2][0-9]))))[\/]\d{4}$|^\d{4}$/;
+    			else if(val == "Integer")
+    				control.regex = /^\d+$/;
+    			else if(val == "Decimal")
+    				control.regex = /\d+(\.\d{1,2})?/;
+    			else
+    				control.regex = "";
+			}
+			
+			if(cfg["Allow blank"])
+				control.allowBlank = cfg["Allow blank"];
+    		
+		}//end updateControlProperties
 	},
 	
 	ctr: null,
@@ -62,28 +88,8 @@ Ext.define('FB.view.DesignControl', {
 	            		//console.log(obj,c,val);
 	            		
 	            		me.oCfg.cfg[c] = val;
-	            		
-	            		if(c=="Label"){
-	            			e.getEl().down('label').update(val);
-	            		}
-	            		else if(c=="Text"){
-	            			e.setText(val);	            			
-	            		}
-	            		else if(c=="Validation"){
-	            			if(val == "Email")
-	            				e.regex = /[\w-]+@([\w-]+\.)+[\w-]+/;
-	            			else if(val == "Date format")
-	            				e.regex = /^((((0[13578])|([13578])|(1[02]))[\/](([1-9])|([0-2][0-9])|(3[01])))|(((0[469])|([469])|(11))[\/](([1-9])|([0-2][0-9])|(30)))|((2|02)[\/](([1-9])|([0-2][0-9]))))[\/]\d{4}$|^\d{4}$/;
-	            			else if(val == "Integer")
-	            				e.regex = /^\d+$/;
-	            			else if(val == "Decimal")
-	            				e.regex = /\d+(\.\d{1,2})?/;
-	            			else
-	            				e.regex = "";
-	            		}
-	            		else if(c=="Allow blank"){
-	            			e.allowBlank = val;
-	            		}
+	            		FB.view.DesignControl.updateControlProperties(e,me.oCfg.cfg);	            		
+	   
 	            	}); //end pg on
 	            } //end focus
 	            
@@ -119,13 +125,14 @@ Ext.define('FB.view.DesignControl', {
 			ctrCfg.text = this.oCfg.cfg.Text;
 		}
 		
-		
     	this.ctr = Ext.create(this.oCfg.extClass,ctrCfg);
+    	
+    	//FB.view.DesignControl.updateControlProperties(this.ctr, this.oCfg.cfg);
     	
     	
     	FB.view.DesignControl.uid++;
     	
-    	this.ctr.setPosition(config.x,config.y);
+    	this.ctr.setPosition(this.oCfg.x,this.oCfg.y);
     	
     	/*Ext.util.Observable.capture(this.ctr, function(a,b,c){
 																console.log(a,b,c);	

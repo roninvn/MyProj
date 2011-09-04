@@ -104,7 +104,52 @@ Ext.define('FB.view.LeftPanel', {
                 }
             }
         });
-        this.items = [controlsView];
+        
+        var txtArea = Ext.create('Ext.form.field.TextArea', {
+												        	grow      : false,
+												            name      : 'json',
+												            anchor    : '100%'});
+        
+        var btn = Ext.create('Ext.Button', {
+            text: 'Send',            
+            handler: function() {
+            	
+            	var items = Ext.getCmp('centerpanel').items;
+            	var cfgs = [];
+            	items.each(function(itm, i, l){
+            		//console.log(itm.designControl);
+            		cfgs.push(itm.designControl.oCfg);
+            		
+            	});
+            	
+            	//console.log(Ext.JSON.encode(cfgs));
+            	
+            	//var c = Ext.create('FB.view.DesignControl',{cdt : cfgs[0]});            	
+            	//Ext.getCmp('centerpanel').add(c.ctr);
+            	
+            	txtArea.setValue(Ext.JSON.encode(cfgs));
+                
+            }
+        });
+        
+        var btn2 = Ext.create('Ext.Button', {
+            text: 'Build',            
+            handler: function() {
+            	
+            	var cfgs = Ext.JSON.decode(txtArea.getValue());
+            	var  p = Ext.getCmp('centerpanel');
+            	
+            	p.removeAll(true);
+            	
+            	for(var i=0 ; i<cfgs.length; i++){
+                	var c = Ext.create('FB.view.DesignControl',{cdt : cfgs[i]});            	
+                	p.add(c.ctr);
+            	}
+            	
+            }
+        });
+        
+        this.items = [controlsView,txtArea, btn,btn2];
         this.callParent(arguments);
     }
 });
