@@ -117,15 +117,8 @@ Ext.define('FB.view.LeftPanel', {
             	var items = Ext.getCmp('centerpanel').items;
             	var cfgs = [];
             	items.each(function(itm, i, l){
-            		//console.log(itm.designControl);
-            		cfgs.push(itm.designControl.oCfg);
-            		
+            		cfgs.push(itm.designControl.oCfg);            		
             	});
-            	
-            	//console.log(Ext.JSON.encode(cfgs));
-            	
-            	//var c = Ext.create('FB.view.DesignControl',{cdt : cfgs[0]});            	
-            	//Ext.getCmp('centerpanel').add(c.ctr);
             	
             	txtArea.setValue(Ext.JSON.encode(cfgs));
                 
