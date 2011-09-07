@@ -38,17 +38,34 @@ Ext.define('FB.view.DesignControl', {
 		var me = this;
 		var ctrCfg  = {
 	    		name: 'cn' + FB.view.DesignControl.uid,
-	    		id: 'id' + FB.view.DesignControl.uid,	            
+	    		id: 'id' + FB.view.DesignControl.uid,
+	    		resizable: {
+	    			dynamic: false,
+	    			listeners: {
+	    				beforeresize : function(r, w, h, e){
+	    					console.log('beforeresize', e);
+	    				}
+	    			}//end listeners,		
+	    		},
+	    		
+	    		draggable: {
+	    			listeners:{
+	    				drag: function(c,e,t){
+	    					console.log('drag', e);
+	    				}
+	    			}//end listeners,
+	    		},
 	            
 	            listeners:{
-	            	render: function(c){            		
+	            	/*render: function(c){            		
 	            		c.dragZone = Ext.create('Ext.dd.DragZone', c.getEl(), {
-	            		    getDragData: function(e) {
-	            		        
-	            		    	var t;
-	            		    	
+	            			
+	            			getDragData: function(e) {	            				
+	            		    	var t;	            		    	
 	            		    	if(me.oCfg.name == "Button")
 	            		    		t = e.getTarget('div.x-btn');
+	            		    	else if(me.oCfg.name == "Label")
+	            		    		t = e.getTarget('label.x-component');
 	            		    	else
 	            		    		t = e.getTarget('div.x-field');
 	            		    	
@@ -74,7 +91,7 @@ Ext.define('FB.view.DesignControl', {
 	            		//c.dragZone.setXConstraint( 0, 2000, 30 );
 	            		//c.dragZone.setYConstraint( 0, 2000, 30 );
 	            		
-	            	},//end render
+	            	},//end render*/    
 	            	
 	            focus: function(e){
 	            	
@@ -93,7 +110,7 @@ Ext.define('FB.view.DesignControl', {
 	            	}); //end pg on
 	            } //end focus
 	            
-	          }//end listeners            
+	          }//end listeners        
 	    	}; //end ctrCfg
 		
 		
@@ -111,7 +128,7 @@ Ext.define('FB.view.DesignControl', {
             
 			
 		}
-		else if(this.oCfg.name == "Button"){
+		else if(this.oCfg.name == "Button" || this.oCfg.name == "Label"){
 			ctrCfg.listeners.click = ctrCfg.listeners.focus;
 			ctrCfg.listeners.focus = function(e){};
 		}
@@ -126,7 +143,6 @@ Ext.define('FB.view.DesignControl', {
 		}
 		
     	this.ctr = Ext.create(this.oCfg.extClass,ctrCfg);
-    	
     	//FB.view.DesignControl.updateControlProperties(this.ctr, this.oCfg.cfg);
     	
     	
