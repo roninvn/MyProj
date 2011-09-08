@@ -38,29 +38,39 @@ Ext.define('FB.view.DesignControl', {
 		var me = this;
 		var ctrCfg  = {
 	    		name: 'cn' + FB.view.DesignControl.uid,
-	    		id: 'id' + FB.view.DesignControl.uid,
+	    		id: 'id' + FB.view.DesignControl.uid,	    		
 	    		resizable: {
 	    			dynamic: false,
 	    			listeners: {
 	    				beforeresize : function(r, w, h, e){
-	    					console.log('beforeresize', e);
+	    					console.log('beforeresize', me.ctr);
 	    				}
 	    			}//end listeners,		
 	    		},
-	    		
+	    		/*
 	    		draggable: {
 	    			listeners:{
+	    				dragstart: function(c,e,o){
+	    					//console.log(me.ctr.getPosition());
+	    					//var a = me.ctr.getPosition();
+	    					//me.ctr.setPosition(a[0]-150,a[1]);
+	    				},
 	    				drag: function(c,e,t){
-	    					console.log('drag', e);
+	    					//console.log('drag', e);
 	    				}
 	    			}//end listeners,
-	    		},
+	    		},*/
 	            
 	            listeners:{
-	            	/*render: function(c){            		
+	            	render: function(c){            		
 	            		c.dragZone = Ext.create('Ext.dd.DragZone', c.getEl(), {
 	            			
-	            			getDragData: function(e) {	            				
+	            			onBeforeDrag : function(data,e){
+	            				console.log('onBeforeDrag',e);
+	            			},
+	            			
+	            			getDragData: function(e) {
+	            				console.log('getDragData',e);
 	            		    	var t;	            		    	
 	            		    	if(me.oCfg.name == "Button")
 	            		    		t = e.getTarget('div.x-btn');
@@ -91,7 +101,7 @@ Ext.define('FB.view.DesignControl', {
 	            		//c.dragZone.setXConstraint( 0, 2000, 30 );
 	            		//c.dragZone.setYConstraint( 0, 2000, 30 );
 	            		
-	            	},//end render*/    
+	            	},//end render    
 	            	
 	            focus: function(e){
 	            	

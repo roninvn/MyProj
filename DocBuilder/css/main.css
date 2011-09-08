@@ -1,0 +1,29 @@
+#leftPanel{
+	position: absolute;
+	left:0;
+	top:0;
+	border: 1px solid black;
+	width: 10%;
+	height: 99%;
+}
+#centerPanel{
+	position: absolute;
+	left:10%;
+	top:0;
+	border: 1px solid black;
+	width: 80%;
+	height: 99%;
+}
+#rightPanel{
+	position: absolute;
+	left:90%;
+	top:0;
+	border: 1px solid black;
+	width: 9.8%;
+	height: 99%;
+}
+#leftPanel img{
+	padding-top: 5px;
+	padding-left: 15px;
+		
+}
