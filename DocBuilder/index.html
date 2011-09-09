@@ -23,12 +23,31 @@
     </head>
     <body>
     	<div id = "leftPanel">
-    		<img src="img/section.png" id ="divSection"></img>
-    		<img src="img/element.png" id ="divElement"></img>
-    		<img src="img/variable.png" id ="divVariable"></img>
+    		<img src="img/section.png" id ="Section"></img>
+    		<img src="img/element.png" id ="Element"></img>
+    		<img src="img/variable.png" id ="Variable"></img>
     	</div>
     	<div id = "centerPanel"></div>
-    	<div id = "rightPanel"></div>    	
-    </body>    
-    <script type="text/javascript" src="js/app.js"></script>    
+    	<div id = "rightPanel"></div>
+    	
+    	<div id="dialog-Section" title="Enter section info">					
+			<form>
+			<fieldset>
+				<label for="secname">Section name</label>
+				<input type="text" name="secname" id="secname" class="text ui-widget-content ui-corner-all" />
+				<br />
+				<label for="seclabel">Section label</label>
+				<input type="text" name="seclabel" id="seclabel" class="text ui-widget-content ui-corner-all" />
+				<br />
+				<label for="secisopt">Optional</label>
+				<input type="checkbox" name="secisopt" id="secisopt" class="text ui-widget-content ui-corner-all" />
+			</fieldset>
+			</form>
+		</div>
+    	
+    	    	
+    </body>
+    <script type="text/javascript" src="js/Control.js"></script>
+    <script type="text/javascript" src="js/Section.js"></script>
+    <script type="text/javascript" src="js/app.js"></script>
 </html>
