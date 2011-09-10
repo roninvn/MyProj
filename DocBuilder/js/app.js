@@ -18,12 +18,26 @@ $.Class.extend("Application",
 			autoOpen: false,
 			height: 200,
 			width: 400,
-			modal: true
+			modal: true,
+			
+			beforeClose: function(e,ui){//validate & bind data to new section
+				if(Application.currentSection.validateVal(Application.sectionDlg, Application.sections)){
+					Application.currentSection.bindValue(Application.sectionDlg);
+					return true;
+				}
+				return false;
+			}
 		});
 		
 		$("#leftPanel img").draggable({helper: 'clone',cursor: 'move'});		
 		$("#centerPanel").droppable({			
 			drop: function(e, ui){
+				
+				if($(ui.draggable[0]).attr("role") === "dialog")
+					return;
+				
+				console.log(ui);
+				
 				if(ui.draggable[0].nodeName.toLowerCase() === 'img'){
 					if(ui.draggable[0].id !== "Section")
 						alert('Only section can be added here.');
@@ -33,7 +47,8 @@ $.Class.extend("Application",
 						
 						//clear for new section
 						$("#centerPanel").empty();
-						Application.currentSection = c;
+						Application.currentSection = c;						
+						c.getEl().appendTo($("#centerPanel"));
 						
 					}
 				}
