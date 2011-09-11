@@ -5,16 +5,17 @@ Control.extend("Variable",
 // static methods
 {
 },
-// prototype methods
+//prototype methods
 {
 	init : function(cfg){		
-		this.el = $("<div></div>").addClass("Variable");		
+		this.el = $("<div></div>").addClass("Variable");
+		Application.currentVariable = this;	
 		this._super(cfg);
 		this.showDialog();		
 	},
 	
 	showDialog: function(){
-		//Application.sectionDlg.dialog("open");
+		Application.variableDlg.dialog("open");
 	},
 	
 	/*
@@ -26,5 +27,7 @@ Control.extend("Variable",
 	
 	bindValue: function(dialog){
 		this._super(dialog);
+		this.props.text = dialog.find("#text").val();
+		this.el.text(this.props.text);
 	}
 });

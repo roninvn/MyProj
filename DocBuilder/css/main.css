@@ -40,3 +40,21 @@
 	height: 250px;
 	overflow:hidden;
 }
+
+.Element{
+	position: absolute;
+	width: 150px;
+	height: 30px;
+	overflow:hidden;
+	color: yellow;
+	background-color: blue;
+}
+
+.Variable{
+	position: absolute;
+	width: 150px;
+	height: 30px;
+	overflow:hidden;
+	color: blue;
+	background-color: yellow;
+}

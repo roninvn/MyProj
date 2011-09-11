@@ -36,8 +36,7 @@ $.Class.extend("Application",
 				Application.sections.push(c);
 				
 				//clear for new section
-				$("#centerPanel").empty();
-				Application.currentSection = c;						
+				$("#centerPanel").empty();									
 				c.getEl().appendTo($("#centerPanel"));
 				
 				var pos = Application.translateCoord($("#centerPanel"), ui);
@@ -57,6 +56,9 @@ $.Class.extend("Application",
 	init : function(cfg) {
 		
 		Application.sectionDlg = $("#dialog-Section");
+		Application.elementDlg = $("#dialog-Element");
+		Application.variableDlg = $("#dialog-Variable");
+		
 		Application.sectionDlg.dialog({
 			autoOpen: false,
 			height: 200,
@@ -72,7 +74,37 @@ $.Class.extend("Application",
 			}
 		});
 		
-		$("#leftPanel img").draggable({helper: 'clone',cursor: 'move'});		
+		Application.elementDlg.dialog({
+			autoOpen: false,
+			height: 200,
+			width: 400,
+			modal: true,
+			
+			beforeClose: function(e,ui){//validate & bind data to new section
+				if(Application.currentElement.validateVal(Application.elementDlg, Application.currentSection.props.elements)){
+					Application.currentElement.bindValue(Application.elementDlg);
+					return true;
+				}
+				return false;
+			}
+		});
+		
+		Application.variableDlg.dialog({
+			autoOpen: false,
+			height: 200,
+			width: 400,
+			modal: true,
+			
+			beforeClose: function(e,ui){//validate & bind data to new section
+				if(Application.currentVariable.validateVal(Application.variableDlg, Application.currentSection.props.vars)){
+					Application.currentVariable.bindValue(Application.variableDlg);
+					return true;
+				}
+				return false;
+			}
+		});
+		
+		$("#leftPanel img").draggable({helper: 'clone',cursor: 'move', revert: "invalid" });		
 		$("#centerPanel").droppable({			
 			drop: Application.dropSection//function(e, ui){}
 		});
