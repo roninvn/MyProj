@@ -13,6 +13,7 @@
 	border: 1px solid black;
 	width: 80%;
 	height: 99%;
+	overflow: hidden;
 }
 #rightPanel{
 	position: absolute;
@@ -28,9 +29,14 @@
 		
 }
 
+#centerPanel div:hover{
+	border: 1px dashed red;
+}
+
 .Section{
 	position: absolute;
 	border: 1px solid black;
-	width: 100px;
-	height: 100px
+	width: 400px;
+	height: 250px;
+	overflow:hidden;
 }

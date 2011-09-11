@@ -6,7 +6,50 @@ $.Class.extend("Application",
 {
 	sections : [],
 	currentSection: null,
-	sectionDlg: null
+	sectionDlg: null,
+	
+	translateCoord: function (p, c){
+		
+		var pos = {};
+		
+		var off1 = p.offset();
+		var off2;
+		if(typeof c.offset == 'function')
+			off2 = c.offset();
+		else
+			off2 = c.offset;
+		
+		pos.left = off2.left - off1.left;
+		pos.top = off2.top - off1.top;	
+		return pos;
+	},
+	
+	dropSection: function(e, ui){
+		if($(ui.draggable[0]).attr("role") === "dialog")
+			return;
+		
+		if(ui.draggable[0].nodeName.toLowerCase() === 'img'){
+			if(ui.draggable[0].id !== "Section")
+				alert('Only section can be dropped here.');
+			else{
+				var c = new Section();
+				Application.sections.push(c);
+				
+				//clear for new section
+				$("#centerPanel").empty();
+				Application.currentSection = c;						
+				c.getEl().appendTo($("#centerPanel"));
+				
+				var pos = Application.translateCoord($("#centerPanel"), ui);
+				
+				c.getEl().css({
+					top : pos.top +"px",
+					left : pos.left +"px"
+				});
+			}
+		}
+	}// end dropSection
+	
 },
 // prototype methods
 {
@@ -31,29 +74,7 @@ $.Class.extend("Application",
 		
 		$("#leftPanel img").draggable({helper: 'clone',cursor: 'move'});		
 		$("#centerPanel").droppable({			
-			drop: function(e, ui){
-				
-				if($(ui.draggable[0]).attr("role") === "dialog")
-					return;
-				
-				console.log(ui);
-				
-				if(ui.draggable[0].nodeName.toLowerCase() === 'img'){
-					if(ui.draggable[0].id !== "Section")
-						alert('Only section can be added here.');
-					else{
-						var c = new Section();
-						Application.sections.push(c);
-						
-						//clear for new section
-						$("#centerPanel").empty();
-						Application.currentSection = c;						
-						c.getEl().appendTo($("#centerPanel"));
-						
-					}
-				}
-				
-			}
+			drop: Application.dropSection//function(e, ui){}
 		});
 		
 	}// end init
