@@ -12,11 +12,15 @@ $.Class.extend("Control",
 		this.props = {name : null};
 		this.el.draggable({containment: 'parent', cursor: 'move'});
 		this.el.resizable(); //make this resizable
+		var me = this;
+		this.el.dblclick(function(e){
+			e.stopPropagation();
+			me.showDialog()
+		});
 	},
 	
 	showDialog: function(){		
-	}
-	,
+	},
 	
 	validateVal: function(dialog, arrControls){
 		
@@ -40,6 +44,10 @@ $.Class.extend("Control",
 	
 	bindValue: function(dialog){		
 		this.props.name = dialog.find("#name").val();		
+	},
+	
+	loadValue: function(dialog){
+		dialog.find("#name").val(this.props.name);
 	},
 	
 	getEl: function(){

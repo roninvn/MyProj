@@ -29,5 +29,10 @@ Control.extend("Variable",
 		this._super(dialog);
 		this.props.text = dialog.find("#text").val();
 		this.el.text(this.props.text);
+	},
+	
+	loadValue: function(dialog){
+		this._super(dialog);
+		dialog.find("#text").val(this.props.text);
 	}
 });

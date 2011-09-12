@@ -64,6 +64,7 @@ $.Class.extend("Application",
 			height: 200,
 			width: 400,
 			modal: true,
+			resizable: false,
 			
 			beforeClose: function(e,ui){//validate & bind data to new section
 				if(Application.currentSection.validateVal(Application.sectionDlg, Application.sections)){
@@ -71,6 +72,10 @@ $.Class.extend("Application",
 					return true;
 				}
 				return false;
+			},
+			
+			open:function(e,u){
+				Application.currentSection.loadValue(Application.sectionDlg);
 			}
 		});
 		
@@ -79,6 +84,7 @@ $.Class.extend("Application",
 			height: 200,
 			width: 400,
 			modal: true,
+			resizable: false,
 			
 			beforeClose: function(e,ui){//validate & bind data to new section
 				if(Application.currentElement.validateVal(Application.elementDlg, Application.currentSection.props.elements)){
@@ -86,6 +92,10 @@ $.Class.extend("Application",
 					return true;
 				}
 				return false;
+			},
+			
+			open:function(e,u){
+				Application.currentElement.loadValue(Application.elementDlg);
 			}
 		});
 		
@@ -94,6 +104,7 @@ $.Class.extend("Application",
 			height: 200,
 			width: 400,
 			modal: true,
+			resizable: false,
 			
 			beforeClose: function(e,ui){//validate & bind data to new section
 				if(Application.currentVariable.validateVal(Application.variableDlg, Application.currentSection.props.vars)){
@@ -101,6 +112,10 @@ $.Class.extend("Application",
 					return true;
 				}
 				return false;
+			},
+			
+			open:function(e,u){
+				Application.currentVariable.loadValue(Application.variableDlg);
 			}
 		});
 		
