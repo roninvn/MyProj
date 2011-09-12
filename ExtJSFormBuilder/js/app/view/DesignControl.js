@@ -39,38 +39,71 @@ Ext.define('FB.view.DesignControl', {
 		var ctrCfg  = {
 	    		name: 'cn' + FB.view.DesignControl.uid,
 	    		id: 'id' + FB.view.DesignControl.uid,	    		
-	    		resizable: {
-	    			dynamic: false,
-	    			listeners: {
-	    				beforeresize : function(r, w, h, e){
-	    					console.log('beforeresize', me.ctr);
-	    				}
-	    			}//end listeners,		
-	    		},
-	    		/*
-	    		draggable: {
-	    			listeners:{
-	    				dragstart: function(c,e,o){
-	    					//console.log(me.ctr.getPosition());
-	    					//var a = me.ctr.getPosition();
-	    					//me.ctr.setPosition(a[0]-150,a[1]);
-	    				},
-	    				drag: function(c,e,t){
-	    					//console.log('drag', e);
-	    				}
-	    			}//end listeners,
-	    		},*/
+	    		resizable: {dynamic: false},	    		
 	            
 	            listeners:{
-	            	render: function(c){            		
+	            	
+	            	afterrender: function(c){
+	            		
+	            		var arr = c.getEl().query('.x-resizable-handle');
+	            		
+	            		for(var i=0,l=arr.length; i<l; i++){
+	            			Ext.get(arr[i]).on("mousedown",function(){
+	            				console.log('mousedown');
+	            				me.isResizing = true;
+	            			});
+	            			
+	            			Ext.get(arr[i]).on("mouseout",function(){
+	            				me.isResizing = false;
+	            			});
+	            		}
+	            		
+	            		
+	            		c.getEl().on("click", function(e){
+	            			
+	            			var items = Ext.getCmp('centerpanel').items;	                    	
+	                    	items.each(function(itm, i, l){
+	                    		
+	                    		//console.log(itm.getEl(), itm.designControl);
+	                    		
+	                    		if(itm.designControl.oCfg.name == "Button")
+	                    			itm.getEl().down('button').applyStyles({'background-color': null});
+	                    		else
+	                    			itm.getEl().applyStyles({'background-color': null});
+	                    		
+	                    	});
+	            			
+	            			
+	            			if(me.oCfg.name == "Button")
+	            				c.getEl().down('button').applyStyles({'background-color': "green"});
+	            			else
+	            				c.getEl().applyStyles({'background-color': "green"});
+
+	            			
+	            			var pg = Ext.getCmp("propGrid");
+	    	            	pg.clearListeners();
+	    	            	
+	    	            	pg.setSource(me.oCfg.cfg);
+	    	            	
+	    	            	pg.on("propertychange", function(obj,c,val){
+	    	            		me.oCfg.cfg[c] = val;
+	    	            		FB.view.DesignControl.updateControlProperties(e,me.oCfg.cfg);	            		
+	    	   
+	    	            	}); //end pg on
+	            			
+	            			
+	            		});
+	            		
+	            	}, //end after render
+	            	
+	            	render: function(c){
+	            		
 	            		c.dragZone = Ext.create('Ext.dd.DragZone', c.getEl(), {
 	            			
-	            			onBeforeDrag : function(data,e){
-	            				console.log('onBeforeDrag',e);
-	            			},
-	            			
 	            			getDragData: function(e) {
-	            				console.log('getDragData',e);
+	            				
+	            				if(me.isResizing)
+	            					return null;
 	            		    	var t;	            		    	
 	            		    	if(me.oCfg.name == "Button")
 	            		    		t = e.getTarget('div.x-btn');
@@ -81,7 +114,7 @@ Ext.define('FB.view.DesignControl', {
 	            		    	
 	            		        var t2 = Ext.clone(t);
 	            		        
-            		        	Ext.core.DomHelper.applyStyles(t2, {left:"0px", top:"0px", border: "1px dashed red"});            		            
+            		        	Ext.core.DomHelper.applyStyles(t2, {left:"0px", top:"0px"});            		            
 	        		        	
 	            		        e.stopEvent();        		            
 	        		            
@@ -96,29 +129,10 @@ Ext.define('FB.view.DesignControl', {
 	                             return this.dragData.repairXY;
 	                        }
 	            		});//end dragZone
-	            		
-	            		
-	            		//c.dragZone.setXConstraint( 0, 2000, 30 );
-	            		//c.dragZone.setYConstraint( 0, 2000, 30 );
-	            		
-	            	},//end render    
+
+	            	}//end render    
 	            	
-	            focus: function(e){
-	            	
-	            	var pg = Ext.getCmp("propGrid");
-	            	pg.clearListeners();
-	            	
-	            	pg.setSource(me.oCfg.cfg);
-	            	
-	            	pg.on("propertychange", function(obj,c,val){
-	            		
-	            		//console.log(obj,c,val);
-	            		
-	            		me.oCfg.cfg[c] = val;
-	            		FB.view.DesignControl.updateControlProperties(e,me.oCfg.cfg);	            		
-	   
-	            	}); //end pg on
-	            } //end focus
+	            
 	            
 	          }//end listeners        
 	    	}; //end ctrCfg
@@ -138,10 +152,6 @@ Ext.define('FB.view.DesignControl', {
             
 			
 		}
-		else if(this.oCfg.name == "Button" || this.oCfg.name == "Label"){
-			ctrCfg.listeners.click = ctrCfg.listeners.focus;
-			ctrCfg.listeners.focus = function(e){};
-		}
 			
 		
 		if(this.oCfg.cfg.Label){
@@ -152,8 +162,7 @@ Ext.define('FB.view.DesignControl', {
 			ctrCfg.text = this.oCfg.cfg.Text;
 		}
 		
-    	this.ctr = Ext.create(this.oCfg.extClass,ctrCfg);
-    	//FB.view.DesignControl.updateControlProperties(this.ctr, this.oCfg.cfg);
+    	this.ctr = Ext.create(this.oCfg.extClass,ctrCfg);    	
     	
     	
     	FB.view.DesignControl.uid++;
@@ -165,7 +174,7 @@ Ext.define('FB.view.DesignControl', {
 															}
 		);*/
     	
-    	this.ctr.designControl = this;
+    	this.ctr.designControl = this;    	
     }
 
 });
