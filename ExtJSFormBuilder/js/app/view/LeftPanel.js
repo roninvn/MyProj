@@ -63,7 +63,7 @@ Ext.define('FB.view.LeftPanel', {
             			{
     			            name: 'Label',
     			            extClass: 'Ext.form.Label',
-    			            src: "img/button.JPG",
+    			            src: "img/label.JPG",
     			            cfg:{Text:'Label'}
             			}
         				];         
