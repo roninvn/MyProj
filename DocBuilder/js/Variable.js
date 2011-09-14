@@ -8,10 +8,12 @@ Control.extend("Variable",
 //prototype methods
 {
 	init : function(cfg){		
-		this.el = $("<div></div>").addClass("Variable");
+		this.el = $("<div><span></span></div>").addClass("Variable");
 		Application.currentVariable = this;	
 		this._super(cfg);
-		this.showDialog();		
+		this.showDialog();
+		
+		this.doConfig();
 	},
 	
 	showDialog: function(){
@@ -27,8 +29,8 @@ Control.extend("Variable",
 	
 	bindValue: function(dialog){
 		this._super(dialog);
-		this.props.text = dialog.find("#text").val();
-		this.el.text(this.props.text);
+		this.props.text = dialog.find("#text").val();		
+		this.el.find("span").text(this.props.text);
 	},
 	
 	loadValue: function(dialog){

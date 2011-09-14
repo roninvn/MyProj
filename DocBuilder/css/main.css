@@ -3,12 +3,12 @@
 	left:0;
 	top:0;
 	border: 1px solid black;
-	width: 10%;
+	width: 180px;
 	height: 99%;
 }
 #centerPanel{
 	position: absolute;
-	left:10%;
+	left:181px;
 	top:0;
 	border: 1px solid black;
 	width: 80%;
@@ -23,6 +23,12 @@
 	width: 9.8%;
 	height: 99%;
 }
+
+#rightPanel a{
+	padding-top: 5px;
+	padding-left: 15px;
+}
+
 #leftPanel img{
 	padding-top: 5px;
 	padding-left: 15px;
@@ -31,6 +37,13 @@
 
 #centerPanel div:hover{
 	border: 1px dashed red;
+}
+
+
+#divButtons{
+	position: absolute;
+	padding-left: 2px;
+	top: 70%;
 }
 
 .Section{
@@ -57,4 +70,9 @@
 	overflow:hidden;
 	color: blue;
 	background-color: yellow;
+}
+
+#dialog-Continue textarea{
+	width: 80%;
+	height: 250px;
 }

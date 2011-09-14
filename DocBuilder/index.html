@@ -7,6 +7,7 @@
         <link type="text/css" rel="stylesheet" href="css/main.css" />
         <script type="text/javascript" src="js/lib/jquery.min.js"></script>
         <script type="text/javascript" src="js/lib/jquery-ui-1.8.14.custom.min.js"></script>
+        <script type="text/javascript" src="js/lib/jquery.json-2.2.min.js"></script>
         <script type="text/javascript" src="js/lib/jquery.lang.min.js"></script>
 		<script type="text/javascript" src="js/lib/jquery.class.min.js"></script>        
         <script>
@@ -26,6 +27,7 @@
     		<img src="img/section.png" id ="Section"></img>
     		<img src="img/element.png" id ="Element"></img>
     		<img src="img/variable.png" id ="Variable"></img>
+    		<div id="divButtons"><button id="btnSave">Save</button><button id="btnCancel">Cancel</button><button id="btnContinue">Continue</button></div>
     	</div>
     	<div id = "centerPanel"></div>
     	<div id = "rightPanel"></div>
@@ -55,6 +57,13 @@
 				<br />
 				<label>Text</label>
 				<input type="text" name="text" id="text" class="text ui-widget-content ui-corner-all" />
+			</fieldset>
+		</div>
+    	<div id="dialog-Continue" title="Continue">
+			<fieldset>
+				<label>JSON</label>
+				<br />
+				<textarea class="text ui-widget-content ui-corner-all"></textarea>				
 			</fieldset>
 		</div>
     	

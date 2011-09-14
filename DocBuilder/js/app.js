@@ -33,7 +33,7 @@ $.Class.extend("Application",
 				alert('Only section can be dropped here.');
 			else{
 				var c = new Section();
-				Application.sections.push(c);
+				//Application.sections.push(c);
 				
 				//clear for new section
 				$("#centerPanel").empty();									
@@ -47,7 +47,90 @@ $.Class.extend("Application",
 				});
 			}
 		}
-	}// end dropSection
+	},// end dropSection
+	
+	
+	cancelClick: function(){
+		$("#centerPanel").empty();		
+	},
+	
+	continueClick: function(){
+		var doc = {};
+		doc.name = "MyDoc";
+		doc.sections=[];
+		for(var i=0,l=Application.sections.length; i<l; i++){
+			var s = Application.sections[i];
+			var sec ={};
+			sec.name = s.props.name;
+			sec.elements=[];
+			sec.inputs=[];
+			doc.sections.push(sec);
+			
+			for(var x=0,y=s.props.elements.length; x<y; x++){
+				var e = s.props.elements[x];
+				var ele = {};
+				ele.name = e.props.name
+				ele.text = e.props.text;
+				sec.elements.push(ele);
+			}
+			
+			for(var x=0,y=s.props.vars.length; x<y; x++){
+				var v = s.props.vars[x];
+				var vr = {};
+				vr.name = e.props.name
+				vr.text = e.props.text;
+				sec.inputs.push(vr);
+			}
+		}
+		
+		var json = $.toJSON(doc);
+		Application.contDlg.find("textarea").text(json);
+		Application.contDlg.dialog("open");
+	},
+		
+	saveClick: function(){
+		//build link		
+		if(Application.currentSection !== null){
+			$("#rightPanel").empty();
+			Application.addSection(Application.currentSection);			
+			
+			for(var i=0,l=Application.sections.length; i<l; i++){
+				var s = Application.sections[i];
+				var d=$("<div></div>").appendTo("#rightPanel");
+				var a = $("<a href='#'></a>").text(s.props.name).appendTo(d);
+				
+				a.click(function(e){
+					var name=$(e.srcElement).text();
+					Application.loadSection(name)
+					return false;
+
+				});
+			}
+		}
+	},
+	
+	addSection: function(s){
+		for(var i=0,l=Application.sections.length; i<l; i++){
+			if(Application.sections[i] === s)
+				return;
+		}
+		Application.sections.push(s);
+	},
+	
+	loadSection: function(name){		
+		for(var i=0,l=Application.sections.length; i<l; i++){			
+			var s = Application.sections[i];
+			
+			if(s.props.name === name){
+				$("#centerPanel").empty();
+				s.getEl().appendTo("#centerPanel");
+				Application.currentSection = s;
+				s.doConfig();
+				return;
+			}
+			
+		}
+	}
 	
 },
 // prototype methods
@@ -55,9 +138,24 @@ $.Class.extend("Application",
 	// called when a new instance is created
 	init : function(cfg) {
 		
+		$("button").button();
+		
+		$("#btnCancel").click(Application.cancelClick);
+		$("#btnSave").click(Application.saveClick);
+		$("#btnContinue").click(Application.continueClick);
+		
 		Application.sectionDlg = $("#dialog-Section");
 		Application.elementDlg = $("#dialog-Element");
 		Application.variableDlg = $("#dialog-Variable");
+		Application.contDlg = $("#dialog-Continue");
+		
+		Application.contDlg.dialog({
+			autoOpen: false,
+			height: 400,
+			width: 400,
+			modal: true,
+			resizable: false
+		});
 		
 		Application.sectionDlg.dialog({
 			autoOpen: false,

@@ -9,13 +9,28 @@ Control.extend("Section",
 {
 	init : function(cfg){		
 		this.el = $("<div></div>").addClass("Section");		
-		Application.currentSection = this;	
+		Application.currentSection = this;
 		
-		this._super(cfg);		
+		this._super(cfg);
+		
 		this.props.elements = [];
 		this.props.vars = [];
 		this.showDialog();
 		
+		this.doConfig();
+	},
+	
+	doConfig: function(){
+		this._super();
+		
+		for(var i=0,l=this.props.elements.length; i<l; i++){
+			this.props.elements[i].doConfig();
+		}
+		
+		for(var i=0,l=this.props.vars.length; i<l; i++){
+			
+			this.props.vars[i].doConfig();
+		}
 		
 		var me = this;
 		
@@ -56,7 +71,6 @@ Control.extend("Section",
 				
 			}//end drop
 		});//end droppable
-		
 	},
 	
 	showDialog: function(){

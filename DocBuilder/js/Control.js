@@ -10,6 +10,9 @@ $.Class.extend("Control",
 	// called when a new instance is created
 	init : function(cfg) {		
 		this.props = {name : null};
+	},
+	
+	doConfig: function(){
 		this.el.draggable({containment: 'parent', cursor: 'move'});
 		this.el.resizable(); //make this resizable
 		var me = this;
