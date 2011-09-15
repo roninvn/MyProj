@@ -16,6 +16,11 @@ Control.extend("Element",
 		this.doConfig();
 	},
 	
+	doConfig: function(){
+		this._super();
+		this.el.find("span").editable();
+	},
+		
 	showDialog: function(){
 		Application.elementDlg.dialog("open");
 	},
