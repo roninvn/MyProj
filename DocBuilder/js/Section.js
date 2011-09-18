@@ -86,5 +86,15 @@ Control.extend("Section",
 	
 	bindValue: function(dialog){
 		this._super(dialog);
+	},
+	
+	loadVarsOption: function(opt){
+		opt.empty();
+		for(var i=0,l=this.props.vars.length; i<l; i++){
+			var s = this.props.vars[i].props;
+			//console.log(s);
+			var ss = $("<option></option>").val(s.name).text(s.name + " - " + s.text);
+			ss.appendTo(opt);
+		}
 	}
 });

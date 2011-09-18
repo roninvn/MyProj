@@ -8,12 +8,12 @@ Control.extend("Variable",
 //prototype methods
 {
 	init : function(cfg){		
-		this.el = $("<div><span></span></div>").addClass("Variable");
+		this.el = $("<div></div>");
 		Application.currentVariable = this;	
 		this._super(cfg);
-		this.showDialog();
+		//this.showDialog();
 		
-		this.doConfig();
+		//this.doConfig();
 	},
 	
 	showDialog: function(){

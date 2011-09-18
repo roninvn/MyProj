@@ -17,11 +17,11 @@ Control.extend("Element",
 	},
 	
 	doConfig: function(){
-		this._super();
-		this.el.find("span").editable();
+		this._super();		
 	},
 		
 	showDialog: function(){
+		Application.currentElement = this;
 		Application.elementDlg.dialog("open");
 	},
 	
@@ -34,13 +34,19 @@ Control.extend("Element",
 	
 	bindValue: function(dialog){
 		this._super(dialog);
-		this.props.text = dialog.find("#text").val();		
-		this.el.find("span").text(this.props.text);
+		this.props.text = dialog.find("#text").val();
+		var arr = this.props.text.split("\n");
+		var s = "";
+		for(var i=0, l=arr.length; i<l; i++){
+			s += "<p>" + arr[i] + "</p>";			
+		}
+		this.el.find("span").empty();
+		this.el.find("span").append($(s));
 		
 	},
 	
 	loadValue: function(dialog){
-		this._super(dialog);
+		this._super(dialog);		
 		dialog.find("#text").val(this.props.text);
 	}
 });

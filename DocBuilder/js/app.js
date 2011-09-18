@@ -32,6 +32,10 @@ $.Class.extend("Application",
 			if(ui.draggable[0].id !== "Section")
 				alert('Only section can be dropped here.');
 			else{
+				
+				if(Application.currentSection !== null)
+					return;
+				
 				var c = new Section();
 				//Application.sections.push(c);
 				
@@ -77,8 +81,8 @@ $.Class.extend("Application",
 			for(var x=0,y=s.props.vars.length; x<y; x++){
 				var v = s.props.vars[x];
 				var vr = {};
-				vr.name = e.props.name
-				vr.text = e.props.text;
+				vr.name = v.props.name
+				vr.text = v.props.text;				
 				sec.inputs.push(vr);
 			}
 		}
@@ -106,6 +110,10 @@ $.Class.extend("Application",
 
 				});
 			}
+			
+			$("#centerPanel").empty();
+			Application.currentSection = null;
+			
 		}
 	},
 	
@@ -149,6 +157,46 @@ $.Class.extend("Application",
 		Application.variableDlg = $("#dialog-Variable");
 		Application.contDlg = $("#dialog-Continue");
 		
+		$("#addVar").click(function(){
+			var s = $("#selVars option:selected").val();
+			
+			if(s === undefined)
+				return;
+			
+			var sel = $("#dialog-Element #text").getSelection();			
+			var str = $("#dialog-Element #text").val();			
+			var s2 = str.substr(0,sel.start) + "${" + s + "}" + str.substr(sel.start);
+			$("#dialog-Element #text").val(s2);
+			
+			
+		});
+		
+		$("#saveVar").click(function(){
+			var name = $("#dialog-Element #varname").val();
+			if(name.length ===0)
+				return;
+			
+			var arrControls = Application.currentSection.props.vars;
+			
+			for(var i=0,l=arrControls.length; i<l; i++){
+				if(arrControls[i].props.name === name){
+					alert("This name is used. Please enter a new one.");
+					return;
+				}				
+			}
+			
+			var v = new Variable();
+			v.props.name = name;
+			v.props.text = $("#dialog-Element #varvalue").val();
+			Application.currentSection.props.vars.push(v);
+			console.log();
+			Application.currentSection.loadVarsOption($("#selVars"));
+			
+			
+			
+			
+		});
+		
 		Application.contDlg.dialog({
 			autoOpen: false,
 			height: 400,
@@ -179,8 +227,8 @@ $.Class.extend("Application",
 		
 		Application.elementDlg.dialog({
 			autoOpen: false,
-			height: 200,
-			width: 400,
+			height: 450,
+			width: 600,
 			modal: true,
 			resizable: false,
 			
@@ -194,6 +242,7 @@ $.Class.extend("Application",
 			
 			open:function(e,u){
 				Application.currentElement.loadValue(Application.elementDlg);
+				Application.currentSection.loadVarsOption($("#selVars"));
 			}
 		});
 		

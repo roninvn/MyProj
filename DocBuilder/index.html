@@ -10,8 +10,7 @@
         <script type="text/javascript" src="js/lib/jquery.json-2.2.min.js"></script>
         <script type="text/javascript" src="js/lib/jquery.lang.min.js"></script>
 		<script type="text/javascript" src="js/lib/jquery.class.min.js"></script>
-		<script type="text/javascript" src="js/lib/jquery.editable-1.3.3.min.js"></script>
-				
+		<script type="text/javascript" src="js/lib/jquery.selection.js"></script>
         <script>
         	if(window.console === undefined) {
 				window.console			= new Object();
@@ -28,7 +27,7 @@
     	<div id = "leftPanel">
     		<img src="img/section.png" id ="Section"></img>
     		<img src="img/element.png" id ="Element"></img>
-    		<img src="img/variable.png" id ="Variable"></img>
+    		<!-- <img src="img/variable.png" id ="Variable"></img> -->
     		<div id="divButtons"><button id="btnSave">Save</button><button id="btnCancel">Cancel</button><button id="btnContinue">Continue</button></div>
     	</div>
     	<div id = "centerPanel"></div>
@@ -48,8 +47,20 @@
 				<label>Element name</label>
 				<input type="text" name="name" id="name" class="text ui-widget-content ui-corner-all" />
 				<br />
-				<label>Text</label>
-				<input type="text" name="text" id="text" class="text ui-widget-content ui-corner-all" />
+				<label>Text</label><br />
+				<textarea type="text" name="text" id="text" class="text ui-widget-content ui-corner-all" ></textarea>
+				<fieldset>
+					<legend>Variable</legend>
+					<select id="selVars"><option value="asas">111</option></select>
+					<button id="addVar">Add</button>
+					<div>
+						<label>Name</label>
+						<input type="text" name="varname" id="varname" class="text ui-widget-content ui-corner-all" />
+						<label>Value</label>
+						<input type="text" name="varvalue" id="varvalue" class="text ui-widget-content ui-corner-all" />
+						<button id="saveVar">Save</button>
+					</div>
+				</fieldset>				
 			</fieldset>
 		</div>
     	<div id="dialog-Variable" title="Enter variable info">
@@ -65,8 +76,8 @@
 			<fieldset>
 				<label>JSON</label>
 				<br />
-				<textarea class="text ui-widget-content ui-corner-all"></textarea>				
-			</fieldset>
+				<textarea class="text ui-widget-content ui-corner-all"></textarea>
+			</fieldset>			
 		</div>
     	
     	    	
