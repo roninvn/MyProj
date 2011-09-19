@@ -8,7 +8,7 @@ Ext.define('FB.view.DesignControl', {
 				control.getEl().down('label').update(cfg.Label);
 			
 			if(cfg.Text)
-				control.setText(c.Text);
+				control.setText(cfg.Text);
 			
 			if(cfg.Validation){
 				var val = cfg.Validation;
@@ -39,24 +39,42 @@ Ext.define('FB.view.DesignControl', {
 		var ctrCfg  = {
 	    		name: 'cn' + FB.view.DesignControl.uid,
 	    		id: 'id' + FB.view.DesignControl.uid,	    		
-	    		resizable: {dynamic: false},	    		
+	    		resizable: {dynamic: false, transparent:true, handles:"s e se"},
+	    		
+	    		draggable: true,
 	            
 	            listeners:{
 	            	
 	            	afterrender: function(c){
+	            		//console.log(c.dd);
 	            		
+	            		c.dd.onDrag = function(e) {
+							            	        var me = this,
+							                        comp = (me.proxy && !me.comp.liveDrag) ? me.proxy : me.comp,
+							                        offset = me.getOffset(me.constrain || me.constrainDelegate ? 'dragTarget' : null);
+							            	        //console.log(offset);
+							            	        //comp.setPosition(me.startPosition[0] + offset[0], me.startPosition[1] + offset[1]);
+							            	        
+							            	        var c2 = comp.findParentByType("panel").getPosition();
+							            	        
+							            	        comp.setPosition(me.startPosition[0] + offset[0]-c2[0], me.startPosition[1] + offset[1]);
+							            	        //console.log();
+	            								};
+	                
+	                
+	                
+	            		/*
 	            		var arr = c.getEl().query('.x-resizable-handle');
 	            		
 	            		for(var i=0,l=arr.length; i<l; i++){
-	            			Ext.get(arr[i]).on("mousedown",function(){
-	            				console.log('mousedown');
+	            			Ext.get(arr[i]).on("mousedown",function(){	            				
 	            				me.isResizing = true;
 	            			});
 	            			
 	            			Ext.get(arr[i]).on("mouseout",function(){
 	            				me.isResizing = false;
 	            			});
-	            		}
+	            		}*/
 	            		
 	            		
 	            		c.getEl().on("click", function(e){
@@ -87,7 +105,7 @@ Ext.define('FB.view.DesignControl', {
 	    	            	
 	    	            	pg.on("propertychange", function(obj,c,val){
 	    	            		me.oCfg.cfg[c] = val;
-	    	            		FB.view.DesignControl.updateControlProperties(e,me.oCfg.cfg);	            		
+	    	            		FB.view.DesignControl.updateControlProperties(me.ctr,me.oCfg.cfg);	            		
 	    	   
 	    	            	}); //end pg on
 	            			
@@ -98,7 +116,7 @@ Ext.define('FB.view.DesignControl', {
 	            	
 	            	render: function(c){
 	            		
-	            		c.dragZone = Ext.create('Ext.dd.DragZone', c.getEl(), {
+	            		/*c.dragZone = Ext.create('Ext.dd.DragZone', c.getEl(), {
 	            			
 	            			getDragData: function(e) {
 	            				
@@ -128,7 +146,7 @@ Ext.define('FB.view.DesignControl', {
 	            			getRepairXY: function() {
 	                             return this.dragData.repairXY;
 	                        }
-	            		});//end dragZone
+	            		});//end dragZone*/
 
 	            	}//end render    
 	            	
