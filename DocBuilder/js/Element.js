@@ -16,7 +16,7 @@ Control.extend("Element",
 		this.doConfig();
 	},
 	
-	doConfig: function(){
+	doConfig: function(){		
 		this._super();
 		var me = this;
 		this.el.mouseover(function(e) {			

@@ -98,7 +98,7 @@ $.Class.extend("Application",
 		//build link		
 		if(Application.currentSection !== null){
 			$("#rightPanel").empty();
-			Application.addSection(Application.cloneSection(Application.currentSection));			
+			Application.addSection(Application.currentSection);			
 			
 			for(var i=0,l=Application.sections.length; i<l; i++){
 				var s = Application.sections[i];
@@ -120,12 +120,14 @@ $.Class.extend("Application",
 	},
 	
 	addSection: function(s){
+		s.style = s.el.attr("style");
 		for(var i=0,l=Application.sections.length; i<l; i++){
 			if(Application.sections[i].props.name === s.props.name){
-				Application.sections[i] = s;
+				Application.sections[i] = s;								
 				return;
 			}
 		}
+		
 		Application.sections.push(s);
 	},
 	
@@ -136,7 +138,8 @@ $.Class.extend("Application",
 			if(s.props.name === name){
 				$("#centerPanel").empty();
 				//s.getEl().appendTo("#centerPanel");
-				Application.currentSection = Application.cloneSection(s);
+				Application.currentSection = s;
+				s.el.attr("style", s.style);
 				Application.currentSection.getEl().appendTo("#centerPanel");
 				Application.currentSection.doConfig();
 				return;
@@ -148,7 +151,10 @@ $.Class.extend("Application",
 	cloneSection: function(s){
 		var ss = jQuery.extend(true, {}, s);
 		ss.el = s.el.clone();
-		ss.validateName = false;
+		for(var i=0,l=ss.props.elements.length; i<l; i++){
+			ss.props.elements[i] = jQuery.extend(true, {}, ss.props.elements[i]);
+		}
+		ss.validateName = false;		
 		return ss;
 	},
 	
@@ -161,7 +167,6 @@ $.Class.extend("Application",
 		opt.empty();
 		for(var i=0,l=Application.vars.length; i<l; i++){
 			var s = Application.vars[i].props;
-			//console.log(s);
 			var ss = $("<option></option>").val(s.name).text(s.name + " - " + s.text);
 			ss.appendTo(opt);
 		}
