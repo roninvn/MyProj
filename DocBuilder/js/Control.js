@@ -10,6 +10,7 @@ $.Class.extend("Control",
 	// called when a new instance is created
 	init : function(cfg) {		
 		this.props = {name : null};
+		this.validateName = true;
 	},
 	
 	doConfig: function(){
@@ -35,7 +36,7 @@ $.Class.extend("Control",
 		}
 		
 		for(var i=0,l=arrControls.length; i<l; i++){
-			if(arrControls[i] !== this && arrControls[i].props.name === name){
+			if(this.validateName && arrControls[i] !== this && arrControls[i].props.name === name){
 				alert("This name is used. Please enter a new one.");
 				return false;
 			}				

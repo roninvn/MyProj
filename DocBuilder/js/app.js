@@ -5,6 +5,7 @@ $.Class.extend("Application",
 // static methods
 {
 	sections : [],
+	vars: [],	
 	currentSection: null,
 	sectionDlg: null,
 	
@@ -55,7 +56,8 @@ $.Class.extend("Application",
 	
 	
 	cancelClick: function(){
-		$("#centerPanel").empty();		
+		$("#centerPanel").empty();
+		Application.currentSection = null;
 	},
 	
 	continueClick: function(){
@@ -78,8 +80,8 @@ $.Class.extend("Application",
 				sec.elements.push(ele);
 			}
 			
-			for(var x=0,y=s.props.vars.length; x<y; x++){
-				var v = s.props.vars[x];
+			for(var x=0,y=Application.vars.length; x<y; x++){
+				var v = Application.vars[x];
 				var vr = {};
 				vr.name = v.props.name
 				vr.text = v.props.text;				
@@ -96,7 +98,7 @@ $.Class.extend("Application",
 		//build link		
 		if(Application.currentSection !== null){
 			$("#rightPanel").empty();
-			Application.addSection(Application.currentSection);			
+			Application.addSection(Application.cloneSection(Application.currentSection));			
 			
 			for(var i=0,l=Application.sections.length; i<l; i++){
 				var s = Application.sections[i];
@@ -119,8 +121,10 @@ $.Class.extend("Application",
 	
 	addSection: function(s){
 		for(var i=0,l=Application.sections.length; i<l; i++){
-			if(Application.sections[i] === s)
+			if(Application.sections[i].props.name === s.props.name){
+				Application.sections[i] = s;
 				return;
+			}
 		}
 		Application.sections.push(s);
 	},
@@ -131,12 +135,35 @@ $.Class.extend("Application",
 			
 			if(s.props.name === name){
 				$("#centerPanel").empty();
-				s.getEl().appendTo("#centerPanel");
-				Application.currentSection = s;
-				s.doConfig();
+				//s.getEl().appendTo("#centerPanel");
+				Application.currentSection = Application.cloneSection(s);
+				Application.currentSection.getEl().appendTo("#centerPanel");
+				Application.currentSection.doConfig();
 				return;
 			}
 			
+		}
+	},
+	
+	cloneSection: function(s){
+		var ss = jQuery.extend(true, {}, s);
+		ss.el = s.el.clone();
+		ss.validateName = false;
+		return ss;
+	},
+	
+	onKeyDown: function(e){
+		if(e.keyCode === 46 && Application.selElement)
+			Application.currentSection.removeElement(Application.selElement);
+	},
+	
+	loadVarsOption: function(opt){
+		opt.empty();
+		for(var i=0,l=Application.vars.length; i<l; i++){
+			var s = Application.vars[i].props;
+			//console.log(s);
+			var ss = $("<option></option>").val(s.name).text(s.name + " - " + s.text);
+			ss.appendTo(opt);
 		}
 	}
 	
@@ -145,6 +172,8 @@ $.Class.extend("Application",
 {
 	// called when a new instance is created
 	init : function(cfg) {
+		
+		$(document).keydown(Application.onKeyDown);
 		
 		$("button").button();
 		
@@ -176,7 +205,7 @@ $.Class.extend("Application",
 			if(name.length ===0)
 				return;
 			
-			var arrControls = Application.currentSection.props.vars;
+			var arrControls = Application.vars;
 			
 			for(var i=0,l=arrControls.length; i<l; i++){
 				if(arrControls[i].props.name === name){
@@ -188,12 +217,11 @@ $.Class.extend("Application",
 			var v = new Variable();
 			v.props.name = name;
 			v.props.text = $("#dialog-Element #varvalue").val();
-			Application.currentSection.props.vars.push(v);
-			console.log();
-			Application.currentSection.loadVarsOption($("#selVars"));
+			Application.vars.push(v);			
+			Application.loadVarsOption($("#selVars"));
 			
-			
-			
+			Application.elementDlg.find("#varname").val("");
+			Application.elementDlg.find("#varvalue").val("");
 			
 		});
 		
@@ -221,6 +249,7 @@ $.Class.extend("Application",
 			},
 			
 			open:function(e,u){
+				Application.sectionDlg.find("#opt").prop("checked", false);
 				Application.currentSection.loadValue(Application.sectionDlg);
 			}
 		});
@@ -241,8 +270,10 @@ $.Class.extend("Application",
 			},
 			
 			open:function(e,u){
+				Application.elementDlg.find("#varname").val("");
+				Application.elementDlg.find("#varvalue").val("");
 				Application.currentElement.loadValue(Application.elementDlg);
-				Application.currentSection.loadVarsOption($("#selVars"));
+				Application.loadVarsOption($("#selVars"));
 			}
 		});
 		
@@ -254,7 +285,7 @@ $.Class.extend("Application",
 			resizable: false,
 			
 			beforeClose: function(e,ui){//validate & bind data to new section
-				if(Application.currentVariable.validateVal(Application.variableDlg, Application.currentSection.props.vars)){
+				if(Application.currentVariable.validateVal(Application.variableDlg, Application.vars)){
 					Application.currentVariable.bindValue(Application.variableDlg);
 					return true;
 				}

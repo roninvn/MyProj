@@ -17,7 +17,18 @@ Control.extend("Element",
 	},
 	
 	doConfig: function(){
-		this._super();		
+		this._super();
+		var me = this;
+		this.el.mouseover(function(e) {			
+			  e.stopPropagation();
+			  Application.selElement = me;			  
+			});
+
+		this.el.mouseout(function(e) {
+			e.stopPropagation();
+			Application.selElement = null;
+		});
+		
 	},
 		
 	showDialog: function(){
@@ -47,6 +58,6 @@ Control.extend("Element",
 	
 	loadValue: function(dialog){
 		this._super(dialog);		
-		dialog.find("#text").val(this.props.text);
+		dialog.find("#text").val(this.props.text);		
 	}
 });

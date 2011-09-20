@@ -14,7 +14,7 @@ Control.extend("Section",
 		this._super(cfg);
 		
 		this.props.elements = [];
-		this.props.vars = [];
+		//this.props.vars = [];
 		this.showDialog();
 		
 		this.doConfig();
@@ -27,10 +27,10 @@ Control.extend("Section",
 			this.props.elements[i].doConfig();
 		}
 		
-		for(var i=0,l=this.props.vars.length; i<l; i++){
+		/*for(var i=0,l=this.props.vars.length; i<l; i++){
 			
 			this.props.vars[i].doConfig();
-		}
+		}*/
 		
 		var me = this;
 		
@@ -52,10 +52,10 @@ Control.extend("Section",
 						c = new Element();						
 						me.props.elements.push(c);						
 					}
-					else if(ui.draggable[0].id === "Variable" ){
+					/*else if(ui.draggable[0].id === "Variable" ){
 						c = new Variable();						
 						me.props.vars.push(c);						
-					}
+					}*/
 					
 					var pos = Application.translateCoord(me.getEl(), ui);
 					
@@ -86,15 +86,21 @@ Control.extend("Section",
 	
 	bindValue: function(dialog){
 		this._super(dialog);
+		this.props.checked = dialog.find("#opt").is(':checked');
 	},
 	
-	loadVarsOption: function(opt){
-		opt.empty();
-		for(var i=0,l=this.props.vars.length; i<l; i++){
-			var s = this.props.vars[i].props;
-			//console.log(s);
-			var ss = $("<option></option>").val(s.name).text(s.name + " - " + s.text);
-			ss.appendTo(opt);
+	loadValue: function(dialog){
+		this._super(dialog);
+		dialog.find("#opt").prop("checked", this.props.checked);
+	},
+	
+	removeElement: function(ele){
+		for(var i=0,l=this.props.elements.length; i<l; i++){
+			if(this.props.elements[i] === ele){
+				ele.el.remove();
+				this.props.elements.splice(i,1);
+				return;
+			}				
 		}
 	}
 });
