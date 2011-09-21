@@ -1,17 +1,20 @@
+textarea {
+    resize: none;
+} 
 #leftPanel{
 	position: absolute;
 	left:0;
 	top:0;
 	border: 1px solid black;
-	width: 180px;
+	width: 20%;
 	height: 99%;
 }
 #centerPanel{
 	position: absolute;
-	left:181px;
+	left:20%;
 	top:0;
 	border: 1px solid black;
-	width: 80%;
+	width: 70%;
 	height: 99%;
 	overflow: auto;
 }
@@ -20,7 +23,7 @@
 	left:90%;
 	top:0;
 	border: 1px solid black;
-	width: 9.8%;
+	width: 9.9%;
 	height: 99%;
 }
 

@@ -69,7 +69,7 @@ $.Class.extend("Application",
 			var sec ={};
 			sec.name = s.props.name;
 			sec.elements=[];
-			sec.inputs=[];
+			//sec.inputs=[];
 			doc.sections.push(sec);
 			
 			for(var x=0,y=s.props.elements.length; x<y; x++){
@@ -80,19 +80,38 @@ $.Class.extend("Application",
 				sec.elements.push(ele);
 			}
 			
-			for(var x=0,y=Application.vars.length; x<y; x++){
+			/*for(var x=0,y=Application.vars.length; x<y; x++){
 				var v = Application.vars[x];
 				var vr = {};
 				vr.name = v.props.name
 				vr.text = v.props.text;				
 				sec.inputs.push(vr);
-			}
+			}*/
+			
+			sec.inputs = Application.getVarsinSections(s);
 		}
 		
 		var json = $.toJSON(doc);
 		Application.contDlg.find("textarea").text(json);
 		Application.contDlg.dialog("open");
 	},
+	
+	getVarsinSections: function(s){
+		var vars = [];
+		for(var i=0, l=Application.vars.length; i<l; i++){
+			for(var ii=0, ll=s.props.elements.length; i<ll; i++){
+				var ele = s.props.elements[ii];
+				var v = Application.vars[i];
+				if(ele.props.text.indexOf("${" + v.props.name + "}") != -1){
+					vars.push({name: v.props.name, text: v.props.text});
+					break;
+				}
+				
+			}
+		}
+		return vars;
+	},
+	
 		
 	saveClick: function(){
 		//build link		
