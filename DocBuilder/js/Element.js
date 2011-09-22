@@ -11,9 +11,14 @@ Control.extend("Element",
 		this.el = $("<div><span></span></div>").addClass("Element");
 		Application.currentElement = this;	
 		this._super(cfg);
-		this.showDialog();
 		
-		this.doConfig();
+		if(cfg && cfg.hideDlg){
+			this.validateName = false;
+		}
+		else{
+			this.showDialog();		
+			this.doConfig();
+		}
 	},
 	
 	doConfig: function(){		

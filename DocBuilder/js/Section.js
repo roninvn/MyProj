@@ -14,10 +14,15 @@ Control.extend("Section",
 		this._super(cfg);
 		
 		this.props.elements = [];
-		//this.props.vars = [];
-		this.showDialog();
+
+		if(cfg && cfg.hideDlg){
+			this.validateName = false;
+		}
+		else{
+			this.showDialog();
+			this.doConfig();
+		}
 		
-		this.doConfig();
 	},
 	
 	doConfig: function(){

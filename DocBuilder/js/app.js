@@ -69,7 +69,7 @@ $.Class.extend("Application",
 			var sec ={};
 			sec.name = s.props.name;
 			sec.elements=[];
-			//sec.inputs=[];
+			
 			doc.sections.push(sec);
 			
 			for(var x=0,y=s.props.elements.length; x<y; x++){
@@ -79,14 +79,6 @@ $.Class.extend("Application",
 				ele.text = e.props.text;
 				sec.elements.push(ele);
 			}
-			
-			/*for(var x=0,y=Application.vars.length; x<y; x++){
-				var v = Application.vars[x];
-				var vr = {};
-				vr.name = v.props.name
-				vr.text = v.props.text;				
-				sec.inputs.push(vr);
-			}*/
 			
 			sec.inputs = Application.getVarsinSections(s);
 		}
@@ -99,7 +91,7 @@ $.Class.extend("Application",
 	getVarsinSections: function(s){
 		var vars = [];
 		for(var i=0, l=Application.vars.length; i<l; i++){
-			for(var ii=0, ll=s.props.elements.length; i<ll; i++){
+			for(var ii=0, ll=s.props.elements.length; ii<ll; ii++){
 				var ele = s.props.elements[ii];
 				var v = Application.vars[i];
 				if(ele.props.text.indexOf("${" + v.props.name + "}") != -1){
@@ -124,8 +116,8 @@ $.Class.extend("Application",
 				var d=$("<div></div>").appendTo("#rightPanel");
 				var a = $("<a href='#'></a>").text(s.props.name).appendTo(d);
 				
-				a.click(function(e){
-					var name=$(e.srcElement).text();
+				a.click(function(e){					
+					var name=$(this).text();
 					Application.loadSection(name)
 					return false;
 
@@ -134,20 +126,23 @@ $.Class.extend("Application",
 			
 			$("#centerPanel").empty();
 			Application.currentSection = null;
-			
 		}
 	},
 	
 	addSection: function(s){
-		s.style = s.el.attr("style");
+		
+		var ss = Application.cloneSection(s);
+		
+		
 		for(var i=0,l=Application.sections.length; i<l; i++){
-			if(Application.sections[i].props.name === s.props.name){
-				Application.sections[i] = s;								
+			if(Application.sections[i].props.name === ss.props.name || Application.sections[i].props.name === s.oldName){
+				Application.sections[i] = ss;								
 				return;
 			}
 		}
 		
-		Application.sections.push(s);
+		Application.sections.push(ss);
+		
 	},
 	
 	loadSection: function(name){		
@@ -157,10 +152,12 @@ $.Class.extend("Application",
 			if(s.props.name === name){
 				$("#centerPanel").empty();
 				//s.getEl().appendTo("#centerPanel");
-				Application.currentSection = s;
-				s.el.attr("style", s.style);
+				Application.currentSection = Application.cloneSection(s);
+				Application.currentSection.oldName = s.props.name;
+				//s.el.attr("style", s.style);
 				Application.currentSection.getEl().appendTo("#centerPanel");
 				Application.currentSection.doConfig();
+				
 				return;
 			}
 			
@@ -168,12 +165,32 @@ $.Class.extend("Application",
 	},
 	
 	cloneSection: function(s){
-		var ss = jQuery.extend(true, {}, s);
-		ss.el = s.el.clone();
-		for(var i=0,l=ss.props.elements.length; i<l; i++){
-			ss.props.elements[i] = jQuery.extend(true, {}, ss.props.elements[i]);
+		var ss = new Section({hideDlg: true});
+		ss.el.attr("style", s.el.attr("style"));
+		ss.props.name = s.props.name;
+		ss.props.checked = s.props.checked
+		ss.props.elements = [];
+		
+		for(var i=0, l=s.props.elements.length; i<l; i++){ //clone elements
+			var e = new Element({hideDlg: true});
+			e.el.attr("style", s.props.elements[i].el.attr("style"));
+			e.props.name = s.props.elements[i].props.name;
+			e.props.text = s.props.elements[i].props.text;			
+			e.el.appendTo(ss.el);
+			
+			
+			var arr = e.props.text.split("\n");
+			var str = "";
+			for(var x=0, y=arr.length; x<y; x++){
+				str += "<p>" + arr[x] + "</p>";			
+			}
+			e.el.find("span").empty();
+			e.el.find("span").append($(str));
+			
+			
+			ss.props.elements.push(e);
 		}
-		ss.validateName = false;		
+		
 		return ss;
 	},
 	
@@ -189,6 +206,28 @@ $.Class.extend("Application",
 			var ss = $("<option></option>").val(s.name).text(s.name + " - " + s.text);
 			ss.appendTo(opt);
 		}
+	},
+	
+	varIsUsed: function(vname){		
+		for(var i=0, l=Application.sections.length; i<l; i++){
+			console.log(s);
+			var s = Application.sections[i];
+			for(var x=0, y=s.props.elements.length; x<y; x++){
+				var e = s.props.elements[x];
+				if(e.props.text.indexOf("${" + vname + "}") != -1)
+					return true;
+			}
+		}
+		
+		var s = Application.currentSection;
+		for(var x=0, y=s.props.elements.length; x<y; x++){
+			var e = s.props.elements[x];
+			if(e.props.text && (e.props.text.indexOf("${" + vname + "}") != -1))
+				return true;
+		}
+		
+		return false;
+		
 	}
 	
 },
@@ -203,7 +242,8 @@ $.Class.extend("Application",
 		
 		$("#btnCancel").click(Application.cancelClick);
 		$("#btnSave").click(Application.saveClick);
-		$("#btnContinue").click(Application.continueClick);
+		$("#btnContinue").click(Application.continueClick); 
+		
 		
 		Application.sectionDlg = $("#dialog-Section");
 		Application.elementDlg = $("#dialog-Element");
@@ -246,6 +286,26 @@ $.Class.extend("Application",
 			
 			Application.elementDlg.find("#varname").val("");
 			Application.elementDlg.find("#varvalue").val("");
+			
+		});
+		
+		$("#deleteVar").click(function(){
+			var s = $("#selVars option:selected").val();			
+			if(s === undefined)
+				return;
+			
+			if(Application.varIsUsed(s) || ($("#dialog-Element #text").val().indexOf("${" + s + "}") !==-1) ){
+				alert("This variable is in used.");
+				return;
+			}
+			
+			for(var i=0,l=Application.vars.length; i<l; i++){
+				if(s === Application.vars[i].props.name){
+					Application.vars.splice(i,1);
+					Application.loadVarsOption($("#selVars"));
+					return;
+				}				
+			}
 			
 		});
 		
