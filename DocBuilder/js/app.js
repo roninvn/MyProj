@@ -77,16 +77,32 @@ $.Class.extend("Application",
 				var ele = {};
 				ele.name = e.props.name
 				ele.text = e.props.text;
+				
+				ele.inputs = Application.getVarsinElement(e);
+				
 				sec.elements.push(ele);
 			}
 			
-			sec.inputs = Application.getVarsinSections(s);
+			//sec.inputs = Application.getVarsinSections(s);
 		}
 		
 		var json = $.toJSON(doc);
 		Application.contDlg.find("textarea").text(json);
 		Application.contDlg.dialog("open");
 	},
+	
+	
+	getVarsinElement: function(e){
+		var vars = [];
+		for(var i=0, l=Application.vars.length; i<l; i++){
+			var v = Application.vars[i];
+			if(e.props.text.indexOf("${" + v.props.name + "}") !== -1)
+				vars.push({name: v.props.name, text: v.props.text});
+		}
+		
+		return vars;
+	},
+	
 	
 	getVarsinSections: function(s){
 		var vars = [];
