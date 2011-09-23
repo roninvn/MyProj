@@ -68,6 +68,7 @@ $.Class.extend("Application",
 			var s = Application.sections[i];
 			var sec ={};
 			sec.name = s.props.name;
+			sec.optional = s.props.checked;
 			sec.elements=[];
 			
 			doc.sections.push(sec);
