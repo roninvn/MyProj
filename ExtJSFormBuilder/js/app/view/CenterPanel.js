@@ -28,23 +28,15 @@ Ext.define('FB.view.CenterPanel', {
         	
         	grid.dropZone = Ext.create('Ext.dd.DropZone', grid.el, {
 
-//              If the mouse is over a target node, return that node. This is
-//              provided as the "target" parameter in all "onNodeXXXX" node event handling functions
                 getTargetFromEvent: function(e) {                	
                     return grid.el;
                 },
                 
-//              While over a target node, return the default drop allowed class which
-//              places a "tick" icon into the drag proxy.
+
                 onNodeOver : function(target, dd, e, data){                	
                     return Ext.dd.DropZone.prototype.dropAllowed;
                 },
 
-//              On node drop, we can interrogate the target node to find the underlying
-//              application object that is the real target of the dragged data.
-//              In this case, it is a Record in the GridPanel's Store.
-//              We can use the data set up by the DragZone's getDragData method to read
-//              any data we decided to attach.
                 onNodeDrop : function(target, dd, e, data){
                 	//console.log(e, grid,e.getX()-grid.el.getX());
                 	var x = e.getX()-grid.el.getX(),

@@ -21,8 +21,11 @@ Ext.define('FB.view.DesignControl', {
     			else if(val == "Decimal")
     				control.regex = /\d+(\.\d{1,2})?/;
     			else
-    				control.regex = "";
+    				control.regex = "";				
 			}
+			
+			if(cfg.vertical)
+				
 			
 			if(cfg["Allow blank"])
 				control.allowBlank = cfg["Allow blank"];
@@ -39,50 +42,39 @@ Ext.define('FB.view.DesignControl', {
 		var ctrCfg  = {
 	    		name: 'cn' + FB.view.DesignControl.uid,
 	    		id: 'id' + FB.view.DesignControl.uid,	    		
-	    		resizable: {dynamic: false, transparent:true, handles:"s e se"},
+	    		resizable: {dynamic: false, transparent:true, handles:"s e se", heightIncrement : 10, widthIncrement:10},
 	    		
-	    		draggable: true,
+	    		draggable: {
+	    			listeners:{
+	    				dragend: function(t, e, eo){
+	    					var p = me.ctr.getPosition(true);
+	    					p[0] = Math.floor(p[0]/10)*10;
+	    					p[1] = Math.floor(p[1]/10)*10;
+	    					
+	    					me.ctr.setPosition(p[0],p[1]);
+	    				}
+	    			}
+	    		},
 	            
 	            listeners:{
 	            	
 	            	afterrender: function(c){
-	            		//console.log(c.dd);
 	            		
 	            		c.dd.onDrag = function(e) {
 							            	        var me = this,
 							                        comp = (me.proxy && !me.comp.liveDrag) ? me.proxy : me.comp,
 							                        offset = me.getOffset(me.constrain || me.constrainDelegate ? 'dragTarget' : null);
-							            	        //console.log(offset);
-							            	        //comp.setPosition(me.startPosition[0] + offset[0], me.startPosition[1] + offset[1]);
 							            	        
 							            	        var c2 = comp.findParentByType("panel").getPosition();
 							            	        
 							            	        comp.setPosition(me.startPosition[0] + offset[0]-c2[0], me.startPosition[1] + offset[1]);
-							            	        //console.log();
-	            								};
-	                
-	                
-	                
-	            		/*
-	            		var arr = c.getEl().query('.x-resizable-handle');
-	            		
-	            		for(var i=0,l=arr.length; i<l; i++){
-	            			Ext.get(arr[i]).on("mousedown",function(){	            				
-	            				me.isResizing = true;
-	            			});
-	            			
-	            			Ext.get(arr[i]).on("mouseout",function(){
-	            				me.isResizing = false;
-	            			});
-	            		}*/
-	            		
+
+	            								};	            		
 	            		
 	            		c.getEl().on("click", function(e){
 	            			
 	            			var items = Ext.getCmp('centerpanel').items;	                    	
 	                    	items.each(function(itm, i, l){
-	                    		
-	                    		//console.log(itm.getEl(), itm.designControl);
 	                    		
 	                    		if(itm.designControl.oCfg.name == "Button")
 	                    			itm.getEl().down('button').applyStyles({'background-color': null});
@@ -115,43 +107,8 @@ Ext.define('FB.view.DesignControl', {
 	            	}, //end after render
 	            	
 	            	render: function(c){
-	            		
-	            		/*c.dragZone = Ext.create('Ext.dd.DragZone', c.getEl(), {
-	            			
-	            			getDragData: function(e) {
-	            				
-	            				if(me.isResizing)
-	            					return null;
-	            		    	var t;	            		    	
-	            		    	if(me.oCfg.name == "Button")
-	            		    		t = e.getTarget('div.x-btn');
-	            		    	else if(me.oCfg.name == "Label")
-	            		    		t = e.getTarget('label.x-component');
-	            		    	else
-	            		    		t = e.getTarget('div.x-field');
-	            		    	
-	            		        var t2 = Ext.clone(t);
-	            		        
-            		        	Ext.core.DomHelper.applyStyles(t2, {left:"0px", top:"0px"});            		            
-	        		        	
-	            		        e.stopEvent();        		            
-	        		            
-	        		        	return {            		                
-	        		                ddel: t2,
-	        		                isDesign: true,
-	        		                control : c
-	        		            };            		        
-	            		    },
-	            			
-	            			getRepairXY: function() {
-	                             return this.dragData.repairXY;
-	                        }
-	            		});//end dragZone*/
-
 	            	}//end render    
-	            	
-	            
-	            
+	            		            
 	          }//end listeners        
 	    	}; //end ctrCfg
 		
