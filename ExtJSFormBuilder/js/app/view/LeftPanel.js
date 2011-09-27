@@ -46,13 +46,13 @@ Ext.define('FB.view.LeftPanel', {
     			            name: 'Radio',
     			            extClass: 'Ext.form.RadioGroup',
     			            src: "img/radio.JPG",
-    			            cfg:{Label:'Radio', "Allow blank" : true, Values:"Radio1"}
+    			            cfg:{Label:'Radio', Items:"Radio1,Radio2"}
             			},
             			{
     			            name: 'Combobox',
     			            extClass: 'Ext.form.field.ComboBox',
     			            src: "img/combobox.JPG",
-    			            cfg:{Label:'Combobox', Values:"Radio1"}
+    			            cfg:{Label:'Combobox', Values:"Option1,Option2"}
             			},
             			{
     			            name: 'Button',

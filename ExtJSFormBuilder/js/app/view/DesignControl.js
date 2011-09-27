@@ -2,6 +2,7 @@ Ext.define('FB.view.DesignControl', {
 	
 	statics:{
 		uid: 0,
+		
 		updateControlProperties: function(control,cfg){
 			
 			if(cfg.Label)
@@ -24,13 +25,47 @@ Ext.define('FB.view.DesignControl', {
     				control.regex = "";				
 			}
 			
-			if(cfg.vertical)
-				
+			if(cfg.Values){
+				//set value
+				var arr = FB.view.DesignControl.createValuesArray(cfg.Values);
+				control.store.loadData(arr);
+
+			}
+			
+			if(cfg.Items){
+				//set value
+				var arr = FB.view.DesignControl.createItemsArray(cfg.Items, control.id);
+				control.removeAll(true);
+				control.add(arr);
+				control.doLayout();
+
+			}
 			
 			if(cfg["Allow blank"])
 				control.allowBlank = cfg["Allow blank"];
     		
-		}//end updateControlProperties
+		},//end updateControlProperties
+		
+		createValuesArray: function(str){
+			var arr = str.split(",");
+			var dt = [];			
+			for(var i=0; i<arr.length; i++)
+				dt.push({name: arr[i], val: arr[i]});
+			
+			return dt;
+		},
+		
+		createItemsArray: function(str, name){
+			var arr = str.split(",");
+			var dt = [];			
+			for(var i=0; i<arr.length; i++){
+				var c = Ext.create("Ext.form.field.Radio",{boxLabel: arr[i], name: name, inputValue: arr[i] });
+				dt.push(c);
+			}
+				//dt.push({xtype: "radiofield", boxLabel: arr[i], name: name, inputValue: arr[i] });
+			
+			return dt;
+		}
 	},
 	
 	ctr: null,
@@ -114,10 +149,11 @@ Ext.define('FB.view.DesignControl', {
 		
 		
 		if(this.oCfg.extClass == "Ext.form.field.ComboBox"){//create store for combobox
+
 			
 			var cbStore = Ext.create('Ext.data.Store', {
 			    fields: ['val', 'name'],
-			    data : []
+			    data : FB.view.DesignControl.createValuesArray(this.oCfg.cfg.Values)
 			});
 			
 			ctrCfg.store = cbStore,
@@ -127,7 +163,13 @@ Ext.define('FB.view.DesignControl', {
             
 			
 		}
-			
+		
+		if(this.oCfg.extClass == "Ext.form.RadioGroup"){
+			ctrCfg.items = FB.view.DesignControl.createItemsArray(this.oCfg.cfg.Items, ctrCfg.id);
+			//ctrCfg.columns = 1;
+			ctrCfg.layout= "vbox";
+			//ctrCfg.defaultType = "radiofield";
+		}
 		
 		if(this.oCfg.cfg.Label){
 			ctrCfg.fieldLabel = this.oCfg.cfg.Label;
@@ -151,5 +193,4 @@ Ext.define('FB.view.DesignControl', {
     	
     	this.ctr.designControl = this;    	
     }
-
 });
