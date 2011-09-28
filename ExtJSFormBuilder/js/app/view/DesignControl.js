@@ -120,9 +120,9 @@ Ext.define('FB.view.DesignControl', {
 	            			
 	            			
 	            			if(me.oCfg.name == "Button")
-	            				c.getEl().down('button').applyStyles({'background-color': "green"});
+	            				c.getEl().down('button').applyStyles({'background-color': "#BDD2EF"});
 	            			else
-	            				c.getEl().applyStyles({'background-color': "green"});
+	            				c.getEl().applyStyles({'background-color': "#BDD2EF"});
 
 	            			
 	            			var pg = Ext.getCmp("propGrid");

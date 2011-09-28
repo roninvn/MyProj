@@ -65,7 +65,32 @@ Ext.define('FB.view.LeftPanel', {
     			            extClass: 'Ext.form.Label',
     			            src: "img/label.JPG",
     			            cfg:{Text:'Label'}
+            			},
+            			{
+    			            name: 'File',
+    			            extClass: 'Ext.form.field.File',
+    			            src: "img/file.JPG",
+    			            cfg:{Label:'Upload file'}
+            			},
+            			{
+    			            name: 'Textarea',
+    			            extClass: 'Ext.form.field.TextArea',
+    			            src: "img/textarea.JPG",
+    			            cfg:{Label:'Text area'}
+            			},
+            			{
+    			            name: 'Timefield',
+    			            extClass: 'Ext.form.field.Time',
+    			            src: "img/timefield.JPG",
+    			            cfg:{Label:'Time'}
+            			},
+            			{
+    			            name: 'HTMLEditor',
+    			            extClass: 'Ext.form.field.HtmlEditor',
+    			            src: "img/htmleditor.JPG",
+    			            cfg:{Label:'Html editor'}
             			}
+            			
         				];         
 
         var controlsStore = Ext.create('Ext.data.Store', {
