@@ -153,7 +153,7 @@ Ext.define('FB.view.DesignControl', {
 			
 			var cbStore = Ext.create('Ext.data.Store', {
 			    fields: ['val', 'name'],
-			    data : FB.view.DesignControl.createValuesArray(this.oCfg.cfg.Values)
+			    data : []
 			});
 			
 			ctrCfg.store = cbStore,

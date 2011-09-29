@@ -18,7 +18,7 @@ Ext.define('FB.view.RightPanel', {
 	margins: '0 0 0 5',
 	layout: 'fit',
     alias: 'widget.RightPanel',
-    
+ 
     initComponent: function() {
     	
     	var validation = Ext.create('Ext.data.Store', {
@@ -43,6 +43,12 @@ Ext.define('FB.view.RightPanel', {
 											                        queryMode: 'local',
 											                        displayField: 'type',
 											                        valueField: 'type'
+											                    }),
+											                    Datasource: Ext.create('Ext.form.field.ComboBox', {                                         
+											                        store: datasource,
+											                        queryMode: 'local',
+											                        displayField: 'src',
+											                        valueField: 'src'
 											                    })
 												    	    },
 												    	    

@@ -27,8 +27,7 @@ Ext.define('FB.view.LeftPanel', {
 			            name: 'Textbox',
 			            extClass: 'Ext.form.field.Text',
 			            src: "img/textbox.JPG",
-			            cfg:{Label:'Textbox', "Allow blank" : true, Validation : ""
-			            	}
+			            cfg:{Label:'Textbox', "Allow blank" : true, Validation : "", LabelColor:""}
         				},
         				{
     			            name: 'Checkbox',
@@ -52,7 +51,7 @@ Ext.define('FB.view.LeftPanel', {
     			            name: 'Combobox',
     			            extClass: 'Ext.form.field.ComboBox',
     			            src: "img/combobox.JPG",
-    			            cfg:{Label:'Combobox', Values:"Option1,Option2"}
+    			            cfg:{Label:'Combobox', Datasource:''}
             			},
             			{
     			            name: 'Button',
