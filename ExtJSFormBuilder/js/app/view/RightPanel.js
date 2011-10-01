@@ -49,7 +49,10 @@ Ext.define('FB.view.RightPanel', {
 											                        queryMode: 'local',
 											                        displayField: 'src',
 											                        valueField: 'src'
-											                    })
+											                    }),
+											                    
+											                    LabelColor: Ext.create("Ext.form.field.ColorPicker",{height: 250})
+											                    
 												    	    },
 												    	    
 											                source: {
