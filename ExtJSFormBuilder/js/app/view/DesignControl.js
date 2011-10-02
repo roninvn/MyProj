@@ -5,8 +5,12 @@ Ext.define('FB.view.DesignControl', {
 		
 		updateControlProperties: function(control,cfg){
 			
-			if(cfg.Label)
-				control.getEl().down('label').update(cfg.Label);
+			if(cfg.Label){
+				if(control.designControl.oCfg.name === "Label")
+					control.getEl().update(cfg.Label);
+				else
+					control.getEl().down('label').update(cfg.Label);
+			}
 			
 			if(cfg.Text)
 				control.setText(cfg.Text);
@@ -43,6 +47,13 @@ Ext.define('FB.view.DesignControl', {
 			
 			if(cfg["Allow blank"])
 				control.allowBlank = cfg["Allow blank"];
+			
+			if(cfg["Label Color"]){
+				if(control.designControl.oCfg.name === "Label")
+					control.getEl().applyStyles({'color': "#" + cfg["Label Color"]});
+				else
+					control.getEl().down('label').applyStyles({'color': "#" + cfg["Label Color"]});
+			}
     		
 		},//end updateControlProperties
 		

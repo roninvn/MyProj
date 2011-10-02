@@ -27,67 +27,67 @@ Ext.define('FB.view.LeftPanel', {
 			            name: 'Textbox',
 			            extClass: 'Ext.form.field.Text',
 			            src: "img/textbox.JPG",
-			            cfg:{Label:'Textbox', "Allow blank" : true, Validation : "", LabelColor:""}
+			            cfg:{Label:'Textbox', "Allow blank" : true, Validation : "", "Label Color":""}
         				},
         				{
     			            name: 'Checkbox',
     			            extClass: 'Ext.form.field.Checkbox',
     			            src: "img/checkbox.JPG",
-    			            cfg:{Label:'Checkbox'}
+    			            cfg:{Label:'Checkbox', "Label Color":""}
             			},
             			{
     			            name: 'DateField',
     			            extClass: 'Ext.form.field.Date',
     			            src: "img/datefield.JPG",
-    			            cfg:{Label:'DateField', "Allow blank" : true}
+    			            cfg:{Label:'DateField', "Allow blank" : true, "Label Color":""}
             			},
             			{
     			            name: 'Radio',
     			            extClass: 'Ext.form.RadioGroup',
     			            src: "img/radio.JPG",
-    			            cfg:{Label:'Radio', Items:"Radio1,Radio2"}
+    			            cfg:{Label:'Radio', Items:"Radio1,Radio2", "Label Color":""}
             			},
             			{
     			            name: 'Combobox',
     			            extClass: 'Ext.form.field.ComboBox',
     			            src: "img/combobox.JPG",
-    			            cfg:{Label:'Combobox', Datasource:''}
+    			            cfg:{Label:'Combobox', Datasource:'', "Label Color":""}
             			},
             			{
     			            name: 'Button',
     			            extClass: 'Ext.button.Button',
     			            src: "img/button.JPG",
-    			            cfg:{Text:'Button'}
+    			            cfg:{Text:'Button', "Label Color":""}
             			},
             			{
     			            name: 'Label',
     			            extClass: 'Ext.form.Label',
     			            src: "img/label.JPG",
-    			            cfg:{Text:'Label'}
+    			            cfg:{Text:'Label', "Label Color":""}
             			},
             			{
     			            name: 'File',
     			            extClass: 'Ext.form.field.File',
     			            src: "img/file.JPG",
-    			            cfg:{Label:'Upload file'}
+    			            cfg:{Label:'Upload file', "Label Color":""}
             			},
             			{
     			            name: 'Textarea',
     			            extClass: 'Ext.form.field.TextArea',
     			            src: "img/textarea.JPG",
-    			            cfg:{Label:'Text area'}
+    			            cfg:{Label:'Text area', "Label Color":""}
             			},
             			{
     			            name: 'Timefield',
     			            extClass: 'Ext.form.field.Time',
     			            src: "img/timefield.JPG",
-    			            cfg:{Label:'Time'}
+    			            cfg:{Label:'Time', "Label Color":""}
             			},
             			{
     			            name: 'HTMLEditor',
     			            extClass: 'Ext.form.field.HtmlEditor',
     			            src: "img/htmleditor.JPG",
-    			            cfg:{Label:'Html editor'}
+    			            cfg:{Label:'Html editor', "Label Color":""}
             			}
             			
         				];         

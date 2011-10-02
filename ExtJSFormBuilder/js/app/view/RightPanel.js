@@ -51,7 +51,7 @@ Ext.define('FB.view.RightPanel', {
 											                        valueField: 'src'
 											                    }),
 											                    
-											                    LabelColor: Ext.create("Ext.form.field.ColorPicker",{height: 250})
+											                    "Label Color": Ext.create("Ext.form.field.ColorPicker",{height: 250})
 											                    
 												    	    },
 												    	    
