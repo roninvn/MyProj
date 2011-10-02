@@ -72,8 +72,7 @@ Ext.define('FB.view.DesignControl', {
 			for(var i=0; i<arr.length; i++){
 				var c = Ext.create("Ext.form.field.Radio",{boxLabel: arr[i], name: name, inputValue: arr[i] });
 				dt.push(c);
-			}
-				//dt.push({xtype: "radiofield", boxLabel: arr[i], name: name, inputValue: arr[i] });
+			}		
 			
 			return dt;
 		}
