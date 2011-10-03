@@ -27,31 +27,34 @@ Ext.define('FB.view.LeftPanel', {
 			            name: 'Textbox',
 			            extClass: 'Ext.form.field.Text',
 			            src: "img/textbox.JPG",
-			            cfg:{Label:'Textbox', "Allow blank" : true, Validation : "", "Label Color":"",Datasource:'', "Field Color":"", "Label Style":""}
+			            cfg:{Label:'Textbox', "Allow blank" : true, Validation : "", "Label Color":"",Datasource:'', "Field Color":"", 
+			            		"Label Style":"", "Field Style":""}
         				},
         				{
     			            name: 'Checkbox',
     			            extClass: 'Ext.form.field.Checkbox',
     			            src: "img/checkbox.JPG",
-    			            cfg:{Label:'Checkbox', "Label Color":"",Datasource:''}
+    			            cfg:{Label:'Checkbox', "Label Color":"",Datasource:'',"Label Style":""}
             			},
             			{
     			            name: 'DateField',
     			            extClass: 'Ext.form.field.Date',
     			            src: "img/datefield.JPG",
-    			            cfg:{Label:'DateField', "Allow blank" : true, "Label Color":"",Datasource:'',"Field Color":""}
+    			            cfg:{Label:'DateField', "Allow blank" : true, "Label Color":"",Datasource:'',"Field Color":""
+    			            		,"Label Style":"", "Field Style":""}
             			},
             			{
     			            name: 'Radio',
     			            extClass: 'Ext.form.RadioGroup',
     			            src: "img/radio.JPG",
-    			            cfg:{Label:'Radio', Items:"Radio1,Radio2", "Label Color":"",Datasource:''}
+    			            cfg:{Label:'Radio', Items:"Radio1,Radio2", "Label Color":"",Datasource:'',"Label Style":""}
             			},
             			{
     			            name: 'Combobox',
     			            extClass: 'Ext.form.field.ComboBox',
     			            src: "img/combobox.JPG",
-    			            cfg:{Label:'Combobox', Datasource:'', "Label Color":"",Datasource:'',"Field Color":""}
+    			            cfg:{Label:'Combobox', Datasource:'', "Label Color":"",Datasource:'',"Field Color":"",
+    			            		"Label Style":"", "Field Style":""}
             			},
             			{
     			            name: 'Button',
@@ -63,31 +66,31 @@ Ext.define('FB.view.LeftPanel', {
     			            name: 'Label',
     			            extClass: 'Ext.form.Label',
     			            src: "img/label.JPG",
-    			            cfg:{Text:'Label', "Label Color":"",Datasource:''}
+    			            cfg:{Text:'Label', "Label Color":"",Datasource:'',"Label Style":""}
             			},
             			{
     			            name: 'File',
     			            extClass: 'Ext.form.field.File',
     			            src: "img/file.JPG",
-    			            cfg:{Label:'Upload file', "Label Color":"",Datasource:'', "Field Color":""}
+    			            cfg:{Label:'Upload file', "Label Color":"",Datasource:'', "Field Color":"","Label Style":"", "Field Style":""}
             			},
             			{
     			            name: 'Textarea',
     			            extClass: 'Ext.form.field.TextArea',
     			            src: "img/textarea.JPG",
-    			            cfg:{Label:'Text area', "Label Color":"",Datasource:'', "Field Color":""}
+    			            cfg:{Label:'Text area', "Label Color":"",Datasource:'', "Field Color":"","Label Style":"","Field Style":""}
             			},
             			{
     			            name: 'Timefield',
     			            extClass: 'Ext.form.field.Time',
     			            src: "img/timefield.JPG",
-    			            cfg:{Label:'Time', "Label Color":"",Datasource:'', "Field Color":""}
+    			            cfg:{Label:'Time', "Label Color":"",Datasource:'', "Field Color":"","Label Style":"", "Field Style":""}
             			},
             			{
     			            name: 'HTMLEditor',
     			            extClass: 'Ext.form.field.HtmlEditor',
     			            src: "img/htmleditor.JPG",
-    			            cfg:{Label:'Html editor', "Label Color":""}
+    			            cfg:{Label:'Html editor', "Label Color":"","Label Style":""}
             			}
             			
         				];         

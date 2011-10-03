@@ -4,7 +4,6 @@ Ext.define('FB.view.DesignControl', {
 		uid: 0,
 		
 		updateControlProperties: function(control,cfg){
-			console.log(cfg);
 			if(cfg.Label){
 				if(control.designControl.oCfg.name === "Label")
 					control.getEl().update(cfg.Label);
@@ -57,6 +56,32 @@ Ext.define('FB.view.DesignControl', {
 			
 			if(cfg["Field Color"]){
 				control.setFieldStyle({'color': "#" + cfg["Field Color"]});
+			}
+			
+			//Label Style
+			
+			if(cfg["Label Style"]){
+				
+				var labelstyle = {};
+				labelstyle["font-style"] = cfg["Label Style"].indexOf("Italic") !==-1 ? "italic" : null;
+				labelstyle["font-weight"] = cfg["Label Style"].indexOf("Bold") !==-1 ? "bold" : null;
+				labelstyle["text-decoration"] = cfg["Label Style"].indexOf("Underline") !==-1 ? "underline" : null;
+				
+				if(control.designControl.oCfg.name === "Label")
+					control.getEl().applyStyles(labelstyle);
+				else
+					control.getEl().down('label').applyStyles(labelstyle);
+				
+			}
+			
+			if(cfg["Field Style"]){
+				
+				var fieldstyle = {};
+				fieldstyle["font-style"] = cfg["Field Style"].indexOf("Italic") !==-1 ? "italic" : null;
+				fieldstyle["font-weight"] = cfg["Field Style"].indexOf("Bold") !==-1 ? "bold" : null;
+				fieldstyle["text-decoration"] = cfg["Field Style"].indexOf("Underline") !==-1 ? "underline" : null;
+				
+				control.setFieldStyle(fieldstyle);
 			}
     		
 		},//end updateControlProperties
@@ -145,7 +170,10 @@ Ext.define('FB.view.DesignControl', {
 	    	            	pg.setSource(me.oCfg.cfg);
 	    	            	
 	    	            	pg.on("propertychange", function(obj,c,val){
-	    	            		me.oCfg.cfg[c] = val;
+	    	            		var v = val;
+	    	            		if(val.constructor == Array)
+	    	            			v = val.join();
+	    	            		me.oCfg.cfg[c] = v;
 	    	            		FB.view.DesignControl.updateControlProperties(me.ctr,me.oCfg.cfg);	            		
 	    	   
 	    	            	}); //end pg on

@@ -69,6 +69,14 @@ Ext.define('FB.view.RightPanel', {
 											                        displayField: 'style',
 											                        valueField: 'style',
 											                        multiSelect: true
+											                    }),
+											                    
+											                    "Field Style": Ext.create('Ext.form.field.ComboBox', {                                         
+											                        store: style,
+											                        queryMode: 'local',
+											                        displayField: 'style',
+											                        valueField: 'style',
+											                        multiSelect: true
 											                    })
 											                    
 												    	    },
