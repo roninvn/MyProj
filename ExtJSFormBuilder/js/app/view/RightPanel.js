@@ -31,6 +31,15 @@ Ext.define('FB.view.RightPanel', {
                 {"type":"Decimal"}
             ]
         });
+        
+        var style = Ext.create('Ext.data.Store', {
+            fields: ['style'],
+            data : [                
+                {"style":"Bold"},                
+                {"style":"Italic"},
+                {"style":"Underline"}
+            ]
+        });
 
     	
     	var pGrid = Ext.create('Ext.grid.property.Grid', {
@@ -51,7 +60,16 @@ Ext.define('FB.view.RightPanel', {
 											                        valueField: 'src'
 											                    }),
 											                    
-											                    "Label Color": Ext.create("Ext.form.field.ColorPicker",{height: 250})
+											                    "Label Color": Ext.create("Ext.form.field.ColorPicker",{height: 250}),
+											                    "Field Color": Ext.create("Ext.form.field.ColorPicker",{height: 250}),
+											                    
+											                    "Label Style": Ext.create('Ext.form.field.ComboBox', {                                         
+											                        store: style,
+											                        queryMode: 'local',
+											                        displayField: 'style',
+											                        valueField: 'style',
+											                        multiSelect: true
+											                    })
 											                    
 												    	    },
 												    	    

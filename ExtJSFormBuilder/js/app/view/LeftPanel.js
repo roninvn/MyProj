@@ -27,61 +27,61 @@ Ext.define('FB.view.LeftPanel', {
 			            name: 'Textbox',
 			            extClass: 'Ext.form.field.Text',
 			            src: "img/textbox.JPG",
-			            cfg:{Label:'Textbox', "Allow blank" : true, Validation : "", "Label Color":""}
+			            cfg:{Label:'Textbox', "Allow blank" : true, Validation : "", "Label Color":"",Datasource:'', "Field Color":"", "Label Style":""}
         				},
         				{
     			            name: 'Checkbox',
     			            extClass: 'Ext.form.field.Checkbox',
     			            src: "img/checkbox.JPG",
-    			            cfg:{Label:'Checkbox', "Label Color":""}
+    			            cfg:{Label:'Checkbox', "Label Color":"",Datasource:''}
             			},
             			{
     			            name: 'DateField',
     			            extClass: 'Ext.form.field.Date',
     			            src: "img/datefield.JPG",
-    			            cfg:{Label:'DateField', "Allow blank" : true, "Label Color":""}
+    			            cfg:{Label:'DateField', "Allow blank" : true, "Label Color":"",Datasource:'',"Field Color":""}
             			},
             			{
     			            name: 'Radio',
     			            extClass: 'Ext.form.RadioGroup',
     			            src: "img/radio.JPG",
-    			            cfg:{Label:'Radio', Items:"Radio1,Radio2", "Label Color":""}
+    			            cfg:{Label:'Radio', Items:"Radio1,Radio2", "Label Color":"",Datasource:''}
             			},
             			{
     			            name: 'Combobox',
     			            extClass: 'Ext.form.field.ComboBox',
     			            src: "img/combobox.JPG",
-    			            cfg:{Label:'Combobox', Datasource:'', "Label Color":""}
+    			            cfg:{Label:'Combobox', Datasource:'', "Label Color":"",Datasource:'',"Field Color":""}
             			},
             			{
     			            name: 'Button',
     			            extClass: 'Ext.button.Button',
     			            src: "img/button.JPG",
-    			            cfg:{Text:'Button', "Label Color":""}
+    			            cfg:{Text:'Button', Datasource:''}
             			},
             			{
     			            name: 'Label',
     			            extClass: 'Ext.form.Label',
     			            src: "img/label.JPG",
-    			            cfg:{Text:'Label', "Label Color":""}
+    			            cfg:{Text:'Label', "Label Color":"",Datasource:''}
             			},
             			{
     			            name: 'File',
     			            extClass: 'Ext.form.field.File',
     			            src: "img/file.JPG",
-    			            cfg:{Label:'Upload file', "Label Color":""}
+    			            cfg:{Label:'Upload file', "Label Color":"",Datasource:'', "Field Color":""}
             			},
             			{
     			            name: 'Textarea',
     			            extClass: 'Ext.form.field.TextArea',
     			            src: "img/textarea.JPG",
-    			            cfg:{Label:'Text area', "Label Color":""}
+    			            cfg:{Label:'Text area', "Label Color":"",Datasource:'', "Field Color":""}
             			},
             			{
     			            name: 'Timefield',
     			            extClass: 'Ext.form.field.Time',
     			            src: "img/timefield.JPG",
-    			            cfg:{Label:'Time', "Label Color":""}
+    			            cfg:{Label:'Time', "Label Color":"",Datasource:'', "Field Color":""}
             			},
             			{
     			            name: 'HTMLEditor',

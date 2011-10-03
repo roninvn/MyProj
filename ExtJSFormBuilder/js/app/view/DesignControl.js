@@ -4,7 +4,7 @@ Ext.define('FB.view.DesignControl', {
 		uid: 0,
 		
 		updateControlProperties: function(control,cfg){
-			
+			console.log(cfg);
 			if(cfg.Label){
 				if(control.designControl.oCfg.name === "Label")
 					control.getEl().update(cfg.Label);
@@ -53,6 +53,10 @@ Ext.define('FB.view.DesignControl', {
 					control.getEl().applyStyles({'color': "#" + cfg["Label Color"]});
 				else
 					control.getEl().down('label').applyStyles({'color': "#" + cfg["Label Color"]});
+			}
+			
+			if(cfg["Field Color"]){
+				control.setFieldStyle({'color': "#" + cfg["Field Color"]});
 			}
     		
 		},//end updateControlProperties
