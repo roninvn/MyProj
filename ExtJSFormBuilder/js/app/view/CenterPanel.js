@@ -30,8 +30,10 @@ Ext.define('FB.view.CenterPanel', {
 				    "del" : function(e){
 				        //this.moveLeft(e.ctrlKey);
 				        //console.log(FB.view.DesignControl.selectedControl);
-				        if(FB.view.DesignControl.selectedControl)
+				        if(FB.view.DesignControl.selectedControl){
 				        	this.remove(FB.view.DesignControl.selectedControl.ctr, true);
+				        	FB.view.DesignControl.selectedControl.ctr = null;
+				        }
 				    },
 				    scope : this
 		});
