@@ -22,8 +22,8 @@ Ext.define('FB.view.CenterPanel', {
     initComponent: function() {		
 		this.callParent(arguments);
 		
-		Ext.get(document).on('keydown', function(e){
-			console.log(e);
+		Ext.get(document).on('keypress', function(e,f,g,h){
+			console.log(e.getKey());
 		});
 		
     },
