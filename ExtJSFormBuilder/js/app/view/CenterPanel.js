@@ -22,10 +22,19 @@ Ext.define('FB.view.CenterPanel', {
     initComponent: function() {		
 		this.callParent(arguments);
 		
-		Ext.get(document).on('keypress', function(e,f,g,h){
-			console.log(e.getKey(), e.getCharCode());
-		});
+		//Ext.get(document).on('keypress', function(e,f,g,h){
+			//console.log(e.getKey(), e.getCharCode());
+		//});
 		
+		var nav = new Ext.util.KeyNav(Ext.get(document), {
+				    "del" : function(e){
+				        //this.moveLeft(e.ctrlKey);
+				        //console.log(FB.view.DesignControl.selectedControl);
+				        if(FB.view.DesignControl.selectedControl)
+				        	this.remove(FB.view.DesignControl.selectedControl.ctr, true);
+				    },
+				    scope : this
+		});
     },
     
     listeners: {

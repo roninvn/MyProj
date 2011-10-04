@@ -2,7 +2,7 @@ Ext.define('FB.view.DesignControl', {
 	
 	statics:{
 		uid: 0,
-		
+		selectedControl: null,
 		updateControlProperties: function(control,cfg){
 			if(cfg.Label){
 				if(control.designControl.oCfg.name === "Label")
@@ -146,7 +146,7 @@ Ext.define('FB.view.DesignControl', {
 	            								};	            		
 	            		
 	            		c.getEl().on("click", function(e){
-	            			
+	            			FB.view.DesignControl.selectedControl = me;
 	            			var items = Ext.getCmp('centerpanel').items;	                    	
 	                    	items.each(function(itm, i, l){
 	                    		
