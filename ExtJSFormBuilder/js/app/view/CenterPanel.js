@@ -23,7 +23,7 @@ Ext.define('FB.view.CenterPanel', {
 		this.callParent(arguments);
 		
 		Ext.get(document).on('keypress', function(e,f,g,h){
-			console.log(e.getKey());
+			console.log(e.getKey(), e.getCharCode());
 		});
 		
     },
