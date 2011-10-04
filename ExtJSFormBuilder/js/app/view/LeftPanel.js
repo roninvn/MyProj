@@ -60,7 +60,7 @@ Ext.define('FB.view.LeftPanel', {
     			            name: 'Button',
     			            extClass: 'Ext.button.Button',
     			            src: "img/button.JPG",
-    			            cfg:{Text:'Button', Datasource:''}
+    			            cfg:{Text:'Button', Datasource:'', Action: ''}
             			},
             			{
     			            name: 'Label',

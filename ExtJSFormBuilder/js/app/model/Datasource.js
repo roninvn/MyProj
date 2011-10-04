@@ -6,3 +6,12 @@ var datasource = Ext.create('Ext.data.Store', {
                 {"src":"Source 3"}
             ]
         });
+        
+var buttonActions =  Ext.create('Ext.data.Store', {
+            fields: ['act'],
+            data : [                
+                {"act":"Action 1"},                
+                {"act":"Action 2"},
+                {"act":"Action 3"}
+            ]
+        });
