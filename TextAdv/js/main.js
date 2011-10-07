@@ -7,7 +7,7 @@ x$(window).on('load', onWindowLoad);
  * start
  */
 function onWindowLoad(){
-	loadpage();
+	//loadpage();
 }
 
 function loadpage(newpage){
@@ -50,6 +50,18 @@ function buildLink(){
 		var l = p.links[i];
 		x$('#links').bottom("<a href='#' onclick='loadpage(" + l.page + ");'>" + l.text + "</a><br />");
 	}	
+}
+
+
+function showMenu(){
+	x$('#splash').setStyle('visibility', 'hidden');
+	x$('#menu').setStyle('visibility', 'visible');
+}
+
+function startGame(){
+	x$('#menu').setStyle('visibility', 'hidden');
+	x$('#wrap').setStyle('visibility', 'visible');
+	loadpage(0);
 }
 
 
