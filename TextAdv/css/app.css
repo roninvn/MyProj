@@ -1,0 +1,13 @@
+body{
+	font-family: "Comic Sans MS"
+}
+
+#content{
+	position: relative;
+	left: 5%;
+}
+
+#links a{
+	position: relative;
+	left: 10%;
+}
