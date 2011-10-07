@@ -32,9 +32,13 @@
     <script type="text/javascript" src="js/lib/monocle/flippers/instant.js"></script>
     <script type="text/javascript" src="js/lib/monocle/dimensions/vert.js"></script>
     <script type="text/javascript" src="js/lib/monocle/flippers/legacy.js"></script>
+    
+    
+    <script type="text/javascript" src="js/bookmark.js"></script>
 
     <link rel="stylesheet" type="text/css" href="css/monocore.css" />
     <link rel="stylesheet" type="text/css" href="css/tests.css" />
+    <link rel="stylesheet" type="text/css" href="css/app.css" />
 
     <style type="text/css">
       #rabbit {
@@ -53,7 +57,11 @@
       Monocle.Events.listen(
         window,
         'load',
-        function () { window.reader = Monocle.Reader('rabbit'); }
+        function () { 
+        	window.reader = Monocle.Reader('rabbit');
+        	var bookmark=new Monocle.Controls.Bookmark(window.reader,'page')
+        	window.reader.addControl(bookmark);
+        }
       );
     </script>
 
