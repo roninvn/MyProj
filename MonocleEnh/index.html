@@ -8,6 +8,8 @@
       content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
     />
     <title>The Velveteen Rabbit - Monocle</title>
+    
+    <script type="text/javascript" src="js/lib/jquery.min.js"></script>
 
     <!-- MONOCLE CORE -->
     <script type="text/javascript" src="js/lib/monocle/core/monocle.js"></script>
@@ -35,45 +37,19 @@
     
     
     <script type="text/javascript" src="js/bookmark.js"></script>
+    <script type="text/javascript" src="js/book.js"></script>
 
     <link rel="stylesheet" type="text/css" href="css/monocore.css" />
     <link rel="stylesheet" type="text/css" href="css/tests.css" />
     <link rel="stylesheet" type="text/css" href="css/app.css" />
+    <link rel="stylesheet" type="text/css" href="css/book.css" />
 
-    <style type="text/css">
-      #rabbit {
-        width: 300px;
-        height: 420px;
-        border: 1px solid #000;
-        background-color: #CCC;
-        overflow: hidden;
-      }
-    </style>
-
-    <script type="text/javascript">
-      Monocle.DEBUG = true;
-
-      // Initialize the reader element.
-      Monocle.Events.listen(
-        window,
-        'load',
-        function () { 
-        	window.reader = Monocle.Reader('rabbit');
-        	var bookmark=new Monocle.Controls.Bookmark(window.reader,'page')
-        	window.reader.addControl(bookmark);
-        }
-      );
-    </script>
 
   </head>
 
-  <body class="narrow">
-    <a href="../../index.html" class="backToGuide">&larr; Back to Guide</a>
-    <h1>The Velveteen Rabbit</h1>
-    <p>An example of the very simplest implementation of Monocle.</p>
-
-    <div id="rabbit">
-
+  <body class="narrow">    
+    <div id="bookmarks" ></div>
+    <div id="book">
       <style>
       p {
         line-height: 130%;

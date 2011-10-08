@@ -1,0 +1,24 @@
+#book {
+	position: absolute;
+	width: 70%;
+	height: 80%;
+	top: 3%;
+	left: 15%;
+	background-color: #CCC;
+	overflow: hidden;
+}
+
+
+#bookmarks {
+	position: absolute;
+	width: 70%;
+	height: 15%;
+	bottom: 0;
+	left: 15%;
+	background-color: #CCC;
+	overflow: auto;
+}
+
+#bookmarks a{
+	padding-left: 10px;
+}

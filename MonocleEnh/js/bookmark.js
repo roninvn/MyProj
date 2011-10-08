@@ -12,26 +12,27 @@ Monocle.Controls.Bookmark = function(reader) {
 		Monocle.Events.listenForTap(props.bookmarkButton, bookmarkToggle);
 		setClass();
 		props.reader.listen("monocle:turn", setClass);
-		return props.bookmarkButton
+		return props.bookmarkButton;
 	}
-	function bookmarkToggle() {
-		console.log('sasa');
+	function bookmarkToggle() {		
 		if (props.bookmarkButton.dom.hasClass(c.ACTIVE_CLASS)) {
 			props.bookmarkButton.dom.removeClass(c.ACTIVE_CLASS);
 			props.reader.dispatchEvent("bookish:unbookmark")
 		} else {
 			props.bookmarkButton.dom.addClass(c.ACTIVE_CLASS);
-			props.reader.dispatchEvent("bookish:setClass")
+			props.reader.dispatchEvent("bookish:bookmark");
 		}
 	}
 	function setClass(h) {
-		/*if (props.history.bookmarkForPlace(props.reader.getPlace())) {
-			props.bookmarkButton.dom.addClass(c.ACTIVE_CLASS)
-		} else {
-			props.bookmarkButton.dom.removeClass(c.ACTIVE_CLASS)
-		}*/
-		props.bookmarkButton.dom.removeClass(c.ACTIVE_CLASS)
+		
+		var page = props.reader.getPlace().getLocus().page;
+		
+		if(window.Bookmarks.isValueExisted(page))
+			props.bookmarkButton.dom.addClass(c.ACTIVE_CLASS);
+		else
+			props.bookmarkButton.dom.removeClass(c.ACTIVE_CLASS);
 	}
+	
 	API.createControlElements = createControlElements;
 	API.bookmarkToggle = bookmarkToggle;
 	return API;
