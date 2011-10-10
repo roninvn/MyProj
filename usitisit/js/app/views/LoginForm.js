@@ -38,8 +38,7 @@ USitISit.views.LoginForm = Ext.extend(Ext.form.FormPanel, {
     	}],
     
     initComponent: function() {
-    	USitISit.views.InvitationForm.superclass.initComponent.apply(this, arguments);
-    	this.doLayout();
+    	USitISit.views.LoginForm.superclass.initComponent.apply(this, arguments);    	
    }
 });
 

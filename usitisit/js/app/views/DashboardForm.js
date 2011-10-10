@@ -46,10 +46,16 @@ USitISit.views.DashboardForm = Ext.extend(Ext.form.FormPanel, {
     	},
     	items:[{
     		xtype:"button",
-    		text: "Reques A Sitter"
+    		text: "Reques A Sitter",
+    		handler: function(){
+    			USitISit.viewport.setActiveItem(USitISit.views.ReqSitterForm);
+    		}
     	},{
     		xtype:"button",
-    		text: "Friends' Requests"
+    		text: "Friends' Requests",
+    		handler: function(){
+    			USitISit.viewport.setActiveItem(USitISit.views.FriendReqForm);
+    		}
     	}]
     },{
     	xtype:"panel",
@@ -60,7 +66,10 @@ USitISit.views.DashboardForm = Ext.extend(Ext.form.FormPanel, {
     	},
     	items:[{
     		xtype:"button",
-    		text: "Sit Schedule"
+    		text: "Sit Schedule",
+    		handler: function(){
+    			USitISit.viewport.setActiveItem(USitISit.views.SitScheduleForm);
+    		}
     	},{
     		xtype:"button",
     		text: "My Circle"
@@ -68,8 +77,7 @@ USitISit.views.DashboardForm = Ext.extend(Ext.form.FormPanel, {
     }],
     
     initComponent: function() {
-    	USitISit.views.InvitationForm.superclass.initComponent.apply(this, arguments);
-    	this.doLayout();
+    	USitISit.views.DashboardForm.superclass.initComponent.apply(this, arguments);    	
    }
 });
 

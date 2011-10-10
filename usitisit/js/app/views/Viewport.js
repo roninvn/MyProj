@@ -13,7 +13,10 @@ USitISit.views.Viewport = Ext.extend(Ext.Panel, {
         		InvitationForm: new USitISit.views.InvitationForm(),
         		AddFriendsForm: new USitISit.views.AddFriendsForm(),
         		LoginForm: new USitISit.views.LoginForm(),
-        		DashboardForm: new USitISit.views.DashboardForm()
+        		DashboardForm: new USitISit.views.DashboardForm(),
+        		ReqSitterForm: new USitISit.views.ReqSitterForm(),
+        		FriendReqForm: new USitISit.views.FriendReqForm(),
+        		SitScheduleForm: new USitISit.views.SitScheduleForm()
         		
         });
         //put instances of cards into viewport
@@ -24,7 +27,10 @@ USitISit.views.Viewport = Ext.extend(Ext.Panel, {
                USitISit.views.SpouseInfoForm,
                USitISit.views.InvitationForm,
                USitISit.views.AddFriendsForm,
-               USitISit.views.DashboardForm
+               USitISit.views.DashboardForm,
+               USitISit.views.ReqSitterForm,
+               USitISit.views.FriendReqForm,
+               USitISit.views.SitScheduleForm
                
             ]
         });
