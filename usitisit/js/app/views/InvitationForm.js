@@ -25,8 +25,7 @@ USitISit.views.InvitationForm = Ext.extend(Ext.form.FormPanel, {
 			                id: 'btnLogin',
 			                style: 'margin:2%;text-align:center',
 			                html:'ACCEPT<br /> Select below and click here to join each other\'s sitter circle',
-			                handler: function() {
-				                    
+			                handler: function() {				                    
 				           }
 			            },
 			            {
@@ -69,16 +68,26 @@ USitISit.views.InvitationForm = Ext.extend(Ext.form.FormPanel, {
             xtype: 'toolbar',
             dock: 'bottom',
             items: [
-                {
-                    text: 'DONE',
-                    ui: 'round',
-                  //  ui: 'confirm',
-                    handler: function() {
-                       USitISit.viewport.setActiveItem(
-							USitISit.views.RegistrationForm
-						);
-                    }
-                }
+	                {
+	                    text: 'DONE',
+	                    ui: 'round',
+	                  //  ui: 'confirm',
+	                    handler: function() {
+	                       USitISit.viewport.setActiveItem(
+								USitISit.views.RegistrationForm
+							);
+	                    }
+	                },
+	                {
+	                    text: 'Add friends',
+	                    ui: 'round',
+	                  //  ui: 'confirm',
+	                    handler: function() {
+	                       USitISit.viewport.setActiveItem(
+								USitISit.views.AddFriendsForm
+							);
+	                    }
+	                }
             ]
         }
     ],
