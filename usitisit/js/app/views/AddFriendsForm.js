@@ -100,9 +100,7 @@ USitISit.views.AddFriendsForm = Ext.extend(Ext.form.FormPanel, {
 	                    ui: 'round',
 	                  //  ui: 'confirm',
 	                    handler: function() {
-	                       USitISit.viewport.setActiveItem(
-								USitISit.views.LoginForm
-							);
+	                       USitISit.viewport.setActiveItem(USitISit.views.LoginForm);
 	                    }
 	                }
             ]

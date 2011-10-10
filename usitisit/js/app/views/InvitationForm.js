@@ -69,22 +69,12 @@ USitISit.views.InvitationForm = Ext.extend(Ext.form.FormPanel, {
             dock: 'bottom',
             items: [
 	                {
-	                    text: 'DONE',
+	                	text: 'DONE',
 	                    ui: 'round',
 	                  //  ui: 'confirm',
 	                    handler: function() {
 	                       USitISit.viewport.setActiveItem(
 								USitISit.views.RegistrationForm
-							);
-	                    }
-	                },
-	                {
-	                    text: 'Add friends',
-	                    ui: 'round',
-	                  //  ui: 'confirm',
-	                    handler: function() {
-	                       USitISit.viewport.setActiveItem(
-								USitISit.views.AddFriendsForm
 							);
 	                    }
 	                }

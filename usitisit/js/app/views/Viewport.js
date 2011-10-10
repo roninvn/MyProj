@@ -12,17 +12,20 @@ USitISit.views.Viewport = Ext.extend(Ext.Panel, {
         		SpouseInfoForm: new USitISit.views.SpouseInfoForm(),
         		InvitationForm: new USitISit.views.InvitationForm(),
         		AddFriendsForm: new USitISit.views.AddFriendsForm(),
-        		LoginForm: new USitISit.views.LoginForm()
+        		LoginForm: new USitISit.views.LoginForm(),
+        		DashboardForm: new USitISit.views.DashboardForm()
         		
         });
         //put instances of cards into viewport
         Ext.apply(this, {
             items: [
+               USitISit.views.LoginForm,
                USitISit.views.RegistrationForm,
                USitISit.views.SpouseInfoForm,
                USitISit.views.InvitationForm,
                USitISit.views.AddFriendsForm,
-               USitISit.views.LoginForm
+               USitISit.views.DashboardForm
+               
             ]
         });
         USitISit.views.Viewport.superclass.initComponent.apply(this, arguments);

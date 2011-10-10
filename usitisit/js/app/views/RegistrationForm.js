@@ -139,7 +139,7 @@ USitISit.views.RegistrationForm = Ext.extend(Ext.form.FormPanel, {
             items: [
                
                 {
-                    text: 'ENTER SPOUSE\'s INFO',
+                    text: 'ENTER SPOUSE\'S INFO',
                     ui: 'round',
                     handler: function() {
                     	console.log('aaaaaaaaa');
@@ -152,10 +152,7 @@ USitISit.views.RegistrationForm = Ext.extend(Ext.form.FormPanel, {
                 {
                     text: 'DONE',
                     ui: 'round',
-                    handler: function() {
-                       USitISit.viewport.setActiveItem(
-							USitISit.views.InvitationForm
-						);
+                    handler: function() {                       
                     }
                 }
             ]
