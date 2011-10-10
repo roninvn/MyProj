@@ -16,6 +16,7 @@ Array.prototype.isValueExisted = function(val) {
 	return false;
 };
 
+BookMarkKey = "nam.com.monocleenh.bookmark";
 //locus that bookmarked
 Bookmarks = [];
 
@@ -23,7 +24,9 @@ Bookmarks = [];
 Monocle.Events.listen(
     window,
     'load',
-    function () { 
+    function () {
+    	loadBookmarks();
+    	updateBookmarkLink();
 		window.reader = Monocle.Reader('book', null, null, function(){
 	        	var bookmark=new Monocle.Controls.Bookmark(window.reader)
 	        	window.reader.addControl(bookmark);	        	
@@ -33,11 +36,13 @@ Monocle.Events.listen(
 		Monocle.Events.listen(window.reader.dom.find('box'), "bookish:unbookmark", function(){
 			Bookmarks.removeByValue(window.reader.getPlace().getLocus().page);
 			updateBookmarkLink();
+			saveBookmarks();
 		});
 		
 		Monocle.Events.listen(window.reader.dom.find('box'), "bookish:bookmark", function(){
 			Bookmarks.push(window.reader.getPlace().getLocus().page);
 			updateBookmarkLink();
+			saveBookmarks();
 		});
 	
     }
@@ -51,4 +56,19 @@ function updateBookmarkLink(){
 			window.reader.moveTo({page: $(this).data('page')});
 		});
 	}
+}
+
+function saveBookmarks(){
+	window.localStorage.setItem(BookMarkKey, Bookmarks.join());
+}
+
+function loadBookmarks(){
+	var v = window.localStorage.getItem(BookMarkKey);
+	if(v)
+		Bookmarks = v.split(',');
+	else
+		Bookmarks =[];
+	
+	for(var i=0; i<Bookmarks.length; i++)
+		Bookmarks[i] = parseInt(Bookmarks[i]);
 }
