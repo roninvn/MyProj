@@ -44,6 +44,12 @@ Monocle.Events.listen(
 			updateBookmarkLink();
 			saveBookmarks();
 		});
+		
+		$("#selFontSize").change(function(){
+			var sz = $("#selFontSize option:selected").val();
+			$("#book").css("font-size", sz+"% !important");
+			window.reader.resized();
+		});
 	
     }
 );
