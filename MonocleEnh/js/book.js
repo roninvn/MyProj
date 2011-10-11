@@ -19,7 +19,7 @@ Array.prototype.isValueExisted = function(val) {
 BookMarkKey = "nam.com.monocleenh.bookmark";
 //locus that bookmarked
 Bookmarks = [];
-
+styleIndex = -1;
   // Initialize the reader element.
 Monocle.Events.listen(
     window,
@@ -47,8 +47,13 @@ Monocle.Events.listen(
 		
 		$("#selFontSize").change(function(){
 			var sz = $("#selFontSize option:selected").val();
-			$("#book").css("font-size", sz+"% !important");
-			window.reader.resized();
+			if(styleIndex ==-1){
+				styleIndex = reader.addPageStyles("body{font-size: " + sz + "% !important}");
+			}
+			else{
+				reader.updatePageStyles(styleIndex, "body{font-size: " + sz + "% !important}");
+			}
+				
 		});
 	
     }
