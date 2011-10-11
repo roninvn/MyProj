@@ -5,7 +5,6 @@ Ext.define('Ext.form.field.VertLine', {
     requires: ['Ext.XTemplate'],
     
     fieldSubTpl: [
-        //'<img src="img/spacer.gif" style="width:100%;height:100%;">',
         '<div style="width:100%;height:100%;background-color: black" class="xtraLine"></div>',
         {
             disableFormats: true,
@@ -21,7 +20,6 @@ Ext.define('Ext.form.field.VertLine', {
     },
     
     setColor: function(color){
-    	//console.log(this, color);
     	this.getEl().down(".xtraLine").applyStyles({"background-color": "#" + color});
     },
 

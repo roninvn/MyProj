@@ -1,9 +1,9 @@
 #book {
 	position: absolute;
-	width: 70%;
+	width: 100%;
 	height: 80%;
 	top: 15%;
-	left: 15%;
+	left: 0;
 	background-color: #CCC;
 	overflow: hidden;
 }
@@ -11,10 +11,10 @@
 
 #bookmarks {
 	position: absolute;
-	width: 70%;
+	width: 100%;
 	height: 15%;
 	top: 0;
-	left: 15%;
+	left: 0;
 	background-color: #CCC;
 	overflow: auto;
 }
