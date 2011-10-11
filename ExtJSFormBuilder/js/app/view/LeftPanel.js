@@ -91,6 +91,12 @@ Ext.define('FB.view.LeftPanel', {
     			            extClass: 'Ext.form.field.HtmlEditor',
     			            src: "img/htmleditor.JPG",
     			            cfg:{Label:'Html editor', "Label Color":"","Label Style":""}
+            			},
+            			{
+    			            name: 'Vertical Line',
+    			            extClass: 'Ext.form.Panel',
+    			            src: "img/htmleditor.JPG",
+    			            cfg:{}
             			}
             			
         				];         

@@ -208,9 +208,11 @@ Ext.define('FB.view.DesignControl', {
 		
 		if(this.oCfg.extClass == "Ext.form.RadioGroup"){
 			ctrCfg.items = FB.view.DesignControl.createItemsArray(this.oCfg.cfg.Items, ctrCfg.id);
-			//ctrCfg.columns = 1;
 			ctrCfg.layout= "vbox";
-			//ctrCfg.defaultType = "radiofield";
+		}
+		else if(this.oCfg.name == "Vertical Line"){
+			//ctrCfg.src ="img/spacer.gif";
+			//ctrCfg.renderTo= Ext.getBody();
 		}
 		
 		if(this.oCfg.cfg.Label){
