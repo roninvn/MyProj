@@ -5,7 +5,8 @@ Ext.define('Ext.form.field.VertLine', {
     requires: ['Ext.XTemplate'],
     
     fieldSubTpl: [
-        '<img src="img/spacer.gif">',
+        //'<img src="img/spacer.gif" style="width:100%;height:100%;">',
+        '<div style="width:100%;height:100%;background-color: black" class="xtraLine"></div>',
         {
             disableFormats: true,
             compiled: true
@@ -14,8 +15,14 @@ Ext.define('Ext.form.field.VertLine', {
 
 
     initComponent: function(){
+    	this.minWidth = 2;
+    	this.minHeight = 2;
         this.callParent(arguments);
-        this.getManager().add(this);
+    },
+    
+    setColor: function(color){
+    	//console.log(this, color);
+    	this.getEl().down(".xtraLine").applyStyles({"background-color": "#" + color});
     },
 
     initValue: function() {

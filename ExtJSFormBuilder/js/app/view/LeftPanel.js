@@ -94,9 +94,9 @@ Ext.define('FB.view.LeftPanel', {
             			},
             			{
     			            name: 'Vertical Line',
-    			            extClass: 'Ext.form.Panel',
+    			            extClass: 'Ext.form.field.VertLine',
     			            src: "img/htmleditor.JPG",
-    			            cfg:{}
+    			            cfg:{"Line Color":"", size:{width:2, height:50}}
             			}
             			
         				];         

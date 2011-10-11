@@ -83,6 +83,10 @@ Ext.define('FB.view.DesignControl', {
 				
 				control.setFieldStyle(fieldstyle);
 			}
+			
+			if(cfg["Line Color"]){
+				control.setColor(cfg["Line Color"]);
+			}
     		
 		},//end updateControlProperties
 		
@@ -210,10 +214,14 @@ Ext.define('FB.view.DesignControl', {
 			ctrCfg.items = FB.view.DesignControl.createItemsArray(this.oCfg.cfg.Items, ctrCfg.id);
 			ctrCfg.layout= "vbox";
 		}
-		else if(this.oCfg.name == "Vertical Line"){
-			//ctrCfg.src ="img/spacer.gif";
-			//ctrCfg.renderTo= Ext.getBody();
+		
+		if(this.oCfg.cfg.size){
+			if(this.oCfg.cfg.size.width)
+				ctrCfg.width = this.oCfg.cfg.size.width;
+			if(this.oCfg.cfg.size.height)
+				ctrCfg.height = this.oCfg.cfg.size.height;
 		}
+
 		
 		if(this.oCfg.cfg.Label){
 			ctrCfg.fieldLabel = this.oCfg.cfg.Label;
@@ -229,6 +237,7 @@ Ext.define('FB.view.DesignControl', {
     	FB.view.DesignControl.uid++;
     	
     	this.ctr.setPosition(this.oCfg.x,this.oCfg.y);
+    	
     	
     	/*Ext.util.Observable.capture(this.ctr, function(a,b,c){
 																console.log(a,b,c);	

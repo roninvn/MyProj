@@ -62,6 +62,7 @@ Ext.define('FB.view.RightPanel', {
 											                    
 											                    "Label Color": Ext.create("Ext.form.field.ColorPicker",{height: 250}),
 											                    "Field Color": Ext.create("Ext.form.field.ColorPicker",{height: 250}),
+											                    "Line Color": Ext.create("Ext.form.field.ColorPicker",{height: 250}),
 											                    
 											                    "Label Style": Ext.create('Ext.form.field.ComboBox', {                                         
 											                        store: style,
