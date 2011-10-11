@@ -48,7 +48,7 @@ Ext.define('FB.view.CenterPanel', {
                 },
 
                 onNodeDrop : function(target, dd, e, data){
-                	//console.log(e, grid,e.getX()-grid.el.getX());
+
                 	var x = e.getX()-grid.el.getX(),
                 		y=e.getY()-grid.el.getY();
                 	
