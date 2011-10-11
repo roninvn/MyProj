@@ -2,7 +2,7 @@
 	position: absolute;
 	width: 70%;
 	height: 80%;
-	top: 3%;
+	top: 15%;
 	left: 15%;
 	background-color: #CCC;
 	overflow: hidden;
@@ -13,7 +13,7 @@
 	position: absolute;
 	width: 70%;
 	height: 15%;
-	bottom: 0;
+	top: 0;
 	left: 15%;
 	background-color: #CCC;
 	overflow: auto;
