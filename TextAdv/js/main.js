@@ -29,7 +29,7 @@ function loadpage(newpage){
 	}
 	
 	x$('#content').inner("");	
-	x$('#links').inner("");	
+	//x$('#links').inner("");	
 	
 	captionLength = 0;
 	
@@ -56,7 +56,7 @@ function buildLink(){
 	
 	for(var i=0; i<p.links.length; i++){
 		var l = p.links[i];
-		x$('#links').bottom("<a href='#' onclick='loadpage(" + l.page + ");'>" + l.text + "</a><br />");
+		x$('#content').bottom("<p><button onclick='loadpage(" + l.page + ");'>" + l.text + "</button></p>");
 	}	
 }
 

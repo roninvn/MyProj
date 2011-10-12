@@ -1,6 +1,7 @@
 body{
 	font-family: "Comic Sans MS"
 }
+
 a{text-decoration : none}
 a:link {color: #ff0000}
 a:visited {color: #ff0000}
@@ -43,17 +44,13 @@ a:hover {color: #ff0000}
 }
 
 #content{
+	position: absolute;
 	width: 100%;
-	top : 0;
+	top : 10%;
+	left: 0;
 	display: inline-block;
 	text-align: center;
 }
-#links{	
-	width: 100%;
-	display: inline-block;
-	text-align: center;
-}
-
 
 #btnSave{
 	position: absolute;
