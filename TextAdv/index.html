@@ -27,15 +27,16 @@
 <body>
 <img id = "splash" src="img/face.jpg" onclick="showMenu();">
 <div id="menu">
-	<a href="#" onclick = "resumeGame();">Resume Saved Game</a><br />
+	<a href="#" onclick = "loadGame();" id="resumeGame">Resume Saved Game</a><br />
 	<a href="#" onclick = "startGame();">Start Game</a><br />
 	<a href="#">Options</a><br />
 	<a href="#">Instructions</a><br />
-	<a href="#">Exit</a>
+	<a href="#" onclick = "exitGame();">Exit</a>
 </div>
 <div id="wrap">
 	<div id="content"></div>
 	<div id="links"></div>
+	<button id="btnSave" onclick="saveGame();">Save and Exit</button>
 </div>
 </body>
 </html>
