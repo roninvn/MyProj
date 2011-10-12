@@ -16,7 +16,8 @@ Array.prototype.isValueExisted = function(val) {
 	return false;
 };
 
-BookMarkKey = "nam.com.monocleenh.bookmark";
+BookID = "TestBook";
+BookMarkKey = "nam.com.monocleenh.bookmark." + BookID;
 //locus that bookmarked
 Bookmarks = [];
 styleIndex = -1;
@@ -34,13 +35,22 @@ Monocle.Events.listen(
 		
 		
 		Monocle.Events.listen(window.reader.dom.find('box'), "bookish:unbookmark", function(){
-			Bookmarks.removeByValue(window.reader.getPlace().getLocus().page);
+			//Bookmarks.removeByValue(window.reader.getPlace().getLocus().page);
+			var min = reader.getPlace().percentAtTopOfPage(), max = reader.getPlace().percentAtBottomOfPage();
+			
+			for(var i=0; i<window.Bookmarks.length; i++){
+				if(window.Bookmarks[i].percent > min && window.Bookmarks[i].percent <= max){
+					window.Bookmarks.splice(i, 1);
+					break;
+				}
+			}
+			
 			updateBookmarkLink();
 			saveBookmarks();
 		});
 		
 		Monocle.Events.listen(window.reader.dom.find('box'), "bookish:bookmark", function(){
-			Bookmarks.push(window.reader.getPlace().getLocus().page);
+			Bookmarks.push(window.reader.getPlace().getLocus());
 			updateBookmarkLink();
 			saveBookmarks();
 		});
@@ -63,23 +73,25 @@ Monocle.Events.listen(
 function updateBookmarkLink(){
 	var bm = $("#bookmarks").empty();
 	for(var i=0; i<Bookmarks.length; i++) {
-		$("<a href='#'>Page "+Bookmarks[i]+"</a>").data('page', Bookmarks[i]).appendTo(bm).click(function(){			
-			window.reader.moveTo({page: $(this).data('page')});
+		$("<a href='#'>Bookmark "+i+"</a>").data('page', i).appendTo(bm).click(function(){
+			var x = $(this).data('page');
+			//window.reader.moveTo(Bookmarks[x]);
+			window.reader.moveTo({percent: Bookmarks[x].percent});
 		});
 	}
 }
 
 function saveBookmarks(){
-	window.localStorage.setItem(BookMarkKey, Bookmarks.join());
+	window.localStorage.setItem(BookMarkKey, $.toJSON(Bookmarks));
 }
 
 function loadBookmarks(){
 	var v = window.localStorage.getItem(BookMarkKey);
 	if(v)
-		Bookmarks = v.split(',');
+		Bookmarks = $.parseJSON(v);
 	else
 		Bookmarks =[];
 	
-	for(var i=0; i<Bookmarks.length; i++)
-		Bookmarks[i] = parseInt(Bookmarks[i]);
+	/*for(var i=0; i<Bookmarks.length; i++)
+		Bookmarks[i] = parseInt(Bookmarks[i]);*/
 }

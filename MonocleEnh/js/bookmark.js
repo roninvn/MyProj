@@ -25,12 +25,22 @@ Monocle.Controls.Bookmark = function(reader) {
 	}
 	function setClass(h) {
 		
-		var page = props.reader.getPlace().getLocus().page;
+		var min = props.reader.getPlace().percentAtTopOfPage(), max = props.reader.getPlace().percentAtBottomOfPage();
+		
+		for(var i=0; i<window.Bookmarks.length; i++){
+			if(window.Bookmarks[i].percent > min && window.Bookmarks[i].percent <= max){
+				props.bookmarkButton.dom.addClass(c.ACTIVE_CLASS);
+				return;
+			}
+		}
+		
+		props.bookmarkButton.dom.removeClass(c.ACTIVE_CLASS);
+		/*
 		
 		if(window.Bookmarks.isValueExisted(page))
 			props.bookmarkButton.dom.addClass(c.ACTIVE_CLASS);
 		else
-			props.bookmarkButton.dom.removeClass(c.ACTIVE_CLASS);
+			props.bookmarkButton.dom.removeClass(c.ACTIVE_CLASS);*/
 	}
 	
 	API.createControlElements = createControlElements;
