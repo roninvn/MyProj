@@ -3,9 +3,12 @@ Ext.define('FB.view.DesignControl', {
 	statics:{
 		uid: 0,
 		selectedControl: null,
-		updateControlProperties: function(control,cfg){
+		updateControlProperties: function(control,config){
+			
+			var cfg = config.cfg;
+			
 			if(cfg.Label){
-				if(control.designControl.oCfg.name === "Label")
+				if(config.name === "Label")
 					control.getEl().update(cfg.Label);
 				else
 					control.getEl().down('label').update(cfg.Label);
@@ -116,6 +119,9 @@ Ext.define('FB.view.DesignControl', {
 
 	constructor: function (config) {
 		this.oCfg = config.cdt;
+		
+		//console.log(this.oCfg);
+		
 		var me = this;
 		var ctrCfg  = {
 	    		name: 'cn' + FB.view.DesignControl.uid,
@@ -147,7 +153,8 @@ Ext.define('FB.view.DesignControl', {
 							            	        
 							            	        comp.setPosition(me.startPosition[0] + offset[0]-c2[0], me.startPosition[1] + offset[1]);
 
-	            								};	            		
+	            								};
+	            		FB.view.DesignControl.updateControlProperties(me.ctr, me.oCfg);	            		
 	            		
 	            		c.getEl().on("click", function(e){
 	            			FB.view.DesignControl.selectedControl = me;
@@ -178,7 +185,7 @@ Ext.define('FB.view.DesignControl', {
 	    	            		if(val.constructor == Array)
 	    	            			v = val.join();
 	    	            		me.oCfg.cfg[c] = v;
-	    	            		FB.view.DesignControl.updateControlProperties(me.ctr,me.oCfg.cfg);	            		
+	    	            		FB.view.DesignControl.updateControlProperties(me.ctr,me.oCfg);	            		
 	    	   
 	    	            	}); //end pg on
 	            			
@@ -236,7 +243,13 @@ Ext.define('FB.view.DesignControl', {
     	
     	FB.view.DesignControl.uid++;
     	
-    	this.ctr.setPosition(this.oCfg.x,this.oCfg.y);
+    	if(this.oCfg.size)
+    		this.ctr.setSize(this.oCfg.size);
+    	
+    	if(this.oCfg.pos)
+    		this.ctr.setPosition(this.oCfg.pos);
+    	else	
+    		this.ctr.setPosition(this.oCfg.x,this.oCfg.y);
     	
     	
     	/*Ext.util.Observable.capture(this.ctr, function(a,b,c){

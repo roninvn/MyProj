@@ -156,8 +156,11 @@ Ext.define('FB.view.LeftPanel', {
             	var items = Ext.getCmp('centerpanel').items;
             	var cfgs = [];
             	items.each(function(itm, i, l){
-            		cfgs.push(itm.designControl.oCfg);            		
+            		itm.designControl.oCfg.size = itm.designControl.ctr.getSize();
+            		itm.designControl.oCfg.pos = itm.designControl.ctr.getPosition(true);
+            		cfgs.push(itm.designControl.oCfg);
             	});
+            	
             	
             	txtArea.setValue(Ext.JSON.encode(cfgs));
                 
