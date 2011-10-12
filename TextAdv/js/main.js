@@ -92,6 +92,7 @@ function loadGame(){
 		v = parseInt(v);
 		x$('#menu').setStyle('visibility', 'hidden');
 		x$('#wrap').setStyle('visibility', 'visible');
+		x$('#resumeGame').setStyle('visibility', 'hidden');
 		loadpage(v);
 	}
 }
