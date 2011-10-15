@@ -3,14 +3,21 @@
  * 
  */
 USitISit.views.LoginForm = Ext.extend(Ext.form.FormPanel, {    
-    scroll: 'vertical',
+    //scroll: 'vertical',
 	fullscreen: true,
+	styleHtmlContent:true,
+	layout:{
+		type:'vbox'
+	},
     items: [{
-    		html:'<img src="img/babysitter.jpg"><img>',
-    		style: 'width:100%; height: 70%;',
+    		html:'<img src="img/babysitter.jpg" />'
     	},{
     		 xtype: 'fieldset',
              title: 'Login:',
+             layout:{
+				type:'vbox',
+				align:'left'
+			},
              items: [{
                  xtype: 'textfield',
                  id: 'txtEmail',
@@ -21,7 +28,9 @@ USitISit.views.LoginForm = Ext.extend(Ext.form.FormPanel, {
                  placeHolder: "Password"
              },{
             	 xtype:"togglefield",
-            	 label:"Save info and log in automatically next time"
+            	 label:"Save info and log in automatically next time",
+            	 labelAlign : 'right',
+            	 style:{'-webkit-box-pack':'start'}
              },{
             	 xtype:"button",
             	 text:"Done",
@@ -33,13 +42,9 @@ USitISit.views.LoginForm = Ext.extend(Ext.form.FormPanel, {
             	 text:"Registration",
             	 handler: function() {
                      USitISit.viewport.setActiveItem(USitISit.views.RegistrationForm);
-                  }
+                 }
              }]
-    	}],
-    
-    initComponent: function() {
-    	USitISit.views.LoginForm.superclass.initComponent.apply(this, arguments);    	
-   }
+    	}]
 });
 
 Ext.reg('LoginForm', USitISit.views.LoginForm);

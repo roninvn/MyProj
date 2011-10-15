@@ -1,6 +1,11 @@
 USitISit.views.DashboardForm = Ext.extend(Ext.form.FormPanel, {    
-    scroll: 'vertical',
+    //scroll: 'vertical',
 	fullscreen: true,
+	//style:{'padding-top':'5px','margin-top':'5px'},
+	styleHtmlContent:true,
+	layout:{
+		type:'vbox'
+	},
 	dockedItems: [{
 		xtype: 'toolbar',
         dock: 'top',
@@ -21,21 +26,21 @@ USitISit.views.DashboardForm = Ext.extend(Ext.form.FormPanel, {
 	}],
 
     items: [{
-    	html:"Dashboard",
-    	style: 'margin:2%;text-align:center'
+    	html:"Dashboard"
     },{
     	xtype:"panel",
-    	border: "1",
+    	style:{border:'1px solid black', width:'100%'},
     	layout: {
     	    type: 'hbox',
     	    align: 'left'
     	},
     	items:[{
     		html: '8 points',
-    		width: "30%"
-    		
+    		style:{
+    				height: '100%',
+    				'padding-top': '15%'}		
     	},{
-    		html:"<ul><li>*2 friends' requests</li><li>*1 requested sitter</li><li>*1 upcoming sit</li><li>*1 circle invitation</li></ul>"    		
+    		html:"<ul><li>*2 friends' requests</li><li>1 requested sitter</li><li>1 upcoming sit</li><li>1 circle invitation</li></ul>"    		
     	}]
     },{
     	xtype:"panel",
@@ -74,11 +79,7 @@ USitISit.views.DashboardForm = Ext.extend(Ext.form.FormPanel, {
     		xtype:"button",
     		text: "My Circle"
     	}]
-    }],
-    
-    initComponent: function() {
-    	USitISit.views.DashboardForm.superclass.initComponent.apply(this, arguments);    	
-   }
+    }]
 });
 
 Ext.reg('DashboardForm', USitISit.views.DashboardForm);
