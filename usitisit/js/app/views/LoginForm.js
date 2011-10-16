@@ -11,9 +11,10 @@ USitISit.views.LoginForm = Ext.extend(Ext.Panel, {
         align:'stretch'
 	},
     items: [{
-    		html:'<img src="img/usitisit-launch-image.png" style="height:100%;width:100%;" />',
+    		html:'<img src="img/USitISit-icon-512x512.png" style="height:150px;width:150px" />',
             height:'38%',
-            width:'100%'
+            width:'100%',
+            style:{'text-align': 'center'}
     	},{
     		 xtype: 'fieldset',
              title: 'Login:',

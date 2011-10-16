@@ -1,4 +1,4 @@
-USitISit.views.SitScheduleForm = Ext.extend(Ext.form.FormPanel, {    
+USitISit.views.SitScheduleForm = Ext.extend(Ext.Panel, {    
     scroll: 'vertical',
 	fullscreen: true,
 	dockedItems: [{
@@ -17,10 +17,10 @@ USitISit.views.SitScheduleForm = Ext.extend(Ext.form.FormPanel, {
 		title: "Ad"
 	}],
 
-    items: [{html: "Friends' Sitter Requests"
+    items: [{html: "Friends' Sitter Requests",style:{'text-align':'center'}
     		},{
 		    	xtype: "button",
-		    	title: "Check Calendar"
+		    	text: "Check Calendar"
 		    	
     		},{
 		    	xtype: "fieldset",
@@ -36,7 +36,8 @@ USitISit.views.SitScheduleForm = Ext.extend(Ext.form.FormPanel, {
 		        		html: "You are sitting"
 		        	},{
 		        		xtype:"button",
-		        		text: "Change"
+		        		text: "Change",
+		        		style:{'margin-left': '20px'}
 		        	}]
 		        }]
 		    },{
@@ -53,7 +54,8 @@ USitISit.views.SitScheduleForm = Ext.extend(Ext.form.FormPanel, {
 		        		html: "You are sitting"
 		        	},{
 		        		xtype:"button",
-		        		text: "Change"
+		        		text: "Change",
+		        		style:{'margin-left': '20px'}
 		        	}]
 		        }]
 		    }],
