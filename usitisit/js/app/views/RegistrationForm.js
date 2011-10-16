@@ -16,7 +16,7 @@ USitISit.views.RegistrationForm = Ext.extend(Ext.form.FormPanel, {
                     items: [
 	                    {
 	                        xtype: 'textfield',
-	                        name : 'txtFirstName',
+	                        name : 'firstName',
 	                        id : 'txtFirstName',
 	                        //label: 'First Name',
 	                        placeHolder: 'First Name',
@@ -26,7 +26,7 @@ USitISit.views.RegistrationForm = Ext.extend(Ext.form.FormPanel, {
 	                    },
 	                     {
 	                        xtype: 'textfield',
-	                        name : 'txtLastName',
+	                        name : 'lastName',
 	                        id : 'txtLastName',
 	                        //label: 'Last Name',
 	                         placeHolder: 'Last Name',
@@ -36,7 +36,7 @@ USitISit.views.RegistrationForm = Ext.extend(Ext.form.FormPanel, {
 	                    },
 	                     {
 			                xtype: 'emailfield',
-			                name: 'txtEmail',
+			                name: 'email',
 			                id: 'txtEmail',
 			                //label: 'Email Address',
 			                placeHolder: 'Email Address',
@@ -50,7 +50,7 @@ USitISit.views.RegistrationForm = Ext.extend(Ext.form.FormPanel, {
                     items: [
 	                    {
 	                        xtype: 'textfield',
-	                        name : 'txtAddress',
+	                        name : 'address',
 	                        id : 'txtAddress',
 	                        
 	                       // label: 'Home Address',
@@ -60,7 +60,7 @@ USitISit.views.RegistrationForm = Ext.extend(Ext.form.FormPanel, {
 	                    },
 	                    {
 	                        xtype: 'selectfield',
-	                        name : 'cboState',
+	                        name : 'state',
 	                        placeHolder: 'State',
 	                        id : 'cboState',
 	                        /*valueField : 'id',
@@ -75,7 +75,7 @@ USitISit.views.RegistrationForm = Ext.extend(Ext.form.FormPanel, {
 	                    },
 	                    {
 			                xtype: 'textfield',
-			                name: 'txtZipCode',
+			                name: 'zipCode',
 			                id: 'txtZipCode',
 			                placeHolder: 'Zip Code'
 			            }
@@ -87,7 +87,7 @@ USitISit.views.RegistrationForm = Ext.extend(Ext.form.FormPanel, {
                     items: [
 	                    {
 	                        xtype: 'selectfield',
-	                        name : 'cboChildren',
+	                        name : 'children',
 	                        id : 'cboChildren',
 	                        placeHolder: '# of Children',
 	                       options: [
@@ -100,7 +100,7 @@ USitISit.views.RegistrationForm = Ext.extend(Ext.form.FormPanel, {
 	                    },
 	                    {
 	                        xtype: 'selectfield',
-	                        name : 'cboPet',
+	                        name : 'pet',
 	                        id : 'cboPet',
 	                        placeHolder: '# of Pets',
 	                       options: [
@@ -119,14 +119,14 @@ USitISit.views.RegistrationForm = Ext.extend(Ext.form.FormPanel, {
 	                    {
 			                xtype: 'passwordfield',
 			                placeHolder: 'Password',
-			                id: 'txtPassword',
+			                id: 'password',
 			                name: 'txtPassword',
 			                required: true
 			            }, {
 			                xtype: 'passwordfield',
 			                placeHolder: 'Confirm Password',
 			                id: 'txtConfirmPassword',
-			                name: 'txtConfirmPassword',
+			                name: 'cpassword',
 			                required: true
 			            }
                     ]
@@ -142,7 +142,6 @@ USitISit.views.RegistrationForm = Ext.extend(Ext.form.FormPanel, {
                     text: 'ENTER SPOUSE\'S INFO',
                     ui: 'round',
                     handler: function() {
-                    	console.log('aaaaaaaaa');
                         USitISit.viewport.setActiveItem(
 							USitISit.views.SpouseInfoForm
 						);
@@ -152,7 +151,22 @@ USitISit.views.RegistrationForm = Ext.extend(Ext.form.FormPanel, {
                 {
                     text: 'DONE',
                     ui: 'round',
-                    handler: function() {                       
+                    handler: function() {
+                    	//console.log(USitISit.views.RegistrationForm.items);
+                    	var params = {};
+                    	var arr = USitISit.views.RegistrationForm.query('field');
+                    	for(var i=0; i<arr.length; i++){
+                    		params[arr[i].name] = arr[i].getValue();
+                    	}
+                    	
+                    	//console.log(params);
+                    	
+                    	Ext.util.JSONP.request({
+                    		url:'http://abc.123/api.php',
+                    		params:{func:'regsiterUser', params: Ext.encode(params)},
+                    		callbackKey:'callback',
+                    		callback:function(){}
+                    	});                      
                     }
                 }
             ]
