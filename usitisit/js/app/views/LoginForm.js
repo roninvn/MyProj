@@ -2,15 +2,18 @@
  * Create Invitation Form
  * 
  */
-USitISit.views.LoginForm = Ext.extend(Ext.form.FormPanel, {    
+USitISit.views.LoginForm = Ext.extend(Ext.Panel, {    
     //scroll: 'vertical',
 	fullscreen: true,
 	styleHtmlContent:true,
 	layout:{
-		type:'vbox'
+		type:'vbox',
+        align:'stretch'
 	},
     items: [{
-    		html:'<img src="img/babysitter.jpg" />'
+    		html:'<img src="img/usitisit-launch-image.png" style="height:100%;width:100%;" />',
+            height:'38%',
+            width:'100%'
     	},{
     		 xtype: 'fieldset',
              title: 'Login:',
