@@ -22,19 +22,32 @@ USitISit.views.MyCircleForm = Ext.extend(Ext.Panel, {
     	},{
     		xtype:"panel",
 		    layout: {
-		        	    type: 'hbox',
-		        	    align: 'center'
+		        	    type: 'hbox'
 		        	},
 		     items:[{		        		
 		        		xtype:'button',
-		        		text:'Invite',
-		        		html:'<div style="position: absolute; bottom: 0;">Add friends to my circle</div>',
-		        		style:{'margin-left': '20%','margin-right': '20%','margin-top': '-40px'}
+		        		html:'<div style="position: absolute; top: 0;font-weight:bold;text-align:center;width:100%;">Invite</div><div style="position: absolute; bottom: 0;">Add friends to my circle</div>',
+                        style:{'margin-right': '1%', height:'70px', width:'150px'}
 		        	},{		        		
-		        		xtype:'button',
-		        		text:'Invitation Received'
+                        xtype:'button',
+                        html:'<div style="position: absolute; top: 0;font-weight:bold;text-align:center;width:100%;">Invitation received</div><div style="position: absolute; bottom: 0;">Join a Friend\'s circle</div>',
+                        style:{height:'70px', width:'150px'}
 		        	}]
-		}]
+            },{
+                xtype: 'button',
+                text: 'Go to Friends\' request',
+                style:{height:'70px', width:'250px', 'margin-left' : '10%', 'margin-top': '10px'}
+            },{
+            	xtype:'list',
+            	itemTpl : '<div style="font-weight:bold;">{firstName} {lastName}</div><div>{desc}</div><div style="">{point} point(s)</div>',
+            	store: USitISit.stores.FriendInfoStore,
+                style:{'margin-top':'10px'},
+                listeners:{
+                    itemtap: function(){
+                        USitISit.viewport.setActiveItem(USitISit.views.FriendInfoForm);
+                    }
+                }
+            }]
 });
 
 Ext.reg('MyCircleForm', USitISit.views.MyCircleForm);
