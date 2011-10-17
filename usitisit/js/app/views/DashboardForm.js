@@ -81,7 +81,10 @@ USitISit.views.DashboardForm = Ext.extend(Ext.Panel, {
                                                          },{
                                                          xtype:"button",
                                                          style:{'margin-right': '5px','margin-bottom': '10px',width:'150px', height:'90px'},
-                                                         text: "My Circle"
+                                                         text: "My Circle",
+                                                         handler: function(){
+                                                         USitISit.viewport.setActiveItem(USitISit.views.MyCircleForm);
+                                                         }
                                                          }]
                                                   }]
                                           });
