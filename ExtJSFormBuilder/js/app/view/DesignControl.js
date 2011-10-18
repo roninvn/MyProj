@@ -8,6 +8,10 @@ Ext.define('FB.view.DesignControl', {
 			var cfg = config.cfg;
 			
 			if(cfg.Label){
+				
+				if(control.fieldLabel)
+					control.fieldLabel = cfg.Label;
+					
 				if(config.name === "Label")
 					control.getEl().update(cfg.Label);
 				else
@@ -250,12 +254,12 @@ Ext.define('FB.view.DesignControl', {
     		this.ctr.setPosition(this.oCfg.pos);
     	else	
     		this.ctr.setPosition(this.oCfg.x,this.oCfg.y);
-    	
-    	
-    	/*Ext.util.Observable.capture(this.ctr, function(a,b,c){
+    	/*
+    	if(this.oCfg.extClass == "Ext.form.RadioGroup"){
+    	Ext.util.Observable.capture(this.ctr, function(a,b,c){
 																console.log(a,b,c);	
 															}
-		);*/
+		);}*/
     	
     	this.ctr.designControl = this;    	
     }
