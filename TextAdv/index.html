@@ -1,4 +1,3 @@
-<!DOCTYPE html> 
 <html> 
 	<head> 
 	<title>Text Adventure</title>
@@ -6,7 +5,7 @@
 	<link rel="stylesheet" href="css/app.css" />
 	
 	<script type="text/javascript" src="js/lib/phonegap-1.0.0.js"></script>	
-	<script type="text/javascript" src="js/lib/xui-bb-2.2.0.min.js"></script>	
+	<script type="text/javascript" src="js/lib/xui.min.js"></script>	
 	
 	
 	<script type="text/javascript" src="js/main.js"></script>
@@ -27,11 +26,12 @@
 <body>
 <img id = "splash" src="img/face.jpg" onclick="showMenu();">
 <div id="menu">
-	<a href="#" onclick = "loadGame();" id="resumeGame">Resume Saved Game</a><br />
-	<a href="#" onclick = "startGame();">Start Game</a><br />
-	<a href="#">Options</a><br />
-	<a href="#">Instructions</a><br />
-	<a href="#" onclick = "exitGame();">Exit</a>
+	<center><button onclick = "loadGame();" id="resumeGame">Resume Saved Game</button><br />
+	<button onclick = "startGame();">Start Game</button><br />
+	<button>Options</button><br />
+	<button>Instructions</button><br />
+	<button onclick = "quitApp();">Exit</button>
+	</center>
 </div>
 <div id="wrap">
 	<div id="content"></div>	

@@ -10,12 +10,11 @@ x$(window).on('load', onWindowLoad);
  * start
  */
 function onWindowLoad(){
-	//loadpage();
 }
 
 function loadpage(newpage){
 	
-	if(newpage)
+	if(newpage || newpage === 0)
 		currentpage = newpage;
 	
 	if(currentpage == -1){
@@ -66,9 +65,9 @@ function showMenu(){
 	x$('#menu').setStyle('visibility', 'visible');
 	x$('#wrap').setStyle('visibility', 'hidden');
 	
-	var v = window.localStorage.getItem(SaveKey);
+	//var v = window.localStorage.getItem(SaveKey);
 	
-	if(v)
+	if(checkCookie(SaveKey))
 		x$('#resumeGame').setStyle('visibility', 'visible');
 	else
 		x$('#resumeGame').setStyle('visibility', 'hidden');
@@ -82,12 +81,14 @@ function startGame(){
 }
 
 function saveGame(){ //save and exit
-	window.localStorage.setItem(SaveKey, currentpage);
+	//window.localStorage.setItem(SaveKey, currentpage);
+	setCookie(SaveKey,currentpage,365);
 	exitGame();
 }
 
 function loadGame(){
-	var v = window.localStorage.getItem(SaveKey);
+	//var v = window.localStorage.getItem(SaveKey);
+	var v = getCookie(SaveKey);
 	if(v){
 		v = parseInt(v);
 		x$('#menu').setStyle('visibility', 'hidden');
@@ -105,5 +106,40 @@ function exitGame(){
 	x$('#resumeGame').setStyle('visibility', 'hidden');
 }
 
+function quitApp(){
+	blackberry.app.exit(); 
+}
 
+function setCookie(c_name,value,exdays)
+{
+	var exdate=new Date();
+	exdate.setDate(exdate.getDate() + exdays);
+	var c_value=escape(value) + ((exdays==null) ? "" : "; expires="+exdate.toUTCString());
+	document.cookie=c_name + "=" + c_value;
+}
 
+function getCookie(c_name)
+{
+	var i,x,y,ARRcookies=document.cookie.split(";");
+	for (i=0;i<ARRcookies.length;i++)
+	{
+	  x=ARRcookies[i].substr(0,ARRcookies[i].indexOf("="));
+	  y=ARRcookies[i].substr(ARRcookies[i].indexOf("=")+1);
+	  x=x.replace(/^\s+|\s+$/g,"");
+	  if (x==c_name)
+	    {
+	    return unescape(y);
+	    }
+	  }
+}
+
+function checkCookie(c_name)
+{
+	var username=getCookie(c_name);
+	  if (username!=null && username!=""){
+		  return true;
+	  }
+	else{
+		return false;
+	 }
+}
