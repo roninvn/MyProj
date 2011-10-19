@@ -1,3 +1,19 @@
+/*Overrid ST css*/
+.x-toolbar-dark{
+	background-color: #ffe500;	
+	background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #ffe500), color-stop(2%, #ffe500), color-stop(100%, #ffe500));
+}
+
+.x-toolbar-dark .x-toolbar-title{
+	color: #755500;
+	text-shadow: none;
+}
+
+.x-button{
+	background-color: #dd6b01;
+	background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #dd6b01), color-stop(2%, #dd6b01), color-stop(100%, #dd6b01));
+}
+
 .logo{
 	
 }

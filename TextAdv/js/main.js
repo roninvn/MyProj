@@ -10,6 +10,24 @@ x$(window).on('load', onWindowLoad);
  * start
  */
 function onWindowLoad(){
+	//alert(window.innerHeight);
+	/*x$('body').getStyle("height",function(e){
+		alert("body :" + e);
+		var h = parseInt(e.replace("px", ""));
+		h -= 40;
+		x$('#content').setStyle("height", h + "px");
+	});
+	
+	x$(window).getStyle("height",function(e){
+		alert("window :" + e);
+	});*/
+	
+	/*x$('body').setStyle("height",document.documentElement.clientHeight + "px");*/
+	/*x$('#menu').setStyle("height",document.documentElement.clientHeight + "px");*/
+	
+	//alert(document.documentElement.clientHeight);
+
+	
 }
 
 function loadpage(newpage){
@@ -18,7 +36,8 @@ function loadpage(newpage){
 		currentpage = newpage;
 	
 	if(currentpage == -1){
-		showMenu();
+		setCookie(SaveKey,"",365);
+		showMenu();		
 		return;
 	}
 	

@@ -1,6 +1,7 @@
 body{
-	font-family: "Comic Sans MS"
+	font-family: "Comic Sans MS";
 }
+
 
 a{text-decoration : none}
 a:link {color: #ff0000}
@@ -35,7 +36,7 @@ a:hover {color: #ff0000}
 	top: 0;	
 	width: 100%;
 	height: 100%;
-	
+	overflow: auto;
 	
 	background: url('../img/face.jpg');
 	background-repeat:no-repeat;
@@ -56,4 +57,10 @@ a:hover {color: #ff0000}
 	position: absolute;
 	top : 0;
 	right:0;
+}
+
+#imgman{
+	position: absolute;
+	right: 0;
+	bottom: 0;
 }
