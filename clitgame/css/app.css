@@ -1,0 +1,17 @@
+ body{ height:100% }
+div.page{
+	display:block;
+	position: absolute;
+	width: 100%;
+	height:100%;
+	top:0;
+	left:0;
+	visibility: hidden;
+}
+
+#SplashPage{
+	background-image: url('../img/pussy_co_presents_portrait.jpg');
+	background-repeat:no-repeat;
+	background-attachment:fixed;
+	background-position:center;
+}
