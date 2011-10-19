@@ -22,3 +22,9 @@ div.page{
 	background-attachment:fixed;
 	background-position:center;
 }
+
+#HomePage>#btnPlay{
+	position: absolute;
+	left: 80%;
+	top: 70%;
+}
