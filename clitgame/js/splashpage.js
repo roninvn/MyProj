@@ -8,5 +8,10 @@ Page.extend("SplashPage",
 {
   init : function(e){	  
 	  this._super(e);
+	  
+	  this.el.click(function(e){
+		  Page.show("HomePage");
+	  });
+	  
   }//end init  
 });
