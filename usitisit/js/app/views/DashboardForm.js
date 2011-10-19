@@ -10,6 +10,7 @@ USitISit.views.DashboardForm = Ext.extend(Ext.Panel, {
                                                         xtype: 'toolbar',
                                                         dock: 'top',
                                                         title: 'USitISit',
+                                                        ui:'yellow',
                                                         items: [
                                                                 {
                                                                 text: 'Account'
@@ -22,7 +23,8 @@ USitISit.views.DashboardForm = Ext.extend(Ext.Panel, {
                                                         },{
                                                         xtype: "toolbar",
                                                         dock : "bottom",		
-                                                        title: "Ad"
+                                                        title: "Ad",
+                                                        ui:'yellow',
                                                         }],
                                           
                                           items: [{
@@ -53,12 +55,14 @@ USitISit.views.DashboardForm = Ext.extend(Ext.Panel, {
                                                   items:[{
                                                          xtype:"button",
                                                          text: "Request A Sitter",
+                                                         ui:'orange-round',
                                                          style:{'margin-right': '5px','margin-bottom': '10px',width:'150px', height:'90px'},
                                                          handler: function(){
                                                          USitISit.viewport.setActiveItem(USitISit.views.ReqSitterForm);
                                                          }
                                                          },{
                                                          xtype:"button",
+                                                         ui:'orange-round',
                                                          style:{'margin-bottom': '10px',width:'150px', height:'90px'},
                                                          text: "Friends' Requests",
                                                          handler: function(){
@@ -74,12 +78,14 @@ USitISit.views.DashboardForm = Ext.extend(Ext.Panel, {
                                                   items:[{
                                                          xtype:"button",
                                                          text: "Sit Schedule",
+                                                         ui:'orange-round',
                                                          style:{'margin-right': '5px','margin-bottom': '10px',width:'150px', height:'90px'},
                                                          handler: function(){
                                                          USitISit.viewport.setActiveItem(USitISit.views.SitScheduleForm);
                                                          }
                                                          },{
                                                          xtype:"button",
+                                                         ui:'orange-round',
                                                          style:{'margin-right': '5px','margin-bottom': '10px',width:'150px', height:'90px'},
                                                          text: "My Circle",
                                                          handler: function(){
