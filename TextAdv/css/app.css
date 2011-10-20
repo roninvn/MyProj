@@ -62,5 +62,5 @@ a:hover {color: #ff0000}
 #imgman{
 	position: absolute;
 	right: 0;
-	bottom: 0;
+	top: 30%;
 }
