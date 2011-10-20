@@ -31,3 +31,7 @@
 
 @include sencha-toolbar-ui('yellow', #e9d890, 'bevel');
 @include sencha-button-ui('orange', #ff8000, 'glossy');
+
+.x-button{
+  font-size:small;
+}
