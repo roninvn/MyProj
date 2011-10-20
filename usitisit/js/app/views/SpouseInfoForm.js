@@ -17,7 +17,7 @@ USitISit.views.SpouseInfoForm = Ext.extend(Ext.form.FormPanel, {
                     items: [
 	                    {
 	                        xtype: 'textfield',
-	                        name : 'txtFirstName',
+	                        name : 'spouse_first_name',
 	                        id : 'txtSFirstName',
 	                        //label: 'First Name',
 	                        placeHolder: 'First Name',
@@ -27,7 +27,7 @@ USitISit.views.SpouseInfoForm = Ext.extend(Ext.form.FormPanel, {
 	                    },
 	                     {
 	                        xtype: 'textfield',
-	                        name : 'txtSLastName',
+	                        name : 'spouse_last_name',
 	                        id : 'txtLastName',
 	                        //label: 'Last Name',
 	                         placeHolder: 'Last Name',
@@ -37,12 +37,21 @@ USitISit.views.SpouseInfoForm = Ext.extend(Ext.form.FormPanel, {
 	                    },
 	                     {
 			                xtype: 'emailfield',
-			                name: 'txtSEmail',
+			                name: 'spouse_email_address',
 			                id: 'txtEmail',
 			                //label: 'Email Address',
 			                placeHolder: 'Email Address',
 			                required: true
-			            }
+			            },
+			            {
+	                        xtype: 'textfield',
+	                        name : 'spouse_phone_number',
+	                        id : 'txtPhone',
+	                        //label: 'Last Name',
+	                        placeHolder: 'Phone #',
+	                        useClearIcon: true,	                        
+	                        required: true
+	                    }
                     ]
                }
     ],

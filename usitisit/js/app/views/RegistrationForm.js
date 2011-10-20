@@ -16,7 +16,7 @@ USitISit.views.RegistrationForm = Ext.extend(Ext.form.FormPanel, {
                     items: [
 	                    {
 	                        xtype: 'textfield',
-	                        name : 'firstName',
+	                        name : 'first_name',
 	                        id : 'txtFirstName',
 	                        //label: 'First Name',
 	                        placeHolder: 'First Name',
@@ -26,7 +26,7 @@ USitISit.views.RegistrationForm = Ext.extend(Ext.form.FormPanel, {
 	                    },
 	                     {
 	                        xtype: 'textfield',
-	                        name : 'lastName',
+	                        name : 'last_name',
 	                        id : 'txtLastName',
 	                        //label: 'Last Name',
 	                         placeHolder: 'Last Name',
@@ -36,12 +36,21 @@ USitISit.views.RegistrationForm = Ext.extend(Ext.form.FormPanel, {
 	                    },
 	                     {
 			                xtype: 'emailfield',
-			                name: 'email',
+			                name: 'email_address',
 			                id: 'txtEmail',
 			                //label: 'Email Address',
 			                placeHolder: 'Email Address',
 			                required: true
-			            }
+			            },
+			            {
+	                        xtype: 'textfield',
+	                        name : 'phone_number',
+	                        id : 'txtPhone',
+	                        //label: 'Last Name',
+	                        placeHolder: 'Phone #',
+	                        useClearIcon: true,	                        
+	                        required: true
+	                    }
                     ]
                },
                {
@@ -50,7 +59,7 @@ USitISit.views.RegistrationForm = Ext.extend(Ext.form.FormPanel, {
                     items: [
 	                    {
 	                        xtype: 'textfield',
-	                        name : 'address',
+	                        name : 'home_address',
 	                        id : 'txtAddress',
 	                        
 	                       // label: 'Home Address',
@@ -60,7 +69,7 @@ USitISit.views.RegistrationForm = Ext.extend(Ext.form.FormPanel, {
 	                    },
 	                    {
 	                        xtype: 'selectfield',
-	                        name : 'state',
+	                        name : 'home_state',
 	                        placeHolder: 'State',
 	                        id : 'cboState',
 	                        /*valueField : 'id',
@@ -75,7 +84,7 @@ USitISit.views.RegistrationForm = Ext.extend(Ext.form.FormPanel, {
 	                    },
 	                    {
 			                xtype: 'textfield',
-			                name: 'zipCode',
+			                name: 'home_zip_code',
 			                id: 'txtZipCode',
 			                placeHolder: 'Zip Code'
 			            }
@@ -87,7 +96,7 @@ USitISit.views.RegistrationForm = Ext.extend(Ext.form.FormPanel, {
                     items: [
 	                    {
 	                        xtype: 'selectfield',
-	                        name : 'children',
+	                        name : 'number_of_children',
 	                        id : 'cboChildren',
 	                        placeHolder: '# of Children',
 	                       options: [
@@ -100,7 +109,7 @@ USitISit.views.RegistrationForm = Ext.extend(Ext.form.FormPanel, {
 	                    },
 	                    {
 	                        xtype: 'selectfield',
-	                        name : 'pet',
+	                        name : 'number_of_pets',
 	                        id : 'cboPet',
 	                        placeHolder: '# of Pets',
 	                       options: [
@@ -119,8 +128,8 @@ USitISit.views.RegistrationForm = Ext.extend(Ext.form.FormPanel, {
 	                    {
 			                xtype: 'passwordfield',
 			                placeHolder: 'Password',
-			                id: 'password',
-			                name: 'txtPassword',
+			                id: 'txtPassword',
+			                name: 'password',
 			                required: true
 			            }, {
 			                xtype: 'passwordfield',
@@ -154,7 +163,15 @@ USitISit.views.RegistrationForm = Ext.extend(Ext.form.FormPanel, {
                     handler: function() {
                     	//console.log(USitISit.views.RegistrationForm.items);
                     	var params = {};
+                    	
                     	var arr = USitISit.views.RegistrationForm.query('field');
+                    	
+                    	for(var i=0; i<arr.length; i++){
+                    		params[arr[i].name] = arr[i].getValue();
+                    	}
+                    	
+                    	arr = USitISit.views.SpouseInfoForm.query('field');
+                    	
                     	for(var i=0; i<arr.length; i++){
                     		params[arr[i].name] = arr[i].getValue();
                     	}
@@ -162,10 +179,12 @@ USitISit.views.RegistrationForm = Ext.extend(Ext.form.FormPanel, {
                     	//console.log(params);
                     	
                     	Ext.util.JSONP.request({
-                    		url:'http://abc.123/api.php',
-                    		params:{func:'regsiterUser', params: Ext.encode(params)},
+                    		url:'http://dev.marketlytics.com/usit/backend/',
+                    		params:{func:'registerProfile', params: Ext.encode(params)},
                     		callbackKey:'callback',
-                    		callback:function(){}
+                    		callback:function(a,b,c){
+                    			//console.log(a,b,c);
+                    		}
                     	});                      
                     }
                 }
