@@ -129,8 +129,13 @@ Ext.define('FB.view.DesignControl', {
 		var me = this;
 		var ctrCfg  = {
 	    		name: 'cn' + FB.view.DesignControl.uid,
-	    		id: 'id' + FB.view.DesignControl.uid,	    		
-	    		resizable: {dynamic: false, transparent:true, handles:"s e se", heightIncrement : 10, widthIncrement:10},
+	    		id: 'id' + FB.view.DesignControl.uid
+	    	}; //end ctrCfg
+		
+		if(!config.normalMode){
+			Ext.apply(ctrCfg,{
+				
+				resizable: {dynamic: false, transparent:true, handles:"s e se", heightIncrement : 10, widthIncrement:10},
 	    		
 	    		draggable: {
 	    			listeners:{
@@ -201,9 +206,19 @@ Ext.define('FB.view.DesignControl', {
 	            	render: function(c){
 	            	}//end render    
 	            		            
-	          }//end listeners        
-	    	}; //end ctrCfg
-		
+	          }//end listeners 
+			});
+		}
+		else{
+			Ext.apply(ctrCfg,{
+				listeners:{
+	            	afterrender: function(c){
+	            		FB.view.DesignControl.updateControlProperties(me.ctr, me.oCfg);
+	            	}
+	            		            
+	          }//end listeners 
+			});
+		}
 		
 		if(this.oCfg.extClass == "Ext.form.field.ComboBox"){//create store for combobox
 

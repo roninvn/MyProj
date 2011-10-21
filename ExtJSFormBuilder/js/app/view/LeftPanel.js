@@ -144,47 +144,7 @@ Ext.define('FB.view.LeftPanel', {
             }
         });
         
-        var txtArea = Ext.create('Ext.form.field.TextArea', {
-												        	grow      : false,
-												            name      : 'json',
-												            anchor    : '100%'});
-        
-        var btn = Ext.create('Ext.Button', {
-            text: 'Send',            
-            handler: function() {
-            	
-            	var items = Ext.getCmp('centerpanel').items;
-            	var cfgs = [];
-            	items.each(function(itm, i, l){
-            		itm.designControl.oCfg.size = itm.designControl.ctr.getSize();
-            		itm.designControl.oCfg.pos = itm.designControl.ctr.getPosition(true);
-            		cfgs.push(itm.designControl.oCfg);
-            	});
-            	
-            	
-            	txtArea.setValue(Ext.JSON.encode(cfgs));
-                
-            }
-        });
-        
-        var btn2 = Ext.create('Ext.Button', {
-            text: 'Build',            
-            handler: function() {
-            	
-            	var cfgs = Ext.JSON.decode(txtArea.getValue());
-            	var  p = Ext.getCmp('centerpanel');
-            	
-            	p.removeAll(true);
-            	
-            	for(var i=0 ; i<cfgs.length; i++){
-                	var c = Ext.create('FB.view.DesignControl',{cdt : cfgs[i]});            	
-                	p.add(c.ctr);
-            	}
-            	
-            }
-        });
-        
-        this.items = [controlsView,txtArea, btn,btn2];
+        this.items = [controlsView];
         this.callParent(arguments);
     }
 });

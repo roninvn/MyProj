@@ -8,7 +8,8 @@ Ext.define('FB.view.Viewport', {
         'Ext.layout.container.Border',
 		'FB.view.CenterPanel',
 		'FB.view.LeftPanel',
-		'FB.view.RightPanel'
+		'FB.view.RightPanel',
+		'FB.view.BottomPanel'
     ],
 
 	layout: 'border',
@@ -22,5 +23,8 @@ Ext.define('FB.view.Viewport', {
 			},{
 				region: 'east',
 				xtype: 'RightPanel'
+			},{
+				region: 'south',
+				xtype: 'BottomPanel'
 			}]
 });
