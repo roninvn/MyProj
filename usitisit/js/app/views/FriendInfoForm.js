@@ -9,6 +9,7 @@ USitISit.views.FriendInfoForm = Ext.extend(Ext.Panel, {
 		title : 'USitISit',
 		items : [{
 			text : 'Back to My Circle',
+			cls : 'smallbutton',
 			handler : function() {
 				USitISit.viewport.setActiveItem(USitISit.views.MyCircleForm);
 			}
@@ -16,6 +17,7 @@ USitISit.views.FriendInfoForm = Ext.extend(Ext.Panel, {
 	}, {
 		xtype : "toolbar",
 		dock : "bottom",
+		ui : 'yellow',
 		title : "Ad"
 	}],
 

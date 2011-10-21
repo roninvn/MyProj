@@ -55,8 +55,10 @@ USitISit.views.InvitationForm = Ext.extend(Ext.form.FormPanel, {
 	dockedItems : [{
 		xtype : 'toolbar',
 		dock : 'bottom',
+		ui : 'yellow',
 		items : [{
 			text : 'DONE',
+			cls : 'smallbutton',
 			ui : 'round',
 			//  ui: 'confirm',
 			handler : function() {

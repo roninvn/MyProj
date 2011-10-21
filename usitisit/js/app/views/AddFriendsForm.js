@@ -95,10 +95,12 @@ USitISit.views.AddFriendsForm = Ext.extend(Ext.form.FormPanel, {
         {
             xtype: 'toolbar',
             dock: 'bottom',
+            ui : 'yellow',
             items: [
 	                {
 	                    text: 'Login',
 	                    ui: 'round',
+						cls : 'smallbutton',
 	                  //  ui: 'confirm',
 	                    handler: function() {
 	                       USitISit.viewport.setActiveItem(USitISit.views.LoginForm);
@@ -106,10 +108,7 @@ USitISit.views.AddFriendsForm = Ext.extend(Ext.form.FormPanel, {
 	                }
             ]
         }
-    ],
-    initComponent: function() {
-    	USitISit.views.AddFriendsForm.superclass.initComponent.apply(this, arguments);
-   }
+    ]
 });
 
 Ext.reg('AddFriendsForm', USitISit.views.AddFriendsForm);

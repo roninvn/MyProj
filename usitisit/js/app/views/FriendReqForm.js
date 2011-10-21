@@ -9,6 +9,7 @@ USitISit.views.FriendReqForm = Ext.extend(Ext.Panel, {
 		title : 'USitISit',
 		items : [{
 			text : 'Back to Dashboard',
+			cls : 'smallbutton',
 			handler : function() {
 				USitISit.viewport.setActiveItem(USitISit.views.DashboardForm);
 			}
@@ -16,6 +17,7 @@ USitISit.views.FriendReqForm = Ext.extend(Ext.Panel, {
 	}, {
 		xtype : "toolbar",
 		dock : "bottom",
+		ui : 'yellow',
 		title : "Ad"
 	}],
 

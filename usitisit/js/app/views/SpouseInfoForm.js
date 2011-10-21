@@ -51,8 +51,10 @@ USitISit.views.SpouseInfoForm = Ext.extend(Ext.form.FormPanel, {
 	dockedItems : [{
 		xtype : 'toolbar',
 		dock : 'bottom',
+		ui : 'yellow',
 		items : [{
 			text : 'DONE',
+			cls : 'smallbutton',
 			//  ui: 'confirm',
 			handler : function() {
 				USitISit.viewport.setActiveItem(USitISit.views.RegistrationForm);

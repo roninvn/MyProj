@@ -5,7 +5,7 @@ USitISit.views.RegistrationForm = Ext.extend(Ext.form.FormPanel, {
 	dockedItems : [{
 		xtype : 'toolbar',
 		title : 'Registration',
-		ui : 'light'
+		ui : 'yellow'
 	}],
 	scroll : 'vertical',
 	fullscreen : true,
@@ -147,8 +147,10 @@ USitISit.views.RegistrationForm = Ext.extend(Ext.form.FormPanel, {
 	dockedItems : [{
 		xtype : 'toolbar',
 		dock : 'bottom',
+		ui : 'yellow',
 		items : [{
 			text : 'ENTER SPOUSE\'S INFO',
+			cls : 'smallbutton',
 			ui : 'round',
 			handler : function() {
 				USitISit.viewport.setActiveItem(USitISit.views.SpouseInfoForm);
@@ -157,6 +159,7 @@ USitISit.views.RegistrationForm = Ext.extend(Ext.form.FormPanel, {
 			xtype : 'spacer'
 		}, {
 			text : 'DONE',
+			cls : 'smallbutton',
 			ui : 'round',
 			handler : function() {
 				Ext.dispatch({

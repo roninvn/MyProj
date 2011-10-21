@@ -1,5 +1,10 @@
-.FormTitle{
+.FormTitle {
 	font-size: larger;
 	font-weight: bold;
-	text-align : center
+	text-align: center;
+	margin-top: -15px;
+}
+
+.smallbutton{
+	font-size: small;
 }

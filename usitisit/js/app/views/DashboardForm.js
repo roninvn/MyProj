@@ -12,12 +12,14 @@ USitISit.views.DashboardForm = Ext.extend(Ext.Panel, {
 		title : 'USitISit',
 		ui : 'yellow',
 		items : [{
-			text : 'Account'
+			text : 'Account',
+			cls : 'smallbutton'
 		}, {
 			xtype : 'spacer'
 		}, {
 			text : 'My profile',
-			align : 'right'
+			align : 'right',
+			cls : 'smallbutton'
 		}]
 	}, {
 		xtype : "toolbar",
@@ -43,8 +45,11 @@ USitISit.views.DashboardForm = Ext.extend(Ext.Panel, {
 			html : '8 points',
 			style : {
 				height : '100%',
-				'padding-top' : '12%',
-				'font-weight' : 'bold'
+				'padding-top' : '7%',
+				'font-weight' : 'bold',
+				'padding-right' : '13%',
+				'font-size' : '1.5em',
+				'padding-left' : '25px'
 			}
 		}, {
 			html : "<ul><li>2 friends' requests</li><li>1 requested sitter</li><li>1 upcoming sit</li><li>1 circle invitation</li></ul>"
@@ -52,7 +57,8 @@ USitISit.views.DashboardForm = Ext.extend(Ext.Panel, {
 	}, {
 		xtype : "panel",
 		style : {
-			'margin-top' : '10px'
+			'margin-top' : '10px',
+			'margin-left' : '-10px'
 		},
 		layout : {
 			type : 'hbox'
@@ -88,6 +94,10 @@ USitISit.views.DashboardForm = Ext.extend(Ext.Panel, {
 		layout : {
 			type : 'hbox',
 			align : 'left'
+		},
+		style : {
+			'margin-top' : '10px',
+			'margin-left' : '-10px'
 		},
 		items : [{
 			xtype : "button",

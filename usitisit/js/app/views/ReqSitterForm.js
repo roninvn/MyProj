@@ -9,6 +9,7 @@ USitISit.views.ReqSitterForm = Ext.extend(Ext.form.FormPanel, {
 	}, {
 		xtype : "toolbar",
 		dock : "bottom",
+		ui : 'yellow',
 		title : "Ad"
 	}],
 
