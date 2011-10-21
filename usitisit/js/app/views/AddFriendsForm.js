@@ -6,7 +6,7 @@ USitISit.views.AddFriendsForm = Ext.extend(Ext.form.FormPanel, {
     dockedItems:[{
         xtype: 'toolbar',
         title: 'Add Friends ',
-        ui: 'light'
+        ui : 'yellow',
     }],
     scroll: 'vertical',
 	fullscreen: true,
@@ -32,6 +32,7 @@ USitISit.views.AddFriendsForm = Ext.extend(Ext.form.FormPanel, {
 	               		{
 			                xtype: 'button',
 			                id: 'btnLogin',
+			                ui : 'orange-round',
 			                style: 'margin:2%;text-align:center',
 			                html:'INVITE<br /> Select friends to invite below. Then click here.',
 			                handler: function() {				                    
