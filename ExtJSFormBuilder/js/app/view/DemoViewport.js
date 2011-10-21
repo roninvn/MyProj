@@ -11,7 +11,7 @@ Ext.define('FB.view.DemoViewport', {
 
 	layout: 'fit',
 	items: [{
-				id:'autodorm',
+				id:'autoform',
 				xtype: 'AutoForm',
 				listeners:{
 					afterrender:function(){
