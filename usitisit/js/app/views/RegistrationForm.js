@@ -2,11 +2,6 @@
  * Create Registration Form
  */
 USitISit.views.RegistrationForm = Ext.extend(Ext.form.FormPanel, {
-	dockedItems : [{
-		xtype : 'toolbar',
-		title : 'Registration',
-		ui : 'yellow'
-	}],
 	scroll : 'vertical',
 	fullscreen : true,
 	items : [{
@@ -59,31 +54,42 @@ USitISit.views.RegistrationForm = Ext.extend(Ext.form.FormPanel, {
 			useClearIcon : true,
 			autoCapitalize : false,
 		}, {
-			xtype : 'selectfield',
-			name : 'home_state',
-			placeHolder : 'State',
-			id : 'cboState',
-			/*valueField : 'id',
-			 displayField : 'state',*/
-			options : [{
-				text : '',
-				value : '0'
-			}, {
-				text : 'State 1',
-				value : 'first'
-			}, {
-				text : 'State 2',
-				value : 'second'
-			}, {
-				text : 'State 3',
-				value : 'third'
-			}]
+			xtype : 'panel',
+			layout : {
+				type : 'hbox',
+				align : 'stretch'
+			},
+			items : [{
+				xtype : 'selectfield',
+				name : 'home_state',
+				style : {
+					width : '150px',
+					'margin-right' : '10px'
+				},
+				placeHolder : 'State',
+				id : 'cboState',
+				/*valueField : 'id',
+				 displayField : 'state',*/
+				options : [{
+					text : '',
+					value : '0'
+				}, {
+					text : 'State 1',
+					value : 'first'
+				}, {
+					text : 'State 2',
+					value : 'second'
+				}, {
+					text : 'State 3',
+					value : 'third'
+				}]
 
-		}, {
-			xtype : 'textfield',
-			name : 'home_zip_code',
-			id : 'txtZipCode',
-			placeHolder : 'Zip Code'
+			}, {
+				xtype : 'textfield',
+				name : 'home_zip_code',
+				id : 'txtZipCode',
+				placeHolder : 'Zip Code'
+			}]
 		}]
 	}, {
 		xtype : 'fieldset',
@@ -143,24 +149,27 @@ USitISit.views.RegistrationForm = Ext.extend(Ext.form.FormPanel, {
 			name : 'confirm_password',
 			required : true
 		}]
-	}],
-	dockedItems : [{
-		xtype : 'toolbar',
-		dock : 'bottom',
-		ui : 'yellow',
+	}, {
+		xtype : 'panel',
+		layout : {
+			type : 'hbox',
+			align : 'stretch'
+		},
 		items : [{
+			xtype : 'button',
 			text : 'ENTER SPOUSE\'S INFO',
-			cls : 'smallbutton',
-			ui : 'round',
+			ui : 'orange-round',
+			cls: 'x-button-verysmall',
 			handler : function() {
 				USitISit.viewport.setActiveItem(USitISit.views.SpouseInfoForm);
 			}
 		}, {
 			xtype : 'spacer'
 		}, {
+			xtype : 'button',
 			text : 'DONE',
-			cls : 'smallbutton',
-			ui : 'round',
+			ui : 'orange-round',
+			cls: 'x-button-verysmall',
 			handler : function() {
 				Ext.dispatch({
 					controller : USitISit.controllers.RegistrationController,

@@ -4,7 +4,16 @@
 	text-align: center;
 	margin-top: -15px;
 }
-
 .smallbutton{
 	font-size: small;
+}
+.x-field{
+	font-size: small;
+}
+.x-form-fieldset-title {
+    font-size: small;
+}
+
+.x-button-verysmall>.x-button-label{
+	font-size: x-small;
 }

@@ -2,14 +2,8 @@
  * Create Spouse Information Form
  */
 USitISit.views.SpouseInfoForm = Ext.extend(Ext.form.FormPanel, {
-	dockedItems : [{
-		xtype : 'toolbar',
-		title : 'Registration',
-		ui : 'yellow'
-	}],
-	scroll : 'vertical',
+
 	fullscreen : true,
-	//url: _APP_URL + 'auth/signin',
 	items : [{
 		xtype : 'fieldset',
 		title : 'Spouse\'s Info',
@@ -47,23 +41,24 @@ USitISit.views.SpouseInfoForm = Ext.extend(Ext.form.FormPanel, {
 			useClearIcon : true,
 			required : true
 		}]
-	}],
-	dockedItems : [{
-		xtype : 'toolbar',
-		dock : 'bottom',
-		ui : 'yellow',
+	}, {
+		xtype : 'panel',
+		layout : {
+			type : 'hbox',
+			align : 'stretch'
+		},
 		items : [{
+			xtype : 'spacer'
+		}, {
+			xtype : 'button',
 			text : 'DONE',
-			cls : 'smallbutton',
-			//  ui: 'confirm',
+			ui : 'orange-round',
+			cls: 'x-button-verysmall',
 			handler : function() {
 				USitISit.viewport.setActiveItem(USitISit.views.RegistrationForm);
 			}
 		}]
-	}],
-	initComponent : function() {
-		USitISit.views.SpouseInfoForm.superclass.initComponent.apply(this, arguments);
-	}
+	}]
 });
 
 Ext.reg('SpouseInfoForm', USitISit.views.SpouseInfoForm);
