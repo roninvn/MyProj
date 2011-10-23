@@ -27,29 +27,41 @@ USitISit.views.LoginForm = Ext.extend(Ext.Panel, {
 		items : [{
 			xtype : 'textfield',
 			id : 'txtEmail',
+			name:'email',
 			placeHolder : "Email address"
 		}, {
 			xtype : 'passwordfield',
 			id : 'txtPassword',
+			name:'password',
 			placeHolder : "Password"
 		}, {
 			xtype : "togglefield",
 			label : "Save info and log in automatically next time",
 			labelAlign : 'right',
 			style : {
-				'-webkit-box-pack' : 'start'
+				'-webkit-box-pack' : 'start',
+				width:'100%'
 			}
 		}, {
 			xtype : "button",
 			ui : 'orange-round',
 			text : "Done",
+			style:{
+				'margin-top': '10px'
+			},
 			handler : function() {
-				USitISit.viewport.setActiveItem(USitISit.views.DashboardForm);
+				Ext.dispatch({
+					controller : USitISit.controllers.LoginController,
+					action : 'login'
+				});
 			}
 		}, {
 			xtype : "button",
 			ui : 'orange-round',
 			text : "Registration",
+			style:{
+				'margin-top': '10px'
+			},
 			handler : function() {
 				USitISit.viewport.setActiveItem(USitISit.views.RegistrationForm);
 			}
