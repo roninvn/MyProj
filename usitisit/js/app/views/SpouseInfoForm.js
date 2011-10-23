@@ -53,7 +53,7 @@ USitISit.views.SpouseInfoForm = Ext.extend(Ext.form.FormPanel, {
 			xtype : 'button',
 			text : 'DONE',
 			ui : 'orange-round',
-			cls: 'x-button-verysmall',
+			cls : 'x-button-verysmall',
 			handler : function() {
 				USitISit.viewport.setActiveItem(USitISit.views.RegistrationForm);
 			}

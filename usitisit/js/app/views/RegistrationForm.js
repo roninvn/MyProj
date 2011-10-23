@@ -11,7 +11,6 @@ USitISit.views.RegistrationForm = Ext.extend(Ext.form.FormPanel, {
 			xtype : 'textfield',
 			name : 'first_name',
 			id : 'txtFirstName',
-			//label: 'First Name',
 			placeHolder : 'First Name',
 			useClearIcon : true,
 			autoCapitalize : false,
@@ -20,7 +19,6 @@ USitISit.views.RegistrationForm = Ext.extend(Ext.form.FormPanel, {
 			xtype : 'textfield',
 			name : 'last_name',
 			id : 'txtLastName',
-			//label: 'Last Name',
 			placeHolder : 'Last Name',
 			useClearIcon : true,
 			autoCapitalize : false,
@@ -29,14 +27,12 @@ USitISit.views.RegistrationForm = Ext.extend(Ext.form.FormPanel, {
 			xtype : 'emailfield',
 			name : 'email_address',
 			id : 'txtEmail',
-			//label: 'Email Address',
 			placeHolder : 'Email Address',
 			required : true
 		}, {
 			xtype : 'textfield',
 			name : 'phone_number',
 			id : 'txtPhone',
-			//label: 'Last Name',
 			placeHolder : 'Phone #',
 			useClearIcon : true,
 			required : true
@@ -48,8 +44,6 @@ USitISit.views.RegistrationForm = Ext.extend(Ext.form.FormPanel, {
 			xtype : 'textfield',
 			name : 'home_address',
 			id : 'txtAddress',
-
-			// label: 'Home Address',
 			placeHolder : 'Home Address',
 			useClearIcon : true,
 			autoCapitalize : false,
@@ -68,8 +62,6 @@ USitISit.views.RegistrationForm = Ext.extend(Ext.form.FormPanel, {
 				},
 				placeHolder : 'State',
 				id : 'cboState',
-				/*valueField : 'id',
-				 displayField : 'state',*/
 				options : [{
 					text : '',
 					value : '0'
@@ -159,7 +151,7 @@ USitISit.views.RegistrationForm = Ext.extend(Ext.form.FormPanel, {
 			xtype : 'button',
 			text : 'ENTER SPOUSE\'S INFO',
 			ui : 'orange-round',
-			cls: 'x-button-verysmall',
+			cls : 'x-button-verysmall',
 			handler : function() {
 				USitISit.viewport.setActiveItem(USitISit.views.SpouseInfoForm);
 			}
@@ -169,7 +161,7 @@ USitISit.views.RegistrationForm = Ext.extend(Ext.form.FormPanel, {
 			xtype : 'button',
 			text : 'DONE',
 			ui : 'orange-round',
-			cls: 'x-button-verysmall',
+			cls : 'x-button-verysmall',
 			handler : function() {
 				Ext.dispatch({
 					controller : USitISit.controllers.RegistrationController,
