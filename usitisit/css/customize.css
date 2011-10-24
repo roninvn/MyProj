@@ -15,5 +15,10 @@
 }
 
 .x-button-verysmall>.x-button-label{
-	font-size: x-small;
+	font-size: small;
+}
+
+.panel-noborder>.x-panel-body{
+	border: 0px solid white;
+	-webkit-box-shadow: none;
 }

@@ -53,11 +53,12 @@ USitISit.views.RegistrationForm = Ext.extend(Ext.form.FormPanel, {
 				type : 'hbox',
 				align : 'stretch'
 			},
+			cls : 'panel-noborder',
 			items : [{
 				xtype : 'selectfield',
 				name : 'home_state',
 				style : {
-					width : '150px',
+					width : '140px',
 					'margin-right' : '10px'
 				},
 				placeHolder : 'State',
@@ -78,6 +79,9 @@ USitISit.views.RegistrationForm = Ext.extend(Ext.form.FormPanel, {
 
 			}, {
 				xtype : 'textfield',
+				style : {
+					width : '140px'
+				},
 				name : 'home_zip_code',
 				id : 'txtZipCode',
 				placeHolder : 'Zip Code'
@@ -86,8 +90,16 @@ USitISit.views.RegistrationForm = Ext.extend(Ext.form.FormPanel, {
 	}, {
 		xtype : 'fieldset',
 		title : 'Who will your friends be sitting?',
+		layout : {
+			type : 'hbox',
+			align : 'stretch'
+		},
 		items : [{
 			xtype : 'selectfield',
+			style : {
+				width : '140px',
+				'margin-right' : '10px'
+			},
 			name : 'number_of_children',
 			id : 'cboChildren',
 			placeHolder : '# of Children',
@@ -107,6 +119,9 @@ USitISit.views.RegistrationForm = Ext.extend(Ext.form.FormPanel, {
 
 		}, {
 			xtype : 'selectfield',
+			style : {
+				width : '140px'
+			},
 			name : 'number_of_pets',
 			id : 'cboPet',
 			placeHolder : '# of Pets',
@@ -146,6 +161,10 @@ USitISit.views.RegistrationForm = Ext.extend(Ext.form.FormPanel, {
 		layout : {
 			type : 'hbox',
 			align : 'stretch'
+		},
+		style : {
+			'margin-left' : '-35px',
+			'margin-right' : '-30px'
 		},
 		items : [{
 			xtype : 'button',
