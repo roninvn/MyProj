@@ -27,9 +27,7 @@ Ext.define('FB.view.CenterPanel', {
 		var nav = new Ext.util.KeyNav(Ext.get(document), {
 			"del" : function(e) {
 				if (FB.view.DesignControl.selectedControl) {
-					this
-							.remove(FB.view.DesignControl.selectedControl.ctr,
-									true);
+					this.remove(FB.view.DesignControl.selectedControl.ctr, true);
 					FB.view.DesignControl.selectedControl.ctr = null;
 				}
 			},
@@ -52,8 +50,7 @@ Ext.define('FB.view.CenterPanel', {
 
 				onNodeDrop : function(target, dd, e, data) {
 
-					var x = e.getX() - grid.el.getX(), y = e.getY()
-							- grid.el.getY();
+					var x = e.getX() - grid.el.getX(), y = e.getY() - grid.el.getY();
 
 					if (data.isDesign) {
 						data.control.setPosition(x, y);
