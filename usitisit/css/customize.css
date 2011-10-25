@@ -22,3 +22,11 @@
 	border: 0px solid white;
 	-webkit-box-shadow: none;
 }
+
+.regSitterButton {
+	width : 40%;
+	margin-right: -30px;
+}
+.regSitterButton >.x-button-label{
+	font-size: small;
+}

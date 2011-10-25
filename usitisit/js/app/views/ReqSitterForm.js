@@ -14,6 +14,9 @@ USitISit.views.ReqSitterForm = Ext.extend(Ext.form.FormPanel, {
 	}],
 
 	items : [{
+		html : 'Request a Sitter',
+		cls : 'FormTitle'
+	}, {
 		xtype : "fieldset",
 		title : 'From',
 		items : [{
@@ -55,37 +58,63 @@ USitISit.views.ReqSitterForm = Ext.extend(Ext.form.FormPanel, {
 			value : '3'
 		}]
 	}, {
-		xtype : "textfield",
-		value : "My home",
-		label : "Place:",
-		disabled : true
+		xtype : 'panel',
+		layout : {
+			type : 'hbox'
+		},
+		style : {
+			'margin-left' : '-50px'
+		},
+		items : [{
+			html : '<b>Place:</b><br /> My home'
+		}, {
+			xtype : 'spacer'
+		}, {
+			xtype : 'button',
+			text : 'Change Location',
+			ui : 'orange-round',
+			cls:'regSitterButton'
+		}]
 	}, {
-		xtype : "button",
-		ui : 'orange-round',
-		text : "Change location"
+		xtype : 'panel',
+		layout : {
+			type : 'hbox'
+		},
+		style : {
+			'margin-left' : '-50px'
+		},
+		items : [{
+			html : '<b>Sitting:</b><br /> 2 Children, 1 pet'
+		}, {
+			xtype : 'spacer'
+		}, {
+			xtype : 'button',
+			text : 'Change',
+			ui : 'orange-round',
+			cls:'regSitterButton'
+		}]
 	}, {
-		xtype : "textfield",
-		value : "2 children, 1 pet",
-		label : "Sitting:",
-		disabled : true
-	}, {
-		xtype : "button",
-		ui : 'orange-round',
-		text : "Change"
-	}, {
-		html : "Point Value: 00 <br /> You have 8 points"
-	}, {
-		xtype : "button",
-		ui : 'orange-round',
-		text : "Done",
-		handler : function() {
-			USitISit.viewport.setActiveItem(USitISit.views.DashboardForm);
-		}
-	}],
-
-	initComponent : function() {
-		USitISit.views.ReqSitterForm.superclass.initComponent.apply(this, arguments);
-	}
+		xtype : 'panel',
+		layout : {
+			type : 'hbox'
+		},
+		style : {
+			'margin-left' : '-50px'
+		},
+		items : [{
+			html : '<b>Point Value: 00</b><br />(You have 8 points)'
+		}, {
+			xtype : 'spacer'
+		}, {
+			xtype : 'button',
+			text : 'Done',
+			ui : 'orange-round',
+			cls:'regSitterButton',
+			handler : function() {
+				USitISit.viewport.setActiveItem(USitISit.views.DashboardForm);
+			}
+		}]
+	}]
 });
 
 Ext.reg('ReqSitterForm', USitISit.views.ReqSitterForm);

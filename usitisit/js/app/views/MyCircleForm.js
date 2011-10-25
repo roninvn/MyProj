@@ -23,29 +23,31 @@ USitISit.views.MyCircleForm = Ext.extend(Ext.Panel, {
 
 	items : [{
 		html : "My Circle",
-		style : {
-			'text-align' : 'center'
-		}
+		cls : 'FormTitle'
 	}, {
 		xtype : "panel",
 		layout : {
 			type : 'hbox'
 		},
+		style : {
+			'margin-top' : '10px',
+			'margin-left' : '-10px'
+		},
 		items : [{
 			xtype : 'button',
 			ui : 'orange-round',
-			html : '<div style="position: absolute; top: 0;font-weight:bold;text-align:center;width:100%;">Invite</div><div style="position: absolute; bottom: 0;">Add friends to my circle</div>',
+			html : '<center><b>Invite</b><br />Add friends to My Circle</center>',
 			style : {
 				'margin-right' : '1%',
-				height : '70px',
+				height : '90px',
 				width : '150px'
 			}
 		}, {
 			xtype : 'button',
 			ui : 'orange-round',
-			html : '<div style="position: absolute; top: 0;font-weight:bold;text-align:center;width:100%;">Invitation received</div><div style="position: absolute; bottom: 0;">Join a Friend\'s circle</div>',
+			html : '<center><b>Invitations<br />Received</b><br />Join a Friend\'s Circle</center>',
 			style : {
-				height : '70px',
+				height : '90px',
 				width : '150px'
 			}
 		}]
@@ -54,9 +56,9 @@ USitISit.views.MyCircleForm = Ext.extend(Ext.Panel, {
 		ui : 'orange-round',
 		text : 'Go to Friends\' request',
 		style : {
-			height : '70px',
+			height : '90px',
 			width : '250px',
-			'margin-left' : '10%',
+			'margin-left' : '25px',
 			'margin-top' : '10px'
 		}
 	}, {

@@ -26,21 +26,28 @@ USitISit.views.FriendInfoForm = Ext.extend(Ext.Panel, {
 		layout : {
 			type : 'hbox'
 		},
+		style : {
+			left : 0,
+			top : 0,
+			position : 'absolute',
+			'background-color' : 'lightyellow'
+		},
+		width : '100%',
 		items : [{
-			html : "<b>Sit Request</b> 10/29 00:00"
+			html : "<b>Sit Request</b> 10/29 00:00pm"
+		}, {
+			xtype : 'spacer'
 		}, {
 			xtype : 'button',
 			ui : 'orange-round',
-			text : 'Go to Friends\' request',
+			text : '<center>Go to Friends\' <br /> Requests</center>',
+			cls : 'x-button-smaller',
 			style : {
-				'position' : 'absolute',
-				right : 0,
-				width : '80px',
-				height : '50px'
-			}
+				right : '0px'
+			},
 		}]
 	}, {
-		html : "<div style='text-align:center;'><b>Friends' name<br /> 6 points <br /></b>Street Address Town ST</div>",
+		html : "<div style='text-align:center;'><b>Friends' Name<br /> 6 points <br /></b>Street Address Town ST</div>",
 		style : {
 			'margin-top' : '30px'
 		}
@@ -56,22 +63,27 @@ USitISit.views.FriendInfoForm = Ext.extend(Ext.Panel, {
 			xtype : 'button',
 			ui : 'orange-round',
 			text : 'Call..',
+			cls : 'x-button-verysmall',
 			style : {
-				'margin-left' : '15px'
+				width : '90px'
 			}
 		}, {
 			xtype : 'button',
 			ui : 'orange-round',
+			cls : 'x-button-verysmall',
 			text : 'Message..',
 			style : {
-				'margin-left' : '15px'
+				'margin-left' : '10px',
+				width : '90px'
 			}
 		}, {
 			xtype : 'button',
 			ui : 'orange-round',
+			cls : 'x-button-verysmall',
 			text : 'Email..',
 			style : {
-				'margin-left' : '15px'
+				'margin-left' : '10px',
+				width : '90px'
 			}
 		}]
 	}, {
@@ -85,18 +97,31 @@ USitISit.views.FriendInfoForm = Ext.extend(Ext.Panel, {
 		items : [{
 			xtype : 'button',
 			ui : 'orange-round',
-			text : 'Delete from My Circle..',
+			cls : 'x-button-verysmall',
+			text : 'Delete from <br /> My Circle..',
 			style : {
-				'margin-left' : '0px'
+				'margin-left' : '0px',
+				height : '40px'
 			}
+		}, {
+			xtype : 'spacer'
 		}, {
 			xtype : 'button',
 			ui : 'orange-round',
-			text : 'See Friends\' circle',
+			cls : 'x-button-verysmall',
+			text : 'See Friends\' <br /> Circle',
 			style : {
-				'margin-left' : '5px'
+				'margin-left' : '5px',
+				height : '40px'
 			}
 		}]
+	}, {
+		html : 'Badges',
+		cls : 'FormTitle',
+		style:{
+			'margin-top' : '10px'
+		}
+		
 	}]
 });
 

@@ -1,6 +1,7 @@
 USitISit.views.SitScheduleForm = Ext.extend(Ext.Panel, {
 	scroll : 'vertical',
 	fullscreen : true,
+	styleHtmlContent : true,
 	dockedItems : [{
 		xtype : 'toolbar',
 		dock : 'top',
@@ -21,20 +22,24 @@ USitISit.views.SitScheduleForm = Ext.extend(Ext.Panel, {
 	}],
 
 	items : [{
-		html : "Friends' Sitter Requests",
-		style : {
-			'text-align' : 'center'
-		}
+		html : "Sit Schedule",
+		cls : 'FormTitle'
 	}, {
+
 		xtype : "button",
 		ui : 'orange-round',
-		text : "Check Calendar"
+		text : "Check Calendar",
+		style : {
+			'margin-top' : '15px',
+			'margin-bottom' : '15px',
+			'margin-left' : '25%',
+			width : '50%'
+		},
 
 	}, {
-		xtype : "fieldset",
-		title : "Friend's Name",
+		xtype : "panel",
 		items : [{
-			html : "Saturday, 10/29; 6:30pm - 11:00pm <br />123 Street Name, Anytown<br />Point Value: 4.5"
+			html : "<hr /><b>Friend's Name</b><br />Saturday, 10/29; 6:30pm - 11:00pm <br />123 Street Name, Anytown<br /><b>Point Value:</b> 4.5"
 		}, {
 			xtype : "panel",
 			border : "1",
@@ -43,21 +48,19 @@ USitISit.views.SitScheduleForm = Ext.extend(Ext.Panel, {
 				align : 'left'
 			},
 			items : [{
-				html : "You are sitting"
+				html:'<b>You are sitting.</b>'
+			}, {
+				xtype : 'spacer'
 			}, {
 				xtype : "button",
 				ui : 'orange-round',
-				text : "Change",
-				style : {
-					'margin-left' : '20px'
-				}
+				text : "Change"
 			}]
 		}]
 	}, {
-		xtype : "fieldset",
-		title : "Friend's Name",
+		xtype : "panel",
 		items : [{
-			html : "Saturday, 10/29; 6:30pm - 11:00pm <br />123 Street Name, Anytown<br />Point Value: 3"
+			html : "<hr /><b>Friend's Name</b><br />Saturday, 10/29; 6:30pm - 11:00pm <br />123 Street Name, Anytown<br /><b>Point Value:</b> 4.5"
 		}, {
 			xtype : "panel",
 			border : "1",
@@ -66,14 +69,13 @@ USitISit.views.SitScheduleForm = Ext.extend(Ext.Panel, {
 				align : 'left'
 			},
 			items : [{
-				html : "You are sitting"
+				html:'<b>Sitting for you.</b>'
+			}, {
+				xtype : 'spacer'
 			}, {
 				xtype : "button",
 				ui : 'orange-round',
-				text : "Change",
-				style : {
-					'margin-left' : '20px'
-				}
+				text : "Change"
 			}]
 		}]
 	}]

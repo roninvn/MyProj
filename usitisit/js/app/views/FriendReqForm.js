@@ -23,20 +23,23 @@ USitISit.views.FriendReqForm = Ext.extend(Ext.Panel, {
 
 	items : [{
 		html : "Friends' Sitter Requests",
-		style : {
-			'text-align' : 'center'
-		}
+		cls : 'FormTitle'
 	}, {
 
 		xtype : "button",
 		ui : 'orange-round',
-		text : "Check Calendar"
+		text : "Check Calendar",
+		style : {
+			'margin-top' : '15px',
+			'margin-bottom' : '15px',
+			'margin-left' : '25%',
+			width : '50%'
+		},
 
 	}, {
-		xtype : "fieldset",
-		title : "Friend's Name",
+		xtype : "panel",
 		items : [{
-			html : "Saturday, 10/29; 6:30pm - 11:00pm <br />123 Street Name, Anytown<br />Point Value: 4.5"
+			html : "<hr /><b>Friend's Name</b><br />Saturday, 10/29; 6:30pm - 11:00pm <br />123 Street Name, Anytown<br /><b>Point Value:</b> 4.5"
 		}, {
 			xtype : "panel",
 			border : "1",
@@ -49,19 +52,17 @@ USitISit.views.FriendReqForm = Ext.extend(Ext.Panel, {
 				ui : 'orange-round',
 				text : "Sorry, Unavailable"
 			}, {
+				xtype : 'spacer'
+			}, {
 				xtype : "button",
 				ui : 'orange-round',
-				text : "I'll Sit",
-				style : {
-					'margin-left' : '20px'
-				}
+				text : "I'll Sit"
 			}]
 		}]
 	}, {
-		xtype : "fieldset",
-		title : "Friend's Name",
+		xtype : "panel",
 		items : [{
-			html : "Saturday, 10/29; 6:30pm - 11:00pm <br />123 Street Name, Anytown<br />Point Value: 3"
+			html : "<hr /><b>Friend's Name</b><br />Saturday, 10/29; 6:30pm - 11:00pm <br />123 Street Name, Anytown<br /><b>Point Value:</b> 4.5"
 		}, {
 			xtype : "panel",
 			border : "1",
@@ -74,19 +75,14 @@ USitISit.views.FriendReqForm = Ext.extend(Ext.Panel, {
 				ui : 'orange-round',
 				text : "Sorry, Unavailable"
 			}, {
+				xtype : 'spacer'
+			}, {
 				xtype : "button",
 				ui : 'orange-round',
-				text : "I'll Sit",
-				style : {
-					'margin-left' : '20px'
-				}
+				text : "I'll Sit"
 			}]
 		}]
-	}],
-
-	initComponent : function() {
-		USitISit.views.FriendReqForm.superclass.initComponent.apply(this, arguments);
-	}
+	}]
 });
 
 Ext.reg('FriendReqForm', USitISit.views.FriendReqForm);

@@ -4,6 +4,8 @@
 USitISit.controllers.LoginController = new Ext.Controller({
 
 	login : function() {
+		USitISit.viewport.setActiveItem(USitISit.views.DashboardForm);
+		return;
 		Utils.showLoadMask();
 		var params = Utils.getFormParams(USitISit.views.LoginForm);
 		params.password = Utils.md5(params.password);
@@ -11,7 +13,6 @@ USitISit.controllers.LoginController = new Ext.Controller({
 
 		Utils.ajaxRequest('login', params, function(result) {
 			Utils.hideLoadMask();
-			//console.log(result);
 
 			if(result && result.response) {
 				USitISit.viewport.setActiveItem(USitISit.views.DashboardForm);
