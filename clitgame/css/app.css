@@ -1,30 +1,126 @@
- body{ height:100% }
-div.page{
-	display:block;
+body {
+	height: 100%
+}
+
+div.page {
+	display: block;
 	position: absolute;
 	width: 100%;
-	height:100%;
-	top:0;
-	left:0;
+	height: 100%;
+	top: 0;
+	left: 0;
 	visibility: hidden;
 }
 
-#SplashPage{
+#SplashPage {
 	background-image: url('../img/pussy_co_presents_portrait.jpg');
-	background-repeat:no-repeat;
-	background-attachment:fixed;
-	background-position:center;
+	background-repeat: no-repeat;
+	background-attachment: fixed;
+	background-position: center;
 }
 
-#HomePage{
+#HomePage {
 	background-image: url('../img/app_portrait_homepage_portrait.jpg');
-	background-repeat:no-repeat;
-	background-attachment:fixed;
-	background-position:center;
+	background-repeat: no-repeat;
+	background-attachment: fixed;
+	background-position: center;
 }
 
-#HomePage>#btnPlay{
+#HomePage>#btnPlay {
 	position: absolute;
 	left: 50%;
 	top: 50%;
+}
+
+#PlayGround {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 320px;
+	height: 480px;
+	background-color: #f9d7cc;
+	/*background-image : url('../img/pussy.png');*/
+	background-size: 100%;
+	background-position: center;
+	background-repeat: no-repeat;
+}
+
+#PlayGround>#dTime {
+	position: absolute;
+	background-image: url('../img/timebackground.png');
+	background-position: center;
+	background-repeat: no-repeat;
+	width: 23%;
+	height: 8.3%;
+	top: 1%;
+	left: 5%;
+	color: #c0171d;
+	font-size: xx-large;
+	text-align: center;
+	vertical-align: middle;
+}
+
+#PlayGround>#dPlay {
+	position: absolute;
+	width: 36.07%;
+	height: 6.45%;
+	bottom: 3%;
+	left: 30%;
+}
+
+#PlayGround>#dLogo {
+	position: absolute;
+	width: 11.20%;
+	height: 11.135%;
+	bottom: 1%;
+	left: 10%;
+}
+
+#PlayGround>#dMeter {
+	position: absolute;
+	background-image: url('../img/meter.png');
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: 100%;
+	width: 48.04%;
+	height: 2.83%;
+	bottom: 18%;
+	left: 70%;
+	-webkit-transform: rotate(270deg);
+}
+
+#PlayGround>#dClick {
+	position: absolute;
+	width: 69%;
+	height: 82%;
+	top: 9%;
+	left: 15%;
+	z-index: 2;
+}
+
+#PlayGround>#dResult {
+	position: absolute;
+	width: 97.14%;
+	height: 68.16%;
+	top: 10%;
+	left: 1%;
+	z-index: 3;
+}
+
+#dBar {
+	position: absolute;
+	left: 0;
+	top: -50%;
+	width: 2px;
+	height: 200%;
+}
+
+#dMeterText {
+	position: absolute;
+	top: 0;
+	right: 0;
+	width: 55%;
+	height: 100%;
+	font-size: smaller;
+	vertical-align: middle;	
 }

@@ -8,5 +8,10 @@ Page.extend("HomePage",
 {
   init : function(e){	  
 	  this._super(e);
+	  
+	  $('#btnPlay').click(function(){
+		  Page.show("PlayPage");
+	  });
+	  
   }//end init  
 });
