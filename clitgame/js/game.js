@@ -85,6 +85,10 @@ $.Class.extend("Game",
 	},
 
 	tapPussy : function() {
+		//vibrate
+		if(navigator && navigator.notification && navigator.notification.vibrate)
+			navigator.notification.vibrate(500);
+		
 		this.meter += 5; // inscrese 5%
 		if (this.meter > 100)
 			this.meter = 100;
@@ -119,7 +123,7 @@ $.Class.extend("Game",
 
 	showMeter : function() {
 		$('#dBar').css({
-			bottom : this.meter + "%"
+			left : this.meter + "%"
 		});
 		$('#dMeterText').html(this.meter + "%");
 	},
@@ -137,6 +141,8 @@ $.Class.extend("Game",
 				break;
 			}
 		}
+		
+		$("#adResult")[0].play();		
 		$('#dResult').show();
 		$('#resultInfo').show();
 	}

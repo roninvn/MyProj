@@ -11,6 +11,7 @@ Page.extend("HomePage",
 	  
 	  $('#btnPlay').click(function(){
 		  Page.show("PlayPage");
+		  $("#adOhYeah2")[0].play();
 	  });
 	  
   }//end init  

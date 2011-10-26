@@ -11,6 +11,7 @@ Page.extend("SplashPage",
 	  
 	  this.el.click(function(e){
 		  Page.show("HomePage");
+		  $("#adOhYeah")[0].play();
 	  });
 	  
   }//end init  

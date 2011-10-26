@@ -27,9 +27,13 @@ div.page {
 }
 
 #HomePage>#btnPlay {
+	font-size: 45px;
 	position: absolute;
-	left: 50%;
-	top: 50%;
+	top: 75%;
+	left: 60%;
+	text-decoration: none;
+	color: red;
+	font-weight: bold;
 }
 
 #PlayGround {
@@ -65,7 +69,7 @@ div.page {
 	width: 36.07%;
 	height: 6.45%;
 	bottom: 3%;
-	left: 30%;
+	left: 33%;
 }
 
 #PlayGround>#dLogo {
