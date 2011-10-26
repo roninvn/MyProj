@@ -15,7 +15,7 @@ USitISit.controllers.LoginController = new Ext.Controller({
 		Utils.ajaxRequest('login', params, function(result) {
 			Utils.hideLoadMask();			
 			if(result && result.response) {				
-				USitISit.controllers.LoginController.userID = result.user_id;
+				USitISit.controllers.LoginController.user_id = result.user_id;
 				USitISit.controllers.LoginController.auth_token = result.auth_token;
 				
 				USitISit.viewport.setActiveItem(USitISit.views.DashboardForm);

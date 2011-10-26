@@ -5,14 +5,120 @@ USitISit.controllers.MainController = new Ext.Controller({
 	/*
 	 * request a sitter
 	 */
-	reqSitter: function(){
-		Utils.showLoadMask();
+	reqSitter : function() {
+
+		// validate
 		var params = Utils.getFormParams(USitISit.views.ReqSitterForm);
+
+		if (params.fromDate == null || params.fromDate == ""
+				|| params.toDate == null || params.toDate == ""){
+			Ext.Msg.alert('Error', 'Please fill in all information.', Ext.emptyFn);
+			return;
+		}
+
+		params.from_month = params.fromDate.getMonth() + 1;
+		params.from_date = params.fromDate.getDate();
+		delete params.fromDate;
+
+		params.to_month = params.toDate.getMonth() + 1;
+		params.to_date = params.toDate.getDate();
+		delete params.toDate;
+
+		params.request_place = "My home";
+		params.number_of_children = 2;
+		params.number_of_pets = 1;
 		
-		Utils.hideLoadMask();
-		console.log(params);
+		Utils.applyAuthInfo(params);
+
+		Utils.showLoadMask();
+
+		Utils.ajaxRequest('createSitterRequest', params, function(result) {
+			
+			Utils.hideLoadMask();
+
+			if (result && result.response) {
+
+				Ext.Msg.alert('Success', 'Request successfully.', function() {
+							USitISit.viewport.setActiveItem(USitISit.views.DashboardForm);
+						});
+
+			} else {
+				Ext.Msg.alert('Failed', 'Request failed.', Ext.emptyFn);
+			}
+
+		});
+
+	},
+	
+	/*
+	 * load list of requested
+	 */
+	openFriendReqForm: function(){		
+		params = {};
+		Utils.applyAuthInfo(params);
+		
+		Utils.showLoadMask();
+
+		Utils.ajaxRequest('getFriendsSittingRequests', params, function(result) {
+			
+			Utils.hideLoadMask();
+
+			if (result) {
+				
+				var list = USitISit.views.FriendReqForm.getComponent('reqList');
+				list.removeAll(true);
+				
+				for(var i=0; i< result.length; i++){
+					
+					var f = result[i];
+				
+					var c = {
+							xtype : "panel",
+							items : [
+									{
+										html : "<hr /><b>" +f.name+ "</b><br />" + f.request_from + " - "+f.request_to+" <br />123 Street Name, Anytown<br /><b>Point Value:</b> " + f.number_of_points
+									},
+									{
+										xtype : "panel",
+										border : "1",
+										layout : {
+											type : 'hbox',
+											align : 'left'
+										},
+										items : [
+												{
+													xtype : "button",
+													ui : 'orange-round',
+													text : "Sorry, Unavailable",
+													friend_user_id:f.friend_user_id,
+													request_id:f.request_id
+												},
+												{
+													xtype : 'spacer'
+												},
+												{
+													xtype : "button",
+													ui : 'orange-round',
+													text : "I'll Sit",
+													friend_user_id:f.friend_user_id,
+													request_id: f.request_id
+												} ]
+									} ]
+						};
+					
+					list.add(c);					
+					
+				}
+				
+				list.doLayout();
+				//switch form
+				USitISit.viewport.setActiveItem(USitISit.views.FriendReqForm);
+			} else {
+				Ext.Msg.alert('Failed', 'Loading data failed.', Ext.emptyFn);
+			}
+
+		});
 	}
 });
 
 Ext.regController('MainController', USitISit.controllers.MainController);
-

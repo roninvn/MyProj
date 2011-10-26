@@ -43,6 +43,11 @@ var Utils = {
 			callback : callback
 		});
 	},
+	
+	applyAuthInfo: function(params){
+		Ext.apply(params,{user_id : USitISit.controllers.LoginController.user_id, auth_token: USitISit.controllers.LoginController.auth_token});
+	},
+	
 	md5 : function(str) {
 		// http://kevin.vanzonneveld.net
 		// +   original by: Webtoolkit.info (http://www.webtoolkit.info/)

@@ -58,15 +58,16 @@ USitISit.views.ReqSitterForm = Ext.extend(Ext.form.FormPanel, {
 	}, {
 		xtype : "selectfield",
 		label : "Repeat:",
+		name: 'request_repeat',
 		options : [{
 			text : 'Daily',
-			value : '1'
+			value : 'Daily'
 		}, {
 			text : 'Weekly',
-			value : '2'
+			value : 'Weekly'
 		}, {
 			text : 'Monthly',
-			value : '3'
+			value : 'Monthly'
 		}]
 	}, {
 		xtype : 'panel',

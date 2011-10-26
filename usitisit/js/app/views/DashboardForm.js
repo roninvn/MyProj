@@ -86,7 +86,10 @@ USitISit.views.DashboardForm = Ext.extend(Ext.Panel, {
 			},
 			text : "Friends' Requests",
 			handler : function() {
-				USitISit.viewport.setActiveItem(USitISit.views.FriendReqForm);
+				Ext.dispatch({
+					controller : USitISit.controllers.MainController,
+					action : 'openFriendReqForm'
+				});
 			}
 		}]
 	}, {
