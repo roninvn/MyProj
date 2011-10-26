@@ -62,7 +62,7 @@ USitISit.controllers.MainController = new Ext.Controller({
 		Utils.ajaxRequest('getFriendsSittingRequests', params, function(result) {
 			
 			Utils.hideLoadMask();
-
+			
 			if (result) {
 				
 				var list = USitISit.views.FriendReqForm.getComponent('reqList');
@@ -76,7 +76,7 @@ USitISit.controllers.MainController = new Ext.Controller({
 							xtype : "panel",
 							items : [
 									{
-										html : "<hr /><b>" +f.name+ "</b><br />" + f.request_from + " - "+f.request_to+" <br />123 Street Name, Anytown<br /><b>Point Value:</b> " + f.number_of_points
+										html : "<hr /><b>" +f.name+ "</b><br />" + f.request_from + " - "+f.request_to+" <br />" +f.home_address+ "<br /><b>Point Value:</b> " + f.number_of_points
 									},
 									{
 										xtype : "panel",
@@ -91,7 +91,10 @@ USitISit.controllers.MainController = new Ext.Controller({
 													ui : 'orange-round',
 													text : "Sorry, Unavailable",
 													friend_user_id:f.friend_user_id,
-													request_id:f.request_id
+													request_id:f.request_id,
+													handler: function(){
+														USitISit.controllers.MainController.rejectRequest(this.request_id);
+													}
 												},
 												{
 													xtype : 'spacer'
@@ -101,7 +104,10 @@ USitISit.controllers.MainController = new Ext.Controller({
 													ui : 'orange-round',
 													text : "I'll Sit",
 													friend_user_id:f.friend_user_id,
-													request_id: f.request_id
+													request_id: f.request_id,
+													handler: function(){
+														USitISit.controllers.MainController.acceptRequest(this.request_id);
+													}
 												} ]
 									} ]
 						};
@@ -117,6 +123,42 @@ USitISit.controllers.MainController = new Ext.Controller({
 				Ext.Msg.alert('Failed', 'Loading data failed.', Ext.emptyFn);
 			}
 
+		});
+	},
+	
+	rejectRequest: function(request_id){
+		var params = {request_id: request_id};
+		Utils.applyAuthInfo(params);
+		Utils.showLoadMask();
+		Utils.ajaxRequest('rejectRequest', params, function(result) {
+			Utils.hideLoadMask();
+			
+			if (result && result.response) {
+
+				Ext.Msg.alert('Success', 'Reject successfully.', Ext.emptyFn);
+
+			} else {
+				Ext.Msg.alert('Failed', 'Reject failed.', Ext.emptyFn);
+			}
+			
+		});
+	},
+	
+	acceptRequest: function(request_id){
+		var params = {request_id: request_id};
+		Utils.applyAuthInfo(params);
+		Utils.showLoadMask();
+		Utils.ajaxRequest('acceptRequest', params, function(result) {
+			Utils.hideLoadMask();
+			
+			if (result && result.response) {
+
+				Ext.Msg.alert('Success', 'Accept successfully.', Ext.emptyFn);
+
+			} else {
+				Ext.Msg.alert('Failed', 'Accept failed.', Ext.emptyFn);
+			}
+			
 		});
 	}
 });
