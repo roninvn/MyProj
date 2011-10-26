@@ -39,7 +39,7 @@ div.page {
 	width: 320px;
 	height: 480px;
 	background-color: #f9d7cc;
-	/*background-image : url('../img/pussy.png');*/
+	background-image : url('../img/pussy.png');
 	background-size: 100%;
 	background-position: center;
 	background-repeat: no-repeat;
