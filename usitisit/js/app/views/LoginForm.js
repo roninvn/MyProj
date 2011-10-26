@@ -28,11 +28,13 @@ USitISit.views.LoginForm = Ext.extend(Ext.Panel, {
 			xtype : 'textfield',
 			id : 'txtEmail',
 			name:'email',
+			value:'test@demo.com',
 			placeHolder : "Email address"
 		}, {
 			xtype : 'passwordfield',
 			id : 'txtPassword',
 			name:'password',
+			value:'testingdemo',
 			placeHolder : "Password"
 		}, {
 			xtype : "togglefield",

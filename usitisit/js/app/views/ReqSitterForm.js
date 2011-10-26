@@ -5,7 +5,14 @@ USitISit.views.ReqSitterForm = Ext.extend(Ext.form.FormPanel, {
 		xtype : 'toolbar',
 		dock : 'top',
 		ui : 'yellow',
-		title : 'USitISit'
+		title : 'USitISit',
+		items:[{
+			text : 'Back to Dashboard',
+			cls : 'smallbutton',
+			handler : function() {
+				USitISit.viewport.setActiveItem(USitISit.views.DashboardForm);
+			}
+		}]
 	}, {
 		xtype : "toolbar",
 		dock : "bottom",
@@ -21,10 +28,12 @@ USitISit.views.ReqSitterForm = Ext.extend(Ext.form.FormPanel, {
 		title : 'From',
 		items : [{
 			xtype : "datepickerfield",
-			label : "Date"
+			label : "Date",
+			name:'fromDate'
 		}, {
 			xtype : "textfield",
-			label : "Time"
+			label : "Time",
+			name:'from_time'
 		}, {
 			xtype : "button",
 			ui : 'orange-round',
@@ -32,13 +41,15 @@ USitISit.views.ReqSitterForm = Ext.extend(Ext.form.FormPanel, {
 		}]
 	}, {
 		xtype : "fieldset",
-		title : 'From',
+		title : 'To',
 		items : [{
 			xtype : "datepickerfield",
-			label : "Date"
+			label : "Date",
+			name:'toDate'
 		}, {
 			xtype : "textfield",
-			label : "Time"
+			label : "Time",
+			name:'to_time'
 		}, {
 			xtype : "button",
 			ui : 'orange-round',
@@ -111,7 +122,10 @@ USitISit.views.ReqSitterForm = Ext.extend(Ext.form.FormPanel, {
 			ui : 'orange-round',
 			cls:'regSitterButton',
 			handler : function() {
-				USitISit.viewport.setActiveItem(USitISit.views.DashboardForm);
+				Ext.dispatch({
+					controller : USitISit.controllers.MainController,
+					action : 'reqSitter'
+				});
 			}
 		}]
 	}]
