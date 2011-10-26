@@ -59,6 +59,7 @@ $.Class.extend("Game",
 		this.emptyResource();
 		$('#dPlay').hide();
 		$('#dResult').hide();
+		$('#resultInfo').hide();
 
 		var me = this;
 
@@ -129,11 +130,15 @@ $.Class.extend("Game",
 			if(this.meter >=l.min && this.meter<= l.max){
 				var idx = Math.floor(Math.random() * l.quotes.length);
 				var q = l.quotes[idx];
-				console.log(l.name, q);
+				//console.log(l.name, q);
+				$("#resPercent").html(this.meter + "%");
+				$("#resName").html(l.name);
+				$("#resQuote").html(q);
 				break;
 			}
 		}
 		$('#dResult').show();
+		$('#resultInfo').show();
 	}
 
 });

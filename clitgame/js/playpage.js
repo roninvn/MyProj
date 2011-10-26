@@ -13,6 +13,7 @@ Page.extend("PlayPage",
 	  $('#dPlay').click(function(){me.play();});
 	  
 	  $('#dResult').hide();
+	  $('#resultInfo').hide();
 	  
   },//end init
   
