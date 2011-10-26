@@ -46,8 +46,13 @@ function loadpage(newpage){
 		return;
 	}
 	
-	x$('#content').inner("");	
-	//x$('#links').inner("");	
+	x$('#content').inner("");
+	
+	var bg = pages[currentpage].bgColor || "white";
+	x$('#wrap').setStyle("background-color", bg);
+	
+	var img = pages[currentpage].cornerImg || "img/blank.png";
+	x$('#imgman').attr('src', img);
 	
 	captionLength = 0;
 	
