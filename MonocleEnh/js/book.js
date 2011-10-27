@@ -18,6 +18,7 @@ Array.prototype.isValueExisted = function(val) {
 
 BookID = "TestBook";
 BookMarkKey = "nam.com.monocleenh.bookmark." + BookID;
+
 //locus that bookmarked
 Bookmarks = [];
 styleIndex = -1;
@@ -26,14 +27,37 @@ Monocle.Events.listen(
     window,
     'load',
     function () {
-    	loadBookmarks();
-    	updateBookmarkLink();
-		window.reader = Monocle.Reader('book', null, null, function(){
-	        	var bookmark=new Monocle.Controls.Bookmark(window.reader)
-	        	window.reader.addControl(bookmark);	        	
-	    	});
-		
-		
+    	
+    	document.addEventListener("deviceready",onDeviceReady,false);
+    	
+    	createBook();
+    	
+		$("#selFontSize").change(function(){
+			var sz = $("#selFontSize option:selected").val();
+			if(styleIndex ==-1){
+				styleIndex = reader.addPageStyles("body{font-size: " + sz + "% !important}");
+			}
+			else{
+				reader.updatePageStyles(styleIndex, "body{font-size: " + sz + "% !important}");
+			}
+				
+		});
+	
+    }
+);
+
+
+function createBook(){
+	var loaded = false;
+	if(window.reader)
+		loaded = true;
+	
+	window.reader = Monocle.Reader('book', null, null, function(){
+    	var bookmark=new Monocle.Controls.Bookmark(window.reader)
+    	window.reader.addControl(bookmark);	        	
+	});
+
+	if(!loaded){	
 		Monocle.Events.listen(window.reader.dom.find('box'), "bookish:unbookmark", function(){
 			//Bookmarks.removeByValue(window.reader.getPlace().getLocus().page);
 			var min = reader.getPlace().percentAtTopOfPage(), max = reader.getPlace().percentAtBottomOfPage();
@@ -54,21 +78,12 @@ Monocle.Events.listen(
 			updateBookmarkLink();
 			saveBookmarks();
 		});
-		
-		$("#selFontSize").change(function(){
-			var sz = $("#selFontSize option:selected").val();
-			if(styleIndex ==-1){
-				styleIndex = reader.addPageStyles("body{font-size: " + sz + "% !important}");
-			}
-			else{
-				reader.updatePageStyles(styleIndex, "body{font-size: " + sz + "% !important}");
-			}
-				
-		});
+	}
 	
-    }
-);
-
+	loadBookmarks();
+	updateBookmarkLink();
+	
+}
 
 function updateBookmarkLink(){
 	var bm = $("#bookmarks").empty();
@@ -94,4 +109,8 @@ function loadBookmarks(){
 	
 	/*for(var i=0; i<Bookmarks.length; i++)
 		Bookmarks[i] = parseInt(Bookmarks[i]);*/
+}
+
+function onDeviceReady(){
+	ReadFileSystem();
 }

@@ -25,8 +25,18 @@
 
 #fontsize{
 	position: absolute;
-	left: 70%;
+	left: 40%;
 	top:0;
 	height: 15%;
+	width: 25%;
+	background-color: #CCC;	
+}
+
+#booklist{
+	position: absolute;
+	left: 65%;
+	top:0;
+	height: 15%;
+	width: 35%;
 	background-color: #CCC;	
 }

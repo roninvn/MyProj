@@ -3,12 +3,10 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
-    />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
     <title>The Velveteen Rabbit - Monocle</title>
-    
+    <!-- <script src="http://192.168.1.2:8080/target/target-script-min.js#anonymous"></script> -->
+    <script type="text/javascript" src="phonegap.js"></script>
     <script type="text/javascript" src="js/lib/jquery.min.js"></script>
     <script type="text/javascript" src="js/lib/jquery.json-2.2.min.js"></script>
 
@@ -38,6 +36,7 @@
     
     
     <script type="text/javascript" src="js/bookmark.js"></script>
+    <script type="text/javascript" src="js/localfile.js"></script>
     <script type="text/javascript" src="js/book.js"></script>
 
     <link rel="stylesheet" type="text/css" href="css/monocore.css" />
@@ -49,7 +48,7 @@
   </head>
 
   <body class="narrow">    
-    <div id="bookmarks"></div>
+    <div id="bookmarks" ></div>
     <div id="fontsize">
     	<select id="selFontSize">    	
     		<option value="96">smallest</option>
@@ -60,17 +59,20 @@
     		<option value="190">super</option>
     	</select>
     </div>
+    <div id = "booklist">
+    	<select id="selBooks"></select>
+    </div>
+    
     <div id="book">
       <style>
       p {
         line-height: 130%;
-        margin-left: 60px;
+        margin-left: 20px;
       }
       img {
         max-width: 98%;
         max-height: 98%;
-        -webkit-column-break-before: always;
-        margin-left: 60px;
+        -webkit-column-break-before: always;       
       }
       .dedication {
         text-align: center;
@@ -98,7 +100,7 @@
       </style>
 
 
-      <img src="images/cover.jpg" alt="The Velveteen Rabbit, by Margery Williams" />
+      <img src="images/cover.jpg" alt="The Velveteen Rabbit, by Margery Williams" style = "margin-left: 20px;" />
 
       <h1>
         <small>The</small><br />Velveteen Rabbit
