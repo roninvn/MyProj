@@ -1,6 +1,7 @@
 var pages = [];
 currentpage = 0;
 TypeInterval = 20;
+CharsPerInterval = 3;
 
 SaveKey = "nam.com.textadv.save";
 
@@ -64,7 +65,8 @@ function typeText(){
 	
 	var  str = pages[currentpage].content;
 	
-	x$('#content').inner(str.substr(0,captionLength++));
+	captionLength += CharsPerInterval;
+	x$('#content').inner(str.substr(0,captionLength));
 	
 	if(captionLength < str.length){
 	  setTimeout(typeText, TypeInterval);
