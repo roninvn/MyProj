@@ -37,7 +37,7 @@ $.Class.extend("Game",
 				name : 'Porn Star',
 				min : 81,
 				max : 100,
-				quotes : [ 'Magic touch babe', 'I’m shaking! You’re Sex God',
+				quotes : [ 'Magic touch babe', 'I\'m shaking! You\'re Sex God',
 						'Want a job with us?' ]
 			} ],
 	 
@@ -81,7 +81,7 @@ $.Class.extend("Game",
 
 		var me = this;
 
-		$('#dClick').click(function() {
+		$('#dClick').bind("touchstart", function() {
 			me.tapPussy();
 		});
 
@@ -126,7 +126,7 @@ $.Class.extend("Game",
 	tapPussy : function() {		
 		//vibrate
 		if(navigator && navigator.notification && navigator.notification.vibrate)
-			navigator.notification.vibrate(500);
+			navigator.notification.vibrate(50);
 		
 		this.playAnim();
 		this.playRandomSound();
