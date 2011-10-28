@@ -39,17 +39,35 @@ $.Class.extend("Game",
 				max : 100,
 				quotes : [ 'Magic touch babe', 'I’m shaking! You’re Sex God',
 						'Want a job with us?' ]
-			} ]
+			} ],
+	 
+	RandomSounds: ["#r1","","#r2","","", ""]
 },
 // prototype methods
 {
 	init : function() {
-
+		this.animPlaying = false;
+		this.playSound = false;
 		this.timeRemain = 10; // 10sec
 		this.meter = 0; // start with 0%
 		this.playGround = $('#PlayGround');
 		$('#dTime').html('0:' + this.timeRemain);
+		
 	},
+	
+	playAnim: function(){
+		if(this.animPlaying)
+			return;
+		
+		var me = this;
+		this.animPlaying = true;
+		$("#dClick").addClass("anim2");
+		
+		this.playGround.oneTime(100, function() {
+			$("#dClick").removeClass("anim2");
+			me.animPlaying = false;
+		});
+	},	
 
 	/*
 	 * start playing
@@ -83,11 +101,35 @@ $.Class.extend("Game",
 			this.meter = 0;
 		this.showMeter();
 	},
+	
+	playRandomSound: function(){
+		
+		if(this.playSound)
+			return;
+		
+		var idx = Math.floor(Math.random() * Game.RandomSounds.length);
+		var s = Game.RandomSounds[idx];
+		
+		var me = this;
+		
+		if(s !== ""){
+			this.playSound = true;
+			$(s).bind("ended", function(){
+				$(s).unbind();
+				me.playSound =  false;
+			});
+			
+			$(s)[0].play();
+		}
+	},
 
-	tapPussy : function() {
+	tapPussy : function() {		
 		//vibrate
 		if(navigator && navigator.notification && navigator.notification.vibrate)
 			navigator.notification.vibrate(500);
+		
+		this.playAnim();
+		this.playRandomSound();
 		
 		this.meter += 5; // inscrese 5%
 		if (this.meter > 100)

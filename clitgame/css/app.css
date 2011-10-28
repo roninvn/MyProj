@@ -26,14 +26,10 @@ div.page {
 	background-position: center;
 }
 
-#HomePage>#btnPlay {
-	font-size: 45px;
+#HomePage>#btnPlay {	
 	position: absolute;
 	top: 75%;
 	left: 60%;
-	text-decoration: none;
-	color: red;
-	font-weight: bold;
 }
 
 #PlayGround {
@@ -43,10 +39,10 @@ div.page {
 	width: 320px;
 	height: 480px;
 	background-color: #f9d7cc;
-	background-image : url('../img/pussy.png');
+	/*background-image : url('../img/pussy.png');
 	background-size: 100%;
 	background-position: center;
-	background-repeat: no-repeat;
+	background-repeat: no-repeat;*/
 }
 
 #PlayGround>#dTime {
@@ -100,6 +96,12 @@ div.page {
 	top: 9%;
 	left: 15%;
 	z-index: 2;
+	
+	/*background-image : url('../img/ani1.png');
+	background-size: 100%;
+	background-position: center;
+	background-repeat: no-repeat;*/
+	
 }
 
 #PlayGround>#dResult {
@@ -170,4 +172,17 @@ div.page {
 	height: 100%;
 	font-size: smaller;
 	vertical-align: middle;	
+}
+
+.anim1{
+	background-image : url('../img/ani1.png');
+	background-size: 100%;
+	background-position: center;
+	background-repeat: no-repeat;
+}
+.anim2{
+	background-image : url('../img/ani2.png');
+	background-size: 100%;
+	background-position: center;
+	background-repeat: no-repeat;
 }
