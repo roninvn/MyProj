@@ -28,7 +28,7 @@ Monocle.Controls.Bookmark = function(reader) {
 		var min = props.reader.getPlace().percentAtTopOfPage(), max = props.reader.getPlace().percentAtBottomOfPage();
 		
 		for(var i=0; i<window.Bookmarks.length; i++){
-			if(window.Bookmarks[i].percent > min && window.Bookmarks[i].percent <= max){
+			if(window.Bookmarks[i].percent > min && window.Bookmarks[i].percent <= max && window.Bookmarks[i].componentId == props.reader.getPlace().componentId()){
 				props.bookmarkButton.dom.addClass(c.ACTIVE_CLASS);
 				return;
 			}

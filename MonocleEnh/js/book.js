@@ -27,32 +27,23 @@ Monocle.Events.listen(
     window,
     'load',
     function () {
-    	
     	document.addEventListener("deviceready",onDeviceReady,false);
-    	
-    	createBook();
-    	
-		$("#selFontSize").change(function(){
-			var sz = $("#selFontSize option:selected").val();
-			if(styleIndex ==-1){
-				styleIndex = reader.addPageStyles("body{font-size: " + sz + "% !important}");
-			}
-			else{
-				reader.updatePageStyles(styleIndex, "body{font-size: " + sz + "% !important}");
-			}
-				
-		});
-	
     }
 );
 
 
-function createBook(){
+function createBook(data){
+	
+	BookID = bookDir;
+	BookMarkKey = "nam.com.monocleenh.bookmark." + BookID;
+	
 	var loaded = false;
 	if(window.reader)
 		loaded = true;
 	
-	window.reader = Monocle.Reader('book', null, null, function(){
+	bookData.setData(data);
+	$("#book").empty();
+	window.reader = Monocle.Reader('book', bookData, null, function(){
     	var bookmark=new Monocle.Controls.Bookmark(window.reader)
     	window.reader.addControl(bookmark);	        	
 	});
@@ -83,6 +74,8 @@ function createBook(){
 	loadBookmarks();
 	updateBookmarkLink();
 	
+	$("#selFontSize").show();
+	
 }
 
 function updateBookmarkLink(){
@@ -91,7 +84,7 @@ function updateBookmarkLink(){
 		$("<a href='#'>Bookmark "+i+"</a>").data('page', i).appendTo(bm).click(function(){
 			var x = $(this).data('page');
 			//window.reader.moveTo(Bookmarks[x]);
-			window.reader.moveTo({percent: Bookmarks[x].percent});
+			window.reader.moveTo({percent: Bookmarks[x].percent, componentId:Bookmarks[x].componentId});
 		});
 	}
 }
@@ -112,5 +105,22 @@ function loadBookmarks(){
 }
 
 function onDeviceReady(){
-	ReadFileSystem();
+	//ReadFileSystem();
+	
+	//createBook();
+	$("#selFontSize").hide();
+	$("#selFontSize").change(function(){
+		var sz = $("#selFontSize option:selected").val();
+		if(styleIndex ==-1){
+			styleIndex = reader.addPageStyles("body{font-size: " + sz + "% !important}");
+		}
+		else{
+			reader.updatePageStyles(styleIndex, "body{font-size: " + sz + "% !important}");
+		}
+			
+	});
+	
+	$("#btnLoadBook").click(function(){
+		ReadFileSystem();
+	});
 }
