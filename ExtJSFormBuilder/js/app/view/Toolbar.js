@@ -76,7 +76,10 @@ Ext.define('FB.view.Toolbar', {
 					console.log(text);
 
 					var obj = Ext.JSON.decode(text);
-
+					var cfgs = Ext.JSON.decode(obj.controls);
+					
+					console.log(cfgs);
+					
 					FB.view.DesignControl.loadControls(cfgs);
 
 				}//end success
