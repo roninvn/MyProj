@@ -57,14 +57,15 @@ USitISit.views.MyCircleForm = Ext.extend(Ext.Panel, {
 		text : 'Go to Friends\' request',
 		style : {
 			height : '90px',
-			width : '250px',
-			'margin-left' : '25px',
+			width : '150px',
+			'margin-left' : '70px',
 			'margin-top' : '10px'
 		}
 	}, {
 		xtype : 'list',
 		itemTpl : '<div style="font-weight:bold;">{firstName} {lastName}</div><div>{desc}</div><div style="">{point} point(s)</div>',
 		store : USitISit.stores.FriendInfoStore,
+		itemCls : 'listItem',
 		style : {
 			'margin-top' : '10px'
 		},

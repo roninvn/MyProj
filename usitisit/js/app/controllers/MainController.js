@@ -10,8 +10,7 @@ USitISit.controllers.MainController = new Ext.Controller({
 		// validate
 		var params = Utils.getFormParams(USitISit.views.ReqSitterForm);
 
-		if (params.fromDate == null || params.fromDate == ""
-				|| params.toDate == null || params.toDate == ""){
+		if(params.fromDate == null || params.fromDate == "" || params.toDate == null || params.toDate == "") {
 			Ext.Msg.alert('Error', 'Please fill in all information.', Ext.emptyFn);
 			return;
 		}
@@ -27,95 +26,91 @@ USitISit.controllers.MainController = new Ext.Controller({
 		params.request_place = "My home";
 		params.number_of_children = 2;
 		params.number_of_pets = 1;
-		
+
 		Utils.applyAuthInfo(params);
 
 		Utils.showLoadMask();
 
 		Utils.ajaxRequest('createSitterRequest', params, function(result) {
-			
+
 			Utils.hideLoadMask();
 
-			if (result && result.response) {
+			if(result && result.response) {
 
 				Ext.Msg.alert('Success', 'Request successfully.', function() {
-							USitISit.viewport.setActiveItem(USitISit.views.DashboardForm);
-						});
-
+					USitISit.viewport.setActiveItem(USitISit.views.DashboardForm);
+				});
 			} else {
 				Ext.Msg.alert('Failed', 'Request failed.', Ext.emptyFn);
 			}
 
 		});
-
 	},
-	
 	/*
 	 * load list of requested
 	 */
-	openFriendReqForm: function(){		
+	openFriendReqForm : function() {
 		params = {};
 		Utils.applyAuthInfo(params);
-		
+
 		Utils.showLoadMask();
 
 		Utils.ajaxRequest('getFriendsSittingRequests', params, function(result) {
-			
+
 			Utils.hideLoadMask();
-			
-			if (result) {
-				
+
+			if(result) {
+
 				var list = USitISit.views.FriendReqForm.getComponent('reqList');
 				list.removeAll(true);
-				
-				for(var i=0; i< result.length; i++){
-					
+
+				for(var i = 0; i < result.length; i++) {
+
 					var f = result[i];
-				
+
 					var c = {
+						xtype : "panel",
+						items : [{
+							html : "<hr /><b>" + f.name + "</b><br />" + f.request_from + " - " + f.request_to + " <br />" + f.home_address + "<br /><b>Point Value:</b> " + f.number_of_points
+						}, {
 							xtype : "panel",
-							items : [
-									{
-										html : "<hr /><b>" +f.name+ "</b><br />" + f.request_from + " - "+f.request_to+" <br />" +f.home_address+ "<br /><b>Point Value:</b> " + f.number_of_points
-									},
-									{
-										xtype : "panel",
-										border : "1",
-										layout : {
-											type : 'hbox',
-											align : 'left'
-										},
-										items : [
-												{
-													xtype : "button",
-													ui : 'orange-round',
-													text : "Sorry, Unavailable",
-													friend_user_id:f.friend_user_id,
-													request_id:f.request_id,
-													handler: function(){
-														USitISit.controllers.MainController.rejectRequest(this.request_id);
-													}
-												},
-												{
-													xtype : 'spacer'
-												},
-												{
-													xtype : "button",
-													ui : 'orange-round',
-													text : "I'll Sit",
-													friend_user_id:f.friend_user_id,
-													request_id: f.request_id,
-													handler: function(){
-														USitISit.controllers.MainController.acceptRequest(this.request_id);
-													}
-												} ]
-									} ]
-						};
-					
-					list.add(c);					
-					
+							border : "1",
+							layout : {
+								type : 'hbox',
+								align : 'left'
+							},
+							items : [{
+								xtype : "button",
+								ui : 'orange-round',
+								text : "Sorry, Unavailable",
+								width : '49.5%',
+								cls : 'x-button-verysmall',
+								friend_user_id : f.friend_user_id,
+								request_id : f.request_id,
+								handler : function() {
+									USitISit.controllers.MainController.rejectRequest(this.request_id);
+								}
+							}, {
+								xtype : 'spacer'
+							}, {
+								xtype : "button",
+								ui : 'orange-round',
+								text : "Yes, I'll Sit",
+								width : '49.5%',
+								cls : 'x-button-verysmall',
+								friend_user_id : f.friend_user_id,
+								request_id : f.request_id,
+								handler : function() {
+									USitISit.controllers.MainController.acceptRequest(this.request_id);
+								}
+							}]
+						}]
+					};
+
+					list.add(c);
+
 				}
-				
+
 				list.doLayout();
 				//switch form
 				USitISit.viewport.setActiveItem(USitISit.views.FriendReqForm);
@@ -125,40 +120,42 @@ USitISit.controllers.MainController = new Ext.Controller({
 
 		});
 	},
-	
-	rejectRequest: function(request_id){
-		var params = {request_id: request_id};
+	rejectRequest : function(request_id) {
+		var params = {
+			request_id : request_id
+		};
 		Utils.applyAuthInfo(params);
 		Utils.showLoadMask();
 		Utils.ajaxRequest('rejectRequest', params, function(result) {
 			Utils.hideLoadMask();
-			
-			if (result && result.response) {
+
+			if(result && result.response) {
 
 				Ext.Msg.alert('Success', 'Reject successfully.', Ext.emptyFn);
 
 			} else {
 				Ext.Msg.alert('Failed', 'Reject failed.', Ext.emptyFn);
 			}
-			
+
 		});
 	},
-	
-	acceptRequest: function(request_id){
-		var params = {request_id: request_id};
+	acceptRequest : function(request_id) {
+		var params = {
+			request_id : request_id
+		};
 		Utils.applyAuthInfo(params);
 		Utils.showLoadMask();
 		Utils.ajaxRequest('acceptRequest', params, function(result) {
 			Utils.hideLoadMask();
-			
-			if (result && result.response) {
+
+			if(result && result.response) {
 
 				Ext.Msg.alert('Success', 'Accept successfully.', Ext.emptyFn);
 
 			} else {
 				Ext.Msg.alert('Failed', 'Accept failed.', Ext.emptyFn);
 			}
-			
+
 		});
 	}
 });

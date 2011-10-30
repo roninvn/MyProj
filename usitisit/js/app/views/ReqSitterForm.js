@@ -29,6 +29,8 @@ USitISit.views.ReqSitterForm = Ext.extend(Ext.form.FormPanel, {
 		items : [{
 			xtype : "datepickerfield",
 			label : "Date",
+			picker:{yearFrom: Utils.yearFrom, yearTo : Utils.yearTo},
+			
 			name:'fromDate'
 		}, {
 			xtype : "textfield",
@@ -45,6 +47,7 @@ USitISit.views.ReqSitterForm = Ext.extend(Ext.form.FormPanel, {
 		items : [{
 			xtype : "datepickerfield",
 			label : "Date",
+			picker:{yearFrom: Utils.yearFrom, yearTo : Utils.yearTo},
 			name:'toDate'
 		}, {
 			xtype : "textfield",
@@ -60,6 +63,9 @@ USitISit.views.ReqSitterForm = Ext.extend(Ext.form.FormPanel, {
 		label : "Repeat:",
 		name: 'request_repeat',
 		options : [{
+			text : 'None',
+			value : 'None'
+		},{
 			text : 'Daily',
 			value : 'Daily'
 		}, {
@@ -75,7 +81,7 @@ USitISit.views.ReqSitterForm = Ext.extend(Ext.form.FormPanel, {
 			type : 'hbox'
 		},
 		style : {
-			'margin-left' : '-50px'
+			'margin-left' : '-30px'
 		},
 		items : [{
 			html : '<b>Place:</b><br /> My home'
@@ -93,7 +99,7 @@ USitISit.views.ReqSitterForm = Ext.extend(Ext.form.FormPanel, {
 			type : 'hbox'
 		},
 		style : {
-			'margin-left' : '-50px'
+			'margin-left' : '-30px'
 		},
 		items : [{
 			html : '<b>Sitting:</b><br /> 2 Children, 1 pet'
@@ -111,7 +117,7 @@ USitISit.views.ReqSitterForm = Ext.extend(Ext.form.FormPanel, {
 			type : 'hbox'
 		},
 		style : {
-			'margin-left' : '-50px'
+			'margin-left' : '-30px'
 		},
 		items : [{
 			html : '<b>Point Value: 00</b><br />(You have 8 points)'

@@ -3,6 +3,10 @@ var Utils = {
 	loadMask : new Ext.LoadMask(Ext.getBody(), {
 		msg : "Please wait..."
 	}),
+	
+	yearFrom: new Date().getFullYear(),
+	yearTo: new Date().getFullYear() + 20,
+	
 	/*
 	 * show the loading mask
 	 */

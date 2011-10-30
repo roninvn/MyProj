@@ -48,7 +48,10 @@ USitISit.views.SitScheduleForm = Ext.extend(Ext.Panel, {
 				align : 'left'
 			},
 			items : [{
-				html:'<b>You are sitting.</b>'
+				html : '<b>You are sitting.</b>',
+				style : {
+					'font-size' : '140%'
+				}
 			}, {
 				xtype : 'spacer'
 			}, {
@@ -69,7 +72,10 @@ USitISit.views.SitScheduleForm = Ext.extend(Ext.Panel, {
 				align : 'left'
 			},
 			items : [{
-				html:'<b>Sitting for you.</b>'
+				html : '<b>Sitting for you.</b>',
+				style : {
+					'font-size' : '140%'
+				}
 			}, {
 				xtype : 'spacer'
 			}, {

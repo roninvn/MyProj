@@ -25,8 +25,17 @@
 
 .regSitterButton {
 	width : 40%;
-	margin-right: -30px;
+	margin-right: -20px;
 }
 .regSitterButton >.x-button-label{
 	font-size: small;
+}
+
+.listItem {
+	background: url(../img/listArrow.png) no-repeat right center;
+}
+
+.x-button-smaller>.x-button-label{
+	font-size: smaller;
+	text-align: center;
 }
