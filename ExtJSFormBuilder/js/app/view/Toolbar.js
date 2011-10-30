@@ -41,7 +41,8 @@ Ext.define('FB.view.Toolbar', {
 					if(obj.success)
 						Ext.Msg.show({
 							title : 'Success',
-							msg : 'Form is saved.'
+							msg : 'Form is saved.',
+							buttons : Ext.Msg.OK
 						});
 
 				}//end function success
