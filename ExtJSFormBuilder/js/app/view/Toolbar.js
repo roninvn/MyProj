@@ -25,14 +25,14 @@ Ext.define('FB.view.Toolbar', {
 				return;
 			}
 
-			var controls = FB.view.DesignControl.getControls();
+			var ccs = FB.view.DesignControl.getControls();
 
 			Ext.Ajax.request({
 				url : 'data/saveform.json',
 				method : 'POST',
 				params : {
 					name : name,
-					controls : controls
+					controls : ccs
 				},
 				success : function(response) {
 					var text = response.responseText;
