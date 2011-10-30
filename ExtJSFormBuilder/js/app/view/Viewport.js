@@ -9,11 +9,16 @@ Ext.define('FB.view.Viewport', {
 		'FB.view.CenterPanel',
 		'FB.view.LeftPanel',
 		'FB.view.RightPanel',
-		'FB.view.BottomPanel'
+		'FB.view.BottomPanel',
+		'FB.view.Toolbar'
     ],
 
 	layout: 'border',
 	items: [{
+				region:'north',
+				xtype:'fbtoolbar'
+		
+			},{
 				region: 'center',
 				id:'centerpanel',
 				xtype: 'CenterPanel'

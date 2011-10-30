@@ -160,7 +160,7 @@ Ext.define('FB.view.DesignControl', {
 							            	        
 							            	        var c2 = comp.findParentByType("panel").getPosition();
 							            	        
-							            	        comp.setPosition(me.startPosition[0] + offset[0]-c2[0], me.startPosition[1] + offset[1]);
+							            	        comp.setPosition(me.startPosition[0] + offset[0]-c2[0], me.startPosition[1] + offset[1]-c2[1]);
 
 	            								};
 	            		FB.view.DesignControl.updateControlProperties(me.ctr, me.oCfg);	            		
