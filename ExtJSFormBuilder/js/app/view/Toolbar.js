@@ -32,7 +32,7 @@ Ext.define('FB.view.Toolbar', {
 				method : 'POST',
 				params : {
 					name : name,
-					controls : ccs
+					controls : Ext.JSON.encode(ccs)
 				},
 				success : function(response) {
 					var text = response.responseText;
