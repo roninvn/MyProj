@@ -32,14 +32,7 @@ Ext.define('FB.view.BottomPanel', {
 			handler : function() {
 
 				var items = Ext.getCmp('centerpanel').items;
-				var cfgs = [];
-				items.each(function(itm, i, l) {
-					itm.designControl.oCfg.size = itm.designControl.ctr
-							.getSize();
-					itm.designControl.oCfg.pos = itm.designControl.ctr
-							.getPosition(true);
-					cfgs.push(itm.designControl.oCfg);
-				});
+				var cfgs = FB.view.DesignControl.getControls();
 
 				txtArea.setValue(Ext.JSON.encode(cfgs));
 
@@ -51,17 +44,8 @@ Ext.define('FB.view.BottomPanel', {
 			handler : function() {
 
 				var cfgs = Ext.JSON.decode(txtArea.getValue());
-				var p = Ext.getCmp('centerpanel');
-
-				p.removeAll(true);
-
-				for ( var i = 0; i < cfgs.length; i++) {
-					var c = Ext.create('FB.view.DesignControl', {
-						cdt : cfgs[i]
-					});
-					p.add(c.ctr);
-				}
-
+				
+				FB.view.DesignControl.loadControls(cfgs);
 			}
 		});
 		this.items = [ txtArea, btn, btn2 ];

@@ -3,6 +3,44 @@ Ext.define('FB.view.DesignControl', {
 	statics:{
 		uid: 0,
 		selectedControl: null,
+		/*
+		 * Get controls array
+		 */
+		getControls: function(){
+			var items = Ext.getCmp('centerpanel').items;
+			var cfgs = [];
+			items.each(function(itm, i, l) {
+				itm.designControl.oCfg.size = itm.designControl.ctr.getSize();
+				itm.designControl.oCfg.pos = itm.designControl.ctr.getPosition(true);
+				cfgs.push(itm.designControl.oCfg);
+			});
+			
+			return cfgs;
+		},
+		/*
+		 * clear all control in design form
+		 */
+		clearControls: function(){
+			var p = Ext.getCmp('centerpanel');
+			p.removeAll(true);
+		},
+		/*
+		 * load all controls into design form
+		 */
+		loadControls: function(cfgs){
+				
+			var p = Ext.getCmp('centerpanel');
+
+			FB.view.DesignControl.clearControls();
+
+			for ( var i = 0; i < cfgs.length; i++) {
+				var c = Ext.create('FB.view.DesignControl', {
+					cdt : cfgs[i]
+				});
+				p.add(c.ctr);
+			}
+		},
+		
 		updateControlProperties: function(control,config){
 			
 			var cfg = config.cfg;

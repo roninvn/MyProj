@@ -25,20 +25,14 @@ Ext.define('FB.view.Toolbar', {
 				return;
 			}
 
-			var items = Ext.getCmp('centerpanel').items;
-			var cfgs = [];
-			items.each(function(itm, i, l) {
-				itm.designControl.oCfg.size = itm.designControl.ctr.getSize();
-				itm.designControl.oCfg.pos = itm.designControl.ctr.getPosition(true);
-				cfgs.push(itm.designControl.oCfg);
-			});
+			var controls = FB.view.DesignControl.getControls();
 
 			Ext.Ajax.request({
 				url : 'data/saveform.json',
-				method: 'POST',
+				method : 'POST',
 				params : {
-					name: name,
-					controls : cfgs
+					name : name,
+					controls : controls
 				},
 				success : function(response) {
 					var text = response.responseText;
@@ -49,6 +43,55 @@ Ext.define('FB.view.Toolbar', {
 
 		}
 	}, {
-		text : 'Load'
+		text : 'Load',
+		handler : function() {
+
+			var name = Ext.getCmp('txtFormName').getValue();
+
+			if(name == "") {
+				Ext.Msg.show({
+					title : 'Error',
+					msg : 'Please input Form Name',
+					buttons : Ext.Msg.OK,
+					icon : Ext.Msg.WARNING
+				});
+				return;
+			}
+
+			Ext.Ajax.request({
+				url : 'data/loadform.json',
+				method : 'POST',
+				params : {
+					name : name
+				},
+				success : function(response) {
+					var text = response.responseText;
+					console.log(text);
+
+					var obj = Ext.JSON.decode(text);
+
+					FB.view.DesignControl.loadControls(cfgs);
+
+				}//end success
+			});
+
+		}
+	}, {
+		text : 'Clear',
+		handler : function() {
+			
+			Ext.Msg.show({
+				title : 'Clear form?',
+				msg : 'Are you sure you want to clear the form?',
+				buttons : Ext.Msg.YESNO,
+				icon : Ext.Msg.QUESTION,
+				
+				fn : function(buttonId) {
+					if(buttonId == "yes")
+						FB.view.DesignControl.clearControls();
+				}
+				
+			});
+		}
 	}]
 });
