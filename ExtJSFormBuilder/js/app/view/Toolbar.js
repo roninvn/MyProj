@@ -86,7 +86,7 @@ Ext.define('FB.view.Toolbar', {
 		}
 	}, {
 		text : 'Clear',
-		handler : function() {
+		handler : function() { //clear the form
 
 			Ext.Msg.show({
 				title : 'Clear form?',
