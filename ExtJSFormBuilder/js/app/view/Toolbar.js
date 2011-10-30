@@ -36,12 +36,18 @@ Ext.define('FB.view.Toolbar', {
 				},
 				success : function(response) {
 					var text = response.responseText;
-					console.log(text);
-					// process server response here
-				}
-			});
+					var obj = Ext.JSON.decode(text);
 
-		}
+					if(obj.success)
+						Ext.Msg.show({
+							title : 'Success',
+							msg : 'Form is saved.'
+						});
+
+				}//end function success
+			});//end Ajax request
+
+		}//end functon handler
 	}, {
 		text : 'Load',
 		handler : function() {
@@ -79,18 +85,17 @@ Ext.define('FB.view.Toolbar', {
 	}, {
 		text : 'Clear',
 		handler : function() {
-			
+
 			Ext.Msg.show({
 				title : 'Clear form?',
 				msg : 'Are you sure you want to clear the form?',
 				buttons : Ext.Msg.YESNO,
 				icon : Ext.Msg.QUESTION,
-				
+
 				fn : function(buttonId) {
 					if(buttonId == "yes")
 						FB.view.DesignControl.clearControls();
 				}
-				
 			});
 		}
 	}]
