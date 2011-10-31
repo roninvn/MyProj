@@ -50,6 +50,8 @@ Ext.define('Flower.view.CenterPanel', {
 
 				onNodeDrop : function(target, dd, e, data) {
 					
+					var x = e.getX() - c.el.getX(), y = e.getY() - c.el.getY();
+					
 					var img = Ext.create('Flower.view.ux.ImageControl',{});
 					
 					c.add(img);
@@ -58,6 +60,9 @@ Ext.define('Flower.view.CenterPanel', {
 						width: 100,
 						height: 100
 					});
+					
+					img.setPosition(x,y);
+					
 					return true;
 				}
 			});
