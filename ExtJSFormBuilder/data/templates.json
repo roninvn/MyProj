@@ -1,0 +1,22 @@
+{
+	"success" : true,
+	"templates" : [{
+		"name": "Data entry forms",
+		"forms": [{
+			"name": "Basic Customer information",
+			"controls": '[{"name":"Textbox","extClass":"Ext.form.field.Text","src":"img/textbox.JPG","cfg":{"Label":"Customer Name","Allow blank":true,"Validation":"","Label Color":"","Datasource":"","Field Color":"","Label Style":"","Field Style":""},"x":218,"y":93,"size":{"width":250,"height":20},"pos":[218,93]},{"name":"Textbox","extClass":"Ext.form.field.Text","src":"img/textbox.JPG","cfg":{"Label":"Email","Allow blank":true,"Validation":"Email","Label Color":"","Datasource":"","Field Color":"","Label Style":"","Field Style":""},"x":216,"y":140,"size":{"width":250,"height":20},"pos":[220,130]},{"name":"DateField","extClass":"Ext.form.field.Date","src":"img/datefield.JPG","cfg":{"Label":"Date of birth","Allow blank":true,"Label Color":"","Datasource":"","Field Color":"","Label Style":"","Field Style":""},"x":249,"y":163,"size":{"width":250,"height":20},"pos":[220,160]}]'
+		},{
+			"name": "Address",
+			"controls": '[{"name":"Textbox","extClass":"Ext.form.field.Text","src":"img/textbox.JPG","cfg":{"Label":"Address","Allow blank":true,"Validation":"","Label Color":"","Datasource":"","Field Color":"","Label Style":"","Field Style":""},"x":309,"y":61,"size":{"width":255,"height":22},"pos":[309,61]},{"name":"Textbox","extClass":"Ext.form.field.Text","src":"img/textbox.JPG","cfg":{"Label":"Street","Allow blank":true,"Validation":"","Label Color":"","Datasource":"","Field Color":"","Label Style":"","Field Style":""},"x":302,"y":99,"size":{"width":255,"height":22},"pos":[310,90]},{"name":"Textbox","extClass":"Ext.form.field.Text","src":"img/textbox.JPG","cfg":{"Label":"Zip code","Allow blank":true,"Validation":"","Label Color":"","Datasource":"","Field Color":"","Label Style":"","Field Style":""},"x":307,"y":128,"size":{"width":255,"height":22},"pos":[310,120]}]'
+		}]
+	},{
+		"name": "Report forms",
+		"forms": [{
+			"name": "Customer snapshot",
+			"controls": '[]'
+		},{
+			"name": "Debt Outstanding",
+			"controls": '[]'
+		}]
+	}]
+}

@@ -219,34 +219,11 @@ Ext.define('FB.view.LeftPanel', {
 			}//end render event
 		}
 	}, {
-		title : 'Template',
-		layout : 'vbox',
-		listeners : {
-			render : function(c) {
-				for(var i = 0; i < Templates.length; i++) {
-
-					var info = Templates[i];
-
-					var control = Ext.create('Ext.Button', {
-						text : info.name,
-						myControls : info.controls,
-						handler : function(b) {
-							var p = Ext.getCmp('centerpanel');
-
-							p.removeAll(true);
-							var cfgs = b.myControls;
-							for(var i = 0; i < cfgs.length; i++) {
-								var c = Ext.create('FB.view.DesignControl', {
-									cdt : cfgs[i]
-								});
-								p.add(c.ctr);
-							}
-						}
-					});
-					//end create button
-
-					c.add(control);
-				}
+		xtype : 'treepanel',
+		title: 'Templates',
+		listeners:{
+			render: function(tree, e){
+				//load templates
 			}
 		}
 	}], //end items
