@@ -13,7 +13,7 @@ Ext.define('Flower.view.CenterPanel', {
 	alias : 'widget.CenterPanel',
 	layout : 'absolute',
 
-	requires : [],
+	requires : ['Flower.view.ux.ImageControl'],
 	/**
 	 * This function is used to init it own component and call parent arguments
 	 * 
@@ -24,7 +24,7 @@ Ext.define('Flower.view.CenterPanel', {
 	initComponent : function() {
 		this.callParent(arguments);
 
-		var nav = new Ext.util.KeyNav(Ext.get(document), {
+		/*var nav = new Ext.util.KeyNav(Ext.get(document), {
 			"del" : function(e) {
 				if (Flower.view.DesignControl.selectedControl) {
 					this.remove(Flower.view.DesignControl.selectedControl.ctr, true);
@@ -32,24 +32,33 @@ Ext.define('Flower.view.CenterPanel', {
 				}
 			},
 			scope : this
-		});
+		});*/
 	},
 
 	listeners : {
-		render : function(grid) {
+		render : function(c) {
 
-			grid.dropZone = Ext.create('Ext.dd.DropZone', grid.el, {
+			c.dropZone = Ext.create('Ext.dd.DropZone', c.el, {
 
 				getTargetFromEvent : function(e) {
-					return grid.el;
+					return c.el;
 				},
 
 				onNodeOver : function(target, dd, e, data) {
-					return false;
+					return Ext.dd.DropZone.prototype.dropAllowed;
 				},
 
 				onNodeDrop : function(target, dd, e, data) {
-					return false;
+					
+					var img = Ext.create('Flower.view.ux.ImageControl',{});
+					
+					c.add(img);
+					img.setSrc(data.controlData.src);
+					img.setSize({
+						width: 100,
+						height: 100
+					});
+					return true;
 				}
 			});
 		}
