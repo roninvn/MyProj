@@ -153,14 +153,25 @@ Ext.define('FB.view.LeftPanel', {
 						"Label Style" : ""
 					}
 				}, {
-					name : 'Line',
+					name : 'VertLine',
 					extClass : 'Ext.form.field.VertLine',
-					src : "img/line.JPG",
+					src : "img/VertLine.jpg",
 					cfg : {
 						"Line Color" : "",
 						size : {
 							width : 2,
-							height : 50
+							height : 70
+						}
+					}
+				}, {
+					name : 'HorzLine',
+					extClass : 'Ext.form.field.VertLine',
+					src : "img/HorzLine.jpg",
+					cfg : {
+						"Line Color" : "",
+						size : {
+							width : 70,
+							height : 2
 						}
 					}
 				}];
