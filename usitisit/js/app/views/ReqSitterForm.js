@@ -36,10 +36,6 @@ USitISit.views.ReqSitterForm = Ext.extend(Ext.form.FormPanel, {
 			xtype : "textfield",
 			label : "Time",
 			name:'from_time'
-		}, {
-			xtype : "button",
-			ui : 'orange-round',
-			text : "See Calendar"
 		}]
 	}, {
 		xtype : "fieldset",
@@ -53,10 +49,6 @@ USitISit.views.ReqSitterForm = Ext.extend(Ext.form.FormPanel, {
 			xtype : "textfield",
 			label : "Time",
 			name:'to_time'
-		}, {
-			xtype : "button",
-			ui : 'orange-round',
-			text : "See Calendar"
 		}]
 	}, {
 		xtype : "selectfield",
