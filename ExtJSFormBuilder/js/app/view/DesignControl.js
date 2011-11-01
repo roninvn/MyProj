@@ -132,6 +132,10 @@ Ext.define('FB.view.DesignControl', {
 			if(cfg["Line Color"]){
 				control.setColor(cfg["Line Color"]);
 			}
+			
+			if(cfg["Image Source"] || cfg["Image Source"] == ""){			
+				control.setSrc(cfg["Image Source"]);
+			}
     		
 		},//end updateControlProperties
 		

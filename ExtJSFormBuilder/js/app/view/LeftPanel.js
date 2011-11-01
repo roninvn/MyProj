@@ -174,6 +174,17 @@ Ext.define('FB.view.LeftPanel', {
 							height : 2
 						}
 					}
+				}, {
+					name : 'Image',
+					extClass : 'FB.view.ImageControl',
+					src : "img/image.png",
+					cfg : {
+						"Image Source" : "",
+						size : {
+							width : 40,
+							height : 40
+						}
+					}
 				}];
 
 				var controlsStore = Ext.create('Ext.data.Store', {
@@ -221,9 +232,54 @@ Ext.define('FB.view.LeftPanel', {
 	}, {
 		xtype : 'treepanel',
 		title: 'Templates',
+		store: Ext.create('Ext.data.TreeStore'),		
 		listeners:{
 			render: function(tree, e){
 				//load templates
+				
+				Ext.Ajax.request({
+					url : 'data/templates.json',
+					success : function(response) {
+						var text = response.responseText;
+						var obj = Ext.JSON.decode(text);
+						
+						if(obj.success){
+							//build store
+							var data = [];
+							
+							for(var i=0; i<obj.templates.length; i++){
+								var tmpl = obj.templates[i];
+								var grp = {text: tmpl.name, children: []};								
+								data.push(grp);
+								for(var j=0; j<tmpl.forms.length; j++){
+									var frm  = tmpl.forms[j];
+									var child = {text: frm.name, leaf: true, controls: Ext.JSON.decode(frm.controls)};
+									grp.children.push(child);
+								}
+							}//end for							
+
+							//build tree
+							//tree.getStore().setRootNode(data);
+							//tree.getStore().load();
+							//console.log(tree.getStore());
+							//tree.store = store;
+							//store.load();
+							
+							tree.setRootNode({
+									text: 'Templates',
+							        expanded: true,
+							        children: data
+							 });
+							
+						}//end if
+
+					}//end success
+				});
+				
+			},
+			
+			itemdblclick: function(tree, record){
+				console.log(record);
 			}
 		}
 	}], //end items
