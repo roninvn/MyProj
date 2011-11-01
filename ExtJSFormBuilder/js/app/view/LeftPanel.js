@@ -279,7 +279,8 @@ Ext.define('FB.view.LeftPanel', {
 			},
 			
 			itemdblclick: function(tree, record){
-				console.log(record);
+				if(record.raw.controls)
+					FB.view.DesignControl.loadControls(record.raw.controls);
 			}
 		}
 	}], //end items
