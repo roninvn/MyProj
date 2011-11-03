@@ -56,10 +56,10 @@ Ext.define('Flower.view.CenterPanel', {
 					
 					c.add(img);
 					img.setSrc(data.controlData.src);
-					img.setSize({
+					/*img.setSize({
 						width: 100,
 						height: 100
-					});
+					});*/
 					
 					img.setPosition(x,y);
 					
