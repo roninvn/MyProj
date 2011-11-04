@@ -1,9 +1,10 @@
 Ext.define('Flower.view.ux.ImageControl', {
     extend: 'Ext.form.field.Base',
-    alias: ['widget.img'],
+    alias: ['widget.ImageControl'],
     requires: ['Ext.XTemplate'],
     
     fieldSubTpl: [
+    	'<div class="ImageControlToolbar"></div>',
         '<img  class="imageControl"></img>',
         {
             disableFormats: true,
@@ -21,7 +22,7 @@ Ext.define('Flower.view.ux.ImageControl', {
     		this.getEl().down('.imageControl').on('click', function(){
     			img.onSelect();
     		});
-    		
+    		   		
     		this.draggable = {
     			constrain: true,
     			constrainTo : Ext.get(Ext.query("#centerpanel")[0]),
@@ -31,11 +32,17 @@ Ext.define('Flower.view.ux.ImageControl', {
     				}
     			}
     		};
-    	},    	
+    	},//end render event
+    	
+    	destroy: function(){
+    		MessageBus.unsubscribe('ImageControl.BeforeSelectAnImage', this.beforeSelectAnImage, this);
+    	}//end destroy event    	
     },
     
     initComponent: function(){
-        this.callParent(arguments);        
+    	this.isSelected = false;
+        this.callParent(arguments);
+         MessageBus.subscribe('ImageControl.BeforeSelectAnImage', this.beforeSelectAnImage, this);        
     },
     
     setSrc: function(src){
@@ -59,7 +66,19 @@ Ext.define('Flower.view.ux.ImageControl', {
      * Control is clicked
      */
     onSelect: function(){
+    	MessageBus.publish('ImageControl.BeforeSelectAnImage');
     	this.getEl().down('.imageControl').addCls('imgSelected');
+    	this.isSelected = true;
+    },
+    
+    deSelect: function(){
+    	this.getEl().down('.imageControl').removeCls('imgSelected');
+    	this.isSelected = false;
+    },
+    
+    beforeSelectAnImage: function(){
+    	//console.log(sc,sb, img);
+    	this.deSelect(); //deselect before other control is selected
     }
 
 

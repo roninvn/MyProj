@@ -24,15 +24,15 @@ Ext.define('Flower.view.CenterPanel', {
 	initComponent : function() {
 		this.callParent(arguments);
 
-		/*var nav = new Ext.util.KeyNav(Ext.get(document), {
+		var nav = new Ext.util.KeyNav(Ext.get(document), {
 			"del" : function(e) {
-				if (Flower.view.DesignControl.selectedControl) {
-					this.remove(Flower.view.DesignControl.selectedControl.ctr, true);
-					Flower.view.DesignControl.selectedControl.ctr = null;
-				}
+				//get Selected control
+				var sels = this.query('ImageControl[isSelected=true]');
+				if(sels && sels.length > 0)
+					this.remove(sels[0]);
 			},
 			scope : this
-		});*/
+		});
 	},
 
 	listeners : {
@@ -66,7 +66,7 @@ Ext.define('Flower.view.CenterPanel', {
 					return true;
 				}
 			});
-		}
+		}// end event render
 	}
 
 });
