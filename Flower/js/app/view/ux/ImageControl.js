@@ -72,11 +72,9 @@ Ext.define('Flower.view.ux.ImageControl', {
     onDragAround: function(e){
 		var pos = e.getXY();
 		if(pos[0] < 500){
-			//this.getEl().down('img').applyStyles({'-webkit-transform': 'rotate(270deg)'});
 			this.rotate(270);
 		}
 		else if(pos[0] > 1000){
-			//this.getEl().down('img').applyStyles({'-webkit-transform': 'rotate(90deg)'});
 			this.rotate(90);
 		}
     },
