@@ -4,7 +4,7 @@ Ext.define('Flower.view.ux.ImageControl', {
     requires: ['Ext.XTemplate'],
     
     fieldSubTpl: [
-    	'<div class="ImageControlToolbar"></div>',
+    	'<div class="ImageControlToolbar"><button class="buttonMinus">-</button><button class="buttonPlus">+</button></div>',
         '<img  class="imageControl"></img>',
         {
             disableFormats: true,
@@ -18,6 +18,23 @@ Ext.define('Flower.view.ux.ImageControl', {
     listeners: {
     	
     	render: function(img){
+    		
+    		this.toobarControl = this.getEl().down('.ImageControlToolbar');
+    		this.btnMinus = this.getEl().down('.buttonMinus');
+    		this.btnPlus = this.getEl().down('.buttonPlus');
+    		this.angle = 0;
+    		
+    		this.btnMinus.on("click", function(){
+    			img.rotateLeft();
+    		});
+    		
+    		this.btnPlus.on("click", function(){
+    			img.rotateRight();
+    		});
+    		
+    		//console.log(this.toobarControl,this.btnMinus,this.btnPlus);
+    		
+    		this.toobarControl.hide();
     		
     		this.getEl().down('.imageControl').on('click', function(){
     			img.onSelect();
@@ -55,10 +72,12 @@ Ext.define('Flower.view.ux.ImageControl', {
     onDragAround: function(e){
 		var pos = e.getXY();
 		if(pos[0] < 500){
-			this.getEl().down('img').applyStyles({'-webkit-transform': 'rotate(270deg)'});
+			//this.getEl().down('img').applyStyles({'-webkit-transform': 'rotate(270deg)'});
+			this.rotate(270);
 		}
 		else if(pos[0] > 1000){
-			this.getEl().down('img').applyStyles({'-webkit-transform': 'rotate(90deg)'});
+			//this.getEl().down('img').applyStyles({'-webkit-transform': 'rotate(90deg)'});
+			this.rotate(90);
 		}
     },
     
@@ -69,16 +88,39 @@ Ext.define('Flower.view.ux.ImageControl', {
     	MessageBus.publish('ImageControl.BeforeSelectAnImage');
     	this.getEl().down('.imageControl').addCls('imgSelected');
     	this.isSelected = true;
+    	this.toobarControl.show();
     },
     
     deSelect: function(){
     	this.getEl().down('.imageControl').removeCls('imgSelected');
     	this.isSelected = false;
+    	this.toobarControl.hide();
     },
     
     beforeSelectAnImage: function(){
     	//console.log(sc,sb, img);
     	this.deSelect(); //deselect before other control is selected
+    },
+    /*
+     * 
+     */
+    rotate: function(agl){
+    	this.angle = agl;
+    	this.getEl().down('img').applyStyles({'-webkit-transform': 'rotate(' + agl + 'deg)'});
+    },
+    
+    
+    /*
+     * rotate the control to the left
+     */
+    rotateLeft: function(){
+    	this.rotate(this.angle-10);
+    },
+    /*
+     * rotate the control to the right
+     */
+    rotateRight: function(){
+    	this.rotate(this.angle+10);
     }
 
 

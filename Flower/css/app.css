@@ -6,3 +6,16 @@
 .imgSelected {
 	border: 1px dashed blue;
 }
+.ImageControlToolbar{
+	position: absolute;
+	height: 20px;
+	top: -22px;
+	width: 100%;
+	left: 0;
+}
+.ImageControlToolbar>.buttonMinus{
+	
+}
+.ImageControlToolbar>.buttonPlus{
+	float: right;
+}
