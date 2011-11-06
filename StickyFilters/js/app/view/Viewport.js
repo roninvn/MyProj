@@ -1,13 +1,12 @@
 /*
  * @author Nam Hoang
  */
-Ext.define('FB.view.Viewport', {
+Ext.define('Demo.view.Viewport', {
     extend: 'Ext.container.Viewport',
 
     requires: [
         'Ext.layout.container.Border',
-		'FB.view.CenterPanel',
-		'FB.view.LeftPanel'
+		'Demo.view.CenterPanel'
     ],
 
 	layout: 'border',
@@ -15,8 +14,5 @@ Ext.define('FB.view.Viewport', {
 				region: 'center',
 				id:'centerpanel',
 				xtype: 'CenterPanel'
-			},{
-				region: 'west',
-				xtype: 'LeftPanel'
 			}]
 });
