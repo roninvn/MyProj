@@ -1,0 +1,95 @@
+textarea {
+    resize: none;
+}
+#leftPanel {
+	position: relative;
+	left: 0;
+	top: 0;
+	border: 1px solid black;
+	width: 20%;
+	height: 100%;
+}
+#centerPanel{
+	position: relative;
+	left: 20%;
+	top: -100%;
+	border: 1px solid black;
+	width: 70%;
+	height: 100%;
+	overflow: auto;
+}
+#rightPanel{
+	position: relative;
+	left: 90%;
+	top: -200%;
+	border: 1px solid black;
+	width: 9.9%;
+	height: 100%;
+}
+
+#rightPanel a{
+	padding-top: 5px;
+	padding-left: 15px;
+}
+
+#leftPanel img{
+	padding-top: 5px;
+	padding-left: 15px;
+		
+}
+
+#centerPanel div:hover{
+	border: 1px dashed red;
+}
+
+
+#divButtons{
+	position: absolute;
+	padding-left: 2px;
+	top: 70%;
+}
+
+.Section{
+	position: absolute;
+	border: 1px solid black;
+	width: 400px;
+	height: 250px;
+	overflow:hidden;
+}
+
+.Element{
+	position: absolute;
+	width: 150px;
+	height: 30px;
+	overflow:hidden;
+	border: 1px solid black;
+}
+
+.Variable{
+	position: absolute;
+	width: 150px;
+	height: 30px;
+	overflow:hidden;
+	color: blue;
+	background-color: yellow;
+}
+
+#dialog-Continue textarea{
+	width: 80%;
+	height: 250px;
+}
+
+#dialog-Element textarea{
+	width: 450px;
+	height: 140px;
+}
+
+.btnDelete{
+	position: absolute;
+	top: 0;
+	right: 0;
+	color: red;	
+}
+.btnDelete:hover{
+	cursor: pointer;
+}
