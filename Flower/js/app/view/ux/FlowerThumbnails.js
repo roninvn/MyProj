@@ -35,14 +35,6 @@ Ext.define('Flower.view.ux.FlowerThumbnails',{
 						
 						var pos = e.getXY();						
 						if(pos[0] < 500){
-							//Ext.get(this.dragData.ddel).down('img').remove();
-							//console.log(this.dragData.ddel);
-							//this.dragData.ddel = this.dragData.ddel.cloneNode(false);
-							//Ext.Element.get(Ext.Element.get(document.body).query('img[src="img/Flower10.jpg"]')[1]).applyStyles({'-webkit-transform': 'rotate(270deg)'});
-							
-							//Ext.Element.get(this.dragData.ddel).down('img').applyStyles({'-webkit-transform': 'rotate(270deg)'});
-							
-							//console.log(Ext.Element.get(document.body).query('img[src="img/Flower10.jpg"]')[1], this.dragData.ddel);
 							Ext.get(v.dragZone.getDragEl()).down('img').applyStyles({'-webkit-transform': 'rotate(270deg)'});
 							
 						}

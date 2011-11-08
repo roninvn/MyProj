@@ -25,7 +25,10 @@ Control.extend("Section",
 		}
 		
 	},
-	
+	deleteClicked: function(){
+		this._super();
+		Application.removeSection();
+	},
 	doConfig: function(){
 		this._super();
 		

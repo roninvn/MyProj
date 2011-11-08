@@ -245,6 +245,15 @@ $.Class.extend("Application",
 		
 		return false;
 		
+	},
+	/*
+	 * remove the section
+	 */
+	removeSection: function(){
+		if(Application.currentSection){
+			Application.currentSection.el.remove();
+			Application.currentSection = null;
+		}
 	}
 	
 },
