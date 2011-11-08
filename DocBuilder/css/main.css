@@ -27,11 +27,6 @@ textarea {
 	height: 100%;
 }
 
-#rightPanel a{
-	padding-top: 5px;
-	padding-left: 15px;
-}
-
 #leftPanel img{
 	padding-top: 5px;
 	padding-left: 15px;
@@ -92,4 +87,14 @@ textarea {
 }
 .btnDelete:hover{
 	cursor: pointer;
+}
+
+.sectionLink{
+	display: table-cell;
+	padding-left: 2px;
+}
+.sectionUpDown{
+	display: table-cell;
+	font-size: x-small;
+	padding-left: 10px;
 }

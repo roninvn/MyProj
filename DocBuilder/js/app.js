@@ -125,26 +125,72 @@ $.Class.extend("Application",
 	saveClick: function(){
 		//build link		
 		if(Application.currentSection !== null){
-			$("#rightPanel").empty();
+			
 			Application.addSection(Application.currentSection);			
 			
-			for(var i=0,l=Application.sections.length; i<l; i++){
-				var s = Application.sections[i];
-				var d=$("<div></div>").appendTo("#rightPanel");
-				var a = $("<a href='#'></a>").text(s.props.name).appendTo(d);
-				
-				a.click(function(e){					
-					var name=$(this).text();
-					Application.loadSection(name)
-					return false;
-
-				});
-			}
+			Application.buildSectionLink();
 			
 			$("#centerPanel").empty();
 			Application.currentSection = null;
 		}
 	},
+	
+	buildSectionLink: function(){
+		$("#rightPanel").empty();
+		for(var i=0,l=Application.sections.length; i<l; i++){
+				var s = Application.sections[i];
+				var d=$("<div></div>").appendTo("#rightPanel");
+				var a = $("<a class = 'sectionLink' href='#'></a>").text(s.props.name).appendTo(d);
+				var updown = $("<div class ='sectionUpDown'><a href='#' id='aUp' >UP</a>  <a href='#' id= 'aDown'>DOWN</a></div>").appendTo(d);
+				
+				a.click(function(e){					
+					var name=$(this).text();
+					Application.loadSection(name)
+					return false;
+				});
+				
+				updown.find('#aUp').click(function(){
+					var name = $($(this).parent().parent().children()[0]).text();
+					var index = Application.getSectionIndex(name)
+					
+					if(index !==-1 && index !== 0){
+						var obj2 = Application.sections[index-1];
+						 Application.sections[index-1] =  Application.sections[index];
+						  Application.sections[index] = obj2;
+						  Application.buildSectionLink();
+					}
+					
+					return false;
+				});
+				
+				updown.find('#aDown').click(function(){
+					
+					var name = $($(this).parent().parent().children()[0]).text();
+					var index = Application.getSectionIndex(name)
+					
+					if(index !==-1 && index !== Application.sections.length-1){
+						var obj2 = Application.sections[index+1];
+						 Application.sections[index+1] =  Application.sections[index];
+						  Application.sections[index] = obj2;
+						  Application.buildSectionLink();
+					}
+					
+					return false;
+				});
+			}
+	},
+	
+	
+	getSectionIndex: function(name){
+		for(var i=0,l=Application.sections.length; i<l; i++){
+			var s = Application.sections[i];
+			if(s.props.name === name){
+				return i;
+			}
+		}
+		return -1;
+	},
+	
 	
 	addSection: function(s){
 		
