@@ -176,6 +176,7 @@ Ext.define('Ext.ux.grid.FiltersFeature', {
 
     /** @private */
     constructor : function (config) {
+    	
         var me = this;
 
         config = config || {};
@@ -196,6 +197,13 @@ Ext.define('Ext.ux.grid.FiltersFeature', {
             view = me.view,
             headerCt = view.headerCt,
             grid = me.getGridPanel();
+        
+        
+        grid.on({
+			scope:me,
+			afterrender:me.onGridRender
+		});
+        
 
         me.bindStore(view.getStore(), true);
 
@@ -214,6 +222,67 @@ Ext.define('Ext.ux.grid.FiltersFeature', {
         grid.filters = me;
         grid.addEvents('filterupdate');
     },
+    
+	onGridRender:function(grid,obj){
+		var me=this;
+		var container=Ext.create('Ext.panel.Panel',{
+			dock:'top',
+			id:'headerFilter',			
+			weight:101,			
+			layout:'hbox',
+			items:[{
+				xtype: 'rangecontrol'
+			}]
+		});
+		
+		//var x = Ext.create("Ext.ux.grid.control.RangeControl", {type: 'numeric',dataIndex: 'id'});
+		
+		
+		/*Ext.each(grid.headerCt.items.items,function(item){
+			console.log(item);
+			item=Ext.getCmp(item.id);
+			if(!item.filter){
+				var col=Ext.create("Ext.container.Container",{
+					layout:'fit',
+					componentCls:Ext.baseCSSPrefix+'column-no-filter',
+					height:container.height,
+					id:item.id+"-filter",
+					hidden:item.hidden,
+					width:item.flex||item.width
+				});
+			}
+			else{
+				var col=item.filter;
+				Ext.apply(col,{
+					layout:'fit',
+					componentCls:Ext.baseCSSPrefix+'column-filter',
+					id:item.id+"-filter",
+					hidden:item.hidden,
+					width:item.flex||item.width,
+					listeners:{
+						scope:me,
+						change:function(field,newVal,oldVal,eOpts){
+							me.task.delay(me.updateBuffer,function(){
+								var newFilter={property:item.dataIndex,value:newVal},myIndex=-1;
+								Ext.Array.forEach(me.filterArray,function(item2,index,allItems){if(item2.property===item.dataIndex){myIndex=index;}},this);
+								if(myIndex!=-1){me.filterArray.splice(myIndex,1);}
+								if(newVal){
+    								me.filterArray.push(newFilter);
+ 	   								if(!item.getEl().hasCls(Ext.baseCSSPrefix+'column-filtered')){item.getEl().addCls(Ext.baseCSSPrefix+'column-filtered');}
+	    						}
+	    						else{if(item.getEl().hasCls(Ext.baseCSSPrefix+'column-filtered')){item.getEl().removeCls(Ext.baseCSSPrefix+'column-filtered');}}
+								if(me.filterArray.length>0){grid.store.filter(me.filterArray);}
+								else{grid.store.clearFilter();}
+								me.fireEvent('filterupdated',me.filterArray,newVal,oldVal);
+							});
+						}
+					}
+				});
+			}
+			container.add(col);
+		});*/
+		grid.dockedItems.add(container);
+	},
 
     /**
      * @private Create the Filter objects for the current configuration, destroying any existing ones first.

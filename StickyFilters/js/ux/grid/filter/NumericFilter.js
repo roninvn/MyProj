@@ -27,6 +27,7 @@ Ext.define('Ext.ux.grid.filter.NumericFilter', {
      * @return {Ext.menu.Menu}
      */
     createMenu: function(config) {
+    	console.log(config);
         var me = this,
             menu;
         menu = Ext.create('Ext.ux.grid.menu.RangeMenu', config);

@@ -108,6 +108,7 @@ menuItemCfgs : {
 
 
     constructor : function (config) {
+    	//console.log(config);
         var me = this,
             fields, fieldCfg, i, len, item, cfg, Cls;
 
