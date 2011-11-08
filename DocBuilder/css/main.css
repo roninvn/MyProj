@@ -14,16 +14,16 @@ textarea {
 	left: 20%;
 	top: -100%;
 	border: 1px solid black;
-	width: 70%;
+	width: 60%;
 	height: 100%;
 	overflow: auto;
 }
 #rightPanel{
 	position: relative;
-	left: 90%;
+	left: 80%;
 	top: -200%;
 	border: 1px solid black;
-	width: 9.9%;
+	width: 19.9%;
 	height: 100%;
 }
 
