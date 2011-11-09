@@ -47,7 +47,7 @@ $.Class.extend("Control",
 	
 	
 	deleteClicked: function(){
-		//console.log('del');
+
 	},
 	
 	
@@ -72,9 +72,7 @@ $.Class.extend("Control",
 			return false;
 		}
 		
-		for(var i=0,l=arrControls.length; i<l; i++){
-			//console.log('validateVal ', arrControls[i].props.id, this.props.id);
-			//this.validateName && 
+		for(var i=0,l=arrControls.length; i<l; i++){ 
 			if(arrControls[i].props.id !== this.props.id && arrControls[i].props.name === name){				
 				alert("This name is used. Please enter a new one.");
 				return false;

@@ -278,8 +278,7 @@ $.Class.extend("Application",
 	},
 	
 	varIsUsed: function(vname){		
-		for(var i=0, l=Application.sections.length; i<l; i++){
-			console.log(s);
+		for(var i=0, l=Application.sections.length; i<l; i++){			
 			var s = Application.sections[i];
 			for(var x=0, y=s.props.elements.length; x<y; x++){
 				var e = s.props.elements[x];
