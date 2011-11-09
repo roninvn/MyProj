@@ -9,6 +9,10 @@ $.Class.extend("Application",
 	currentSection: null,
 	sectionDlg: null,
 	
+	dialogMouseover: function(e){
+		e.preventDefault();
+	},
+	
 	translateCoord: function (p, c){
 		
 		var pos = {};
@@ -41,7 +45,8 @@ $.Class.extend("Application",
 				//Application.sections.push(c);
 				
 				//clear for new section
-				$("#centerPanel").empty();									
+				$("#centerPanel").empty();
+				c.getEl().resizable({disabled: true});
 				c.getEl().appendTo($("#centerPanel"));
 				
 				var pos = Application.translateCoord($("#centerPanel"), ui);
@@ -194,8 +199,7 @@ $.Class.extend("Application",
 	
 	addSection: function(s){
 		
-		var ss = Application.cloneSection(s);
-		
+		var ss = Application.cloneSection(s);		
 		
 		for(var i=0,l=Application.sections.length; i<l; i++){
 			if(Application.sections[i].props.name === ss.props.name || Application.sections[i].props.name === s.oldName){
@@ -212,7 +216,7 @@ $.Class.extend("Application",
 		for(var i=0,l=Application.sections.length; i<l; i++){			
 			var s = Application.sections[i];
 			
-			if(s.props.name === name){
+			if(s.props.name === name){				
 				$("#centerPanel").empty();
 				//s.getEl().appendTo("#centerPanel");
 				Application.currentSection = Application.cloneSection(s);
@@ -228,11 +232,13 @@ $.Class.extend("Application",
 	},
 	
 	cloneSection: function(s){
-		var ss = new Section({hideDlg: true});
+		var id = s.props.id;		
+		var ss = new Section({hideDlg: true, id: id});
 		ss.el.attr("style", s.el.attr("style"));
 		ss.props.name = s.props.name;
 		ss.props.checked = s.props.checked
 		ss.props.elements = [];
+		ss.props.id = id;
 		
 		for(var i=0, l=s.props.elements.length; i<l; i++){ //clone elements
 			var e = new Element({hideDlg: true});
@@ -322,6 +328,7 @@ $.Class.extend("Application",
 		Application.variableDlg = $("#dialog-Variable");
 		Application.contDlg = $("#dialog-Continue");
 		
+		
 		$("#addVar").click(function(){
 			var s = $("#selVars option:selected").val();
 			
@@ -344,7 +351,7 @@ $.Class.extend("Application",
 			var arrControls = Application.vars;
 			
 			for(var i=0,l=arrControls.length; i<l; i++){
-				if(arrControls[i].props.name === name){
+				if(arrControls[i].props.name === name){					
 					alert("This name is used. Please enter a new one.");
 					return;
 				}				
@@ -386,7 +393,14 @@ $.Class.extend("Application",
 			height: 400,
 			width: 400,
 			modal: true,
-			resizable: false
+			resizable: false,
+			
+			open: function(){
+				$('.Control').resizable({disabled: true});
+			},			
+			close: function(){
+				$('.Control').resizable({disabled: false});
+			}
 		});
 		
 		Application.sectionDlg.dialog({
@@ -404,9 +418,13 @@ $.Class.extend("Application",
 				return false;
 			},
 			
-			open:function(e,u){
+			open:function(e,u){				
+				$('.Control').resizable({disabled: true});
 				Application.sectionDlg.find("#opt").prop("checked", false);
 				Application.currentSection.loadValue(Application.sectionDlg);
+			},			
+			close: function(){
+				$('.Control').resizable({disabled: false});
 			}
 		});
 		
@@ -426,10 +444,14 @@ $.Class.extend("Application",
 			},
 			
 			open:function(e,u){
+				$('.Control').resizable({disabled: true});
 				Application.elementDlg.find("#varname").val("");
 				Application.elementDlg.find("#varvalue").val("");
 				Application.currentElement.loadValue(Application.elementDlg);
 				Application.loadVarsOption($("#selVars"));
+			},			
+			close: function(){
+				$('.Control').resizable({disabled: false});
 			}
 		});
 		
@@ -449,7 +471,11 @@ $.Class.extend("Application",
 			},
 			
 			open:function(e,u){
+				$('.Control').resizable({disabled: true});
 				Application.currentVariable.loadValue(Application.variableDlg);
+			},			
+			close: function(){
+				$('.Control').resizable({disabled: false});
 			}
 		});
 		

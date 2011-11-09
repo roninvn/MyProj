@@ -16,7 +16,7 @@ Control.extend("Element",
 			this.validateName = false;
 		}
 		else{
-			this.showDialog();		
+			this.showDialog();
 			this.doConfig();
 		}
 	},

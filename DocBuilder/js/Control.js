@@ -28,6 +28,12 @@ $.Class.extend("Control",
 			me.mouseOut();
 		});
 		
+		var id = (cfg && cfg.id) ? cfg.id : ++Control.ID;		
+		this.el.attr("id", id);
+		this.props.id = id;
+		
+		this.el.addClass('Control');
+		
 	},
 	
 	mouseOver: function(){
@@ -59,7 +65,6 @@ $.Class.extend("Control",
 	},
 	
 	validateVal: function(dialog, arrControls){
-		
 		var name = dialog.find("#name").val();
 		
 		if(name.length === 0){
@@ -68,7 +73,9 @@ $.Class.extend("Control",
 		}
 		
 		for(var i=0,l=arrControls.length; i<l; i++){
-			if(this.validateName && arrControls[i] !== this && arrControls[i].props.name === name){
+			//console.log('validateVal ', arrControls[i].props.id, this.props.id);
+			//this.validateName && 
+			if(arrControls[i].props.id !== this.props.id && arrControls[i].props.name === name){				
 				alert("This name is used. Please enter a new one.");
 				return false;
 			}				
