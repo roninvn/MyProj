@@ -1,0 +1,43 @@
+Ext.define('HeaderFilterExample.view.GridExample',{
+	extend:'Ext.grid.Panel',
+	alias:'widget.gridexample',
+	store:'Simpsons',
+	initComponent:function(){
+		var me=this;
+		Ext.apply(me,{
+			layout:'fit',
+			autoScroll:true,
+			margins:'5 5 0 5',
+			columns:[
+			  {header:'Name',dataIndex:'name',flex:1,filter:{
+				  xtype:'combo',
+				  store:Ext.clone(me.store),
+				  queryMode:'local',
+				  displayField:'name',
+				  triggerAction:'all',
+				  valueField:'name',
+				  emptyText:'Name...'
+			  }},
+			  {header:'No Filter',flex:1},
+			  {header:'Email',dataIndex:'email',flex:1,filter:{
+				  xtype:'textfield',
+				  emptyText:'Email...'
+			  }},
+			  {header:'Phone',dataIndex:'phone',flex:1,filter:{
+				  xtype:'textfield',
+				  emptyText:'Phone...'
+			  }},
+			  {xtype:'datecolumn',header:'Birthday',dataIndex:'birthday',flex:1,format:'m/d/Y',filter:{
+				  xtype:'datefield',
+				  emptyText:'Date...'
+			  }},
+			  {xtype:'numbercolumn',header:'ID',dataIndex:'id',flex:1,filter:{
+				  xtype:'numberfield',
+				  emptyText:'ID...'
+			  }}
+			],
+			plugins:[Ext.create('Ext.ux.grid.HeaderFilter')]
+		});
+		this.callParent(arguments);
+	}
+});

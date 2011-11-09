@@ -1,0 +1,16 @@
+Ext.define('HeaderFilterExample.store.Simpsons',{
+    extend:'Ext.data.Store',
+    model:'HeaderFilterExample.model.Simpsons',
+    autoLoad:true,
+    proxy:{
+        type:'ajax',
+        api:{
+            read:'data/simpsons.json'
+        },
+        reader:{
+            type:'json',
+            root:'simpsons',
+            successProperty:'success'
+        }
+    }
+});
