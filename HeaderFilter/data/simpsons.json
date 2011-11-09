@@ -1,9 +1,0 @@
-{
-    success: true,
-	'simpsons':[
-        {"name":"Lisa", "email":"lisa@simpsons.com", "phone":"555-111-1224", "birthday":"09/28/1981", "id":1},
-        {"name":"Bart", "email":"bart@simpsons.com", "phone":"555-222-1234", "birthday":"04/01/1979", "id":2},
-        {"name":"Homer", "email":"home@simpsons.com", "phone":"555-222-1244", "birthday":"03/01/1956", "id":4},                        
-        {"name":"Marge", "email":"marge@simpsons.com", "phone":"555-222-1254", "birthday":"10/01/1954", "id":3}            
-    ]
-}
