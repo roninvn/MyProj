@@ -146,7 +146,7 @@ $.Class.extend("Application",
 				var s = Application.sections[i];
 				var d=$("<div></div>").appendTo("#rightPanel");
 				var a = $("<a class = 'sectionLink' href='#'></a>").text(s.props.name).appendTo(d);
-				var updown = $("<div class ='sectionUpDown'><a href='#' id='aUp' >UP</a>  <a href='#' id= 'aDown'>DOWN</a></div>").appendTo(d);
+				var updown = $("<div class ='sectionUpDown'><a href='#' id='aUp' >UP</a>  <a href='#' id= 'aDown'>DOWN</a> <a href='#' id= 'aDel' class='btnDelete2'>X</a></div>").appendTo(d);
 				
 				a.click(function(e){					
 					var name=$(this).text();
@@ -156,7 +156,7 @@ $.Class.extend("Application",
 				
 				updown.find('#aUp').click(function(){
 					var name = $($(this).parent().parent().children()[0]).text();
-					var index = Application.getSectionIndex(name)
+					var index = Application.getSectionIndex(name);
 					
 					if(index !==-1 && index !== 0){
 						var obj2 = Application.sections[index-1];
@@ -171,7 +171,7 @@ $.Class.extend("Application",
 				updown.find('#aDown').click(function(){
 					
 					var name = $($(this).parent().parent().children()[0]).text();
-					var index = Application.getSectionIndex(name)
+					var index = Application.getSectionIndex(name);
 					
 					if(index !==-1 && index !== Application.sections.length-1){
 						var obj2 = Application.sections[index+1];
@@ -182,6 +182,18 @@ $.Class.extend("Application",
 					
 					return false;
 				});
+				
+				updown.find('#aDel').click(function(){
+					var name = $($(this).parent().parent().children()[0]).text();
+					var index = Application.getSectionIndex(name);					
+					Application.sections.splice(index,1);
+					if(Application.currentSection && Application.currentSection.props.name === name){
+						Application.removeSection();
+					}
+					Application.buildSectionLink();
+					return false;
+				});
+				
 			}
 	},
 	

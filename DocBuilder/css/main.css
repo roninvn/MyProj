@@ -85,6 +85,11 @@ textarea {
 	right: 0;
 	color: red;	
 }
+
+.btnDelete2{
+	color: red;	
+}
+
 .btnDelete:hover{
 	cursor: pointer;
 }
