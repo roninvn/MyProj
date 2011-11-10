@@ -1,0 +1,65 @@
+.dashboardListItem {
+	background: url(../img/listArrow.png) no-repeat right center;
+	font-weight: bold;
+	font-size: large;
+}
+
+.accountListItem {
+	background: url(../img/listArrow.png) no-repeat right center;
+}
+
+.accountListItemName{
+	font-weight: bold;
+	font-size: large;
+	width: 50%;
+	left: 0;
+	position: absolute;
+	margin-left: 1em;
+}
+
+.accountListItemBalance{
+	color: #FF6C15;
+	text-align: right;
+	margin-left: -2.2em;
+	width: 50%;
+	left: 50%;
+	position: absolute;
+	font-weight: bold;
+	font-size: large;
+}
+
+.transactionListItem {
+	height: 50px;
+}
+
+.transactionName {
+	font-weight: bold;
+	font-size: large;
+	width: 50%;
+	left: 0;
+	height: 25px;
+	position: absolute;
+	margin-left: 1em;
+}
+
+.transactionBalance{
+	color: #FF6C15;
+	text-align: right;
+	margin-left: -2.2em;
+	width: 50%;
+	left: 50%;
+	height: 25px;
+	position: absolute;
+	font-weight: bold;
+	font-size: large;
+}
+
+.transactionDate {
+	width: 50%;
+	left: 0;
+	top: 30px;
+	height: 23px;
+	position: absolute;
+	margin-left: 1.5em;
+	color: #666;
+}
