@@ -84,8 +84,11 @@ Ext.define('Demo.view.CenterPanel', {
 						type: 'string'
 					}
 				}, {
-					header : 'price',
-					dataIndex : 'price'
+					header : 'date',
+					dataIndex : 'date',
+					filter:{
+						type: 'date'
+					}
 				} ],
 
 				plugins : [ {
