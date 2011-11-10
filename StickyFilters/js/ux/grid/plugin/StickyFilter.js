@@ -32,21 +32,29 @@ Ext.define('Ext.ux.grid.plugin.StickyFilter', {
 		// console.log(filter.getXType());
 		if (filter) {
 
-			filter.setWidth(width);
+			filter.setWidth(width);/*
 			filter.items.each(function(ctr) {
-				ctr.setWidth(width);
-				;
-			});
+				ctr.setWidth(width);				
+			});*/
+			this.setChildrenWidth(filter, width);
 		}
 	},
 	task : new Ext.util.DelayedTask(),
-
+	
+	/*
+	 * set children width
+	 */
+	setChildrenWidth: function(filter, w){
+		filter.items.each(function(ctr) {
+			ctr.setWidth(w-10);				
+		});
+	},
+	
 	onGridRender : function(grid, obj) {
 		var me = this;
 		me.grid = grid;
 		var container = Ext.create('Ext.panel.Panel', {
-			dock : 'top',
-			componentCls : 'x-column-hfilter',
+			dock : 'top',			
 			weight : 101,
 			layout : 'hbox'
 		});
@@ -54,17 +62,17 @@ Ext.define('Ext.ux.grid.plugin.StickyFilter', {
 			item = Ext.getCmp(item.id);
 
 			var panelCfg = {
-				xtype : 'panel',
-				componentCls : 'x-column-no-filter',
+				xtype : 'panel',				
 				height : container.height,
 				id : item.id + "-filter",
 				hidden : item.hidden,
 				width : item.flex || item.width,
 				listeners : {
 					afterrender : function(panel) {
-						panel.items.each(function(ctr) {
+						me.setChildrenWidth(panel, panel.getWidth());
+						/*panel.items.each(function(ctr) {
 							ctr.setWidth(panel.getWidth());
-						});
+						});*/
 					}
 				}
 			};
@@ -83,44 +91,93 @@ Ext.define('Ext.ux.grid.plugin.StickyFilter', {
 	 * fire when a value in filter control is changed
 	 */
 	onValueChange : function(control, newVal, oldval, eOpts) {
-		//console.log(control, newval, oldval);
 
 		var me = this;
 		me.task.delay(me.updateBuffer, function() {
 			
-			var newFilter = {
-				property : control.dataindex,
-				value : newVal
-			}, myIndex = -1;
-			Ext.Array.forEach(me.filterArray, function(item2, index, allItems) {
-				if (item2.property === control.dataIndex) {
-					myIndex = index;
-				}
-			}, this);
-			if (myIndex != -1) {
-				me.filterArray.splice(myIndex, 1);
-			}
-			if (newVal) {
-				me.filterArray.push(newFilter);
-			}
-			
-			var grid = me.grid;
-			
-			grid.store.clearFilter();
-			if (me.filterArray.length > 0) {
-				grid.store.filter(me.filterArray);
-			} else {
-				grid.store.filterBy(function() {
-					return true;
-				});
-			}
+			me.addFilter(control.dataIndex, control.name, newVal);
+			me.doFilter();
+
 		});
 	},
+	
+	/*
+	 * filter store data
+	 */
+	doFilter: function(){
+		var me = this;
+		var grid = me.grid;
+		
+		grid.store.clearFilter();
+		
+		var filter = {filterFn: function(item){			
+			
+			for(var i=0; i< me.filterArray.length; i++){
+				
+				var data = item.get(me.filterArray[i].dataIndex);
+				
+				if(me.filterArray[i].filterType === "like"){ //filter for like
+					if(data.indexOf(me.filterArray[i].value) === -1)
+						return false;
+				}
+				else if(me.filterArray[i].filterType === "eq"){ //filter for equal
+					if(data !== me.filterArray[i].value)
+						return false;
+				}
+				else if(me.filterArray[i].filterType === "ge"){ //filter for greater or equal
+					if(data < me.filterArray[i].value)
+						return false;
+				}
+				else if(me.filterArray[i].filterType === "le"){ //filter for greater or equal
+					if(data > me.filterArray[i].value)
+						return false;
+				}
+			}
+			
+			return true;
+		}};
+
+		grid.store.filter(filter);
+	},
+	
+	
+	/*
+	 * add a new filter
+	 */
+	addFilter: function(dataIndex, filterType, newVal){
+		var me = this;
+		var filter = {
+			dataIndex : dataIndex,
+			filterType: filterType,
+			value: newVal
+		};
+		
+		var foundIndex = -1;
+		
+		//search current filter type
+		for(var i=0; i< me.filterArray.length; i++){
+			if(me.filterArray[i].dataIndex===dataIndex && me.filterArray[i].filterType === filterType){//found
+				if(newVal && newVal !== "") //not empty
+					me.filterArray[i] = filter; //overwrite filter
+				else
+					me.filterArray.splice(i, 1);
+				
+				foundIndex =  i;
+				break;
+			}
+		}
+		
+		//not found
+		if(foundIndex === -1)
+			me.filterArray.push(filter); //add into
+		
+	},
+	
 
 	/*
 	 * Build filter control by type
 	 */
-	buildFilterControls : function(ctype, dataindex) {
+	buildFilterControls : function(ctype, dataIndex) {
 
 		var me = this;
 
@@ -130,7 +187,12 @@ Ext.define('Ext.ux.grid.plugin.StickyFilter', {
 		if (ctype === 'number' || ctype === 'numeric' || ctype === 'int' || ctype === 'float') {
 			return [ {
 				xtype : 'numberfield',
-				dataindex : dataindex,
+				cls: 'filterControl',
+				fieldLabel : '>=',
+				labelSeparator: '',
+				labelPad: 1,
+				labelWidth: 20,
+				dataIndex : dataIndex,
 				name: 'ge',
 				listeners : {
 					scope : me,
@@ -138,7 +200,12 @@ Ext.define('Ext.ux.grid.plugin.StickyFilter', {
 				}
 			}, {
 				xtype : 'numberfield',
-				dataindex : dataindex,
+				cls: 'filterControl',
+				fieldLabel : '<=',
+				labelSeparator: '',
+				labelPad: 1,
+				labelWidth: 20,
+				dataIndex : dataIndex,
 				name:'le',
 				listeners : {
 					scope : me,
@@ -147,8 +214,13 @@ Ext.define('Ext.ux.grid.plugin.StickyFilter', {
 
 			}, {
 				xtype : 'numberfield',
-				dataindex : dataindex,
-				name:'e',
+				cls: 'filterControl',
+				fieldLabel : '==',
+				labelSeparator: '',
+				labelPad: 1,
+				labelWidth: 20,
+				dataIndex : dataIndex,
+				name:'eq',
 				listeners : {
 					scope : me,
 					change : me.onValueChange
@@ -157,7 +229,12 @@ Ext.define('Ext.ux.grid.plugin.StickyFilter', {
 		} else if (ctype === 'string') {
 			return [ {
 				xtype : 'textfield',
-				dataindex : dataindex,
+				cls: 'filterControl',
+				fieldLabel : 'has',
+				labelSeparator: '',
+				labelPad: 1,
+				labelWidth: 20,
+				dataIndex : dataIndex,
 				name:'like',
 				listeners : {
 					scope : me,
@@ -167,7 +244,12 @@ Ext.define('Ext.ux.grid.plugin.StickyFilter', {
 		} else if (ctype === 'date') {
 			return [ {
 				xtype : 'datefield',
-				dataindex : dataindex,
+				cls: 'filterControl',
+				fieldLabel : '>=',
+				labelSeparator: '',
+				labelPad: 1,
+				labelWidth: 20,
+				dataIndex : dataIndex,
 				name:'ge',
 				listeners : {
 					scope : me,
@@ -175,7 +257,12 @@ Ext.define('Ext.ux.grid.plugin.StickyFilter', {
 				}
 			}, {
 				xtype : 'datefield',
-				dataindex : dataindex,
+				cls: 'filterControl',
+				fieldLabel : '<=',
+				labelSeparator: '',
+				labelPad: 1,
+				labelWidth: 20,
+				dataIndex : dataIndex,
 				name:'le',
 				listeners : {
 					scope : me,
@@ -183,8 +270,13 @@ Ext.define('Ext.ux.grid.plugin.StickyFilter', {
 				}
 			}, {
 				xtype : 'datefield',
-				dataindex : dataindex,
-				name:'e',
+				cls: 'filterControl',
+				fieldLabel : '==',
+				labelSeparator: '',
+				labelPad: 1,
+				labelWidth: 20,
+				dataIndex : dataIndex,
+				name:'eq',
 				listeners : {
 					scope : me,
 					change : me.onValueChange
