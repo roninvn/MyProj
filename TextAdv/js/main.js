@@ -54,6 +54,8 @@ function loadpage(newpage){
 	
 	var img = pages[currentpage].cornerImg || "img/blank.png";
 	x$('#imgman').attr('src', img);
+	var cls = pages[currentpage].cornerImgCls || "";
+	x$('#imgman').attr('class', cls);
 	
 	captionLength = 0;
 	
