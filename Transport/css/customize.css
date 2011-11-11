@@ -66,11 +66,11 @@
 
 .detailTitle{
 	display: table-cell;
-	width: 250px;
+	width: 150px;
 }
 .detail2point{
 	display: table-cell;
-	width: 15px;
+	width: 10px;
 }
 .detailcontent{
 	display: table-cell;
