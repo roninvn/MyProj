@@ -63,3 +63,18 @@
 	margin-left: 1.5em;
 	color: #666;
 }
+
+.detailTitle{
+	display: table-cell;
+	width: 250px;
+}
+.detail2point{
+	display: table-cell;
+	width: 15px;
+}
+.detailcontent{
+	display: table-cell;
+}
+.detailBlock{
+	font-weight: bold;
+}

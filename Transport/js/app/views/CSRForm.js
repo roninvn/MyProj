@@ -13,6 +13,9 @@ Geezeo.views.CSRForm = Ext.extend(Ext.Panel, {
 		
 		listeners:{
 			itemtap: function(v,i,it,e){
+				//console.log(v.getRecord(it));
+				Geezeo.views.CSRDetail.update(v.getRecord(it).data);
+				Geezeo.viewport.setActiveItem(Geezeo.views.CSRDetail,'slide');
 			}
 		}	
 	}]
