@@ -13,7 +13,7 @@ Geezeo.views.Viewport = Ext.extend(Ext.Panel, {
         		CSRActive: new Geezeo.views.CSRActive(),
         		CSRClose: new Geezeo.views.CSRClose(),
         		CSRAll: new Geezeo.views.CSRAll(),
-        		CSRDetail: new Geezeo.views.CSRDetail()
+        		//CSRDetail: new Geezeo.views.CSRDetail()
         });
         //put instances of cards into viewport
         Ext.apply(this, {
@@ -23,7 +23,7 @@ Geezeo.views.Viewport = Ext.extend(Ext.Panel, {
                Geezeo.views.CSRActive,
                Geezeo.views.CSRClose,
                Geezeo.views.CSRAll,
-               Geezeo.views.CSRDetail
+               //Geezeo.views.CSRDetail
             ]
         });
         Geezeo.views.Viewport.superclass.initComponent.apply(this, arguments);

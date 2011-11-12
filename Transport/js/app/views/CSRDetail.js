@@ -1,22 +1,12 @@
-Geezeo.views.CSRDetail = Ext.extend(Ext.Panel, {
-	fullscreen: true,
-	styleHtmlContent : true,
-	layout : {
-		type : 'vbox',
-		align : 'stretch'
-	},
-	
-	dockedItems : [{
-		xtype : 'toolbar',
-		dock : 'top',
-		items:[{
-			text : 'Back',
-			ui : 'back',
-			handler : function() {
-				Geezeo.viewport.setActiveItem(Geezeo.views.DashboardForm,'slide');
-			}
-		}]
-	}],
+Geezeo.views.CSRDetail = Ext.extend(Ext.Sheet, {
+	layout : 'fit',
+	modal: true,
+	hideOnMaskTap: true,
+	enter: 'right',
+	exit: 'right',
+	width: 400,
+	stretchY: true,
+	cls : 'crsdetail',
 	
 	data: {},
 	tpl:   '<div class="detailBlock"><div class="detailTitle">REQUEST FROM</div><div class="detail2point">:</div><div class="detailcontent">{reqfrom}</div></div>'

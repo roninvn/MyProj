@@ -78,3 +78,13 @@
 .detailBlock{
 	font-weight: bold;
 }
+
+.crsdetail{
+	background: white;
+	-webkit-border-top-left-radius: 0.2em;
+	border-top-left-radius: 0.2em;
+	-webkit-border-bottom-left-radius: 0.2em;
+	border-bottom-left-radius: 0.2em;
+	position: absolute;
+	border: 0;
+}
