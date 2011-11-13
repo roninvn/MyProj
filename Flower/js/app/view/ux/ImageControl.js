@@ -104,7 +104,13 @@ Ext.define('Flower.view.ux.ImageControl', {
      */
     rotate: function(agl){
     	this.angle = agl;
-    	this.getEl().down('img').applyStyles({'-webkit-transform': 'rotate(' + agl + 'deg)'});
+    	this.getEl().down('img').applyStyles({
+    		'-webkit-transform': 'rotate(' + agl + 'deg)',
+    		'-moz-transform': 'rotate(' + agl + 'deg)',
+    		'-o-transform': 'rotate(' + agl + 'deg)',
+    		'-ms-transform': 'rotate(' + agl + ')',
+    		transform : 'rotate(' + agl + 'deg)'
+    	});
     },
     
     
@@ -119,7 +125,10 @@ Ext.define('Flower.view.ux.ImageControl', {
      */
     rotateRight: function(){
     	this.rotate(this.angle+10);
+    },
+    
+    setZoom: function(zoomLevel){
+    	this.getEl().down('.x-form-item-body').applyStyles({zoom : zoomLevel + "%"});    	
     }
-
-
+    
 });

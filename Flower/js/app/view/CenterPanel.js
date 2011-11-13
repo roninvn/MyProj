@@ -12,6 +12,7 @@ Ext.define('Flower.view.CenterPanel', {
 	deferredRender : false,
 	alias : 'widget.CenterPanel',
 	layout : 'absolute',
+	id : 'centerpanel',
 
 	requires : ['Flower.view.ux.ImageControl'],
 	/**
@@ -67,6 +68,13 @@ Ext.define('Flower.view.CenterPanel', {
 				}
 			});
 		}// end event render
+	},
+	
+	setZoom: function(newVal){
+		this.zoomLevel = newVal;
+		this.items.each(function(itm){
+			itm.setZoom(newVal);
+		});
 	}
 
 });
