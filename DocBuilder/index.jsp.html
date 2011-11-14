@@ -35,6 +35,15 @@
 		    });
 	    </script>
         
+        <script language="javascript" type="text/javascript">
+        	//load your json string here
+        	var jsonString = '{"name":"MyDoc","sections":[{"name":"aa","optional":false,"elements":[],"style":"position: relative; top: 60px; left: 146px; "}]}';
+        	$(document).bind('DocBuilderReady', function(){
+        		Application.loadFromJSON(jsonString);
+        	});
+        </script>
+        
+        
         <title>DOCUMENT BUILDER</title>
     </head>
     <body>

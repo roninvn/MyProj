@@ -75,6 +75,7 @@ $.Class.extend("Application",
 			sec.name = s.props.name;
 			sec.optional = s.props.checked;
 			sec.elements=[];
+			sec.style = s.el.attr('style');
 			
 			doc.sections.push(sec);
 			
@@ -246,7 +247,14 @@ $.Class.extend("Application",
 	cloneSection: function(s){
 		var id = s.props.id;		
 		var ss = new Section({hideDlg: true, id: id});
-		ss.el.attr("style", s.el.attr("style"));
+		//console.log(ss);
+		if(s.style){
+			ss.el.attr("style", s.style);
+			delete s.style;
+		}
+		else
+			ss.el.attr("style", s.el.attr("style"));
+		
 		ss.props.name = s.props.name;
 		ss.props.checked = s.props.checked
 		ss.props.elements = [];
@@ -317,6 +325,30 @@ $.Class.extend("Application",
 			Application.currentSection.el.remove();
 			Application.currentSection = null;
 		}
+	},
+	/*
+	 * load from saved json string
+	 */
+	loadFromJSON: function(jsonStr){
+		$("#centerPanel").empty();
+		Control.ID = 0;
+		Application.vars = [];	
+		Application.currentSection = null;
+		Application.sections = $.parseJSON(jsonStr).sections;
+		
+		//normalize array
+		
+		for(var i=0; i< Application.sections.length; i++){
+			var sec = Application.sections[i];
+			sec.props = {};
+			sec.props.name = sec.name;
+			sec.props.id = ++Control.ID;
+			sec.props.elements = sec.elements;
+			delete sec.elements;
+		}
+		
+		Application.buildSectionLink();
+		
 	}
 	
 },
@@ -498,3 +530,4 @@ $.Class.extend("Application",
 	}// end init
 });
 var myapp = new Application();
+$(document).trigger('DocBuilderReady');
