@@ -67,6 +67,7 @@
 .detailTitle{
 	display: table-cell;
 	width: 150px;
+	color: navy;
 }
 .detail2point{
 	display: table-cell;

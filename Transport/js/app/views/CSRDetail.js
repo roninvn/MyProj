@@ -19,8 +19,25 @@ Geezeo.views.CSRDetail = Ext.extend(Ext.Sheet, {
 		 + '<div class="detailBlock"><div class="detailTitle">E.T.A DATE</div><div class="detail2point">:</div><div class="detailcontent">{etadate}</shipname></div>'
 		 + '<div class="detailBlock"><div class="detailTitle">E.T.D DATE</div><div class="detail2point">:</div><div class="detailcontent">{etddate}</shipname></div>'
 		 + '<div class="detailBlock"><div class="detailTitle">ORDER NUMBER</div><div class="detail2point">:</div><div class="detailcontent">{orderno}</shipname></div>'
-		 + '<div class="detailBlock"><div class="detailTitle">ISSUED BY</div><div class="detail2point">:</div><div class="detailcontent">{issuedby}</shipname></div>'
+		 + '<div class="detailBlock"><div class="detailTitle">ISSUED BY</div><div class="detail2point">:</div><div class="detailcontent">{issuedby}</shipname></div>',
+		 
+		 
+	 dockedItems: [
+	               {
+	                   dock : 'bottom',
+	                   xtype: 'button',
+	                   text : 'Detail',
+	                   scope: this,
+	                   handler: function(){
+	                	   //console.log(this.getXTypes());
+	                	   detailWin.hide();
+	                	   Geezeo.viewport.setActiveItem(Geezeo.views.CSRDetailList,'slide');
+	                   }
+	               }
+	           ]
 	
 });
 
 Ext.reg('CSRDetail', Geezeo.views.CSRDetail);
+
+var detailWin = Ext.create({xtype: 'CSRDetail'});
