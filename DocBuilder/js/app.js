@@ -84,6 +84,7 @@ $.Class.extend("Application",
 				var ele = {};
 				ele.name = e.props.name
 				ele.text = e.props.text;
+				ele.style = e.el.attr('style');
 				
 				ele.inputs = Application.getVarsinElement(e);
 				
@@ -262,7 +263,16 @@ $.Class.extend("Application",
 		
 		for(var i=0, l=s.props.elements.length; i<l; i++){ //clone elements
 			var e = new Element({hideDlg: true});
-			e.el.attr("style", s.props.elements[i].el.attr("style"));
+			
+			if(s.props.elements[i].style){				
+				e.el.attr("style", s.props.elements[i].style);
+				delete s.props.elements[i].style;
+			}
+			else
+				e.el.attr("style", s.props.elements[i].el.attr("style"));
+			
+			//e.el.attr("style", s.props.elements[i].el.attr("style"));
+			
 			e.props.name = s.props.elements[i].props.name;
 			e.props.text = s.props.elements[i].props.text;			
 			e.el.appendTo(ss.el);
@@ -335,7 +345,7 @@ $.Class.extend("Application",
 		Application.vars = [];	
 		Application.currentSection = null;
 		Application.sections = $.parseJSON(jsonStr).sections;
-		
+		Application.vars = [];
 		//normalize array
 		
 		for(var i=0; i< Application.sections.length; i++){
@@ -345,10 +355,33 @@ $.Class.extend("Application",
 			sec.props.id = ++Control.ID;
 			sec.props.elements = sec.elements;
 			delete sec.elements;
+			
+			for(var j=0; j< sec.props.elements.length; j++){
+				var e = sec.props.elements[j];
+				e.props = {};
+				e.props.name = e.name;
+				e.props.text = e.text;				
+				
+				for(var k=0; k< e.inputs.length; k++){
+					Application.addVar(e.inputs[k].name);
+				}
+			}
+			
 		}
 		
 		Application.buildSectionLink();
 		
+	},
+	
+	addVar: function(varname){
+		for(var i=0; i<Application.vars.length; i++){
+			if(Application.vars[i].props.name === varname)
+				return;
+		}
+		
+		var v = new Variable({hideDlg: true});
+		v.props.name = varname;
+		Application.vars.push(v);
 	}
 	
 },
