@@ -1,6 +1,4 @@
-Geezeo.views.CSRDetailList = Ext
-		.extend(
-				Ext.Panel,
+Geezeo.views.CSRDetailList = Ext.extend(Ext.Panel,
 				{
 					fullscreen : true,
 					scroll : "vertical",
