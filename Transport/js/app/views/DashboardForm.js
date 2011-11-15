@@ -2,6 +2,11 @@ Geezeo.views.DashboardForm = Ext.extend(Ext.TabPanel, {
 	//scroll: 'vertical',	
 	styleHtmlContent : true,
 	fullscreen : true,
+	layout : 'fit',
+	pading: "0",
+	style: {
+		'margin-left' : '-14px'
+	},
 	tabBar: {
 		dock: 'top',
 		layout: {

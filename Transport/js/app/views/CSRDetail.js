@@ -4,7 +4,7 @@ Geezeo.views.CSRDetail = Ext.extend(Ext.Sheet, {
 	hideOnMaskTap: true,
 	enter: 'right',
 	exit: 'right',
-	width: 400,
+	width: 280,
 	stretchY: true,
 	cls : 'crsdetail',
 	
