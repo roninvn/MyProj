@@ -5,26 +5,28 @@
 Geezeo.views.LoginForm = Ext.extend(Ext.Panel, {
 	fullscreen : true,
 	styleHtmlContent : true,
+	ui : 'light',
 	layout : {
 		type : 'vbox',
 		align : 'stretch'
 	},
-	items : [{
-			xtype : 'textfield',
-			name:'username',			
-			placeHolder : "Username",
-			label:'Login'
+	dockedItems : [{
+		dock : 'top',
+		xtype : 'toolbar',
+		title : 'TWS',
+		type : 'light'
+	}, {
+		dock : 'bottom',
+		xtype : 'toolbar',
+		type : 'light',
+		items : [{
+			xtype : 'spacer'
 		}, {
-			xtype : 'passwordfield',
-			name:'password',			
-			placeHolder : "Password",
-			label:'Password'
+			text : 'Reset',
+			ui : 'confirm'
 		}, {
-			xtype : "button",
-			text : "Login",
-			style:{
-				'margin-top': '20px'
-			},
+			text : 'Submit',
+			ui : 'confirm',
 			handler : function() {
 				Ext.dispatch({
 					controller : Geezeo.controllers.LoginController,
@@ -32,6 +34,28 @@ Geezeo.views.LoginForm = Ext.extend(Ext.Panel, {
 				});
 			}
 		}]
+	}],
+	items : [{
+		xtype : 'fieldset',
+		title : 'Login',
+		instructions : 'Please enter the information above.',
+		defaults : {
+			required : true,
+			labelAlign : 'left',
+			labelWidth : '40%'
+		},
+		items : [{
+			xtype : 'textfield',
+			name : 'username',
+			placeHolder : "Username",
+			label : 'Name'
+		}, {
+			xtype : 'passwordfield',
+			name : 'password',
+			placeHolder : "Password",
+			label : 'Password'
+		}]
+	}]
 });
 
 Ext.reg('LoginForm', Geezeo.views.LoginForm);
