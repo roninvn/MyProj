@@ -4,7 +4,7 @@ Geezeo.views.CSRForm = Ext.extend(Ext.Panel, {
 	bodyPadding: 0,
 	items : [{
 		xtype: 'list',
-		itemTpl : '{reqfrom}  - {shipname}',
+		itemTpl : '<img src ="img/icon.png" class="icon" />{con}  - {shipname} - {family} - {etaplace}',
 		itemCls : 'dashboardListItem',
 		//margin: '-25 0 0 -20',
 		store: CSRStore,		

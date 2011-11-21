@@ -1,4 +1,4 @@
-var settingsStore = new Ext.data.JsonStore({
+var MenuStore = new Ext.data.JsonStore({
 	model : 'MenuModel',
 	getGroupString : function(record) {
 		return record.get('type');

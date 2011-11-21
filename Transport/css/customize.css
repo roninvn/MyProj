@@ -1,7 +1,7 @@
 .dashboardListItem {
 	background: url(../img/listArrow.png) no-repeat right center;
 	font-weight: bold;
-	font-size: large;	
+	font-size: small;	
 }
 
 .accountListItem {
@@ -65,8 +65,8 @@
 }
 
 .detailTitle{
-	display: table-cell;
-	width: 150px;
+	/*display: table-cell;
+	width: 150px;*/
 	color: navy;
 }
 .detail2point{
@@ -74,7 +74,9 @@
 	width: 10px;
 }
 .detailcontent{
-	display: table-cell;
+	/*display: table-cell;*/
+	background-color: #EEE;
+	text-align: right;
 }
 .detailBlock{
 	font-weight: bold;
@@ -88,4 +90,9 @@
 	border-bottom-left-radius: 0.2em;
 	position: absolute;
 	border: 0;
+}
+
+.icon{
+	vertical-align: middle;
+	padding-right: 20px;
 }
