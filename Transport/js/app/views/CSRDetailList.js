@@ -14,7 +14,7 @@ Geezeo.views.CSRDetailList = Ext.extend(Ext.Panel,
 							ui : 'back',
 							handler : function() {
 								Geezeo.viewport.setActiveItem(
-										Geezeo.views.MenuForm, 'slide');
+										Geezeo.views.CSRForm.detailForm, 'slide');
 							}
 						} ]
 					} ],

@@ -20,7 +20,8 @@ Geezeo.views.CSRDetail = Ext.extend(Ext.Sheet, {
 		 + '<div class="detailBlock"><div class="detailTitle">E.T.A DATE</div><div class="detailcontent">{etadate}</shipname></div>'
 		 + '<div class="detailBlock"><div class="detailTitle">E.T.D DATE</div><div class="detailcontent">{etddate}</shipname></div>'
 		 + '<div class="detailBlock"><div class="detailTitle">ORDER NUMBER</div><div class="detailcontent">{orderno}</shipname></div>'
-		 + '<div class="detailBlock"><div class="detailTitle">ISSUED BY</div><div class="detailcontent">{issuedby}</shipname></div>',
+		 + '<div class="detailBlock"><div class="detailTitle">ISSUED BY</div><div class="detailcontent">{issuedby}</shipname></div>'
+		 + '<div class="shipdetailIndicator"></div>',
 		 
 	/* dockedItems: [
 	               {

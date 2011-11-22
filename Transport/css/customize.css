@@ -68,6 +68,7 @@
 	/*display: table-cell;
 	width: 150px;*/
 	color: navy;
+	background-color:white;
 }
 .detail2point{
 	display: table-cell;
@@ -95,4 +96,10 @@
 .icon{
 	vertical-align: middle;
 	padding-right: 20px;
+}
+
+.shipdetailIndicator {
+	background: url(../img/listArrow.png) no-repeat right center;
+	height: 30px;
+	margin-top: 10px;
 }
