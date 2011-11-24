@@ -49,13 +49,21 @@ Control.extend("Element",
 	/*
 	 * validate inputed properties 
 	 */
-	validateVal: function(dialog, arrControls){		
+	validateVal: function(dialog, arrControls){
+		
+		var idx = jQuery.trim($("#orderindex").val());
+		if(idx === "" || isNaN(idx)){
+			alert("Order index must be a number.");
+			return false;
+		}
+		
 		return this._super(dialog, arrControls);		
 	},
 	
 	bindValue: function(dialog){
 		this._super(dialog);
 		this.props.text = dialog.find("#text").val();
+		this.props.orderindex = Number(jQuery.trim($("#orderindex").val()));
 		var arr = this.props.text.split("\n");
 		var s = "";
 		for(var i=0, l=arr.length; i<l; i++){
@@ -68,6 +76,8 @@ Control.extend("Element",
 	
 	loadValue: function(dialog){
 		this._super(dialog);		
-		dialog.find("#text").val(this.props.text);		
+		dialog.find("#text").val(this.props.text);
+		var idx = this.props.orderindex ? this.props.orderindex : 1;
+		dialog.find("#orderindex").val(idx);
 	}
 });

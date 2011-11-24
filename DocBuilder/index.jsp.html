@@ -37,7 +37,7 @@
         
         <script language="javascript" type="text/javascript">
         	//load your json string here
-        	var jsonString = '{"name":"MyDoc","sections":[{"name":"aa","elements":[{"name":"11a","text":"${11}","style":"position: relative; left: 17px; top: 12px; ","inputs":[{"name":"11"}]},{"name":"e2","text":"${11}${papa}","style":"position: relative; left: 222px; top: 153px; ","inputs":[{"name":"11"},{"name":"papa"}]}],"style":"position: relative; top: 58px; left: 110px; "},{"name":"bb","optional":false,"elements":[{"name":"ee1","text":"${11}","style":"position: relative; top: 20px; left: 7px; ","inputs":[{"name":"11"}]},{"name":"ee2","text":"asdasdasdsad","style":"position: absolute; width: 150px; height: 53px; left: 201px; top: 81px; ","inputs":[]}],"style":"position: relative; left: 109px; top: 60px; "}]}';
+        	var jsonString = '{"name":"MyDoc","sections":[{"name":"AA","optional":false,"elements":[{"name":"E1","text":"E1","orderindex":2,"style":"position: relative; left: 30px; top: 15px; ","inputs":[]},{"name":"E2","text":"E2","orderindex":5,"style":"position: relative; left: 31px; top: 44px; ","inputs":[]}],"style":"position: relative; left: 76px; top: 33px; "}]}';
         	//use this snipet to load json string into form
         	$(document).bind('DocBuilderReady', function(){
         		Application.loadFromJSON(jsonString);
@@ -84,7 +84,9 @@
     	<div id="dialog-Element" title="Enter element info">
 			<fieldset>
 				<label>Element name</label>
-				<input type="text" name="name" id="name" class="text ui-widget-content ui-corner-all" />
+				<input type="text" name="name" id="name" class="text ui-widget-content ui-corner-all" style="width: 150px;" />
+				<label>Order index</label>
+				<input type="text" name="orderindex" id="orderindex" class="text ui-widget-content ui-corner-all" style="width: 50px;" value="1" />
 				<br />
 				<label>Text</label><br />
 				<textarea type="text" name="text" id="text" class="text ui-widget-content ui-corner-all" ></textarea>

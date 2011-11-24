@@ -84,6 +84,7 @@ $.Class.extend("Application",
 				var ele = {};
 				ele.name = e.props.name
 				ele.text = e.props.text;
+				ele.orderindex = e.props.orderindex;
 				ele.style = e.el.attr('style');
 				
 				ele.inputs = Application.getVarsinElement(e);
@@ -213,7 +214,16 @@ $.Class.extend("Application",
 	
 	addSection: function(s){
 		
-		var ss = Application.cloneSection(s);		
+		var ss = Application.cloneSection(s);
+		//sort by orderindex
+		for(var ii = 0; ii < ss.props.elements.length-1; ii++)
+			for(var jj = ii+1; jj < ss.props.elements.length; jj++){
+				if(ss.props.elements[ii].props.orderindex > ss.props.elements[jj].props.orderindex){
+					var t = ss.props.elements[ii];
+					ss.props.elements[ii] = ss.props.elements[jj];
+					ss.props.elements[jj] = t;
+				}
+			}
 		
 		for(var i=0,l=Application.sections.length; i<l; i++){
 			if(Application.sections[i].props.name === ss.props.name || Application.sections[i].props.name === s.oldName){
@@ -274,7 +284,8 @@ $.Class.extend("Application",
 			//e.el.attr("style", s.props.elements[i].el.attr("style"));
 			
 			e.props.name = s.props.elements[i].props.name;
-			e.props.text = s.props.elements[i].props.text;			
+			e.props.text = s.props.elements[i].props.text;
+			e.props.orderindex = s.props.elements[i].props.orderindex;
 			e.el.appendTo(ss.el);
 			
 			
@@ -360,7 +371,8 @@ $.Class.extend("Application",
 				var e = sec.props.elements[j];
 				e.props = {};
 				e.props.name = e.name;
-				e.props.text = e.text;				
+				e.props.text = e.text;
+				e.props.orderindex = e.orderindex;
 				
 				for(var k=0; k< e.inputs.length; k++){
 					Application.addVar(e.inputs[k].name);
