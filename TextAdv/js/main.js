@@ -51,6 +51,8 @@ function loadpage(newpage){
 	
 	var bg = pages[currentpage].bgColor || "white";
 	x$('#wrap').setStyle("background-color", bg);
+	x$(document.body).setStyle("background-color", bg);
+	scroll(0,0);
 	
 	var img = pages[currentpage].cornerImg || "img/blank.png";
 	x$('#imgman').attr('src', img);
@@ -92,6 +94,7 @@ function showMenu(){
 	x$('#splash').setStyle('visibility', 'hidden');
 	x$('#menu').setStyle('visibility', 'visible');
 	x$('#wrap').setStyle('visibility', 'hidden');
+	x$(document.body).setStyle("background-color", "white");
 	
 	//var v = window.localStorage.getItem(SaveKey);
 	
@@ -132,6 +135,7 @@ function exitGame(){
 	x$('#menu').setStyle('visibility', 'hidden');
 	x$('#wrap').setStyle('visibility', 'hidden');
 	x$('#resumeGame').setStyle('visibility', 'hidden');
+	x$(document.body).setStyle("background-color", "white");
 }
 
 function quitApp(){
