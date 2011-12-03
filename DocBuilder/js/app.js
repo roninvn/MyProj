@@ -75,7 +75,12 @@ $.Class.extend("Application",
 			sec.name = s.props.name;
 			sec.optional = s.props.checked;
 			sec.elements=[];
-			sec.style = s.el.attr('style');
+			if(s.el && s.el.attr)
+				sec.style = s.el.attr('style');
+			else if(s.style)
+				sec.style = s.style;
+			else
+				sec.style = "";
 			
 			doc.sections.push(sec);
 			
@@ -85,7 +90,12 @@ $.Class.extend("Application",
 				ele.name = e.props.name
 				ele.text = e.props.text;
 				ele.orderindex = e.props.orderindex;
-				ele.style = e.el.attr('style');
+				if(e.el && e.el.attr)
+					ele.style = e.el.attr('style');
+				else if(e.style)
+					ele.style = e.style;
+				else
+					ele.style = "";
 				
 				ele.inputs = Application.getVarsinElement(e);
 				
@@ -258,13 +268,16 @@ $.Class.extend("Application",
 	cloneSection: function(s){
 		var id = s.props.id;		
 		var ss = new Section({hideDlg: true, id: id});
-		//console.log(ss);
-		if(s.style){
+		//console.log(s);
+		if(s.el && s.el.attr)
+			ss.el.attr("style", s.el.attr("style"));
+		else if(s.style){
 			ss.el.attr("style", s.style);
-			delete s.style;
+			//delete s.style;
 		}
 		else
-			ss.el.attr("style", s.el.attr("style"));
+			ss.el.attr("style", "");
+			
 		
 		ss.props.name = s.props.name;
 		ss.props.checked = s.props.checked
@@ -274,12 +287,14 @@ $.Class.extend("Application",
 		for(var i=0, l=s.props.elements.length; i<l; i++){ //clone elements
 			var e = new Element({hideDlg: true});
 			
-			if(s.props.elements[i].style){				
+			if(s.props.elements[i].el && s.props.elements[i].el.attr)
+				e.el.attr("style", s.props.elements[i].el.attr("style"));			
+			else if(s.props.elements[i].style){				
 				e.el.attr("style", s.props.elements[i].style);
-				delete s.props.elements[i].style;
+				//delete s.props.elements[i].style;
 			}
 			else
-				e.el.attr("style", s.props.elements[i].el.attr("style"));
+				e.el.attr("style", "");
 			
 			//e.el.attr("style", s.props.elements[i].el.attr("style"));
 			
