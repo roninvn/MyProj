@@ -13,6 +13,9 @@ Ext.define('FB.view.ContentPanel', {
 		items:[{
 			text:'Add new Fieldset',
 			id:'btnAddnew'
+		},{
+			text:'To JSON string',
+			id:'btnExport'
 		}] //end item of toolbar
 	},{
 		xtype:'panel',

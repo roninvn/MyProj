@@ -7,7 +7,8 @@ Ext.define('FB.controller.DesignController', {
 		
 		UnselectControl: function(c){
 			c.getEl().applyStyles({
-				border : null
+				border : null,
+				'background-color': null
 			});				
 			c.isSelected = false;
 		},
@@ -23,15 +24,22 @@ Ext.define('FB.controller.DesignController', {
 					FB.controller.DesignController.UnselectControl(i2);
 				});
 			});
+			
+			Ext.getCmp('propGrid').setSource({});
 		},
 		/*
 		 * select a control
 		 */
 		Select: function(c){
 			FB.controller.DesignController.UnselectAll();
-			c.getEl().applyStyles({
-				border : "1px dashed red"
-			});			
+			if(c.getXType() === 'FieldsetPanel')
+				c.getEl().applyStyles({
+					border : "1px dashed red"					
+				});
+			else
+				c.getEl().applyStyles({
+					'background-color': 'cyan'
+				});
 			c.isSelected = true;
 		}
 	},
@@ -46,6 +54,9 @@ Ext.define('FB.controller.DesignController', {
 			},
 			"#propGrid": {
 				propertychange: this.onPropertyChanged
+			},
+			"#btnExport": {
+				click: this.exportToJSON
 			}
 		});
 	},
@@ -176,6 +187,36 @@ Ext.define('FB.controller.DesignController', {
 				});
 			});
 		}//end Label
+	},
+	
+	exportToJSON: function(){
+		var dv = Ext.getCmp('designpanel');
+		var obj = {name : 'My Form', fieldsets:[]};
+		
+		dv.items.each(function(panel){
+			
+			var  p = {name: panel.title, inputs:[]};
+			
+			panel.items.each(function(control){
+				var c = control._baseControl.info;				
+				p.inputs.push(c);
+			});
+			
+			obj.fieldsets.push(p);
+		});
+		
+		//console.log(obj);
+		
+		Ext.create('Ext.window.Window', {
+		    title: 'JSON string',
+		    height: 300,
+		    width: 400,
+		    layout: 'fit',
+		    items: [{
+		        xtype: 'textareafield',
+		        value : Ext.JSON.encode(obj)
+		    }]
+		}).show();
 	}
 
 });

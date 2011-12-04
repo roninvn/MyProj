@@ -5,7 +5,13 @@ Ext.define('FB.view.Control', {
 	constructor : function() {		
 		this.info = Ext.clone(arguments[0]);
 		
+		this.createControl();
 		
+		this.callParent(arguments);
+	},
+	
+	
+	createControl: function(){
 		var me = this;
 		
 		this._control = Ext.createByAlias("widget." + this.info.type,{			
@@ -19,8 +25,6 @@ Ext.define('FB.view.Control', {
 			}
 			
 		});
-		
-		this.callParent(arguments);
 	},
 	
 	onControlRender: function(c){
@@ -115,10 +119,49 @@ Ext.define('FB.view.Control', {
 			}
 
 			menuData.items.push(movData);
+			
 
 		}// end if of movData
 		
 		
+		//transform menu
+		var transfData = {
+				text : 'Transform to',
+				menu : []
+			};
+		
+		var arr =[{
+			name:'Textbox',
+			type:'textfield'
+		},{
+			name:'Text area',
+			type:'textareafield'
+		},{
+			name:'Date',
+			type:'datefield'
+		},{
+			name:'Checkbox',
+			type:'checkboxfield'
+		},{
+			name:'Combobox',
+			type:'combobox'
+		}];
+		
+		for(var i = 0; i < arr.length; i++){
+			if(arr[i].type !== this.info.type){
+				transfData.menu.push({
+					text: arr[i].name,
+					ctype: arr[i].type,
+					listeners : {
+						click : function() {
+							me.triggerTransform(this.ctype);
+						}
+					}
+				});
+			}
+		}
+		
+		menuData.items.push(transfData);//end transform data
 		
 		var menu = Ext.create("Ext.menu.Menu", menuData);
 		menu.showAt(pos);
@@ -150,6 +193,33 @@ Ext.define('FB.view.Control', {
 		
 		dv.removeAll(false);
 		dv.add(arr);
+	},
+	
+	triggerTransform: function(type){
+		//console.log(type);
+		var c = this._control;
+		var dv = this._control.ownerCt;
+		
+		var arr = [];
+		//dv.remove(this._control, false);
+		for(var i = 0; i< dv.items.items.length; i++){
+			if(this._control !== dv.items.items[i]){
+				arr.push(dv.items.items[i]);
+			}
+			else{
+				this.info.type = type;
+				this.createControl();
+				arr.push(this._control);
+			}
+			
+		}
+		
+		dv.removeAll(false);
+		c.destroy();
+		dv.add(arr);
+		
+		FB.controller.DesignController.UnselectAll();
+		
 	}
 	
 });
