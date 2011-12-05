@@ -63,7 +63,9 @@ Ext.define('FB.controller.DesignController', {
 
 	addNewFieldset : function() {
 		var dv = Ext.getCmp('designpanel');
-		var c = Ext.create('FB.view.FieldsetPanel');
+		var c = Ext.create('FB.view.FieldsetPanel',{
+			title : 'Fieldset'
+		});
 		dv.add(c);
 		
 		//var k = Ext.create('FB.view.Control');
