@@ -1,7 +1,7 @@
-Ext.define('FB.view.FieldsetPanel', {	
+Ext.define('FB.view.Section', {	
 	extend : 'Ext.panel.Panel',	
-	height : 200,
-	alias : 'widget.FieldsetPanel',
+	height : 100,
+	alias : 'widget.Section',
 	resizable : {
 		handles : 's'
 	},
@@ -12,12 +12,13 @@ Ext.define('FB.view.FieldsetPanel', {
 		render : function(c) {
 			c.getEl().on("contextmenu", function(e) {
 				e.preventDefault();
+				e.stopPropagation();
 				c.showContextMenu(e.getXY());
 			});
 			
 			c.getEl().on("click", function(e) {
 				e.preventDefault();
-				//c.showContextMenu(e.getXY());
+				e.stopPropagation();
 				c.doSelect();
 			});
 		}
@@ -28,11 +29,11 @@ Ext.define('FB.view.FieldsetPanel', {
 	},
 
 	showContextMenu : function(pos) {
-
+		
 		var me = this;
 
 		// build menu
-		var dv = Ext.getCmp('designpanel');
+		var dv = this.ownerCt;
 		var menuData = {
 			items : []
 		};
@@ -45,7 +46,7 @@ Ext.define('FB.view.FieldsetPanel', {
 			};
 
 			for ( var i = 0; i < dv.items.items.length; i++) {
-				if (dv.items.items[i] !== this && dv.items.items[i-1] !== this)
+				if (dv.items.items[i] !== this && dv.items.items[i-1] !== this && dv.items.items[i].getXType() === 'Section')
 					movData.menu.push({
 						text : 'Above ' + dv.items.items[i].title,
 						movIndex : i,
@@ -70,19 +71,8 @@ Ext.define('FB.view.FieldsetPanel', {
 
 			menuData.items.push(movData);
 
-		}// end if of movData
-		
-		//Delete menu
-		if(this.items.items.length === 0){
-			menuData.items.push({
-				text:'Delete',
-				listeners : {
-					click : function() {
-						me.triggerDelete();
-					}
-				}
-			});
-		}
+		}// end if of movData		
+
 
 		var menu = Ext.create("Ext.menu.Menu", menuData);
 
@@ -91,7 +81,7 @@ Ext.define('FB.view.FieldsetPanel', {
 
 	triggerMove : function(index) {
 		
-		var dv = Ext.getCmp('designpanel');
+		var dv = this.ownerCt;
 		if(index === -1){
 			dv.remove(this, false);
 			dv.add(this);
@@ -111,11 +101,7 @@ Ext.define('FB.view.FieldsetPanel', {
 		dv.add(arr);
 		
 	},
-	
-	triggerDelete: function(){
-		var dv = Ext.getCmp('designpanel');
-		dv.remove(this, true);
-	},
+
 	
 	
 	doSelect: function(){
@@ -124,7 +110,7 @@ Ext.define('FB.view.FieldsetPanel', {
 		
 		var pg = Ext.getCmp("propGrid");
 		
-		pg.setSource({Title: this.title, Description: this.desc});
+		pg.setSource({Title: this.title});
 	},
 	
 	

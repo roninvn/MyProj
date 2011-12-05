@@ -1,7 +1,7 @@
 Ext.define('FB.controller.DesignController', {
 	extend : 'Ext.app.Controller',
 	views : [ 'ContentPanel', 'DesignPanel' ],
-	requires : [ 'FB.view.FieldsetPanel', 'FB.view.Control' ],
+	requires : [ 'FB.view.FieldsetPanel', 'FB.view.Control','FB.view.Section' ],
 	
 	statics:{
 		
@@ -22,6 +22,10 @@ Ext.define('FB.controller.DesignController', {
 				FB.controller.DesignController.UnselectControl(itm);				
 				itm.items.each(function(i2){
 					FB.controller.DesignController.UnselectControl(i2);
+					if(i2.items)
+						i2.items.each(function(i3){
+							FB.controller.DesignController.UnselectControl(i3);
+						});						
 				});
 			});
 			
@@ -32,7 +36,7 @@ Ext.define('FB.controller.DesignController', {
 		 */
 		Select: function(c){
 			FB.controller.DesignController.UnselectAll();
-			if(c.getXType() === 'FieldsetPanel')
+			if(c.getXType() === 'FieldsetPanel' || c.getXType() === 'Section')
 				c.getEl().applyStyles({
 					border : "1px dashed red"					
 				});
@@ -64,7 +68,8 @@ Ext.define('FB.controller.DesignController', {
 	addNewFieldset : function() {
 		var dv = Ext.getCmp('designpanel');
 		var c = Ext.create('FB.view.FieldsetPanel',{
-			title : 'Fieldset'
+			title : 'Fieldset',
+			desc:'A fieldset'
 		});
 		dv.add(c);
 		
@@ -77,12 +82,24 @@ Ext.define('FB.controller.DesignController', {
 		
 		for(var i=0; i< obj.fieldsets.length; i++){
 			var c = Ext.create('FB.view.FieldsetPanel',{
-				title: obj.fieldsets[i].name
+				title: obj.fieldsets[i].name,
+				desc : obj.fieldsets[i].desc
 			});
 			dv.add(c);
 			
 			for(var j=0; j<obj.fieldsets[i].inputs.length; j++)
 				c.addChild(obj.fieldsets[i].inputs[j]);
+			
+			for(var j=0; j<obj.fieldsets[i].sections.length; j++){
+				var s = obj.fieldsets[i].sections[j];
+				var se = Ext.create('FB.view.Section',{
+					title: s.name
+				});
+				c.add(se);
+				
+				for(var k=0; k<s.inputs.length; k++)
+					se.addChild(s.inputs[k]);
+			}
 		}
 	},
 	
@@ -101,71 +118,81 @@ Ext.define('FB.controller.DesignController', {
 		//console.log(docObj);
 		var obj = {
 				name: 'My Form',
-				fieldsets: []
+				fieldsets: [{
+					name: 'Default fieldset',
+					desc : 'This is the default fieldset',
+					inputs:[],
+					sections:[]
+				}]
 		};
+		
+		var fs = obj.fieldsets[0];
 		
 		var dupvars ={}, vars = {};
 		
+		
 		for(var i=0; i< docObj.sections.length; i++){
-			obj.fieldsets.push({
-				name: docObj.sections[i].name
-			});
-			
-			for(var j=0; j<docObj.sections[i].elements.length; j++){
-				var el = docObj.sections[i].elements[j];
-				for(var k=0; k<el.inputs.length; k++){
-					var vname = el.inputs[k].name;
-					//console.log(vname);
-					//console.log('vars[vname] : ', vars[vname]);
-					if(dupvars[vname]){
-						//already have
-						//console.log('already in dup');
-					}
-					else if(vars[vname] || vars[vname] === 0){
-						//move to duplicated
-						dupvars[vname] = true;
-						delete vars[vname];
-						//console.log('to dup');
-					}
-					else{
-						vars[vname] = i;
-						//console.log('added');
+			var sec = docObj.sections[i];
+			if(sec.optional){//create a section if it is optional
+				fs.sections.push({
+					name : sec.name,
+					inputs:[]
+				});
+				
+				for(var j=0; j< sec.elements.length; j++){
+					var el = sec.elements[j];
+					for(var k=0; k<el.inputs.length; k++){
+						var vname = el.inputs[k].name;
+						if(dupvars[vname]){}//already has
+						else if(vars[vname] || vars[vname] === 0){ //already has, move to dup
+							dupvars[vname] = true;
+							delete vars[vname];
+						}
+						else{
+							vars[vname] = fs.sections.length; //add var to section
+						}
 					}
 				}
-			}
-				
+			} //end if optional
+			else{ //not optional => all vars to dup
+				for(var j=0; j< sec.elements.length; j++){
+					var el = sec.elements[j];
+					for(var k=0; k<el.inputs.length; k++){
+						var vname = el.inputs[k].name;
+						if(vars[vname] || vars[vname] === 0){ //already has, move to dup
+							dupvars[vname] = true;
+							delete vars[vname];
+						}
+						else
+							dupvars[vname] = true;
+					}
+				}
+			}//end else
 		}
 		
-		for(var i=0; i<obj.fieldsets.length; i++){
-			var fs = obj.fieldsets[i];
-			fs.inputs = [];			
-			for(v in vars)
+		
+		//add control & section
+		
+		for(var i=0 ; i<fs.sections.length; i++){//sections
+			for(v in vars){
 				if(vars[v] === i){
-					fs.inputs.push({
+					fs.sections[i].inputs.push({
 						type: 'textfield',
 						input: v,
 						label: v
 					});
 				}
+			}
 		}
 		
-		var dups = [];
 		for(v in dupvars){
-			dups.push({
+			fs.inputs.push({
 				type: 'textfield',
 				input: v,
 				label: v
 			});
 		}
-		
-		if(dups.length > 0){
-			obj.fieldsets.push({
-				name: "Duplicated",
-				inputs: dups
-			});
-		}
-		
-		//console.log(obj);
+		//console.log(obj)
 		return obj;
 	},
 	
@@ -177,6 +204,17 @@ Ext.define('FB.controller.DesignController', {
 					itm.setTitle(val);
 					return;
 				}
+				
+				if(itm.items){
+					itm.items.each(function(i2){
+						if(i2.isSelected){
+							i2.setTitle(val);
+							return;
+						}
+					});
+					
+				}
+				
 			});
 		}//end Title
 		else if(name === "Label"){
@@ -186,9 +224,29 @@ Ext.define('FB.controller.DesignController', {
 						i2._baseControl.setLabel(val);
 						return;
 					}
+					
+					if(i2.items){
+						i2.items.each(function(i3){
+							if(i3.isSelected){
+								i3._baseControl.setLabel(val);
+								return;
+							}
+						});
+						
+					}
+					
 				});
 			});
 		}//end Label
+		
+		else if(name === "Description"){
+			dv.items.each(function(itm){
+				if(itm.isSelected){
+					itm.desc = val;
+					return;
+				}
+			});
+		}
 	},
 	
 	exportToJSON: function(){
@@ -197,11 +255,21 @@ Ext.define('FB.controller.DesignController', {
 		
 		dv.items.each(function(panel){
 			
-			var  p = {name: panel.title, inputs:[]};
+			var  p = {name: panel.title, inputs:[], sections:[], desc: panel.desc};
 			
 			panel.items.each(function(control){
-				var c = control._baseControl.info;				
-				p.inputs.push(c);
+				if(control.getXType() !== 'Section'){
+					var c = control._baseControl.info;				
+					p.inputs.push(c);
+				}
+				else{
+					var s  = {name: control.title, inputs: []};
+					p.sections.push(s);
+					control.items.each(function(c2){
+						var c = c2._baseControl.info;				
+						s.inputs.push(c);
+					});
+				}
 			});
 			
 			obj.fieldsets.push(p);
