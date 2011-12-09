@@ -12,8 +12,8 @@ Geezeo.views.LoginForm = Ext.extend(Ext.Panel, {
 	},
 	dockedItems : [{
 		dock : 'top',
-		xtype : 'toolbar',
-		title : 'TWS',
+		xtype : 'toolbar',		
+		cls:'logo',
 		type : 'light'
 	}, {
 		dock : 'bottom',

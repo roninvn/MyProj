@@ -1,3 +1,3 @@
 Ext.regModel('MenuModel', {
-	fields : ['section', 'type', 'childpanel']
+	fields : ['img','section', 'type', 'childpanel']
 });

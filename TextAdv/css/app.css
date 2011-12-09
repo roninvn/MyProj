@@ -2,8 +2,9 @@ body{
 	font-family: "Comic Sans MS";
 	/*overflow: auto;*/
 	height: 240px;
-	width: 100%;
 	margin : 0;
+	overflow-x: hidden; 
+    overflow: auto;
 }
 
 div {

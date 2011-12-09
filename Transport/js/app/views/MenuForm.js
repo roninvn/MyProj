@@ -8,13 +8,13 @@ Geezeo.views.MenuForm = Ext.extend(Ext.Panel, {
 	bodyPadding : 0,
 	dockedItems : [ {
 		dock : 'top',
-		xtype : 'toolbar',
-		title : 'TWS',
+		xtype : 'toolbar',		
+		cls:'logo'
 	} ],
 	items : [ {
 		xtype : 'list',
-		itemTpl : '{section}',
-		groupTpl : [ '<tpl for=".">',
+		itemTpl : '<img class="menulisticon" src="img/{img}" />{section}',
+		groupTpl : [ '<tpl for=".">',		        
 				'<div class="x-list-group x-group-{id}">', ,
 				'<h3 class="x-list-header x-settings-header" ></h3>',
 				'<div class="x-list-group-items">', '{items}', '</div>',

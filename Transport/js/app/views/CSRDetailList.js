@@ -7,8 +7,8 @@ Geezeo.views.CSRDetailList = Ext.extend(Ext.Panel,
 					},
 					dockedItems : [ {
 						xtype : 'toolbar',
-						dock : 'top',
-						title : 'TWS',
+						dock : 'top',						
+						cls:'logo',
 						items : [ {
 							text : 'Back',
 							ui : 'back',

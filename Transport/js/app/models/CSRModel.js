@@ -1,3 +1,6 @@
 Ext.regModel('CSRModel', {
-    fields: ['con','reqfrom','shipname', 'family', 'csrdate','etaplace','etacountry', 'etadate','etddate','orderno','issuedby', 'isactive']
+    fields: ['idCSR', 'CON','CSRIssuedByPICL1','PIC_LEVEL1', 'ShipName', 'OwnerName',
+             'CallSign','EquipmentFamily', 'CSRNumber','FollowUpNumber','CSRDate','ETAPlace', 'ETACountry','ETADate',
+             'ETDDate','Status','StatusDesc','OrderNumber','OrderDate','OrderIssuedByPICL2',
+             'PIC_LEVEL2','Type']
 });

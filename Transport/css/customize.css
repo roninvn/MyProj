@@ -1,3 +1,6 @@
+body{
+	font-family: Arial;
+}
 .dashboardListItem {
 	background: url(../img/listArrow.png) no-repeat right center;
 	font-weight: bold;
@@ -96,10 +99,23 @@
 .icon{
 	vertical-align: middle;
 	padding-right: 20px;
+	height: 20px;
 }
 
 .shipdetailIndicator {
 	background: url(../img/listArrow.png) no-repeat right center;
 	height: 30px;
 	margin-top: 10px;
+}
+
+.logo{
+	background-image: url(../img/logo.png);
+	background-repeat: no-repeat;
+	background-position: center;
+	background-color: white;
+}
+
+.menulisticon {
+	padding-right: 10px;
+	width: 40px;
 }
