@@ -97,9 +97,9 @@ Ext.define('FB.view.Control', {
 			};
 
 			for ( var i = 0; i < parent.items.items.length; i++) {
-				if (parent.items.items[i] !== this._control && parent.items.items[i-1] !== this._control && parent.items.items[i].getXType() !== 'Section')
+				if (parent.items.items[i] !== this._control && parent.items.items[i-1] !== this._control) //&& parent.items.items[i].getXType() !== 'Section'
 					movData.menu.push({
-						text : 'Above ' + parent.items.items[i]._baseControl.info.label,
+						text : 'Above ' + ( parent.items.items[i].getXType() !== 'Section' ? parent.items.items[i]._baseControl.info.label :  parent.items.items[i].title),
 						movIndex : i,
 						listeners : {
 							click : function() {
@@ -107,6 +107,18 @@ Ext.define('FB.view.Control', {
 							}
 						}
 					});
+			}
+			
+			if(parent.items.items[parent.items.items.length-1] !== this){
+				movData.menu.push({
+					text : 'To bottom',
+					movIndex : -1,
+					listeners : {
+						click : function() {
+							me.triggerMoveControl(this.movIndex);
+						}
+					}
+				});
 			}
 			
 			menuData.items.push(movData);
@@ -167,8 +179,9 @@ Ext.define('FB.view.Control', {
 	},
 	
 	triggerMoveControl: function(index){
-		console.log(index);
+		//console.log(index);
 		var dv = this._control.ownerCt;
+		
 		if(index === -1){
 			dv.remove(this._control, false);
 			dv.add(this._control);

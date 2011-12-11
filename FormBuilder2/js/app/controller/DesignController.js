@@ -143,13 +143,17 @@ Ext.define('FB.controller.DesignController', {
 					var el = sec.elements[j];
 					for(var k=0; k<el.inputs.length; k++){
 						var vname = el.inputs[k].name;
-						if(dupvars[vname]){}//already has
-						else if(vars[vname] || vars[vname] === 0){ //already has, move to dup
+						//console.log(vname);
+						if(dupvars[vname]){
+
+						}//already has
+						else if(vars[vname] || vars[vname] === 0){ //already has, move to dup							
 							dupvars[vname] = true;
 							delete vars[vname];
 						}
 						else{
-							vars[vname] = fs.sections.length; //add var to section
+
+							vars[vname] = fs.sections.length-1; //add var to section
 						}
 					}
 				}
@@ -171,11 +175,14 @@ Ext.define('FB.controller.DesignController', {
 		}
 		
 		
+		//console.log(dupvars, vars, fs.sections);
+		
 		//add control & section
 		
 		for(var i=0 ; i<fs.sections.length; i++){//sections
 			for(v in vars){
-				if(vars[v] === i){
+				//console.log(v, i);
+				if(vars[v] === i){					
 					fs.sections[i].inputs.push({
 						type: 'textfield',
 						input: v,
@@ -193,6 +200,7 @@ Ext.define('FB.controller.DesignController', {
 			});
 		}
 		//console.log(obj)
+		//console.log(dupvars, vars);
 		return obj;
 	},
 	

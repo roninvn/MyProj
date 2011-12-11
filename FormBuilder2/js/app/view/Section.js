@@ -46,9 +46,9 @@ Ext.define('FB.view.Section', {
 			};
 
 			for ( var i = 0; i < dv.items.items.length; i++) {
-				if (dv.items.items[i] !== this && dv.items.items[i-1] !== this && dv.items.items[i].getXType() === 'Section')
+				if (dv.items.items[i] !== this && dv.items.items[i-1] !== this) //&& dv.items.items[i].getXType() === 'Section'
 					movData.menu.push({
-						text : 'Above ' + dv.items.items[i].title,
+						text : 'Above ' + (dv.items.items[i].getXType() === 'Section' ? dv.items.items[i].title : dv.items.items[i]._baseControl.info.label),
 						movIndex : i,
 						listeners : {
 							click : function() {
