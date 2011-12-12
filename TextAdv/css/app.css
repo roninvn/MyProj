@@ -55,7 +55,7 @@ a:hover {color: #ff0000}
 	left: 0;
 	heigh: auto;
 	text-align: center;
-	overflow:auto;
+	/*overflow:auto;*/
 }
 
 #btnSave{
