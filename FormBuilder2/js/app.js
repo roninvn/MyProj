@@ -15,6 +15,7 @@ Ext.application({
 	controllers: ['DesignController'],
 
     launch: function() {
+    	Ext.tip.QuickTipManager.init();
     	Ext.create('FB.view.ContentPanel').show();
     	
     }

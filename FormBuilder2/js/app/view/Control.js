@@ -3,8 +3,7 @@ Ext.define('FB.view.Control', {
 	alias : 'widget.Control',	
 	
 	constructor : function() {		
-		this.info = Ext.clone(arguments[0]);
-		
+		this.info = Ext.clone(arguments[0]);		
 		this.createControl();
 		
 		this.callParent(arguments);
@@ -14,7 +13,7 @@ Ext.define('FB.view.Control', {
 	createControl: function(){
 		var me = this;
 		
-		this._control = Ext.createByAlias("widget." + this.info.type,{			
+		var cfg = {			
 			fieldLabel : this.info.label,
 			_baseControl: this,
 			
@@ -24,7 +23,24 @@ Ext.define('FB.view.Control', {
 				}
 			}
 			
-		});
+		};
+		
+		if(this.info.type === "combobox"){
+			this.info.options = "";
+			var store = Ext.create('Ext.data.Store', {
+			    fields: ['name', 'val'],
+			    data : []
+			});
+			
+			Ext.apply(cfg, {
+				store: store,
+				queryMode: 'local',
+			    displayField: 'name',
+			    valueField: 'val'
+			});
+		}
+		
+		this._control = Ext.createByAlias("widget." + this.info.type,cfg);
 	},
 	
 	onControlRender: function(c){
@@ -40,14 +56,23 @@ Ext.define('FB.view.Control', {
 			e.stopPropagation();
 			me.showContextMenu(e.getXY());
 		});
+		
+		Ext.tip.QuickTipManager.register({
+		    target: this._control.getEl(),		    
+		    text: this.info.tooltip
+		});
 	},
 	
 	doSelect: function(){
 		FB.controller.DesignController.Select(this._control);
 		
-		var pg = Ext.getCmp("propGrid");
+		var pg = Ext.getCmp("propGrid");		
 		
-		pg.setSource({Label: this.info.label});
+		var src = {Label: this.info.label, Tooltip: this.info.tooltip};
+		if(this.info.type === "combobox"){
+			src.Options = this.info.options;
+		}
+		pg.setSource(src);
 	},
 	
 	setLabel: function(l){

@@ -20,6 +20,14 @@ Ext.define('FB.view.FieldsetPanel', {
 				//c.showContextMenu(e.getXY());
 				c.doSelect();
 			});
+			
+			/*c.tip = Ext.create('Ext.tip.ToolTip', {
+			    target: c.getEl(),
+			    html: c.tooltip,
+			    trackMouse: true
+			});*/
+			
+
 		}
 	},
 

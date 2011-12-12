@@ -186,7 +186,8 @@ Ext.define('FB.controller.DesignController', {
 					fs.sections[i].inputs.push({
 						type: 'textfield',
 						input: v,
-						label: v
+						label: v,
+						tooltip: v
 					});
 				}
 			}
@@ -196,13 +197,37 @@ Ext.define('FB.controller.DesignController', {
 			fs.inputs.push({
 				type: 'textfield',
 				input: v,
-				label: v
+				label: v,
+				tooltip: v
 			});
 		}
-		//console.log(obj)
-		//console.log(dupvars, vars);
 		return obj;
 	},
+	
+	getSelectedControl: function(){
+		var dv = Ext.getCmp('designpanel');
+		for(var i=0 ; i<dv.items.items.length; i++){
+			var c1 = dv.items.items[i];			
+			if(c1.isSelected)
+				return c1;
+			if(c1.items)
+				for(var j=0 ; j<c1.items.items.length; j++){
+					var c2 = c1.items.items[j];					
+					if(c2.isSelected)
+						return c2;
+					
+					if(c2.items)
+						for(var k=0 ; k<c2.items.items.length; k++){
+							var c3 = c2.items.items[k];	
+							if(c3.isSelected)
+								return c3;
+						}
+				}
+		}
+		
+		return null;
+	},
+	
 	
 	onPropertyChanged: function(obj,name,val,oldval){
 		var dv = Ext.getCmp('designpanel');
@@ -255,6 +280,36 @@ Ext.define('FB.controller.DesignController', {
 				}
 			});
 		}
+		
+		else if(name === "Options"){
+			var c = this.getSelectedControl();
+			c._baseControl.info.options = val;
+			c.getStore().loadData(this.buildOptionArr(val), false);
+		}
+		
+		else if(name === "Tooltip"){
+			var c = this.getSelectedControl();
+			c._baseControl.info.tooltip = val;			
+			
+			Ext.tip.QuickTipManager.register({
+				target: c.getEl(),				    
+			    text: val,
+			});
+		}
+	},
+	
+	buildOptionArr: function(val){
+		var arr =[];
+		var arr1 = val.split(",");
+		for(var i=0; i< arr1.length; i++){
+			var arr2 = arr1[i].split("/");
+			arr.push({
+				name: arr2[0] ? arr2[0] : "",
+				val: arr2[1] ? arr2[1] : ""
+			});
+		}
+		
+		return arr;
 	},
 	
 	exportToJSON: function(){

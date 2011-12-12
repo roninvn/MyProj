@@ -21,6 +21,12 @@ Ext.define('FB.view.Section', {
 				e.stopPropagation();
 				c.doSelect();
 			});
+			
+			/*c.tip = Ext.create('Ext.tip.ToolTip', {
+			    target: c.getEl(),
+			    html: c.tooltip,
+			    trackMouse: true
+			});*/
 		}
 	},
 
@@ -37,6 +43,30 @@ Ext.define('FB.view.Section', {
 		var menuData = {
 			items : []
 		};
+		
+		var dv2 = Ext.getCmp('designpanel');
+		
+		if (this.ownerCt.getXType() === "FieldsetPanel" &&  dv2.items.items.length > 1) {
+			var movData = {
+				text : 'To fieldset',
+				menu : []
+			};
+			
+			for ( var i = 0; i < dv2.items.items.length; i++) {
+				if (dv2.items.items[i] !== me.ownerCt)
+					movData.menu.push({
+						text : dv2.items.items[i].title,
+						movIndex : i,
+						listeners : {
+							click : function() {
+								me.triggerMoveFieldSet(this.movIndex);
+							}
+						}
+					});
+			}
+			
+			menuData.items.push(movData);
+		}//end move fieldset menu
 		
 		//Move menu
 		if (dv.items.items.length > 1) {
@@ -118,6 +148,14 @@ Ext.define('FB.view.Section', {
 		//console.log(cfg);
 		var c = Ext.create('FB.view.Control', cfg);
 		this.add(c._control);
+	},
+	
+	triggerMoveFieldSet: function(movIndex){
+		//console.log(movIndex);
+		var dv = Ext.getCmp('designpanel');
+		//var dv = this._control.ownerCt;
+		this.ownerCt.remove(this, false);
+		dv.items.getAt(movIndex).add(this);
 	}
 
 });
