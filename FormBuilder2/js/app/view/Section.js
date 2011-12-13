@@ -156,6 +156,21 @@ Ext.define('FB.view.Section', {
 		//var dv = this._control.ownerCt;
 		this.ownerCt.remove(this, false);
 		dv.items.getAt(movIndex).add(this);
+	},
+	
+	
+	toJSON: function(){
+		var obj = {
+			type:'section',
+			title: this.title,			
+			items:[]
+		};
+		
+		this.items.each(function(i){
+			obj.items.push(i._baseControl.toJSON());
+		});
+		
+		return obj;
 	}
 
 });

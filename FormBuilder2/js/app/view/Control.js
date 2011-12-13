@@ -1,6 +1,8 @@
 Ext.define('FB.view.Control', {	
 	extend : 'Ext.Base',
-	alias : 'widget.Control',	
+	alias : 'widget.Control',
+	
+	requires: ['FB.view.OptionsWindow'],
 	
 	constructor : function() {		
 		this.info = Ext.clone(arguments[0]);		
@@ -26,17 +28,27 @@ Ext.define('FB.view.Control', {
 		};
 		
 		if(this.info.type === "combobox"){
-			this.info.options = "";
+			this.info.options = [];
 			var store = Ext.create('Ext.data.Store', {
-			    fields: ['name', 'val'],
-			    data : []
+			    fields: ['option', 'value'],
+			    data : this.info.options
 			});
 			
 			Ext.apply(cfg, {
 				store: store,
 				queryMode: 'local',
-			    displayField: 'name',
-			    valueField: 'val'
+			    displayField: 'option',
+			    valueField: 'value'
+			});
+		}
+		
+		else if(this.info.type === "radiogroup"){
+			Ext.apply(cfg,{
+				vertical: true,
+				columns: 5,
+				width : 600,
+				//height: 200,
+				items:[{ boxLabel: 'Option 1', name: 'Option 1', inputValue: 'Value 1' }]
 			});
 		}
 		
@@ -69,9 +81,7 @@ Ext.define('FB.view.Control', {
 		var pg = Ext.getCmp("propGrid");		
 		
 		var src = {Label: this.info.label, Tooltip: this.info.tooltip};
-		if(this.info.type === "combobox"){
-			src.Options = this.info.options;
-		}
+		
 		pg.setSource(src);
 	},
 	
@@ -173,6 +183,9 @@ Ext.define('FB.view.Control', {
 		},{
 			name:'Combobox',
 			type:'combobox'
+		},{
+			name:'Radio',
+			type: 'radiogroup'
 		}];
 		
 		for(var i = 0; i < arr.length; i++){
@@ -191,9 +204,30 @@ Ext.define('FB.view.Control', {
 		
 		menuData.items.push(transfData);//end transform data
 		
+		
+		if(this.info.type === "combobox" || this.info.type === 'radiogroup'){
+			menuData.items.push({
+				text: 'Options',
+				listeners : {
+					click : function() {
+						me.showOptionsWindow();
+					}
+				}
+			});
+		}
+		
 		var menu = Ext.create("Ext.menu.Menu", menuData);
 		menu.showAt(pos);
 	},
+	
+	
+	showOptionsWindow: function(){
+		Ext.create('FB.view.OptionsWindow',{
+			_control: this
+		}).show();
+	},
+	
+	
 	
 	triggerMoveFieldSet: function(movIndex){
 		//console.log(movIndex);
@@ -251,6 +285,41 @@ Ext.define('FB.view.Control', {
 		
 		FB.controller.DesignController.UnselectAll();
 		
+	},
+	
+	
+	toJSON: function(){
+		var obj = {
+			type: this.info.type,
+			label: this.info.label,
+			tooltip: this.info.tooltip			
+		};
+		
+		if(this.info.type === "combobox"){
+			obj.options =[];
+			var opts = this._control.getStore().getRange();
+			for(var i=0; i<opts.length; i++){
+				obj.options.push({
+					option: opts[i].data.option,
+					value: opts[i].data.value
+				});
+			}
+		}
+		
+		else if(this.info.type === "radiogroup"){
+			obj.options =[];
+			var opts = this._control.items;
+			
+			opts.each(function(i){
+				obj.options.push({
+					option:  i.name,
+					value: i.inputValue
+				});
+			});
+		}
+		
+		
+		return obj;
 	}
 	
 });

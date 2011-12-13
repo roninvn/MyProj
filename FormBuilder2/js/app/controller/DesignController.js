@@ -318,7 +318,7 @@ Ext.define('FB.controller.DesignController', {
 		
 		dv.items.each(function(panel){
 			
-			var  p = {name: panel.title, inputs:[], sections:[], desc: panel.desc};
+			/*var  p = {name: panel.title, inputs:[], sections:[], desc: panel.desc};
 			
 			panel.items.each(function(control){
 				if(control.getXType() !== 'Section'){
@@ -333,9 +333,9 @@ Ext.define('FB.controller.DesignController', {
 						s.inputs.push(c);
 					});
 				}
-			});
+			});*/
 			
-			obj.fieldsets.push(p);
+			obj.fieldsets.push(panel.toJSON());
 		});
 		
 		//console.log(obj);

@@ -140,6 +140,24 @@ Ext.define('FB.view.FieldsetPanel', {
 		//console.log(cfg);
 		var c = Ext.create('FB.view.Control', cfg);
 		this.add(c._control);
+	},
+	
+	toJSON: function(){
+		var obj = {
+			type:'fieldset',
+			title: this.title,
+			desc: this.desc,
+			items:[]
+		};
+		
+		this.items.each(function(i){
+			if(i.getXType() === 'Section')
+				obj.items.push(i.toJSON());
+			else
+				obj.items.push(i._baseControl.toJSON());
+		});
+		
+		return obj;
 	}
 
 });
