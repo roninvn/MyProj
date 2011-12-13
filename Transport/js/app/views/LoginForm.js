@@ -36,7 +36,7 @@ Geezeo.views.LoginForm = Ext.extend(Ext.Panel, {
 		}]
 	}],
 	items : [{
-		xtype : 'fieldset',
+		xtype : 'fieldset',		
 		title : 'Login',
 		instructions : 'Please enter the information above.',
 		defaults : {
@@ -47,15 +47,26 @@ Geezeo.views.LoginForm = Ext.extend(Ext.Panel, {
 		items : [{
 			xtype : 'textfield',
 			name : 'username',
+			id:'txtUserName',
 			placeHolder : "Username",
 			label : 'Name'
 		}, {
 			xtype : 'passwordfield',
 			name : 'password',
+			id:'txtPassword',
 			placeHolder : "Password",
 			label : 'Password'
 		}]
-	}]
+	}],
+	
+	
+	
+	
+	listeners: {
+		show: function(){
+
+		}
+	}
 });
 
 Ext.reg('LoginForm', Geezeo.views.LoginForm);

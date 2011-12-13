@@ -22,20 +22,6 @@ Geezeo.views.CSRDetail = Ext.extend(Ext.Sheet, {
 		 + '<div class="detailBlock"><div class="detailTitle">ORDER NUMBER</div><div class="detailcontent">{OrderNumber}</div></div>'
 		 + '<div class="detailBlock"><div class="detailTitle">ISSUED BY</div><div class="detailcontent">{OrderIssuedByPICL2}</div></div>'
 		 + '<div class="shipdetailIndicator"></div>',
-		 
-	/* dockedItems: [
-	               {
-	                   dock : 'bottom',
-	                   xtype: 'button',
-	                   text : 'Detail',
-	                   scope: this,
-	                   handler: function(){
-	                	   //console.log(this.getXTypes());
-	                	   detailWin.hide();
-	                	   Geezeo.viewport.setActiveItem(Geezeo.views.CSRDetailList,'slide');
-	                   }
-	               }
-	           ],*/
 	           
        listeners:{
     	   afterrender: function(sh){
@@ -43,7 +29,11 @@ Geezeo.views.CSRDetail = Ext.extend(Ext.Sheet, {
     		   sh.getEl().addListener("click", function(){
     			   //console.log('aaa');
     			   detailWin.hide();
-            	   Geezeo.viewport.setActiveItem(Geezeo.views.CSRDetailList,'slide');
+    			   
+    			   Ext.dispatch({
+    					controller : Geezeo.controllers.CSRController,
+    					action : 'loadDetailList'
+    				});
     		   });
     	   }
        }
