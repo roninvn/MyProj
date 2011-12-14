@@ -10,7 +10,7 @@ Geezeo.views.CSRDetail = Ext.extend(Ext.Sheet, {
 	scroll : "vertical",
 	
 	data: {},
-	tpl:   '<div class="detailBlock"><div class="detailTitle">REQUEST FROM</div><div class="detailcontent">XXXX</div></div>' //{reqfrom}
+	tpl:   '<div class="detailBlock"><div class="detailTitle">REQUEST FROM</div><div class="detailcontent">{PICLEVEL1_RequestFrom}</div></div>' //{reqfrom}
 		 + '<div class="detailBlock"><div class="detailTitle">SHIP NAME</div><div class="detailcontent">{ShipName}</div></div>'
 		 + '<div class="detailBlock"><div class="detailTitle">C.O.N</div><div class="detailcontent">{CON}</div></div>'
 		 + '<div class="detailBlock"><div class="detailTitle">FAMILY</div><div class="detailcontent">{EquipmentFamily}</div></div>'

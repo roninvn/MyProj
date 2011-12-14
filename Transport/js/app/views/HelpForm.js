@@ -5,7 +5,7 @@ Geezeo.views.HelpForm = Ext.extend(Ext.Panel, {
 	dockedItems : [ {
 		xtype : 'toolbar',
 		dock : 'top',
-		title : 'TWS',
+		cls:'logo',
 		items : [ {
 			text : 'Back',
 			ui : 'back',

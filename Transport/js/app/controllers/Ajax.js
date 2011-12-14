@@ -3,6 +3,8 @@ var Ajax = {
 	services : {
 		login : 'Login',
 		loadCSRActive : 'CSR/List/Active',
+		loadCSRClose: 'CSR/List/Closed',
+		loadAllClose: 'CSR/List',
 		loadDetailList: 'CSR/Detail/'
 	},
 	
