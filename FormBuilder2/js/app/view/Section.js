@@ -98,7 +98,21 @@ Ext.define('FB.view.Section', {
 					}
 				});
 			}
-
+			
+			movData.menu.push('-');
+			
+			for ( var i = 0; i < dv.items.items.length; i++) {
+				if (dv.items.items[i] !== this && dv.items.items[i+1] !== this) //&& dv.items.items[i].getXType() === 'Section'
+					movData.menu.push({
+						text : 'Below ' + (dv.items.items[i].getXType() === 'Section' ? dv.items.items[i].title : dv.items.items[i]._baseControl.info.label),
+						movIndex : i,
+						listeners : {
+							click : function() {
+								me.triggerMoveBelow(this.movIndex);
+							}
+						}
+					});
+			}
 			menuData.items.push(movData);
 
 		}// end if of movData		
@@ -131,6 +145,24 @@ Ext.define('FB.view.Section', {
 		dv.add(arr);
 		
 	},
+	
+	triggerMoveBelow: function(index){
+		console.log(index);
+		var dv = this.ownerCt;
+		var arr = [];
+		//dv.remove(this, false);
+		
+		for(var i = 0; i< dv.items.items.length; i++){
+			arr.push(dv.items.items[i]);
+			if(i === index){
+				arr.push(this);
+			}
+		}
+		
+		dv.removeAll(false);
+		dv.add(arr);
+
+	},	
 
 	
 	
@@ -162,12 +194,13 @@ Ext.define('FB.view.Section', {
 	toJSON: function(){
 		var obj = {
 			type:'section',
+			name: this.name,
 			title: this.title,			
-			items:[]
+			inputs:[]
 		};
 		
 		this.items.each(function(i){
-			obj.items.push(i._baseControl.toJSON());
+			obj.inputs.push(i._baseControl.toJSON());
 		});
 		
 		return obj;

@@ -93,7 +93,8 @@ Ext.define('FB.controller.DesignController', {
 			for(var j=0; j<obj.fieldsets[i].sections.length; j++){
 				var s = obj.fieldsets[i].sections[j];
 				var se = Ext.create('FB.view.Section',{
-					title: s.name
+					title: s.name,
+					name: s.name
 				});
 				c.add(se);
 				
@@ -110,7 +111,9 @@ Ext.define('FB.controller.DesignController', {
 	
 	loadFromDocBuilderJSON: function(){
 		var obj = Ext.JSON.decode(jsonString);
+		
 		var obj2 = this.convertDocBuilderToFormCfg(obj);
+		
 		this.buildDesign(obj2)
 	},
 	
@@ -187,7 +190,8 @@ Ext.define('FB.controller.DesignController', {
 						type: 'textfield',
 						input: v,
 						label: v,
-						tooltip: v
+						tooltip: v,
+						name: v
 					});
 				}
 			}
@@ -198,7 +202,8 @@ Ext.define('FB.controller.DesignController', {
 				type: 'textfield',
 				input: v,
 				label: v,
-				tooltip: v
+				tooltip: v,
+				name: v
 			});
 		}
 		return obj;

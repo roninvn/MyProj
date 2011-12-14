@@ -143,18 +143,23 @@ Ext.define('FB.view.FieldsetPanel', {
 	},
 	
 	toJSON: function(){
-		var obj = {
-			type:'fieldset',
-			title: this.title,
-			desc: this.desc,
-			items:[]
+		var obj = {			
+			title: this.title,			
+			//items:[]
+			inputs:[],
+			sections:[],
+			desc: this.desc
 		};
 		
 		this.items.each(function(i){
-			if(i.getXType() === 'Section')
-				obj.items.push(i.toJSON());
-			else
-				obj.items.push(i._baseControl.toJSON());
+			if(i.getXType() === 'Section'){
+				obj.sections.push(i.toJSON());
+				//obj.items.push(i.toJSON());
+			}
+			else{
+				obj.inputs.push(i._baseControl.toJSON());
+				//obj.items.push(i._baseControl.toJSON());
+			}
 		});
 		
 		return obj;

@@ -156,6 +156,21 @@ Ext.define('FB.view.Control', {
 				});
 			}
 			
+			movData.menu.push('-');
+			
+			for ( var i = 0; i < parent.items.items.length-1; i++) {
+				if (parent.items.items[i] !== this._control && parent.items.items[i+1] !== this._control) //&& parent.items.items[i].getXType() !== 'Section'
+					movData.menu.push({
+						text : 'Below ' + ( parent.items.items[i].getXType() !== 'Section' ? parent.items.items[i]._baseControl.info.label :  parent.items.items[i].title),
+						movIndex : i,
+						listeners : {
+							click : function() {
+								me.triggerMoveBelow(this.movIndex);
+							}
+						}
+					});
+			}
+			
 			menuData.items.push(movData);
 			
 
@@ -260,6 +275,25 @@ Ext.define('FB.view.Control', {
 		dv.add(arr);
 	},
 	
+	triggerMoveBelow: function(index){
+		
+		var dv = this._control.ownerCt;
+		var arr = [];
+		dv.remove(this._control, false);
+		for(var i = 0; i< dv.items.items.length; i++){
+
+			arr.push(dv.items.items[i]);
+			
+			if(i === index){
+				arr.push(this._control);
+			}
+		}
+		
+		dv.removeAll(false);
+		dv.add(arr);
+
+	},	
+	
 	triggerTransform: function(type){
 		//console.log(type);
 		var c = this._control;
@@ -292,7 +326,8 @@ Ext.define('FB.view.Control', {
 		var obj = {
 			type: this.info.type,
 			label: this.info.label,
-			tooltip: this.info.tooltip			
+			tooltip: this.info.tooltip,
+			name: this.info.name
 		};
 		
 		if(this.info.type === "combobox"){
