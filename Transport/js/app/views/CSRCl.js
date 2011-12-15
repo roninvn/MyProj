@@ -16,14 +16,15 @@ Geezeo.views.CSRClose = Ext.extend(Ext.Panel, {
 	}],
 	items : [{
 		xtype : 'list',
-		itemTpl : ['<img src ="img/',
-		           '<tpl if="CodeStatus == \'1\'">icon_blue.png</tpl>',
-		           '<tpl if="CodeStatus == \'2\'">icon_gray.png</tpl>',
-		           '<tpl if="CodeStatus == \'3\'">icon_green.png</tpl>',
-		           '<tpl if="CodeStatus == \'4\'">icon_orange.png</tpl>',
-		           '<tpl if="CodeStatus == \'5\'">icon_pink.png</tpl>',
-		           '<tpl if="CodeStatus == \'6\'">icon_white.png</tpl>',
-		           '" class="icon" />{CON}  - {ShipName} - {EquipmentFamily} - {ETAPlace}'],
+		itemTpl :  new Ext.XTemplate('<img src ="img/',
+		           '{CodeColor:this.formatColor}.png',		          
+		           '" class="icon" />{CON}  - {ShipName} - {EquipmentFamily} - {ETAPlace}',
+		           {
+					formatColor: function(val){
+						return val.replace('#', '');
+					}
+		           }
+		),
 		itemCls : 'dashboardListItem',
 		// margin: '-25 0 0 -20',
 		store : CSRCloseStore,
