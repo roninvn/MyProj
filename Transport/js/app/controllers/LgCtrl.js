@@ -11,6 +11,8 @@ Geezeo.controllers.LoginController = new Ext.Controller({
 			Geezeo.controllers.LoginController.token = rec.get('value');
 			Geezeo.viewport.setActiveItem(Geezeo.views.MenuForm); //already login
 		}
+		else
+			Geezeo.viewport.setActiveItem(Geezeo.views.LoginForm);
 	},
 	
 	

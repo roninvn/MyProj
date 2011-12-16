@@ -39,6 +39,8 @@ Geezeo.views.MenuForm = Ext.extend(Ext.Panel, {
 					Geezeo.viewport.setActiveItem(Geezeo.views.HelpForm,'slide');
 				else if (sec === "Search")
 					Geezeo.viewport.setActiveItem(Geezeo.views.SearchForm,'slide');
+				else if (sec === "New CSR")
+					Geezeo.viewport.setActiveItem(Geezeo.views.NewCSR,'slide');
 
 				// detailWin.update(v.getRecord(it).data);
 				// detailWin.show();

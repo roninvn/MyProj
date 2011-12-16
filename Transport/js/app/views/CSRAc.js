@@ -2,6 +2,8 @@ Geezeo.views.CSRActive = Ext.extend(Ext.Panel, {
 	styleHtmlContent : true,
 	fullscreen : true,
 	bodyPadding : 0,
+	scroll: 'vertical',
+	layout: 'fit',
 	dockedItems : [{
 		xtype : 'toolbar',
 		dock : 'top',		

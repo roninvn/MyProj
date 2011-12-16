@@ -1,7 +1,8 @@
 Geezeo.views.CSRDetailList = Ext.extend(Ext.Panel,
 				{
 					fullscreen : true,
-					scroll : "vertical",
+					scroll: 'vertical',
+					layout: 'fit',
 					layout : {
 						type : "accordion"
 					},
@@ -60,10 +61,10 @@ Geezeo.views.CSRDetailList = Ext.extend(Ext.Panel,
 								xtype : "panel",
 								title : "FAULT ON EQUIPMENT",
 								tpl : '<div class="detailBlock"><div class="detailTitle">MANUFACTURER</div><div class="detailcontent">{EquipmentManufacturer}</div></div>'
-										+ '<div class="detailBlock"><div class="detailTitle">FAMILY</div><div class="detailcontent">{EquipmentFamily}</div></div>'
-										+ '<div class="detailBlock"><div class="detailTitle">MODEL</div><div class="detailcontent">{EquipmentModel}</div></div>'
-										+ '<div class="detailBlock"><div class="detailTitle">TYPE</div><div class="detailcontent">{EquipmentType}</div></div>'
-										+ '<div class="detailBlock"><div class="detailTitle">SERIAL NUMBER</div><div class="detailcontent">{EquipmentSerial}</div></div>'
+										+ '<div class="detailBlock"><div class="detailTitle">FAMILY</div><div class="detailcontent">{EquipmentFamily} </div></div>'
+										+ '<div class="detailBlock"><div class="detailTitle">MODEL</div><div class="detailcontent">{EquipmentModel} </div></div>'
+										+ '<div class="detailBlock"><div class="detailTitle">TYPE</div><div class="detailcontent">{EquipmentType} </div></div>'
+										+ '<div class="detailBlock"><div class="detailTitle">SERIAL NUMBER</div><div class="detailcontent">{EquipmentSerial} </div></div>'
 										+ '<div class="detailBlock"><div class="detailTitle">DESCRIPTION</div><div class="detailcontent">XXXX</div></div>'
 										+ '<div class="detailBlock"><div class="detailTitle">NOTE</div><div class="detailcontent">XXXX</div></div>'
 							},

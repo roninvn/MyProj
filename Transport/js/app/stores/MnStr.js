@@ -4,27 +4,27 @@ var MenuStore = new Ext.data.JsonStore({
 		return record.get('type');
 	},
 	data : [{
-		"img" : "new_csr.png",
+		"img" : "newcsr.png",
 		"section" : "New CSR",
 		"type" : "group1",
 		"childpanel" : "bookSettingsPanel"
 	}, {
-		"img" : "csr_active.png",
+		"img" : "csractive.png",
 		"section" : "CSR Active",
 		"type" : "group1",
 		"childpanel" : "bookServiceGroupsPanel"
 	}, {
-		"img" : "csr_closed.png",
+		"img" : "csrclosed.png",
 		"section" : "CSR Closed",
 		"type" : "group1",
 		"childpanel" : "sellSetingsPanel"
 	}, {
-		"img" : "all_csr.png",
+		"img" : "allcsr.png",
 		"section" : "All CSR",
 		"type" : "group1",
 		"childpanel" : "sellVendorPanel"
 	}, {
-		"img" : "csr_search.png",
+		"img" : "csrsearch.png",
 		"section" : "Search",
 		"type" : "group1",
 		"childpanel" : "sellProductGroupsPanel"
@@ -34,7 +34,7 @@ var MenuStore = new Ext.data.JsonStore({
 		"type" : "group2",
 		"childpanel" : "sellProductGroupsPanel"
 	}, {
-		"img" : "csr_help.png",
+		"img" : "csrhelp.png",
 		"section" : "Help",
 		"type" : "group2",
 		"childpanel" : "App.View.Help"
