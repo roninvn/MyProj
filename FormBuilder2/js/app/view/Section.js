@@ -193,7 +193,7 @@ Ext.define('FB.view.Section', {
 	
 	toJSON: function(){
 		var obj = {
-			type:'section',
+			//type:'section',
 			name: this.name,
 			title: this.title,			
 			inputs:[]
