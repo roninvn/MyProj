@@ -122,7 +122,7 @@ Ext.define('FB.controller.DesignController', {
 		var obj = {
 				name: 'My Form',
 				fieldsets: [{
-					name: 'Default fieldset',
+					name: 'Fieldset',
 					desc : 'This is the default fieldset',
 					inputs:[],
 					sections:[]
