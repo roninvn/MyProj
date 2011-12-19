@@ -144,7 +144,7 @@ Ext.define('FB.view.FieldsetPanel', {
 	
 	toJSON: function(){
 		var obj = {			
-			title: this.title,			
+			fieldset: this.title,			
 			//items:[]
 			inputs:[],
 			sections:[],
