@@ -380,6 +380,7 @@ $.Class.extend("Application",
 			sec.props.name = sec.name;
 			sec.props.id = ++Control.ID;
 			sec.props.elements = sec.elements;
+			sec.props.checked = sec.optional;
 			delete sec.elements;
 			
 			for(var j=0; j< sec.props.elements.length; j++){
