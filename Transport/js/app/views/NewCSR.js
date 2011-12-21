@@ -14,6 +14,16 @@ Geezeo.views.NewCSR = Ext.extend(Ext.Panel, {
 			handler : function() {
 				Geezeo.viewport.setActiveItem(Geezeo.views.MenuForm, 'slide');
 			}
+		},{
+			xtype:'spacer'
+		},{
+			text: 'Save',
+			handler: function(){
+				Ext.dispatch({
+					controller : Geezeo.controllers.CSRController,
+					action : 'csrSaveNew'
+				});
+			}
 		}]
 	}],
 	items : [{
@@ -22,59 +32,69 @@ Geezeo.views.NewCSR = Ext.extend(Ext.Panel, {
 	},{
 		xtype: 'textfield',
 		label: 'ETA Place',
-		name: 'etaplace'
+		name: 'etaplace',
+		id:'txtETAPlace'
 	},{
 		xtype: 'selectfield',
 		name: 'etacountry',
-		label: 'ETA Country',
-		options: [
-		          {text: 'USA',  value: 'USA'},
-		          {text: 'Italy', value: 'Italy'},
-		          {text: 'France',  value: 'France'}
-		      ]
+		id:'selEtaCountry',
+		label: 'ETA Country'
 	},{
 		xtype: 'datepickerfield',
 		name: 'etadate',
-		label: 'ETA Date'
+		label: 'ETA Date',
+		id:'dtETADate'
 	},{
 		xtype: 'datepickerfield',
-		label: 'ETD Date'
-	},{
-		xtype: 'selectfield',
-		name: 'etaplace',
-		label: 'ETA Place',
-		options: [
-		          {text: 'New York',  value: 'NY'},
-		          {text: 'Rome', value: 'RM'},
-		          {text: 'London',  value: 'LD'}
-		      ]
+		label: 'ETD Date',
+		id:'dtETDDate'
 	},{
 		xtype: 'selectfield',
 		name: 'eqman',
+		id:'selManf',
 		label: 'Equipment Manufacturer',
-		options: [
-		          {text: 'M1',  value: '1'},
-		          {text: 'M2', value: '2'},
-		          {text: 'M3',  value: '3'}
-		      ]
+		required: true
+	},{
+		xtype: 'textfield',
+		id:'txtEqFam',
+		label: 'Equipment Family',
+		required: true
 	},{
 		xtype: 'selectfield',
 		name: 'eqfam',
-		label: 'Equipment Family',
-		options: [
-		          {text: 'F1',  value: '1'},
-		          {text: 'F2', value: '2'},
-		          {text: 'F3',  value: '3'}
-		      ]
+		id:'selShip',
+		label: 'Ship',
+		required: true
 	},{
 		xtype: 'textfield',
 		name: 'eqtype',
-		label: 'Equipement Type'
+		id:'txtShipName',
+		label: 'Ship name'
+	},{
+		xtype: 'textfield',
+		name: 'eqtype',
+		label: 'Equipement Type',
+		id:'txtEqType'
+	},{
+		xtype: 'textfield',
+		label: 'Equipement Fault',
+		id:'txtEqFault',
+		required: true
 	},{
 		xtype: 'textfield',
 		name: 'eqfaultdesc',
-		label: 'Fault Description'
-	}]
+		label: 'Fault Description',
+		id:'txtFaultDesc'
+	}],
+	
+	listeners:{
+		activate: function(){			
+			Ext.dispatch({
+				controller : Geezeo.controllers.CSRController,
+				action : 'csrNewLoad'
+			});
+		}
+	}
 
 });
 

@@ -5,7 +5,12 @@ var Ajax = {
 		loadCSRActive : 'CSR/List/Active',
 		loadCSRClose: 'CSR/List/Closed',
 		loadAllClose: 'CSR/List',
-		loadDetailList: 'CSR/Detail/'
+		loadDetailList: 'CSR/Detail/',
+		searchCSR : 'CSR/List',
+		loadCountry: 'Country/List',
+		loadManufacturer: 'Manufacturer/List',
+		loadShipList: 'Ship/List',
+		saveCSR: 'CSR/New'
 	},
 	
 	/*
