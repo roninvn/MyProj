@@ -5,8 +5,7 @@ Geezeo.views.SearchForm = Ext.extend(Ext.Panel, {
 	//scroll: 'vertical',
 	dockedItems : [ {
 		xtype : 'toolbar',
-		dock : 'top',
-		title : 'TWS',
+		dock : 'top',		
 		cls : 'logo',
 		items : [ {
 			text : 'Back',
