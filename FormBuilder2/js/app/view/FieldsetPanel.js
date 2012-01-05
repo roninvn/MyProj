@@ -7,9 +7,12 @@ Ext.define('FB.view.FieldsetPanel', {
 	},
 	
 	autoScroll : true,
-
+	
+	draggable: true,
+	
 	listeners : {
-		render : function(c) {
+		afterrender : function(c) {
+			
 			c.getEl().on("contextmenu", function(e) {
 				e.preventDefault();
 				c.showContextMenu(e.getXY());
@@ -17,17 +20,26 @@ Ext.define('FB.view.FieldsetPanel', {
 			
 			c.getEl().on("click", function(e) {
 				e.preventDefault();
-				//c.showContextMenu(e.getXY());
 				c.doSelect();
 			});
 			
-			/*c.tip = Ext.create('Ext.tip.ToolTip', {
-			    target: c.getEl(),
-			    html: c.tooltip,
-			    trackMouse: true
-			});*/
+			c.dropTarget = Ext.create('Ext.dd.DropTarget', c.getEl().down('.x-panel-header'));
 			
-
+			c.dropTarget.notifyDrop = function(src,e,dt){
+				var droppedPanel = Ext.getCmp(src.id);
+				if(droppedPanel.getXType() !== 'FieldsetPanel')
+					return;
+				setTimeout(function(){
+					var idx = Ext.getCmp('designpanel').items.indexOf(c);
+					
+					droppedPanel.triggerMove(idx);
+				},500);
+				
+				
+				return true;
+			};
+			
+			
 		}
 	},
 
@@ -158,7 +170,6 @@ Ext.define('FB.view.FieldsetPanel', {
 			}
 			else{
 				obj.inputs.push(i._baseControl.toJSON());
-				//obj.items.push(i._baseControl.toJSON());
 			}
 		});
 		

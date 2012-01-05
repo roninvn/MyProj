@@ -7,6 +7,8 @@ Ext.define('FB.view.Section', {
 	},
 	
 	autoScroll : true,
+	
+	//draggable: true,
 
 	listeners : {
 		render : function(c) {
@@ -22,11 +24,7 @@ Ext.define('FB.view.Section', {
 				c.doSelect();
 			});
 			
-			/*c.tip = Ext.create('Ext.tip.ToolTip', {
-			    target: c.getEl(),
-			    html: c.tooltip,
-			    trackMouse: true
-			});*/
+
 		}
 	},
 
