@@ -29,7 +29,7 @@ Geezeo.views.SearchForm = Ext.extend(Ext.Panel, {
 			xtype : 'textfield',
 			name : 'name',
 			id:'txtSearchName',
-			label : 'Name',
+			label : 'Ship Name',
 			useClearIcon : true,
 			autoCapitalize : false
 		},{

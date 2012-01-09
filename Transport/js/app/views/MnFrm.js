@@ -19,7 +19,7 @@ Geezeo.views.MenuForm = Ext.extend(Ext.Panel, {
 				'<h3 class="x-list-header x-settings-header" ></h3>',
 				'<div class="x-list-group-items">', '{items}', '</div>',
 				'</div>', '</tpl>' ],
-		itemCls : 'dashboardListItem',
+		itemCls : 'menuList',
 		grouped : true,
 		store : MenuStore,
 		listeners : {
@@ -34,7 +34,7 @@ Geezeo.views.MenuForm = Ext.extend(Ext.Panel, {
 				else if (sec === "All CSR")
 					Geezeo.viewport.setActiveItem(Geezeo.views.CSRAll,'slide');
 				else if (sec === "Go To WebSite")
-					window.open('tws.temporary.link','_newtab');
+					window.open('http://test.tws2.telemarspa.it/','_newtab');
 				else if (sec === "Help")
 					Geezeo.viewport.setActiveItem(Geezeo.views.HelpForm,'slide');
 				else if (sec === "Search")

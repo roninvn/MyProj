@@ -1,3 +1,5 @@
+
+
 Geezeo.views.CSRDetailList = Ext.extend(Ext.Panel,
 				{
 					fullscreen : true,
@@ -34,7 +36,7 @@ Geezeo.views.CSRDetailList = Ext.extend(Ext.Panel,
 								tpl : '<div class="detailBlock"><div class="detailTitle">CON</div><div class="detailcontent">{CON}</div></div>'
 										+ '<div class="detailBlock"><div class="detailTitle">DATE</div><div class="detailcontent">{CSRDate}</div></div>'
 										+ '<div class="detailBlock"><div class="detailTitle">PRIORITY</div><div class="detailcontent">{Priority}</div></div>'
-										+ '<div class="detailBlock"><div class="detailTitle">ISSUED BY</div><div class="detailcontent">XXXX</div></div>'
+										+ '<div class="detailBlock"><div class="detailTitle">ISSUED BY</div><div class="detailcontent">{idExtUsersIssuedbyPIC}</div></div>'
 							},
 							{
 								xtype : "panel",
@@ -65,25 +67,28 @@ Geezeo.views.CSRDetailList = Ext.extend(Ext.Panel,
 										+ '<div class="detailBlock"><div class="detailTitle">MODEL</div><div class="detailcontent">{EquipmentModel} </div></div>'
 										+ '<div class="detailBlock"><div class="detailTitle">TYPE</div><div class="detailcontent">{EquipmentType} </div></div>'
 										+ '<div class="detailBlock"><div class="detailTitle">SERIAL NUMBER</div><div class="detailcontent">{EquipmentSerial} </div></div>'
-										+ '<div class="detailBlock"><div class="detailTitle">DESCRIPTION</div><div class="detailcontent">XXXX</div></div>'
-										+ '<div class="detailBlock"><div class="detailTitle">NOTE</div><div class="detailcontent">XXXX</div></div>'
+										+ '<div class="detailBlock"><div class="detailTitle">DESCRIPTION</div><div class="detailcontent aligncenter">{EquipmentFault}</div></div>'
+										+ '<div class="detailBlock"><div class="detailTitle">NOTE</div><div class="detailcontent aligncenter">{EquipmentFault}</div></div>'
 							},
+							
 							{
 								xtype : "panel",
 								title : "SERVICE COMPANY",
-								tpl : '<div class="detailBlock"><div class="detailTitle">NAME</div><div class="detailcontent">XXXX</div></div>'
-										+ '<div class="detailBlock"><div class="detailTitle">PLACE</div><div class="detailcontent">XXXX</div></div>'
-										+ '<div class="detailBlock"><div class="detailTitle">COUNTRY</div><div class="detailcontent">XXXX</div></div>'
-										+ '<div class="detailBlock"><div class="detailTitle">PHONE</div><div class="detailcontent">XXXX</div></div>'
-										+ '<div class="detailBlock"><div class="detailTitle">FAX</div><div class="detailcontent">XXXX</div></div>'
-										+ '<div class="detailBlock"><div class="detailTitle">EMAIL</div><div class="detailcontent">XXXX</div></div>'
+								tpl : '<div class="detailBlock"><div class="detailTitle">NAME</div><div class="detailcontent">{ServiceOrderDetail.SCCompanyName}</div></div>'
+										+ '<div class="detailBlock"><div class="detailTitle">PLACE</div><div class="detailcontent">{ServiceOrderDetail.SCPlace}</div></div>'
+										+ '<div class="detailBlock"><div class="detailTitle">COUNTRY</div><div class="detailcontent">{ServiceOrderDetail.SCCountry}</div></div>'
+										+ '<div class="detailBlock"><div class="detailTitle">PHONE</div><div class="detailcontent">{ServiceOrderDetail.SCPhone}</div></div>'
+										+ '<div class="detailBlock"><div class="detailTitle">FAX</div><div class="detailcontent">{ServiceOrderDetail.SCFax}</div></div>'
+										+ '<div class="detailBlock"><div class="detailTitle">EMAIL</div><div class="detailcontent">{ServiceOrderDetail.SCEmail}</div></div>'
+										
+										
 							},
 							{
 								xtype : "panel",
 								title : "ORDER NOTES",
-								tpl : '<div class="detailBlock"><div class="detailTitle">NOTE</div><div class="detailcontent">XXXX</div></div>'
-										+ '<div class="detailBlock"><div class="detailTitle">CONFIRMATION NOTE</div><div class="detailcontent">XXXX</div></div>'
-										+ '<div class="detailBlock"><div class="detailTitle">ATTACH FILE</div><div class="detailcontent">XXXX</div></div>'
+								tpl : '<div class="detailBlock"><div class="detailTitle">NOTE</div><div class="detailcontent aligncenter">{ServiceOrderDetail.OrderNote}</div></div>'
+										+ '<div class="detailBlock"><div class="detailTitle">CONFIRMATION NOTE</div><div class="detailcontent aligncenter">{ServiceOrderDetail.ConfirmationNote}</div></div>'
+										+ '<div class="detailBlock"><div class="detailTitle">ATTACH FILE</div><div class="detailcontent"></div></div>'
 							} ]
 
 				});

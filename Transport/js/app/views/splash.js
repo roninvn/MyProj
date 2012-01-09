@@ -2,7 +2,7 @@ Geezeo.views.Splash = Ext.extend(Ext.Panel, {
 	styleHtmlContent : true,
 	fullscreen : true,
 	bodyPadding : 0,	
-	html :'<center><img src="img/splash.png" style="padding-top: 20%;" /></center>',
+	html :'<div style="text-align: center;"><img src="img/splash.png" style="padding-top: 40%;" /></div>',
 	
 	listeners:{
 		render:function(c){

@@ -22,9 +22,6 @@ Geezeo.views.NewCSR = Ext.extend(Ext.Panel, {
 	items : [{
 		xtype: 'panel',
 		items:[{
-			html: "Ship",
-			cls:'accountListItem'
-		},{
 			xtype: 'textfield',
 			label: 'ETA Place',
 			name: 'etaplace',

@@ -183,7 +183,7 @@ Ext.layout.AccordionLayout = Ext.extend(Ext.layout.ContainerLayout, {
 		me.activeItem = item;
 
 		if (me.fill) {
-			height = me.expandHeight
+			height = me.expandHeight;
 		} else {
 			height = (item.expandHeight > 0) ? item.expandHeight : item.getHeight();
 		}

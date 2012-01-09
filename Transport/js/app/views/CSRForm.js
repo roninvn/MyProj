@@ -23,7 +23,7 @@ Geezeo.views.CSRForm = Ext.extend(Ext.Panel, {
 		           '<tpl if="CodeStatus == \'4\'">icon_orange.png</tpl>',
 		           '<tpl if="CodeStatus == \'5\'">icon_pink.png</tpl>',
 		           '<tpl if="CodeStatus == \'6\'">icon_white.png</tpl>',
-		           '" class="icon" />{CON}  - {ShipName} - {EquipmentFamily} - {ETAPlace}'],
+		           '" class="icon" />{ShipName} - {EquipmentFamily} - {ETAPlace}'],
 		itemCls : 'dashboardListItem',
 		//margin: '-25 0 0 -20',
 		store : null,

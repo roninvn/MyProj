@@ -20,7 +20,7 @@ Geezeo.views.CSRClose = Ext.extend(Ext.Panel, {
 		xtype : 'list',
 		itemTpl :  new Ext.XTemplate('<img src ="img/',
 		           '{CodeColor:this.formatColor}.png',		          
-		           '" class="icon" />{CON}  - {ShipName} - {EquipmentFamily} - {ETAPlace}',
+		           '" class="icon" />{ShipName} - {EquipmentFamily} - {ETAPlace}',
 		           {
 					formatColor: function(val){
 						return val.replace('#', '');
