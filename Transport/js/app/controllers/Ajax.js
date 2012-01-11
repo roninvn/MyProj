@@ -75,7 +75,16 @@ var Ajax = {
 	request : function(funcName, params, callback) {
 		
 		var url = Ajax.baseUrl + Ajax.services[funcName];
-		params.r = Math.random();
+		//has connection
+		if(navigator && navigator.network && navigator.network.connection.type && 
+				(navigator.network.connection.type == Connection.ETHERNET 
+						|| navigator.network.connection.type == Connection.WIFI 
+						|| navigator.network.connection.type == Connection.CELL_3G
+						|| navigator.network.connection.type == Connection.CELL_4G) )
+			params.r = Math.random();
+		else if(!navigator || !navigator.network)
+			params.r = Math.random();
+		
 		//request
 		Ext.util.JSONP.request({
 			url : url,
