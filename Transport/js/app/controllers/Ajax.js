@@ -75,7 +75,7 @@ var Ajax = {
 	request : function(funcName, params, callback) {
 		
 		var url = Ajax.baseUrl + Ajax.services[funcName];
-		
+		params.r = Math.random();
 		//request
 		Ext.util.JSONP.request({
 			url : url,
